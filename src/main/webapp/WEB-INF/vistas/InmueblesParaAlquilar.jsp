@@ -13,8 +13,9 @@
 <body>
 <h1>Inmuebles</h1>
 
+<form:form action="" method="POST" modelAttribute="inmueble">
 <div class="inmuebles">
-<c:forEach items="${INMUEBLES}" var="I">
+<c:forEach items="${inmuebles}" var="I">
 
 <div class="inm">
 <h2>${I.nombre}</h2>
@@ -23,9 +24,11 @@
 </br>
 
 
-<input type="submit" value="Alquilar">
+<button class="btn btn-lg btn-primary btn-block" Type="Submit"/>ALQUILAR</button>
+
 </div>
 </c:forEach>
 </div>
+</form:form>
 </body>
 </html>

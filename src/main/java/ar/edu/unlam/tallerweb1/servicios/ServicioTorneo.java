@@ -10,4 +10,6 @@ public interface ServicioTorneo {
 	// public void agregarParticipanteAlTorneo(Usuario participante);
 	
 	public List<Torneo> mostrarTorneos();
+
+	public void guardarTorneo(Torneo torneo);
 }

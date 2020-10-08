@@ -7,8 +7,10 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface RepositorioTorneo {
 
-	// Torneo ListaTorneos (Torneo torneo);
+	
 	
 	List <Torneo>torneos();
+
+	void guardarTorneo(Torneo torneo);
 	
 }

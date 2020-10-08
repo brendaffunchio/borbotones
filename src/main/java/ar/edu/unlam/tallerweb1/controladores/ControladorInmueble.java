@@ -3,10 +3,12 @@ package ar.edu.unlam.tallerweb1.controladores;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
 
 @Controller
@@ -15,14 +17,41 @@ public class ControladorInmueble {
 	@Autowired
 	public ServicioInmueble servicioInmueble;
 	
-	@RequestMapping (path="/inmuebles",method = RequestMethod.GET)
+	@Autowired
+	public ControladorInmueble(ServicioInmueble servicioInmueble) {
+		
+		this.servicioInmueble=servicioInmueble;
+		
+	}
+	
+	
+	@RequestMapping (path="inmuebles",method = RequestMethod.GET)
 	public ModelAndView MostrarInmuebles() {
 		
 		ModelMap modelo= new ModelMap();
-		modelo.put("INMUEBLES", servicioInmueble.mostrarInmuebles());
+		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
 		
 		return new ModelAndView("InmueblesParaAlquilar",modelo);
 	}
 	
 	
+	@RequestMapping(path="publicar-inmueble", method=RequestMethod.GET)
+	public ModelAndView nuevoInmueble() {
+		
+		ModelMap modelo = new ModelMap();
+		Inmueble inmueble = new Inmueble();
+		modelo.put("inmueble",inmueble);
+		
+		return new ModelAndView ("publicarInmueble",modelo);
+		
+	}
+	
+	@RequestMapping(path="inmueblesPublicados", method=RequestMethod.POST)
+	public ModelAndView crearInmueble (@ModelAttribute ("inmueble") Inmueble inmueble) {
+		
+		servicioInmueble.guardarInmueble(inmueble);
+		
+		return new ModelAndView ("redirect:/inmuebles");
+		
+	}
 }

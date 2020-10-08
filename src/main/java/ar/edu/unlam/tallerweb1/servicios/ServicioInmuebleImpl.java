@@ -4,21 +4,30 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioInmueble;
 
 @Service
+@Transactional
 public class ServicioInmuebleImpl implements ServicioInmueble{
 
 @Autowired
-	private RepositorioInmueble respositorioInmueble;
+	private RepositorioInmueble repositorioInmueble;
 	
 	@Override
 	public List<Inmueble> mostrarInmuebles() {
 		
 				
-		return respositorioInmueble.todosLosInmuebles();
+		return repositorioInmueble.todosLosInmuebles();
+	}
+
+	@Override
+	public void guardarInmueble(Inmueble inmueble) {
+		
+	repositorioInmueble.guardarInmueble(inmueble);
+	
 	}
 
 }

@@ -15,7 +15,6 @@
 	width: 200px;
 	heigth: 50px;
 	margin:10px;
-	
 }
 
 p{
@@ -29,4 +28,9 @@ input{
 
 h1{
 	margin-left: 10px;
+}
+
+h2{
+	text-align:center;
+	max-width:200px;
 }
