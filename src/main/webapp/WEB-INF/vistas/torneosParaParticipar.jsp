@@ -10,9 +10,9 @@
 </head>
 <body>
 
-<h1>Torneos</h1>
+<h1>Lista de Torneos</h1>
 
-<form:form action="" method="POST" modelAttribute="torneo">
+
 <div class="torneos">
 <c:forEach items="${torneos}" var="T">
 
@@ -27,14 +27,16 @@
 <p>Precio: ${T.precio}</p>
 </br>
 
-<button class="btn btn-lg btn-primary btn-block" Type="Submit"/>PARTICIPAR</button>
+<a class="btn btn-lg btn-primary btn-block" href="/proyecto-practica/" role="button">Participar</a>
+</br>
+
 
 </div>
 
 </c:forEach>
 </div>
 
-</form:form>
+
 
 </body>
 </html>

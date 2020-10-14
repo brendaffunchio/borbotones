@@ -9,24 +9,45 @@
 <title>Organizar Torneo</title>
 </head>
 <body>
-
-
-
-<form:form action="torneosOrganizados" method="POST" modelAttribute="torneo">
+<div class="contenedor-organizar">
+<div class="titulo-org">
+<h1 class="organizar">ORGANIZÁ TU TORNEO</h1>
+</div>
+<div class="formulario-torneo">
+<form:form action="crear-torneo" method="POST" modelAttribute="torneo">
 			    
-			    <form:input path="nombre" type="text" placeholder="Nombre"/>
+			    <label class="or">Nombre del torneo</label>
+			    <form:input path="nombre" type="text"/>
 			    
-			      <form:input path="fecha" type="date" placeholder="Fecha"/>
+			   <label class="or">Juego</label>
+			   <form:input path="juego" type="text"/>
 			      
-					  <form:input path="horario" type="time" placeholder="Horario"/>
+			    <label class="or">Fecha</label>
+			      <form:input path="fecha" type="date"/>
+			      
+			       <label class="or">Horario</label>
+					  <form:input path="horario" type="time" />
 					  
-					    <form:input path="precio" type="number" placeholder="Precio"/>
+					   <label class="or">Provincia</label>
+					  <form:input path="provincia" type="text" />
+					  
+					   <label class="or">Ciudad</label>
+					  <form:input path="ciudad" type="text" />
+					  
+					   <label class="or">Direccion</label>
+					  <form:input path="direccion" type="text" />
+					  
+					   <label class="or">Cupo</label>
+					  <form:input path="cupo" type="number" />
+					  
+					   <label class="or">Precio</label>
+					    <form:input path="precio" type="number"/>
 					    
-					<button class="btn btn-lg btn-primary btn-block" Type="Submit"/>ORGANIZAR TORNEO</button>
+					<button class="boton-organizar" Type="Submit"/>CREAR TORNEO</button>
 					
 				</form:form>
 
-
-
+</div>
+</div>
 </body>
 </html>

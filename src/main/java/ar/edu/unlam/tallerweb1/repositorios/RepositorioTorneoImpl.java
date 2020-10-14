@@ -25,6 +25,7 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 	public List<Torneo> torneos() {
 		final Session session = sessionFactory.getCurrentSession();
 		
+		
 		return session.createCriteria(Torneo.class).list();
 	}
 

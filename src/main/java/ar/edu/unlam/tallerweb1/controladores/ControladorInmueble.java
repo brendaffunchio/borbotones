@@ -25,8 +25,8 @@ public class ControladorInmueble {
 	}
 	
 	
-	@RequestMapping (path="inmuebles",method = RequestMethod.GET)
-	public ModelAndView MostrarInmuebles() {
+	@RequestMapping (path="ver-inmuebles",method = RequestMethod.GET)
+	public ModelAndView mostrarInmuebles() {
 		
 		ModelMap modelo= new ModelMap();
 		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
@@ -35,7 +35,7 @@ public class ControladorInmueble {
 	}
 	
 	
-	@RequestMapping(path="publicar-inmueble", method=RequestMethod.GET)
+	@RequestMapping(path="ver-formulario-inmueble", method=RequestMethod.GET)
 	public ModelAndView nuevoInmueble() {
 		
 		ModelMap modelo = new ModelMap();
@@ -46,7 +46,7 @@ public class ControladorInmueble {
 		
 	}
 	
-	@RequestMapping(path="inmueblesPublicados", method=RequestMethod.POST)
+	@RequestMapping(path="crear-inmueble", method=RequestMethod.POST)
 	public ModelAndView crearInmueble (@ModelAttribute ("inmueble") Inmueble inmueble) {
 		
 		servicioInmueble.guardarInmueble(inmueble);
