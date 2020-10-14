@@ -6,8 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import ar.edu.unlam.tallerweb1.modelo.Participante;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTorneo;
@@ -34,21 +32,6 @@ public class ServicioTorneoImpl implements ServicioTorneo{
 		
 	}
 
-	@Override
-	public void guardarParticipante(Participante participante) {
-		// TODO Auto-generated method stub
-		
-		repositorioTorneo.guardarParticipante(participante);
-		
-	}
-
-	@Override
-	public List<Usuario> mostrarParticipantes() {
-		// TODO Auto-generated method stub
-		
-		return repositorioTorneo.mostrarParticipantes();
-		
-		
-	}
+	
 
 }

@@ -20,7 +20,7 @@
 
 <h2> Inmobiliaria GAMING HOUSE  </h2>
 
-<nav class="contenedorNav"> <a href="#"> HOME </a> 
+<nav class="contenedorNav"> <a href="inicio"> HOME </a> 
 
 <a href="#"> INMUEBLES </a> 
 
@@ -58,7 +58,7 @@
          <!-- Item Info -->
          <div class="sh__meta">
             <h4>Prepara a tu equipo</h4>
-            <span>Busca tu lugar para entrenar <a href="inmuebles"> acá </a></span>
+            <span>Busca tu lugar para entrenar <a href="ver-inmuebles"> acá </a></span>
          </div>
       </div>
  
@@ -68,7 +68,7 @@
          <!-- Item Info -->
          <div class="sh__meta">
             <h4>Organizá torneos</h4>
-            <span>Organizalo de la manera que quieras <a href="organizar-torneo"> acá </a></span>
+            <span>Organizalo de la manera que quieras <a href="ver-formulario-torneo"> acá </a></span>
          </div>
       </div>
  
@@ -78,7 +78,7 @@
          <!-- Item Info -->
          <div class="sh__meta">
             <h4>Participá en un torneo profesional</h4>
-            <span>Elegí el torneo del juego que más te guste <a href="torneos"> acá </a></span>
+            <span>Elegí el torneo del juego que más te guste <a href="ver-torneos"> acá </a></span>
          </div>
       </div>
  
