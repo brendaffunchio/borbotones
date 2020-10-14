@@ -14,21 +14,24 @@
 </head>
 <body>
 
+<h1> Inmobiliaria GAMING HOUSE  </h1>
+
 <header>
 
 
+<nav class="contenedorNav"> 
 
-<h2> Inmobiliaria GAMING HOUSE  </h2>
+<a href="inicio" id="btnHome"> HOME </a> 
 
-<nav class="contenedorNav"> <a href="inicio"> HOME </a> 
+<a href="#" id="btnInmueble"> INMUEBLES </a> 
 
-<a href="#"> INMUEBLES </a> 
+<a href="#" id="btnTorneo"> TORNEOS </a> 
 
-<a href="#"> TORNEOS </a> 
-
-<a href="#"> CONTACTO </a> 
+<a href="#" id="btnContacto"> CONTACTO </a> 
 
  </nav>
+ 
+
 
  </header>
  

@@ -14,11 +14,11 @@ body{
 header{
 	
 	
-	background-color: #E494D3;
+	background-color: #C381FD;
 }
 
-h2{
-	
+h1{
+	color: white;
 	width: 80%;
 	margin: 0px auto;
 	text-align: center;
@@ -28,10 +28,10 @@ h2{
 .contenedorNav{
 	
 	display: flex;
+	flex-direction:row;
 	width:80%;
 	margin: 25px auto;
-	justify-content: space-around;
-	align-content: center;
+	justify-content: space-between;
 	align-items: center;
 	
 }
@@ -44,12 +44,34 @@ a{
 	text-align: center;
 	text-decoration:none; 
 	border-right: solid 2px white;
+	font-weight: bold;
 	color: white;
+	
 }
 
-a:hover{
+#btnContacto{
 	
-	color: fuchsia;
+	border: none;
+}
+
+#btnHome:hover{
+	
+	color: #F2626B;
+}
+
+#btnInmueble:hover{
+	
+	color: #FFEA7F;
+}
+
+#btnTorneo:hover{
+	
+	color: #89E077;
+}
+#btnContacto:hover{
+	
+	color: #83C3FF;
+	
 }
 
 
