@@ -21,6 +21,7 @@ public class Usuario {
 	private String password;
 	private String rol;
 	
+	
 	public Long getId() {
 		return id;
 	}
@@ -47,4 +48,5 @@ public class Usuario {
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
+
 }

@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Participante;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
@@ -25,17 +27,13 @@ public class ControladorTorneo {
 	public ControladorTorneo(ServicioTorneo servicioTorneo){
 		this.servicioTorneo = servicioTorneo;
 	}
+	
+	@RequestMapping(path = "/inicio", method = RequestMethod.GET)
+	public ModelAndView irAHome() {
+		return new ModelAndView("inicio");
+	}
 
 	
-	
-	@RequestMapping (path="torneos",method = RequestMethod.GET)
-	public ModelAndView MostrarTorneos() {
-		
-		ModelMap modelo= new ModelMap();
-		modelo.put("torneos", servicioTorneo.mostrarTorneos());
-		
-		return new ModelAndView("torneosParaParticipar",modelo);
-	}
 	
 	@RequestMapping (path="organizar-torneo",method=RequestMethod.GET)
 	public ModelAndView NuevoTorneo() {
@@ -48,6 +46,17 @@ public class ControladorTorneo {
 		
 	}
 	
+	
+	@RequestMapping (path="torneos",method = RequestMethod.GET)
+	public ModelAndView MostrarTorneos() {
+		
+		ModelMap modelo= new ModelMap();
+		modelo.put("torneos", servicioTorneo.mostrarTorneos());
+		
+		return new ModelAndView("torneosParaParticipar",modelo);
+	}
+	
+
 	@RequestMapping (path="torneosOrganizados",method=RequestMethod.POST)
 	public ModelAndView crearTorneo(@ModelAttribute ("torneo")Torneo torneo) {
 		
@@ -55,18 +64,40 @@ public class ControladorTorneo {
 		
 		return new ModelAndView ("redirect:/torneos");
 	}
+	
+	@RequestMapping (path="registrar-participante",method=RequestMethod.GET)
+	public ModelAndView NuevoParticipante() {
+		Participante participante = new Participante();
+		ModelMap modelo= new ModelMap();
+		
+		modelo.put("participante", participante);
+		
+		return new ModelAndView ("registrarParticipante",modelo);
+		
+	}
+	
+	
+	
+	@RequestMapping (path="agregar-participante", method=RequestMethod.POST)
+	public ModelAndView agregarParticipanteAlToreno(@ModelAttribute("participante") Participante participante) {
+		
+		servicioTorneo.guardarParticipante(participante);
+		
+		return new ModelAndView ("redirect:/participantes");
+	}
+	
+	@RequestMapping (path="participantes", method=RequestMethod.GET)
+	public ModelAndView participantesDelTorneo() {
+		
+		ModelMap modelo = new ModelMap();
+		
+		modelo.put("participantes", servicioTorneo.mostrarParticipantes());
+		
+		return new ModelAndView ("participantesDelTorneo", modelo);
+	}
 
-//	@RequestMapping	(path="participar", method= RequestMethod.POST)
-//	public ModelAndView participarTorneo () {
-//		
-//		ModelMap modelo = new ModelMap();
-//		Usuario participante = new Usuario();
-//		modelo.put("nombre_participante",participante);
-//		
-//		modelo.put("PARTICIPANTES", servicioTorneo.agregarParticipanteAlTorneo(participante));
-//		
-//		return ;
-//		
-//		
-//	}
+
+
+
 }
+

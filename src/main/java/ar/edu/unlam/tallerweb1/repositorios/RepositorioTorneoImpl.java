@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import ar.edu.unlam.tallerweb1.modelo.Participante;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
@@ -33,6 +34,27 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		
 		final Session session = sessionFactory.getCurrentSession();
 		session.save(torneo);
+		
+	}
+
+	@Override
+	public void guardarParticipante(Participante participante) {
+		// TODO Auto-generated method stub
+		
+		final Session session = sessionFactory.getCurrentSession();
+		
+		session.save(participante);
+		
+		
+	}
+
+	@Override
+	public List<Usuario> mostrarParticipantes() {
+		// TODO Auto-generated method stub
+		final Session session = sessionFactory.getCurrentSession();
+		
+		return  session.createCriteria(Participante.class).list();
+		
 		
 	}
 	

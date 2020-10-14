@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +12,7 @@
 
 <h1>Torneos</h1>
 
-<form:form action="" method="POST" modelAttribute="torneo">
+
 <div class="torneos">
 <c:forEach items="${torneos}" var="T">
 
@@ -27,14 +27,16 @@
 <p>Precio: ${T.precio}</p>
 </br>
 
-<button class="btn btn-lg btn-primary btn-block" Type="Submit"/>PARTICIPAR</button>
 
+<a href="registrar-participante"> Participar </a>
 </div>
 
 </c:forEach>
+
+
 </div>
 
-</form:form>
+
 
 </body>
 </html>

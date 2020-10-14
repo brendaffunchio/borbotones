@@ -2,14 +2,19 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.modelo.Participante;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import net.bytebuddy.dynamic.scaffold.MethodGraph.Linked;
 
 public interface ServicioTorneo {
 
-	// public void agregarParticipanteAlTorneo(Usuario participante);
 	
 	public List<Torneo> mostrarTorneos();
 
 	public void guardarTorneo(Torneo torneo);
+
+	public void guardarParticipante(Participante participante);
+
+	public List<Usuario> mostrarParticipantes();
 }
