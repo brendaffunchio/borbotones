@@ -33,17 +33,18 @@ h1{
 	margin: 25px auto;
 	justify-content: space-between;
 	align-items: center;
+	height: 50px;
 	
 }
 
 a{
 	
-	width: 100%;
-	height: 40px;
+	
 	margin: 0px auto;
 	text-align: center;
 	text-decoration:none; 
 	border-right: solid 2px white;
+	width: 100%;
 	font-weight: bold;
 	color: white;
 	
@@ -56,21 +57,21 @@ a{
 
 #btnHome:hover{
 	
-	color: #F2626B;
+	color: #FF1ACE;
 }
 
 #btnInmueble:hover{
 	
-	color: #FFEA7F;
+	color: #ECFF16;
 }
 
 #btnTorneo:hover{
 	
-	color: #89E077;
+	color: #71FC2D;
 }
 #btnContacto:hover{
 	
-	color: #83C3FF;
+	color: #2BE4FF;
 	
 }
 
@@ -78,21 +79,17 @@ a{
 .contenedorDescripcion{
 	
 	width: 80%;
+	padding: 1em;
 	max-width 200px;
 	margin: 50px auto;
-	background-color: white ;
+	background-color: black;
 	border-radius: 4px;
 	perspective: 200px;
-	border: solid 2px fuchsia;
+	border: solid 2px #C381FD;
 	
 	
 }
 
-.contenedorDescripcion:before{
-	
-	margin: 2em;
-	
-}
 
 p{
 	
@@ -100,4 +97,5 @@ max-width: 70%;
 font-family:serif;
 margin: 0px auto;	
 font-size: 1.4em;
+	color: white;
 }
