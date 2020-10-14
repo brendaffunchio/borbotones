@@ -15,10 +15,12 @@ public class Torneo {
 	private String nombre;
 	private String fecha;
 	private String horario;
-	private Integer limiteCupo;
+	private Integer cupo;
 	private Double precio;
-	
-	
+	private String direccion;
+	private String ciudad;
+	private String provincia;
+	private String juego;
 	
 	public String getHorario() {
 		return horario;
@@ -46,10 +48,46 @@ public class Torneo {
 		this.fecha = fecha;
 	}
 	public Integer getLimiteCupo() {
-		return limiteCupo;
+		return cupo;
 	}
 	public void setLimiteCupo(Integer limiteCupo) {
-		this.limiteCupo = limiteCupo;
+		this.cupo = limiteCupo;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public Integer getCupo() {
+		return cupo;
+	}
+	public void setCupo(Integer cupo) {
+		this.cupo = cupo;
+	}
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+	public String getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+	public String getProvincia() {
+		return provincia;
+	}
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+	public String getJuego() {
+		return juego;
+	}
+	public void setJuego(String juego) {
+		this.juego = juego;
 	}
 	
 	

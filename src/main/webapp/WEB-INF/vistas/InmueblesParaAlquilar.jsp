@@ -13,7 +13,7 @@
 <body>
 <h1>Inmuebles</h1>
 
-<form:form action="" method="POST" modelAttribute="inmueble">
+
 <div class="inmuebles">
 <c:forEach items="${inmuebles}" var="I">
 
@@ -29,6 +29,6 @@
 </div>
 </c:forEach>
 </div>
-</form:form>
+
 </body>
 </html>

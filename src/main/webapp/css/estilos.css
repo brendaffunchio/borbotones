@@ -34,3 +34,18 @@ h2{
 	text-align:center;
 	max-width:200px;
 }
+
+
+.contenedor-organizar{
+	display:flex;
+	justify-content: center;
+}
+
+.titulo-org{
+	justify-content:center;
+	
+}
+
+.formulario-torneo{
+	
+}

@@ -28,15 +28,25 @@ public class ControladorTorneo {
 		this.servicioTorneo = servicioTorneo;
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping(path = "/inicio", method = RequestMethod.GET)
 	public ModelAndView irAHome() {
 		return new ModelAndView("inicio");
+=======
+	@RequestMapping (path="ver-torneos",method = RequestMethod.GET)
+	public ModelAndView mostrarTorneos() {
+		
+		ModelMap modelo= new ModelMap();
+		modelo.put("torneos", servicioTorneo.mostrarTorneos());
+		
+		return new ModelAndView("torneosParaParticipar",modelo);
+>>>>>>> 10cca270ec755af1d939767dedaae30647d8455d
 	}
 
 	
 	
-	@RequestMapping (path="organizar-torneo",method=RequestMethod.GET)
-	public ModelAndView NuevoTorneo() {
+	@RequestMapping (path="ver-formulario-torneo",method=RequestMethod.GET)
+	public ModelAndView nuevoTorneo() {
 		Torneo torneo = new Torneo();
 		ModelMap modelo= new ModelMap();
 		
@@ -46,6 +56,7 @@ public class ControladorTorneo {
 		
 	}
 	
+<<<<<<< HEAD
 	
 	@RequestMapping (path="torneos",method = RequestMethod.GET)
 	public ModelAndView MostrarTorneos() {
@@ -58,6 +69,9 @@ public class ControladorTorneo {
 	
 
 	@RequestMapping (path="torneosOrganizados",method=RequestMethod.POST)
+=======
+	@RequestMapping (path="crear-torneo",method=RequestMethod.POST)
+>>>>>>> 10cca270ec755af1d939767dedaae30647d8455d
 	public ModelAndView crearTorneo(@ModelAttribute ("torneo")Torneo torneo) {
 		
 		servicioTorneo.guardarTorneo(torneo);

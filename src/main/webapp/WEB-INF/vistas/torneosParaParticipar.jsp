@@ -10,9 +10,13 @@
 </head>
 <body>
 
-<h1>Torneos</h1>
+<h1>Lista de Torneos</h1>
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 10cca270ec755af1d939767dedaae30647d8455d
 <div class="torneos">
 <c:forEach items="${torneos}" var="T">
 
@@ -27,6 +31,12 @@
 <p>Precio: ${T.precio}</p>
 </br>
 
+<<<<<<< HEAD
+=======
+<a class="btn btn-lg btn-primary btn-block" href="/proyecto-practica/" role="button">Participar</a>
+</br>
+
+>>>>>>> 10cca270ec755af1d939767dedaae30647d8455d
 
 <a href="registrar-participante"> Participar </a>
 </div>
