@@ -1,51 +1,42 @@
-.inmueble,.torneos{
-	display:grid;
-	width:100%;
-	justify-content:center;
-	grid-auto-flow:row;
-}
-
-.inm,.tor{
-	grid-column:auto;
-	display:flex;
-	flex-direction:column;
-	align-items:center;
-	background: grey;
-	border: black solid 1px;
-	width: 200px;
-	heigth: 50px;
-	margin:10px;
-}
-
-p{
-	margin-top:-30px;
-}
-
-input{
-	margin-top:-15px;
-	margin-bottom:10px;
-}
-
-h1{
-	margin-left: 10px;
-}
-
-h2{
-	text-align:center;
-	max-width:200px;
-}
 
 
 .contenedor-organizar{
 	display:flex;
 	justify-content: center;
+	align-items:center;
+	flex-direction: column;
+	justify-content: center;
+	
 }
 
 .titulo-org{
 	justify-content:center;
+	width:100%;
+	 margin-top: 20px;
+}
+.f{
+	margin-top:4px;
+	margin-bottom:4px;
+	width: 178px;
+}
+.formulario-torneo{
+	display: grid;
+	grid-template-columns: 200px;
+	width:200px;
+	border:2px solid #00f000;
+    padding: 30px;
+   align-content: center;
+   color:white;
+   margin-top: 20px;
+}
+
+.boton-organizar{
+	margin-top: 10px;
 	
 }
 
-.formulario-torneo{
+.btn-org{
+	font-weight: bold;
+	border: #00f000 2px solid;
 	
 }

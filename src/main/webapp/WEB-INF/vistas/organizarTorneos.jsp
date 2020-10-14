@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/estilos.css"/>
+<link rel="stylesheet" href="css/estilo-inicio.css"/>
 <meta charset="ISO-8859-1">
 <title>Organizar Torneo</title>
 </head>
@@ -17,34 +19,45 @@
 <form:form action="crear-torneo" method="POST" modelAttribute="torneo">
 			    
 			    <label class="or">Nombre del torneo</label>
-			    <form:input path="nombre" type="text"/>
-			    
+			    </br>
+			    <form:input class="f" path="nombre" type="text"/>
+			    </br>
 			   <label class="or">Juego</label>
-			   <form:input path="juego" type="text"/>
-			      
+			   </br>
+			   <form:input class="f" path="juego" type="text"/>
+			      </br>
 			    <label class="or">Fecha</label>
-			      <form:input path="fecha" type="date"/>
+			    </br>
+			      <form:input class="f" path="fecha" type="date"/>
+			      </br>
 			      
 			       <label class="or">Horario</label>
-					  <form:input path="horario" type="time" />
-					  
+			       </br>
+					  <form:input class="f" path="horario" type="time" />
+					  </br>
 					   <label class="or">Provincia</label>
-					  <form:input path="provincia" type="text" />
-					  
+					   </br>
+					  <form:input class="f" path="provincia" type="text" />
+					  </br>
 					   <label class="or">Ciudad</label>
-					  <form:input path="ciudad" type="text" />
-					  
+					   </br>
+					  <form:input class="f" path="ciudad" type="text" />
+					  </br>
 					   <label class="or">Direccion</label>
-					  <form:input path="direccion" type="text" />
-					  
+					   </br>
+					  <form:input class="f" path="direccion" type="text" />
+					  </br>
 					   <label class="or">Cupo</label>
-					  <form:input path="cupo" type="number" />
-					  
+					   </br>
+					  <form:input class="f" path="cupo" type="number" />
+					  </br>
 					   <label class="or">Precio</label>
-					    <form:input path="precio" type="number"/>
-					    
-					<button class="boton-organizar" Type="Submit"/>CREAR TORNEO</button>
-					
+					   </br>
+					    <form:input class="f" path="precio" type="number"/>
+					    </br>
+					    <div class="boton-organizar" >
+					<button class="btn-org" Type="Submit"/>CREAR TORNEO</button>
+					</div>
 				</form:form>
 
 </div>
