@@ -121,11 +121,14 @@ width:100%;
 	
 }
 .torneos, .inmuebles{
-	display:flex;
+	display:grid;
+	grid-template-columns: 250px 250px 250px 250px;
+	grid-template-rows: auto;
 	justify-content: space-around;
-	flex-direction:row;
 	margin-top:30px;
-	width:80%;
+	max-width:70%;
+	grid-column-gap: 40px;
+padding-left:170px;
 
 }
 .tor{

@@ -81,8 +81,8 @@ public ModelAndView crearParticipante (@ModelAttribute ("usuario") Usuario usuar
 }
 
 
-/*@RequestMapping (path="buscar-torneo-por-juego",method=RequestMethod.POST)
-public ModelAndView mostrarTorneosPorJuego(@ModelAttribute ("torneo") Torneo torneo)  {
+/*@RequestMapping (path="buscar-torneo-por-juego",method=RequestMethod.GET)
+public ModelAndView mostrarTorneosPorJuego()  {
 	String juego = torneo.getJuego();
 	ModelMap modelo= new ModelMap();
 	modelo.put("torneos", servicioTorneo.buscarTorneoPorJuego(juego));
