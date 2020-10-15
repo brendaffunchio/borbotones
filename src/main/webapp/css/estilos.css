@@ -9,15 +9,22 @@
 	
 }
 
-.titulo-org{
+.titulo-org, .titulo-pub{
 	justify-content:center;
 	width:100%;
 	 margin-top: 20px;
+	 color:white;
+	 font-size:20px;
+	 text-align:center;
 }
+
+
+
 .f{
-	margin-top:4px;
-	margin-bottom:4px;
+	margin-top:6px;
+	margin-bottom:8px;
 	width: 178px;
+	height: 20px;
 }
 .formulario-torneo{
 	display: grid;
@@ -28,6 +35,7 @@
    align-content: center;
    color:white;
    margin-top: 20px;
+   background:#080808;
 }
 
 .boton-organizar{
@@ -35,8 +43,210 @@
 	
 }
 
-.btn-org{
-	font-weight: bold;
-	border: #00f000 2px solid;
+.btn-org, .btn-part{
 	
+	border: #00f000 2px solid;
+	width: 130px;
+	padding:5px;
+	background:#232323;
+	color:white;
+	
+}
+
+
+ .btn-pub{
+	
+	border: #ECFF16 2px solid;
+	width: 120px;
+	padding:5px;
+	background:#232323;
+	color:white;
+	
+}
+
+.contenedor-participar, .contenedor-publicar{
+	display:flex;
+	justify-content: center;
+	align-items:center;
+	flex-direction: column;
+	justify-content: center;
+	
+}
+
+.titulo-part{
+	justify-content:center;
+	width:100%;
+	 margin-top: 20px;
+	 color:white;
+	 font-size:20px;
+	 text-align:center;
+}
+
+
+.datos{
+	width:100%;
+	text-align:center;
+	font-family: 'Montserrat', sans-serif;
+}
+.datos2{
+	font-size:30px;
+	width:100%;
+	text-align:center;
+	font-family: 'Montserrat', sans-serif;
+}
+.formulario-participar{
+	display: grid;
+	grid-template-columns: 200px;
+	width:200px;
+	border:2px solid #00f000;
+    padding: 20px;
+   align-content: center;
+   color:white;
+   margin-top: 20px;
+   background:#080808;
+}
+
+.boton-participar{
+	margin-top: 10px;
+	
+}
+
+.titulo-torn, .titulo-inmuebles{
+	
+width:100%;
+	 margin-top: 20px;
+	 color:white;
+	 font-size:35px;
+	 text-align:center;
+	
+}
+.torneos, .inmuebles{
+	display:flex;
+	justify-content: space-around;
+	flex-direction:row;
+	margin-top:30px;
+	width:80%;
+
+}
+.tor{
+	display: grid;
+	grid-template-columns: 200px;
+	width:200px;
+	border:2px solid #00f000;
+    padding: 20px;
+   color:white;
+   margin-top: 30px;
+   
+   
+}
+.inm{
+	display: grid;
+	grid-template-columns: 200px;
+	width:200px;
+	border:2px solid #ECFF16;
+    padding: 20px;
+   color:white;
+   margin-top: 20px;
+}
+p{
+	width:100%;
+	font-size:16px;
+}
+.nombre-tor, .nombre-inmueble{
+	color:white;
+	font-size:20px;
+	text-align: center;
+}
+
+span{
+	font-weight: bold;
+}
+
+.boton-part{
+	border:2px solid #00f000;
+	font-weight: normal;
+	width: 100px;
+	color:white;
+	padding: 5px;
+	background: #232323;
+
+}
+
+.boton-alqui, .boton-pub{
+	border:2px solid #ECFF16;
+	font-weight: normal;
+	width: 120px;
+	color:white;
+	padding: 5px;
+	background: #232323;
+}
+
+
+.boton-para-pub{
+	margin-left:25px;
+}
+.formulario-publicar{
+	display: grid;
+	grid-template-columns: 200px;
+	width:200px;
+	border:2px solid #ECFF16;
+    padding: 30px;
+   align-content: center;
+   color:white;
+   margin-top: 20px;
+   background:#080808;
+}
+
+.cont-acciones{
+	display:flex;
+	justify-content: space-around;
+	margin-top: 25px;
+	margin-bottom: 30px;
+}
+.pp,.ors{
+	font-size: 20px;
+	font-family: 'Montserrat', sans-serif;
+}
+.organizar-tor{
+	margin-right:-18em;
+	width: 180px;
+	justyfy-content:center;
+	align-items:center;
+	font-family: 'Montserrat', sans-serif;
+
+}
+
+.buscador{
+	color:white;
+	margin-left:-20em;
+}
+
+.busc{
+	width: 300px;
+	
+}
+
+.contenedor-contacto{
+	display: flex;
+	flex-direction:column;
+	justify-content:center;	
+	align-items:center;
+   
+}
+
+.contacto{
+	
+	padding:15px;
+	width:500px;
+	border:2px solid #2BE4FF;
+	background:#080808;
+	
+}
+.mapa{
+	margin-top:-1.5em;
+}
+iframe{
+	
+	width:480px;
+	height:300px;
 }

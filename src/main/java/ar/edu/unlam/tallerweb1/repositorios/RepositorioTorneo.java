@@ -13,5 +13,9 @@ public interface RepositorioTorneo {
 
 	void guardarTorneo(Torneo torneo);
 
+	void guardarParticipante(Usuario usuario);
+
+	List<Torneo> buscarTorneoPorJuego(String juego);
+
 
 }

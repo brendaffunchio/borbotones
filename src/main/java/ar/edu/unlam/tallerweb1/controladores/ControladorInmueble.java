@@ -51,7 +51,7 @@ public class ControladorInmueble {
 		
 		servicioInmueble.guardarInmueble(inmueble);
 		
-		return new ModelAndView ("redirect:/inmuebles");
+		return new ModelAndView ("redirect:/ver-inmuebles");
 		
 	}
 }

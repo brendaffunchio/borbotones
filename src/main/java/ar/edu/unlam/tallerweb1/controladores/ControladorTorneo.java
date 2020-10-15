@@ -26,12 +26,7 @@ public class ControladorTorneo {
 	}
 	
 
-	@RequestMapping(path = "/inicio", method = RequestMethod.GET)
-	public ModelAndView irAHome() {
-		return new ModelAndView("inicio");
-
-
-	}
+	
 	
 	@RequestMapping (path="ver-torneos",method = RequestMethod.GET)
 	public ModelAndView mostrarTorneos() {
@@ -61,8 +56,40 @@ public class ControladorTorneo {
 		
 		servicioTorneo.guardarTorneo(torneo);
 		
-		return new ModelAndView ("redirect:/torneos");
+		return new ModelAndView ("redirect:/ver-torneos");
 	}
 	
+
+
+@RequestMapping (path="ver-formulario-participar")
+	public ModelAndView nuevoParticipante() {
+		
+
+			ModelMap modelo = new ModelMap();
+			Usuario usuario = new Usuario();
+			modelo.put("usuario", usuario);
+			
+			return new ModelAndView("participarTorneo",modelo);
+			
+		}
+@RequestMapping (path="nuevos-participantes",method=RequestMethod.POST)
+public ModelAndView crearParticipante (@ModelAttribute ("usuario") Usuario usuario) {
+	
+	servicioTorneo.guardarParticipante(usuario);
+	
+	return new ModelAndView ("redirect:/ver-torneos");
 }
 
+
+/*@RequestMapping (path="buscar-torneo-por-juego",method=RequestMethod.POST)
+public ModelAndView mostrarTorneosPorJuego(@ModelAttribute ("torneo") Torneo torneo)  {
+	String juego = torneo.getJuego();
+	ModelMap modelo= new ModelMap();
+	modelo.put("torneos", servicioTorneo.buscarTorneoPorJuego(juego));
+	
+	
+	return new ModelAndView("torneosParaParticipar",modelo);
+}
+*/
+
+}

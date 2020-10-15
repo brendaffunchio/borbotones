@@ -11,9 +11,30 @@
 <title>Organizar Torneo</title>
 </head>
 <body>
+
+<h1 class="titulo-index"> INMOBILIARIA GAMING HOUSE  </h1>
+
+<header>
+
+
+<nav class="contenedorNav"> 
+
+<a href="inicio" id="btnHome"> HOME </a> 
+
+<a href="ver-inmuebles" id="btnInmueble"> INMUEBLES </a> 
+
+<a href="ver-torneos" id="btnTorneo"> TORNEOS </a> 
+
+<a href="contacto" id="btnContacto"> CONTACTO </a> 
+
+ </nav>
+ 
+
+ </header>
+ 
 <div class="contenedor-organizar">
 <div class="titulo-org">
-<h1 class="organizar">ORGANIZÁ TU TORNEO</h1>
+<h2 class="titulo-organizar">ORGANIZÁ TU TORNEO</h2>
 </div>
 <div class="formulario-torneo">
 <form:form action="crear-torneo" method="POST" modelAttribute="torneo">
@@ -24,16 +45,16 @@
 			    </br>
 			   <label class="or">Juego</label>
 			   </br>
-			   <form:input class="f" path="juego" type="text"/>
+			   <form:input class="f" path="juego" type="text" />
 			      </br>
 			    <label class="or">Fecha</label>
 			    </br>
-			      <form:input class="f" path="fecha" type="date"/>
+			      <form:input class="f" path="fecha" type="date" />
 			      </br>
 			      
 			       <label class="or">Horario</label>
 			       </br>
-					  <form:input class="f" path="horario" type="time" />
+					  <form:input class="f" path="horario" type="time"  />
 					  </br>
 					   <label class="or">Provincia</label>
 					   </br>
@@ -49,11 +70,11 @@
 					  </br>
 					   <label class="or">Cupo</label>
 					   </br>
-					  <form:input class="f" path="cupo" type="number" />
+					  <form:input class="f" path="cupo" type="number"/>
 					  </br>
 					   <label class="or">Precio</label>
 					   </br>
-					    <form:input class="f" path="precio" type="number"/>
+					    <form:input class="f" path="precio" type="number" />
 					    </br>
 					    <div class="boton-organizar" >
 					<button class="btn-org" Type="Submit"/>CREAR TORNEO</button>

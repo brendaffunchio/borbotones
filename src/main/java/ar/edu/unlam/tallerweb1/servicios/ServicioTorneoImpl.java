@@ -32,6 +32,18 @@ public class ServicioTorneoImpl implements ServicioTorneo{
 		
 	}
 
+	@Override
+	public void guardarParticipante(Usuario usuario) {
+		
+		repositorioTorneo.guardarParticipante(usuario);
+	}
+
+	@Override
+	public List<Torneo> buscarTorneoPorJuego(String juego) {
+		
+		return repositorioTorneo.buscarTorneoPorJuego(juego);
+	}
+
 	
 
 }

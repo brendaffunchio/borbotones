@@ -10,11 +10,11 @@
 <link rel="stylesheet" href="css/estilo-inicio.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet"> 
 
-<title>Inmobiliaria GAMING HOUSE</title>
+<title>INMOBILIARIA GAMING HOUSE</title>
 </head>
 <body>
 
-<h1> Inmobiliaria GAMING HOUSE  </h1>
+<h1 class="titulo-index"> INMOBILIARIA GAMING HOUSE  </h1>
 
 <header>
 
@@ -23,11 +23,11 @@
 
 <a href="inicio" id="btnHome"> HOME </a> 
 
-<a href="#" id="btnInmueble"> INMUEBLES </a> 
+<a href="ver-inmuebles" id="btnInmueble"> INMUEBLES </a> 
 
-<a href="#" id="btnTorneo"> TORNEOS </a> 
+<a href="ver-torneos" id="btnTorneo"> TORNEOS </a> 
 
-<a href="#" id="btnContacto"> CONTACTO </a> 
+<a href="contacto" id="btnContacto"> CONTACTO </a> 
 
  </nav>
  
@@ -38,11 +38,7 @@
  
  	<div class="contenedorDescripcion">
  	
- 	<p>  Una nube es un hidrometeoro que consiste en una masa visible formada por cristales de nieve o gotas de agua microscópicas suspendidas en la atmósfera. 
- 	Las nubes dispersan toda la luz visible y por eso se ven blancas. 
- 	Sin embargo, a veces son demasiado gruesas o densas como para que la luz las atraviese, cuando esto ocurre la coloración se torna gris o incluso negra. 
- 	Considerando que las nubes son gotas de agua sobre polvo atmosférico y dependiendo de algunos factores las gotas pueden convertirse en lluvia, granizo o nieve. 
- 	Las nubes son un aerosol formado por agua evaporada principalmente de los océanos.   </p>
+ 	<p>  INTRODUCCION   </p>
  	
  	 </div>
  	 
@@ -60,8 +56,8 @@
          <img src="img/imagen1.jpg" alt="imgText" width="100%" height="100%">
          <!-- Item Info -->
          <div class="sh__meta">
-            <h4>Prepara a tu equipo</h4>
-            <span>Busca tu lugar para entrenar <a href="ver-inmuebles"> acá </a></span>
+            <h4>Prepará a tu equipo</h4>
+            <span>Buscá tu lugar para entrenar <a href="ver-inmuebles"> acá </a></span>
          </div>
       </div>
  
@@ -102,6 +98,6 @@
    </div><!-- .sh__arrows -->
    
 </div><!-- .sheetSlider -->
-
+<footer>.</footer>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-       <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+     <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
@@ -8,9 +8,10 @@
 <link rel="stylesheet" href="css/estilos.css"/>
 <link rel="stylesheet" href="css/estilo-inicio.css"/>
 <meta charset="ISO-8859-1">
-<title>Publicar Inmueble</title>
+<title>Participar Torneo</title>
 </head>
 <body>
+
 <h1 class="titulo-index"> INMOBILIARIA GAMING HOUSE  </h1>
 
 <header>
@@ -30,32 +31,35 @@
  
 
  </header>
- <div class="contenedor-publicar">
-<div class="titulo-pub">
-<h2 class="titulo-publicar">PUBLICÁ TU INMUEBLE</h2>
+ 
+<div class="contenedor-participar">
+<div class="titulo-part">
+<h2 class="titulo-inscripcion">INSCRIPCIÓN AL TORNEO</h2>
 </div>
-<div class="formulario-publicar">
-<form:form action="crear-inmueble" method="POST" modelAttribute="inmueble">
-			    <p class="datos">DATOS DEL INMUEBLE</p>
+<div class="formulario-participar">
+
+<form:form action="" method="POST" modelAttribute="usuario" >
+			    <p class="datos">DATOS DEL PARTICIPANTE</p>
 			    </br>
-			    <label class="or">Nombre del inmueble</label>
+			    <label class="or">Nombre</label>
 			    </br>
 			    <form:input class="f" path="nombre" type="text" />
 			    </br>
-			    <label class="or">Localidad</label>
-			    </br>
-			    <form:input class="f" path="localidad" type="text" />
+			   <label class="or">Apellido</label>
 			   </br>
-			    <label class="or">Precio</label>
+			   <form:input class="f" path="apellido" type="text" />
+			      </br>
+			    <label class="or">Email</label>
 			    </br>
-			    <form:input class="f" path="precio" type="number" />
-			    </br>
-				<button class="btn-pub" Type="Submit"/>PUBLICAR</button>
-					
+			      <form:input class="f" path="email" type="email"/>
+			      </br>
+					    <div class="boton-participar" >
+					<button class="btn-part" Type="Submit"/>INSCRIBIRSE</button>
+					</div>
 				</form:form>
-				
-				</div>
-				</div>
-				
+
+</div>
+</div>
+
 </body>
 </html>

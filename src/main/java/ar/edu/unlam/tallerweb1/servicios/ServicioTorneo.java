@@ -13,4 +13,8 @@ public interface ServicioTorneo {
 
 	public void guardarTorneo(Torneo torneo);
 
+	public void guardarParticipante(Usuario usuario);
+
+	public List <Torneo> buscarTorneoPorJuego(String juego);
+
 }

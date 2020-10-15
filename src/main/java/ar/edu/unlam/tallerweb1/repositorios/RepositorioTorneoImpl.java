@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
@@ -33,6 +34,25 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		
 		final Session session = sessionFactory.getCurrentSession();
 		session.save(torneo);
+		
+	}
+
+	@Override
+	public void guardarParticipante(Usuario usuario) {
+		final Session session = sessionFactory.getCurrentSession();
+		session.save(usuario);
+		
+		
+	}
+
+	@Override
+	public List<Torneo> buscarTorneoPorJuego(String juego) {
+		
+		return sessionFactory.getCurrentSession()
+				.createCriteria(Torneo.class)
+				.add(Restrictions.eq("juego",juego)).list();
+		
+		
 		
 	}
 
