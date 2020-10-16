@@ -17,7 +17,7 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
 @Controller
 public class ControladorTorneo {
 	
-	@Autowired
+	
 	private ServicioTorneo servicioTorneo;
 
 	@Autowired

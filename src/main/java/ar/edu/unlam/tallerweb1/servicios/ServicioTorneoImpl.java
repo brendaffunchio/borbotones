@@ -15,8 +15,15 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioTorneo;
 public class ServicioTorneoImpl implements ServicioTorneo{
 
 
-	@Autowired
+
 	public RepositorioTorneo repositorioTorneo;
+	
+	@Autowired
+	public ServicioTorneoImpl(RepositorioTorneo repositorioTorneo) {
+	
+		this.repositorioTorneo = repositorioTorneo;
+	}
+
 	
 	@Override
 	public List<Torneo> mostrarTorneos() {
@@ -25,6 +32,7 @@ public class ServicioTorneoImpl implements ServicioTorneo{
 		return repositorioTorneo.torneos();
 	}
 
+	
 	@Override
 	public void guardarTorneo(Torneo torneo) {
 		

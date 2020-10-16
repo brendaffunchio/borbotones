@@ -13,9 +13,16 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioInmueble;
 @Transactional
 public class ServicioInmuebleImpl implements ServicioInmueble{
 
-@Autowired
+
 	private RepositorioInmueble repositorioInmueble;
 	
+	
+	@Autowired
+	public ServicioInmuebleImpl(RepositorioInmueble repositorioInmueble) {
+		
+		this.repositorioInmueble = repositorioInmueble;
+	}
+
 	@Override
 	public List<Inmueble> mostrarInmuebles() {
 		

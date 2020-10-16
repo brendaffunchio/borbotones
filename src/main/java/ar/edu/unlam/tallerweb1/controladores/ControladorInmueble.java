@@ -14,7 +14,6 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
 @Controller
 public class ControladorInmueble {
 
-	@Autowired
 	public ServicioInmueble servicioInmueble;
 	
 	@Autowired
