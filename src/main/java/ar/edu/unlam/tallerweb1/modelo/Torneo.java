@@ -1,9 +1,13 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
 
 
 @Entity
@@ -21,6 +25,9 @@ public class Torneo {
 	private String ciudad;
 	private String provincia;
 	private String juego;
+	
+	@ManyToMany(mappedBy = "torneos")
+	private List <Usuario>participantes;
 	
 	public String getHorario() {
 		return horario;
@@ -88,6 +95,12 @@ public class Torneo {
 	}
 	public void setJuego(String juego) {
 		this.juego = juego;
+	}
+	public List<Usuario> getParticipantes() {
+		return participantes;
+	}
+	public void setParticipantes(List<Usuario> participantes) {
+		this.participantes = participantes;
 	}
 	
 	

@@ -40,11 +40,12 @@
 <div class="cont-acciones">
 
 <div class="buscador">
-<form:form action="buscar-torneo-por-juego" method="POST" modelAttribute="torneo">
+<form:form action="buscar-torneo-por-juego" method="GET" >
 
 <label class="ors">Buscar torneo por juego</label>
 </br>
 <input class="busc" type="search">
+<button class="btn-org" type="submit">Buscar</button>
 
 </form:form>
 

@@ -37,11 +37,10 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		
 	}
 
+	
 	@Override
 	public void guardarParticipante(Usuario usuario) {
-		final Session session = sessionFactory.getCurrentSession();
-		session.save(usuario);
-		
+		 
 		
 	}
 
