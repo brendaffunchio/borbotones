@@ -35,7 +35,7 @@
 	<h2 class="titulo-torn">TORNEOS DISPONIBLES</h2>
 
 	<div class="cont-acciones">
-
+	
 		<div class="buscador">
 			<form:form action="buscar-torneo-por-juego" method="GET">
 
