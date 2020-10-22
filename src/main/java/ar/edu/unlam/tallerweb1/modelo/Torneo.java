@@ -20,6 +20,7 @@ public class Torneo {
 	private String fecha;
 	private String horario;
 	private Integer cupo;
+	private String categoria;
 	private Double precio;
 	private String direccion;
 	private String ciudad;
@@ -29,6 +30,15 @@ public class Torneo {
 	@ManyToMany(mappedBy = "torneos")
 	private List <Usuario>participantes;
 	
+	
+	
+	
+	public String getCategoria() {
+		return categoria;
+	}
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}
 	public String getHorario() {
 		return horario;
 	}

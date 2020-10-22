@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
+import ar.edu.unlam.tallerweb1.modelo.Torneo;
 
 @Repository
 public class RepositorioInmueblesImpl implements RepositorioInmueble {
@@ -34,6 +36,26 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 		
 		session.save(inmueble);
 		
+		
+	}
+
+	@Override
+	public List<Inmueble> buscarInmueblePorProvincia(String provincia) {
+		List <Inmueble> inmueblesProvincia = sessionFactory.getCurrentSession()
+				.createCriteria(Inmueble.class)
+				.add(Restrictions.like("provincia",provincia)).list();
+		
+		return inmueblesProvincia;
+		
+	}
+
+	@Override
+	public List<Inmueble> buscarInmueblePorCiudad(String ciudad) {
+		List <Inmueble> inmueblesCiudad = sessionFactory.getCurrentSession()
+				.createCriteria(Inmueble.class)
+				.add(Restrictions.like("ciudad",ciudad)).list();
+		
+		return inmueblesCiudad;
 		
 	}
 

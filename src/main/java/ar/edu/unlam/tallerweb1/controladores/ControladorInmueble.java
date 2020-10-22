@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -53,4 +55,29 @@ public class ControladorInmueble {
 		return new ModelAndView ("redirect:/ver-inmuebles");
 		
 	}
+	
+	@RequestMapping (path="buscar-inmueble-por-provincia",method=RequestMethod.GET)
+	public ModelAndView mostrarInmueblesPorProvincia(HttpServletRequest request)  {
+		
+		ModelMap modelo= new ModelMap();
+
+		String provincia = request.getParameter("provincia");
+		modelo.put("inmueblesProvincia", servicioInmueble.buscarInmueblePorProvincia(provincia));
+		
+		
+		return new ModelAndView("inmueblesPorProvincia",modelo);
+	}
+
+	@RequestMapping (path="buscar-inmueble-por-ciudad",method=RequestMethod.GET)
+	public ModelAndView mostrarInmueblesPorCiudad(HttpServletRequest request)  {
+		
+		ModelMap modelo= new ModelMap();
+
+		String ciudad = request.getParameter("ciudad");
+		modelo.put("inmueblesCiudad", servicioInmueble.buscarInmueblePorCiudad(ciudad));
+		
+		
+		return new ModelAndView("inmueblesPorCiudad",modelo);
+	}
+
 }

@@ -42,6 +42,7 @@
 
 	</div>
 	<div class="cont-acciones">
+	
 <div class="buscador">
 			<form:form action="buscar-inmueble-por-provincia" method="GET">
 
@@ -51,7 +52,7 @@
 				<button class="btn-org" type="submit">Buscar</button>
 
 			</form:form>
-			<form:form action="buscar-inmuebles-por-ciudad" method="GET">
+			<form:form action="buscar-inmueble-por-ciudad" method="GET">
 
 				<label class="ors">Buscar inmueble por Ciudad</label>
 				</br>
@@ -60,18 +61,20 @@
 
 			</form:form>
 			
-		</div>
-		
+			 </br> <a class="boton-part" href="ver-inmuebles" role="button">
+			TODOS LOS INMUEBLES </a>
+ </div>
+ 
 		</div>
 	<div class="inmuebles">
-		<c:forEach items="${inmuebles}" var="I">
+		<c:forEach items="${inmueblesCiudad}" var="IC">
 
 			<div class="inm">
-				<h2 class="nombre-inmueble">${I.nombre}</h2>
+				<h2 class="nombre-inmueble">${IC.nombre}</h2>
 				</br>
 				
 				<p>
-					<span>Precio:</span> ${I.precio}
+					<span>Precio:</span> ${IC.precio}
 				</p>
 				</br>
 

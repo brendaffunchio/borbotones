@@ -53,7 +53,9 @@
 				<button class="btn-org" type="submit">Buscar</button>
 
 			</form:form>
-
+			
+          </br> <a class="boton-part" href="ver-torneos" role="button">
+			TODOS LOS TORNEOS </a>
 		</div>
 
 		<div class="organizar-tor">
@@ -67,38 +69,38 @@
 	</div>
 
 	<div class="torneos">
-		<c:forEach items="${torneos}" var="T">
+		<c:forEach items="${torneosCategoria}" var="TC">
 
 
 			<div class="tor">
-				<h2 class="nombre-tor">${T.nombre}</h2>
+				<h2 class="nombre-tor">${TC.nombre}</h2>
 				</br>
 				<p>
-					<span>Juego:</span> ${T.juego}
+					<span>Juego:</span> ${TC.juego}
 				</p>
 				</br>
 				<p>
-					<span>Fecha:</span> ${T.fecha}
+					<span>Fecha:</span> ${TC.fecha}
 				</p>
 				</br>
 				<p>
-					<span>Horario:</span> ${T.horario}
+					<span>Horario:</span> ${TC.horario}
 				</p>
 				</br>
 				<p>
-					<span>Provincia:</span> ${T.provincia}
+					<span>Provincia:</span> ${TC.provincia}
 				</p>
 				</br>
 				<p>
-					<span>Ciudad:</span> ${T.ciudad}
+					<span>Ciudad:</span> ${TC.ciudad}
 				</p>
 				</br>
 				<p>
-					<span>Direccion:</span> ${T.direccion}
+					<span>Direccion:</span> ${TC.direccion}
 				</p>
 				</br>
 				<p>
-					<span>Precio:</span> ${T.precio}
+					<span>Precio:</span> ${TC.precio}
 				</p>
 				</br> <a class="boton-part" href="ver-formulario-participar"
 					role="button"> PARTICIPAR </a>

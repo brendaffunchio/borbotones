@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -81,16 +83,30 @@ public ModelAndView crearParticipante (@ModelAttribute ("usuario") Usuario usuar
 }
 
 
-/*
+
 @RequestMapping (path="buscar-torneo-por-juego",method=RequestMethod.GET)
-public ModelAndView mostrarTorneosPorJuego(@RequestParam("juego") String juego)  {
+public ModelAndView mostrarTorneosPorJuego(HttpServletRequest request)  {
 	
 	ModelMap modelo= new ModelMap();
-	modelo.put("torneos", servicioTorneo.buscarTorneoPorJuego(juego));
+
+	String juego = request.getParameter("juego");
+	modelo.put("torneosJuegos", servicioTorneo.buscarTorneoPorJuego(juego));
 	
 	
 	return new ModelAndView("torneosPorJuego",modelo);
 }
-*/
+
+@RequestMapping (path="buscar-torneo-por-categoria",method=RequestMethod.GET)
+public ModelAndView mostrarTorneosPorCategoria(HttpServletRequest request)  {
+	
+	ModelMap modelo= new ModelMap();
+
+	String categoria = request.getParameter("categoria");
+	modelo.put("torneosCategoria", servicioTorneo.buscarTorneoPorCategoria(categoria));
+	
+	
+	return new ModelAndView("torneosPorCategoria",modelo);
+}
+
 
 }

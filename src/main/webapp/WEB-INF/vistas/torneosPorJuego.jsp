@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="css/estilo-inicio.css" />
 <link rel="stylesheet" type="text/css" href="css/estilos.css">
 
-<title>Torneos</title>
+<title>Torneos Por Juego</title>
 </head>
 <body>
 
@@ -45,7 +45,7 @@
 				<button class="btn-org" type="submit">Buscar</button>
 
 			</form:form>
-			<form:form action="buscar-torneo-por-categoria" method="GET">
+                <form:form action="buscar-torneo-por-categoria" method="GET">
 
 				<label class="ors">Buscar torneo por categoria</label>
 				</br>
@@ -53,6 +53,9 @@
 				<button class="btn-org" type="submit">Buscar</button>
 
 			</form:form>
+
+            </br> <a class="boton-part" href="ver-torneos" role="button">
+			TODOS LOS TORNEOS </a>
 
 		</div>
 
@@ -67,38 +70,38 @@
 	</div>
 
 	<div class="torneos">
-		<c:forEach items="${torneos}" var="T">
+		<c:forEach items="${torneosJuegos}" var="TT">
 
 
 			<div class="tor">
-				<h2 class="nombre-tor">${T.nombre}</h2>
+				<h2 class="nombre-tor">${TT.nombre}</h2>
 				</br>
 				<p>
-					<span>Juego:</span> ${T.juego}
+					<span>Juego:</span> ${TT.juego}
 				</p>
 				</br>
 				<p>
-					<span>Fecha:</span> ${T.fecha}
+					<span>Fecha:</span> ${TT.fecha}
 				</p>
 				</br>
 				<p>
-					<span>Horario:</span> ${T.horario}
+					<span>Horario:</span> ${TT.horario}
 				</p>
 				</br>
 				<p>
-					<span>Provincia:</span> ${T.provincia}
+					<span>Provincia:</span> ${TT.provincia}
 				</p>
 				</br>
 				<p>
-					<span>Ciudad:</span> ${T.ciudad}
+					<span>Ciudad:</span> ${TT.ciudad}
 				</p>
 				</br>
 				<p>
-					<span>Direccion:</span> ${T.direccion}
+					<span>Direccion:</span> ${TT.direccion}
 				</p>
 				</br>
 				<p>
-					<span>Precio:</span> ${T.precio}
+					<span>Precio:</span> ${TT.precio}
 				</p>
 				</br> <a class="boton-part" href="ver-formulario-participar"
 					role="button"> PARTICIPAR </a>

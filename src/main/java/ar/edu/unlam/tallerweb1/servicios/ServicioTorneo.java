@@ -17,4 +17,6 @@ public interface ServicioTorneo {
 
 	public List <Torneo> buscarTorneoPorJuego(String juego);
 
+	public List <Torneo> buscarTorneoPorCategoria(String categoria);
+
 }

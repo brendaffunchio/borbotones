@@ -37,4 +37,16 @@ public class ServicioInmuebleImpl implements ServicioInmueble{
 	
 	}
 
+	@Override
+	public List<Inmueble> buscarInmueblePorProvincia(String provincia) {
+		
+		return repositorioInmueble.buscarInmueblePorProvincia(provincia);
+	}
+
+	@Override
+	public List<Inmueble> buscarInmueblePorCiudad(String ciudad) {
+		
+		return repositorioInmueble.buscarInmueblePorCiudad(ciudad);
+	}
+
 }

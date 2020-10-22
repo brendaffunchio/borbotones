@@ -21,12 +21,16 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		this.sessionFactory = sessionFactory;
 	}
 
-	@Override
 	public List<Torneo> torneos() {
 		final Session session = sessionFactory.getCurrentSession();
 		
+		List<Usuario>participantes= new LinkedList<>();
 		
-		return session.createCriteria(Torneo.class).list();
+		Integer cupo= participantes.size();
+		
+		return session.createCriteria(Torneo.class)
+				.add(Restrictions.ge("cupo",cupo))
+				.list();
 	}
 
 	@Override
@@ -47,11 +51,24 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 	@Override
 	public List<Torneo> buscarTorneoPorJuego(String juego) {
 		
-		return sessionFactory.getCurrentSession()
+		List <Torneo> torneosJuego = sessionFactory.getCurrentSession()
 				.createCriteria(Torneo.class)
-				.add(Restrictions.eq("juego",juego)).list();
+				.add(Restrictions.like("juego",juego)).list();
+		
+		return torneosJuego;
 		
 		
+		
+	}
+
+	@Override
+	public List<Torneo> buscarTorneoPorCategoria(String categoria) {
+		
+		List <Torneo> torneosCategoria = sessionFactory.getCurrentSession()
+				.createCriteria(Torneo.class)
+				.add(Restrictions.like("categoria",categoria)).list();
+		
+		return torneosCategoria;
 		
 	}
 

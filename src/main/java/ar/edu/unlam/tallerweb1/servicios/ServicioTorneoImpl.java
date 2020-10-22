@@ -52,6 +52,13 @@ public class ServicioTorneoImpl implements ServicioTorneo{
 		return repositorioTorneo.buscarTorneoPorJuego(juego);
 	}
 
+
+	@Override
+	public List<Torneo> buscarTorneoPorCategoria(String categoria) {
+		
+		return repositorioTorneo.buscarTorneoPorCategoria(categoria);
+	}
+
 	
 
 }

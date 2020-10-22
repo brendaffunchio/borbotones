@@ -17,5 +17,7 @@ public interface RepositorioTorneo {
 
 	List<Torneo> buscarTorneoPorJuego(String juego);
 
+	List<Torneo> buscarTorneoPorCategoria(String categoria);
+
 
 }
