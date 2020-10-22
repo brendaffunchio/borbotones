@@ -22,16 +22,23 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 	}
 
 	public List<Torneo> torneos() {
+		
 		final Session session = sessionFactory.getCurrentSession();
-		
-		List<Usuario>participantes= new LinkedList<>();
-		
-		Integer cupo= participantes.size();
-		
-		return session.createCriteria(Torneo.class)
-				.add(Restrictions.ge("cupo",cupo))
-				.list();
+
+
+        List<Usuario>participantes= new LinkedList<>();
+
+
+        Integer cupo= participantes.size();
+
+
+        return session.createCriteria(Torneo.class)
+
+                .add(Restrictions.ge("cupo",cupo))
+
+                .list();
 	}
+
 
 	@Override
 	public void guardarTorneo(Torneo torneo) {

@@ -36,37 +36,7 @@
 
 	<h2 class="titulo-inmuebles">INMUEBLES DISPONIBLES</h2>
 
-	<div class="boton-para-pub">
-		<a class="boton-pub" href="ver-formulario-inmueble" role="button">
-			PUBLICAR </a>
-
-	</div>
-	<div class="cont-acciones">
 	
-<div class="buscador">
-			<form:form action="buscar-inmueble-por-provincia" method="GET">
-
-				<label class="ors">Buscar inmueble por Provincia</label>
-				</br>
-				<input name="provincia" class="busc" type="search">
-				<button class="btn-org" type="submit">Buscar</button>
-
-			</form:form>
-			<form:form action="buscar-inmueble-por-ciudad" method="GET">
-
-				<label class="ors">Buscar inmueble por Ciudad</label>
-				</br>
-				<input name="ciudad" class="busc" type="search">
-				<button class="btn-org" type="submit">Buscar</button>
-
-			</form:form>
-			
-			 </br> <a class="boton-part" href="ver-inmuebles" role="button">
-			TODOS LOS INMUEBLES </a>
- 
- 
-		</div>
-		</div>
 	<div class="inmuebles">
 		<c:forEach items="${inmueblesProvincia}" var="IP">
 
@@ -76,6 +46,17 @@
 				
 				<p>
 					<span>Precio:</span> ${IP.precio}
+				</p>
+				</br>
+			
+					<p>
+					<span>Provincia:</span> ${IP.provincia}
+					
+				</p>
+	</br>				
+					<p>
+					<span>Localidad:</span> ${IP.localidad}
+					
 				</p>
 				</br>
 

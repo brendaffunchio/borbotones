@@ -68,16 +68,16 @@ public class ControladorInmueble {
 		return new ModelAndView("inmueblesPorProvincia",modelo);
 	}
 
-	@RequestMapping (path="buscar-inmueble-por-ciudad",method=RequestMethod.GET)
-	public ModelAndView mostrarInmueblesPorCiudad(HttpServletRequest request)  {
+	@RequestMapping (path="buscar-inmueble-por-localidad",method=RequestMethod.GET)
+	public ModelAndView mostrarInmueblesPorLocalidad(HttpServletRequest request)  {
 		
 		ModelMap modelo= new ModelMap();
 
-		String ciudad = request.getParameter("ciudad");
-		modelo.put("inmueblesCiudad", servicioInmueble.buscarInmueblePorCiudad(ciudad));
+		String localidad = request.getParameter("localidad");
+		modelo.put("inmueblesLocalidad", servicioInmueble.buscarInmueblePorLocalidad(localidad));
 		
 		
-		return new ModelAndView("inmueblesPorCiudad",modelo);
+		return new ModelAndView("inmueblesPorLocalidad",modelo);
 	}
 
 }

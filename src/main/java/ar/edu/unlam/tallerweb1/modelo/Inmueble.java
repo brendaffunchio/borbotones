@@ -14,7 +14,7 @@ public class Inmueble {
 	private String nombre;
 	private String categoria;
 	private String provincia;
-	private String ciudad;
+	private String localidad;
 	private Double precio;
 	
 	
@@ -30,11 +30,11 @@ public class Inmueble {
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
 	}
-	public String getCiudad() {
-		return ciudad;
+	public String getLocalidad() {
+		return localidad;
 	}
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
 	}
 	public String getNombre() {
 		return nombre;

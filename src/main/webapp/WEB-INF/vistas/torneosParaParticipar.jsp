@@ -69,7 +69,6 @@
 	<div class="torneos">
 		<c:forEach items="${torneos}" var="T">
 
-
 			<div class="tor">
 				<h2 class="nombre-tor">${T.nombre}</h2>
 				</br>

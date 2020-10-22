@@ -55,6 +55,10 @@
 	color: white;
 }
 
+#buscarInmueble{
+	border: #ECFF16 2px solid;
+}
+
 .contenedor-participar, .contenedor-publicar {
 	display: flex;
 	justify-content: center;
@@ -197,6 +201,7 @@ span {
 }
 
 .pp, .ors {
+	max-width: 100%;
 	font-size: 20px;
 	font-family: 'Montserrat', sans-serif;
 }
@@ -209,6 +214,11 @@ span {
 	font-family: 'Montserrat', sans-serif;
 }
 
+.avisoUsuario{
+	
+	font-size: 0.8em;
+}
+
 .buscador {
 	color: white;
 	margin-left: -20em;
@@ -216,7 +226,30 @@ span {
 
 .busc {
 	width: 300px;
-	color: white;
+}
+
+.opcionesUsuario{
+	
+	display: flex;
+	max-width: 100%;
+	padding: 10px 80px;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	
+}
+
+.organizaPropioTorneo{
+	
+	font-weight: normal;
+	border: none;
+	
+	
+}
+
+.organizaPropioTorneo:hover {
+	
+	color: #00f000;
 }
 
 .contenedor-contacto {

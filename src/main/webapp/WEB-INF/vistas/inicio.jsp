@@ -38,13 +38,68 @@
 	<div class="contenedorDescripcion">
 
 		<p>
-			Nuestro sitio esta preparado para que vos puedas elegir un lugar
-			donde prepararte, stremear o jugar. <br> Podes participar de un
-			evento con los mejores jugadores del país, crear uno para jugar con
-			tus amigos/as, competir con profesionales o con quien desees. <br>
-			<br> <a class="btnEmpezar" href="#"> Unite </a>
 
-		</p>
+             Nuestro sitio está preparado para que vos puedas:
+             
+             <br>
+             
+             <br>
+
+             - Elegir un lugar donde prepararte, stremear o jugar. 
+             
+
+              <br>
+             
+             <br>
+
+
+             - Participar de un evento con los mejores jugadores del país.
+
+            <br>
+             
+             <br>
+
+
+             - Crear un torneo para jugar con tus amigos/as.
+
+              <br>
+             
+             <br>
+
+
+             - Competir con profesionales o con quien desees. 
+
+             <br>
+             
+             <br>
+             
+             <br>
+
+            Requisitos: 
+             
+             <br>
+             
+             <br>
+
+             - Estar logueado para organizar un torneo o alquilar un inmueble.
+             
+              <br>
+             
+             <br>
+             
+
+             - Tener al menos un inmueble alquilado para poder organizar el torneo.
+             
+             <div class="contenedorBotonesInicio">
+
+          <a class="btnEmpezar" href="#"> REGISTRARSE </a>
+
+           <a class="btnEmpezar" href="#"> INICIAR SESIÓN </a>
+             
+              </div>
+ 
+        </p>
+
 
 	</div>
 

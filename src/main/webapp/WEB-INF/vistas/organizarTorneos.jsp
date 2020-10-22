@@ -82,6 +82,15 @@
 					<button class="btn-org" Type="Submit" />
 					CREAR TORNEO
 					</button>
+					
+					<br>
+					
+					<br>
+					
+					
+					
+					<p  class="avisoUsuario"> Necesitas  <a class="organizaPropioTorneo"> iniciar sesión  </a>para crear un torneo. </p>
+					
 				</div>
 			</form:form>
 

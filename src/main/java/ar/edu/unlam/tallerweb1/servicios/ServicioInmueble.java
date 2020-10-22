@@ -12,6 +12,6 @@ public interface ServicioInmueble {
 
 	public List<Inmueble> buscarInmueblePorProvincia(String provincia);
 
-	public List<Inmueble> buscarInmueblePorCiudad(String ciudad);
+	public List<Inmueble> buscarInmueblePorLocalidad(String localidad);
 	
 }

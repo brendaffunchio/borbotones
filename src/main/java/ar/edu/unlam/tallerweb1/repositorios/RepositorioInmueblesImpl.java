@@ -50,12 +50,12 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 	}
 
 	@Override
-	public List<Inmueble> buscarInmueblePorCiudad(String ciudad) {
-		List <Inmueble> inmueblesCiudad = sessionFactory.getCurrentSession()
+	public List<Inmueble> buscarInmueblePorLocalidad(String localidad) {
+		List <Inmueble> inmueblesLocalidad= sessionFactory.getCurrentSession()
 				.createCriteria(Inmueble.class)
-				.add(Restrictions.like("ciudad",ciudad)).list();
+				.add(Restrictions.like("localidad",localidad)).list();
 		
-		return inmueblesCiudad;
+		return inmueblesLocalidad;
 		
 	}
 

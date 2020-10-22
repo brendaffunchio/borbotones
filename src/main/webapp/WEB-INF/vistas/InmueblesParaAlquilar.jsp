@@ -36,31 +36,36 @@
 
 	<h2 class="titulo-inmuebles">INMUEBLES DISPONIBLES</h2>
 
-	<div class="boton-para-pub">
-		<a class="boton-pub" href="ver-formulario-inmueble" role="button">
-			PUBLICAR </a>
-
-	</div>
+	
 	<div class="cont-acciones">
 <div class="buscador">
+
 			<form:form action="buscar-inmueble-por-provincia" method="GET">
 
 				<label class="ors">Buscar inmueble por Provincia</label>
 				</br>
-				<input name="provincia" class="busc" type="search">
-				<button class="btn-org" type="submit">Buscar</button>
+				<input name="provincia" class="busc" type="search" >
+				<button class="btn-org" type="submit" id="buscarInmueble">Buscar</button>
 
 			</form:form>
-			<form:form action="buscar-inmuebles-por-ciudad" method="GET">
+			<form:form action="buscar-inmueble-por-localidad" method="GET">
 
-				<label class="ors">Buscar inmueble por Ciudad</label>
+				<label class="ors">Buscar inmueble por Localidad</label>
 				</br>
-				<input name="ciudad" class="busc" type="search">
-				<button class="btn-org" type="submit">Buscar</button>
+				<input name="localidad" class="busc" type="search" >
+				<button class="btn-org" type="submit" id="buscarInmueble">Buscar</button>
 
 			</form:form>
 			
+		
+			
 		</div>
+		
+			<div class="organizar-tor">
+		<a class="boton-pub" href="ver-formulario-inmueble" role="button">
+			PUBLICAR </a>
+
+	</div>
 		
 		</div>
 	<div class="inmuebles">
@@ -72,6 +77,19 @@
 				
 				<p>
 					<span>Precio:</span> ${I.precio}
+					
+				</p>
+				
+				</br>
+				
+					<p>
+					<span>Provincia:</span> ${I.provincia}
+					
+				</p>
+	</br>				
+					<p>
+					<span>Localidad:</span> ${I.localidad}
+					
 				</p>
 				</br>
 

@@ -33,75 +33,52 @@
 	</header>
 
 	<h2 class="titulo-torn">TORNEOS DISPONIBLES</h2>
+	
+	<div class="opcionesUsuario">
 
-	<div class="cont-acciones">
-
-		<div class="buscador">
-			<form:form action="buscar-torneo-por-juego" method="GET">
-
-				<label class="ors">Buscar torneo por juego</label>
-				</br>
-				<input name="juego" class="busc" type="search">
-				<button class="btn-org" type="submit">Buscar</button>
-
-			</form:form>
-                <form:form action="buscar-torneo-por-categoria" method="GET">
-
-				<label class="ors">Buscar torneo por categoria</label>
-				</br>
-				<input name="categoria" class="busc" type="search">
-				<button class="btn-org" type="submit">Buscar</button>
-
-			</form:form>
-
-            </br> <a class="boton-part" href="ver-torneos" role="button">
+<div>
+           <a class="boton-part" href="ver-torneos" role="button">
 			TODOS LOS TORNEOS </a>
+ </div>
 
+			<div> <p class="pp">Organizá tu 
+			<a class="organizaPropioTorneo" href="ver-formulario-torneo" role="button">
+				propio torneo </a></p></div>
 		</div>
-
-		<div class="organizar-tor">
-			<p class="pp">Para organizar tu propio torneo, hacé clic en el
-				botón:</p>
-			</br> <a class="boton-part" href="ver-formulario-torneo" role="button">
-				ORGANIZAR </a>
-
-
-		</div>
-	</div>
-
+	
 	<div class="torneos">
-		<c:forEach items="${torneosJuegos}" var="TT">
+		<c:forEach items="${torneosJuegos}" var="TJ">
 
 
 			<div class="tor">
-				<h2 class="nombre-tor">${TT.nombre}</h2>
+				<h2 class="nombre-tor">${TJ.nombre}</h2>
 				</br>
 				<p>
-					<span>Juego:</span> ${TT.juego}
+					<span>Juego:</span> ${TJ.juego}
 				</p>
 				</br>
 				<p>
-					<span>Fecha:</span> ${TT.fecha}
+					<span>Fecha:</span> ${TJ.fecha}
 				</p>
 				</br>
 				<p>
-					<span>Horario:</span> ${TT.horario}
+					<span>Horario:</span> ${TJ.horario}
 				</p>
 				</br>
 				<p>
-					<span>Provincia:</span> ${TT.provincia}
+					<span>Provincia:</span> ${TJ.provincia}
 				</p>
 				</br>
 				<p>
-					<span>Ciudad:</span> ${TT.ciudad}
+					<span>Ciudad:</span> ${TJ.ciudad}
 				</p>
 				</br>
 				<p>
-					<span>Direccion:</span> ${TT.direccion}
+					<span>Direccion:</span> ${TJ.direccion}
 				</p>
 				</br>
 				<p>
-					<span>Precio:</span> ${TT.precio}
+					<span>Precio:</span> ${TJ.precio}
 				</p>
 				</br> <a class="boton-part" href="ver-formulario-participar"
 					role="button"> PARTICIPAR </a>

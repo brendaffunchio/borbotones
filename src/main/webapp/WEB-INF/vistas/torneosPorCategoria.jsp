@@ -18,7 +18,6 @@
 
 	<header>
 
-
 		<nav class="contenedorNav">
 
 			<a href="inicio" id="btnHome"> HOME </a> <a href="ver-inmuebles"
@@ -28,46 +27,23 @@
 
 		</nav>
 
-
-
 	</header>
 
 	<h2 class="titulo-torn">TORNEOS DISPONIBLES</h2>
 
-	<div class="cont-acciones">
 
-		<div class="buscador">
-			<form:form action="buscar-torneo-por-juego" method="GET">
+	<div class="opcionesUsuario">
 
-				<label class="ors">Buscar torneo por juego</label>
-				</br>
-				<input name="juego" class="busc" type="search">
-				<button class="btn-org" type="submit">Buscar</button>
-
-			</form:form>
-			<form:form action="buscar-torneo-por-categoria" method="GET">
-
-				<label class="ors">Buscar torneo por categoria</label>
-				</br>
-				<input name="categoria" class="busc" type="search">
-				<button class="btn-org" type="submit">Buscar</button>
-
-			</form:form>
-			
-          </br> <a class="boton-part" href="ver-torneos" role="button">
+<div>
+           <a class="boton-part" href="ver-torneos" role="button">
 			TODOS LOS TORNEOS </a>
+ </div>
+
+			<div> <p class="pp">Organizá tu 
+			<a class="organizaPropioTorneo" href="ver-formulario-torneo" role="button">
+				propio torneo </a></p></div>
 		</div>
-
-		<div class="organizar-tor">
-			<p class="pp">Para organizar tu propio torneo, hacé clic en el
-				botón:</p>
-			</br> <a class="boton-part" href="ver-formulario-torneo" role="button">
-				ORGANIZAR </a>
-
-
-		</div>
-	</div>
-
+	
 	<div class="torneos">
 		<c:forEach items="${torneosCategoria}" var="TC">
 

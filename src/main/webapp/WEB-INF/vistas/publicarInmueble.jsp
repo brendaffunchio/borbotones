@@ -44,9 +44,9 @@
 				</br>
 				<form:input class="f" path="provincia" type="text" />
 				</br>
-				<label class="or">Ciudad</label>
+				<label class="or">Localidad</label>
 				</br>
-				<form:input class="f" path="ciudad" type="text" />
+				<form:input class="f" path="localidad" type="text" />
 				</br>
 				<label class="or">Precio</label>
 				</br>
