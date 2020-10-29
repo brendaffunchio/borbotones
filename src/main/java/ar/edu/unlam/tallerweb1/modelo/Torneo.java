@@ -17,22 +17,34 @@ public class Torneo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
+	private String juego;
+	private Double precio;
 	private String fecha;
 	private String horario;
-	private Integer cupo;
 	private String categoria;
-	private Double precio;
-	private String direccion;
-	private String ciudad;
 	private String provincia;
-	private String juego;
+	private String ciudad;
+	private String direccion;
+	private Integer cupo;
+	private Integer inscriptos;
+	private Boolean estadoCompleto;
 	
 	@ManyToMany(mappedBy = "torneos")
 	private List <Usuario>participantes;
 	
 	
-	
-	
+	public Integer getInscriptos() {
+		return inscriptos;
+	}
+	public void setInscriptos(Integer inscriptos) {
+		this.inscriptos = inscriptos;
+	}
+	public Boolean getEstadoCompleto() {
+		return estadoCompleto;
+	}
+	public void setEstadoCompleto(Boolean estadoCompleto) {
+		this.estadoCompleto = estadoCompleto;
+	}
 	public String getCategoria() {
 		return categoria;
 	}

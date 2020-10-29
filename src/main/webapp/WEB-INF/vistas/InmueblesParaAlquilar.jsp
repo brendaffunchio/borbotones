@@ -36,67 +36,57 @@
 
 	<h2 class="titulo-inmuebles">INMUEBLES DISPONIBLES</h2>
 
-	
-	<div class="cont-acciones">
-<div class="buscador">
 
-			<form:form action="buscar-inmueble-por-provincia" method="GET">
+	<div class="cont-acciones">
+		<div class="buscador">
+
+			<form:form action="buscar-inmueble" method="GET">
 
 				<label class="ors">Buscar inmueble por Provincia</label>
 				</br>
-				<input name="provincia" class="busc" type="search" >
+				<input name="busqueda" class="busc" type="search">
 				<button class="btn-org" type="submit" id="buscarInmueble">Buscar</button>
 
-			</form:form>
-			<form:form action="buscar-inmueble-por-localidad" method="GET">
-
-				<label class="ors">Buscar inmueble por Localidad</label>
-				</br>
-				<input name="localidad" class="busc" type="search" >
-				<button class="btn-org" type="submit" id="buscarInmueble">Buscar</button>
 
 			</form:form>
-			
-		
-			
+
+
+
 		</div>
-		
-			<div class="organizar-tor">
-		<a class="boton-pub" href="ver-formulario-inmueble" role="button">
-			PUBLICAR </a>
+
+		<div class="organizar-tor">
+			<a class="boton-pub" href="ver-formulario-inmueble" role="button">
+				PUBLICAR </a>
+
+		</div>
 
 	</div>
-		
-		</div>
 	<div class="inmuebles">
 		<c:forEach items="${inmuebles}" var="I">
 
 			<div class="inm">
 				<h2 class="nombre-inmueble">${I.nombre}</h2>
 				</br>
-				
+
 				<p>
-					<span>Precio:</span> ${I.precio}
-					
+					<span>Precio:</span>$ ${I.precio}
+
 				</p>
-				
+
 				</br>
-				
-					<p>
-					<span>Provincia:</span> ${I.provincia}
-					
-				</p>
-	</br>				
-					<p>
+
+				<p>
 					<span>Localidad:</span> ${I.localidad}
-					
+
 				</p>
-				</br>
-
-
-				<button class="boton-alqui" Type="Submit" />
-				ALQUILAR
-				</button>
+				</br> 
+				
+				<a class="detalles"
+					href="/proyecto-practica/ver-inmueble-detalles/${I.id}" role="button">ver
+					detalles</a> <br>
+					
+				<a class="boton-alqui"
+					href="/proyecto-practica/ver-inmueble-detalles/${I.id}" role="button">ALQUILAR</a> <br>
 
 			</div>
 		</c:forEach>

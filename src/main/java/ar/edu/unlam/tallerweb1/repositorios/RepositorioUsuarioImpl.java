@@ -37,4 +37,15 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 				.uniqueResult();
 	}
 
+	@Override
+	public void guardarUsuario(Usuario usuario) {
+		String rol = "invitado";
+		usuario.setRol(rol);
+		
+		final Session session = sessionFactory.getCurrentSession();
+		
+		session.save(usuario);
+		
+	}
+
 }

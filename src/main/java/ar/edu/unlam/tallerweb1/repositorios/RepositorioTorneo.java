@@ -15,9 +15,9 @@ public interface RepositorioTorneo {
 
 	void guardarParticipante(Usuario usuario);
 
-	List<Torneo> buscarTorneoPorJuego(String juego);
+	List<Torneo> buscarTorneo(String categoria, String juego);
 
-	List<Torneo> buscarTorneoPorCategoria(String categoria);
+	Torneo verDetallesTorneo(Long id);
 
 
 }

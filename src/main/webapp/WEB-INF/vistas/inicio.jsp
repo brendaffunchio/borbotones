@@ -92,7 +92,7 @@
              
              <div class="contenedorBotonesInicio">
 
-          <a class="btnEmpezar" href="#"> REGISTRARSE </a>
+          <a class="btnEmpezar" href="/proyecto-practica/ver-formulario-usuario"> REGISTRARSE </a>
 
            <a class="btnEmpezar" href="#"> INICIAR SESIÓN </a>
              

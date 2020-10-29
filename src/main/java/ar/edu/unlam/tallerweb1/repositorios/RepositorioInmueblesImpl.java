@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.repositorios;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -59,5 +60,26 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 		
 	}
 
-	
+	@Override
+	public List<Inmueble> buscarInmueble(String provincia, String localidad) {
+
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Inmueble.class);
+		if (provincia != null && !provincia.equals(""))
+			criteria.add(Restrictions.like("provincia", provincia));
+		if (localidad != null && !localidad.equals(""))
+			criteria.add(Restrictions.like("localidad", localidad));
+		
+		return criteria.list();
+
+	}
+
+	@Override
+	public Inmueble verDetallesInmueble(Long id) {
+		
+	 return (Inmueble) sessionFactory.getCurrentSession().createCriteria(Inmueble.class)
+		  .add(Restrictions.eq("id",id)).uniqueResult();
+		
+		// return sessionFactory.getCurrentSession().get(Inmueble.class, id);
+	}
+
 }

@@ -12,7 +12,6 @@ public class Inmueble {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
-	private String categoria;
 	private String provincia;
 	private String localidad;
 	private Double precio;
@@ -41,12 +40,6 @@ public class Inmueble {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-	public String getCategoria() {
-		return categoria;
-	}
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
 	}
 	
 	public Double getPrecio() {
