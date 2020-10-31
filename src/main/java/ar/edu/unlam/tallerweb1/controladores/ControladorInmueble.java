@@ -94,12 +94,28 @@ public class ControladorInmueble {
 	@RequestMapping (path="ver-inmueble-detalles/{id}",method=RequestMethod.GET)
 	public ModelAndView verDetallesInmueble (@PathVariable Long id) {
 		
-	Inmueble inmuebleDetalle = servicioInmueble.verDetallesInmueble(id);
+	Inmueble inmueble = servicioInmueble.verDetallesInmueble(id);
 
 		ModelMap modelo = new ModelMap();
-		modelo.put("inmuebleDetalle", inmuebleDetalle );
+		modelo.put("detalleInmueble", inmueble );
 		
-		return new ModelAndView ("detallesInmueble",modelo);
+		return new ModelAndView ("inmuebleDetalle",modelo);
+		
 	}
+	
+	@RequestMapping(path = "detalle/{id}", method = RequestMethod.GET)
+	public ModelAndView irAi(@PathVariable Long id) {
+		
+		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(id);
+		
+		ModelMap model= new ModelMap();
+		
+		model.put("detalle", inmuebleBuscado);
+		
+		return new ModelAndView("inmuebleDetalle",model);
+
+
+	}
+	
 	
 }

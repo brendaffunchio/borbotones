@@ -66,6 +66,7 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Inmueble.class);
 		if (provincia != null && !provincia.equals(""))
 			criteria.add(Restrictions.like("provincia", provincia));
+	
 		if (localidad != null && !localidad.equals(""))
 			criteria.add(Restrictions.like("localidad", localidad));
 		

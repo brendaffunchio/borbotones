@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,5 +32,21 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
 		repositorioUsuario.guardarUsuario(usuario);
 		
 	}
+
+	@Override
+	public List<String> mostrarEmails() {
+		
+		return repositorioUsuario.mostrarEmails();
+	}
+
+	@Override
+	public Boolean devolverEstadoDelEmail(String emailParametro) {
+	
+		return repositorioUsuario.devolverEstadoDelEmail(emailParametro);
+	}
+
+	
+
+	
 	
 }

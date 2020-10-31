@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/estilo-inicio.css" />
 <meta charset="ISO-8859-1">
-<title>Registrar Usuario</title>
+<title>Inmueble Detalle</title>
 </head>
 <body>
 	<h1 class="titulo-index">INMOBILIARIA GAMING HOUSE</h1>
@@ -27,19 +27,19 @@
 
 
 	</header>
-
+	
+	
 	<h2 class="titulo-inmuebles">DETALLES DEL INMUEBLE</h2>
 
-	
-	<div class="inmuebles">
+<div class="inmuebles">
 		
-		${inmuebleDetalle.nombre}
+	<p>	${detalle.nombre} </p>
 		<br>
-		${inmuebleDetalle.provincia}
+	<p>	${detalle.provincia} </p>
 		<br>
-		${inmuebleDetalle.localidad}
+	<p>	${detalle.localidad} </p>
 		<br>
-		$ ${inmuebleDetalle.precio}
+	<p>	$ ${detalle.precio} </p>
 		<br>
 		<button class="boton-alqui" Type="Submit"> ALQUILAR </button>
 
@@ -47,5 +47,7 @@
 		
 	</div>
 
+	
+	
 </body>
 </html>
