@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.repositorios;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -17,47 +18,46 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 
 	private SessionFactory sessionFactory;
 
-    @Autowired
-	public RepositorioInmueblesImpl(SessionFactory sessionFactory){
+	@Autowired
+	public RepositorioInmueblesImpl(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
 	@Override
 	public List<Inmueble> todosLosInmuebles() {
-		final Session session= sessionFactory.getCurrentSession();
-		
-		
+		final Session session = sessionFactory.getCurrentSession();
+
 		return session.createCriteria(Inmueble.class).list();
 	}
 
 	@Override
 	public void guardarInmueble(Inmueble inmueble) {
-		final Session session= sessionFactory.getCurrentSession();
-		
+		final Session session = sessionFactory.getCurrentSession();
+
 		session.save(inmueble);
-		
-		
+
 	}
 
+	
+	//unir los métodos de busqueda (provincia y localidad)
+	
 	@Override
 	public List<Inmueble> buscarInmueblePorProvincia(String provincia) {
-		List <Inmueble> inmueblesProvincia = sessionFactory.getCurrentSession()
-				.createCriteria(Inmueble.class)
-				.add(Restrictions.like("provincia",provincia)).list();
-		
-		return inmueblesProvincia;
-		
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Inmueble.class);
+		if (provincia != null && provincia.equals("")) {
+			criteria.add(Restrictions.like("provincia", provincia));
+		}
+		return criteria.list();
+
 	}
 
 	@Override
 	public List<Inmueble> buscarInmueblePorLocalidad(String localidad) {
-		List <Inmueble> inmueblesLocalidad= sessionFactory.getCurrentSession()
-				.createCriteria(Inmueble.class)
-				.add(Restrictions.like("localidad",localidad)).list();
-		
+		List<Inmueble> inmueblesLocalidad = sessionFactory.getCurrentSession().createCriteria(Inmueble.class)
+				.add(Restrictions.like("localidad", localidad)).list();
+
 		return inmueblesLocalidad;
-		
+
 	}
 
-	
 }

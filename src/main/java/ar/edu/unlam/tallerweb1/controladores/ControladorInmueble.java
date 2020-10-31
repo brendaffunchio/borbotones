@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
@@ -61,8 +62,8 @@ public class ControladorInmueble {
 		
 		ModelMap modelo= new ModelMap();
 
-		String provincia = request.getParameter("provincia");
-		modelo.put("inmueblesProvincia", servicioInmueble.buscarInmueblePorProvincia(provincia));
+		String localidad = request.getParameter("localidad");
+		modelo.put("inmueblesProvincia", servicioInmueble.buscarInmueblePorProvincia(localidad));
 		
 		
 		return new ModelAndView("inmueblesPorProvincia",modelo);
