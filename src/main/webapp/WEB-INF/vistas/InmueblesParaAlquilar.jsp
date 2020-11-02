@@ -82,11 +82,11 @@
 				</br> 
 				
 				<a class="detalles"
-					href="/proyecto-practica/ver-inmueble-detalles/${I.id}" role="button">ver
+					href="/proyecto-practica/detalle/${I.id}">ver
 					detalles</a> <br>
 					
 				<a class="boton-alqui"
-					href="/proyecto-practica/ver-inmueble-detalles/${I.id}" role="button">ALQUILAR</a> <br>
+					href="/proyecto-practica/ver-inmueble-detalle/${I.id}" role="button">ALQUILAR</a> <br>
 
 			</div>
 		</c:forEach>

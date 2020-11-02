@@ -38,7 +38,6 @@ public class ServicioInmuebleImpl implements ServicioInmueble{
 	
 	}
 
-	
 	@Override
 	public List<Inmueble> buscarInmueble(String provincia, String localidad) {
 	

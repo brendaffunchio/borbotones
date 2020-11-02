@@ -36,25 +36,37 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 
 		session.save(inmueble);
 
-	}
+		session.save(inmueble);
 
+	}
+	
 	@Override
 	public List<Inmueble> buscarInmueble(String provincia, String localidad) {
 
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Inmueble.class);
-		if (provincia != null && !provincia.equals(""))
-			criteria.add(Restrictions.like("provincia", provincia));
-		if (localidad != null && !localidad.equals(""))
-			criteria.add(Restrictions.like("localidad", localidad));
+		
+		Criteria criteria=sessionFactory.getCurrentSession().createCriteria(Inmueble.class);
+		if(provincia!=null&&!provincia.equals("")&&localidad != null && !localidad.equals("")) 
+		criteria.add(Restrictions.or
+				(Restrictions.like("provincia", provincia), Restrictions.like("localidad", localidad)));
+			
 
 		return criteria.list();
-
+		
+		
+		
 	}
 
 	@Override
 	public Inmueble verDetallesInmueble(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+
+		//return (Inmueble) sessionFactory.getCurrentSession().createCriteria(Inmueble.class)
+		//		.add(Restrictions.eq("id", id)).uniqueResult();
+
+		return sessionFactory.getCurrentSession().get(Inmueble.class, id);
+
 	}
 
+
+	
+	
 }

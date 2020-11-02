@@ -78,7 +78,7 @@
 					
 					<br>
 					
-				<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles/${T.id}"
+				<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles/$.id}"
 					role="button"> PARTICIPAR </a>
 			</div>
 

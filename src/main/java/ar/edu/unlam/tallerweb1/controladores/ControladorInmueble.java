@@ -57,8 +57,7 @@ public class ControladorInmueble {
 		return new ModelAndView ("redirect:/ver-inmuebles");
 		
 	}
-	
-	
+
 	@RequestMapping(path = "buscar-inmueble", method = RequestMethod.GET)
 	public ModelAndView mostrarTorneosPorJuego(HttpServletRequest request) {
 
@@ -69,16 +68,33 @@ public class ControladorInmueble {
 
 		return new ModelAndView("inmueblesPorBusqueda", modelo);
 	}
+
 	
 	@RequestMapping (path="ver-inmueble-detalles/{id}",method=RequestMethod.GET)
 	public ModelAndView verDetallesInmueble (@PathVariable Long id) {
 		
-	Inmueble inmuebleDetalle = servicioInmueble.verDetallesInmueble(id);
+	Inmueble inmueble = servicioInmueble.verDetallesInmueble(id);
 
 		ModelMap modelo = new ModelMap();
-		modelo.put("inmuebleDetalle", inmuebleDetalle );
+		modelo.put("detalleInmueble", inmueble );
 		
-		return new ModelAndView ("detallesInmueble",modelo);
+		return new ModelAndView ("inmuebleDetalle",modelo);
+		
 	}
+	
+	@RequestMapping(path = "ver-inmueble-detalle/{id}", method = RequestMethod.GET)
+	public ModelAndView irAi(@PathVariable Long id) {
+		
+		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(id);
+		
+		ModelMap model= new ModelMap();
+		
+		model.put("detalle", inmuebleBuscado);
+		
+		return new ModelAndView("inmuebleDetalle",model);
+
+
+	}
+
 	
 }

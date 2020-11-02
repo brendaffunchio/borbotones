@@ -11,5 +11,12 @@ public interface RepositorioUsuario {
 
 	void guardarUsuario(Usuario usuario);
 
+
 	List<String> emailsUsuarios();
+
+
+	List<String> mostrarEmails();
+
+	Boolean devolverEstadoDelEmail(String emailParametro);
+
 }
