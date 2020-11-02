@@ -4,11 +4,15 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 // Clase que modela el concepto de Usuario, la anotacion @Entity le avisa a hibernate que esta clase es persistible
 // el paquete ar.edu.unlam.tallerweb1.modelo esta indicado en el archivo hibernateCOntext.xml para que hibernate
@@ -28,8 +32,15 @@ public class Usuario {
 	private String password;
 	private String rol;
 	
+	@OneToMany(mappedBy = "usuario", fetch=FetchType.LAZY)
+	private List<Inmueble>inmueblesAlquilados;
 	
-	@ManyToMany(cascade = { CascadeType.ALL })
+	
+	
+	
+	@ManyToMany
+	@JoinTable(name = "torneos_usuarios", joinColumns = @JoinColumn(name = "torneo_id"), 
+    inverseJoinColumns = @JoinColumn(name = "usuario_id"))
 	List <Torneo>torneos;
 	
 	public String getNombre() {

@@ -15,8 +15,8 @@ public interface ServicioTorneo {
 
 	public void guardarParticipante(Usuario usuario);
 
-	public List <Torneo> buscarTorneoPorJuego(String juego);
+	public List <Torneo> buscarTorneo(String categoria, String juego);
 
-	public List <Torneo> buscarTorneoPorCategoria(String categoria);
+	public Torneo verDetallesTorneo(Long id);
 
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -57,28 +58,27 @@ public class ControladorInmueble {
 		
 	}
 	
-	@RequestMapping (path="buscar-inmueble-por-provincia",method=RequestMethod.GET)
-	public ModelAndView mostrarInmueblesPorProvincia(HttpServletRequest request)  {
-		
-		ModelMap modelo= new ModelMap();
+	
+	@RequestMapping(path = "buscar-inmueble", method = RequestMethod.GET)
+	public ModelAndView mostrarTorneosPorJuego(HttpServletRequest request) {
 
-		String localidad = request.getParameter("localidad");
-		modelo.put("inmueblesProvincia", servicioInmueble.buscarInmueblePorProvincia(localidad));
-		
-		
-		return new ModelAndView("inmueblesPorProvincia",modelo);
+		ModelMap modelo = new ModelMap();
+		String provincia = request.getParameter("busqueda");
+		String localidad = request.getParameter("busqueda");
+		modelo.put("inmueblesBusqueda", servicioInmueble.buscarInmueble(provincia,localidad));
+
+		return new ModelAndView("inmueblesPorBusqueda", modelo);
 	}
+	
+	@RequestMapping (path="ver-inmueble-detalles/{id}",method=RequestMethod.GET)
+	public ModelAndView verDetallesInmueble (@PathVariable Long id) {
+		
+	Inmueble inmuebleDetalle = servicioInmueble.verDetallesInmueble(id);
 
-	@RequestMapping (path="buscar-inmueble-por-localidad",method=RequestMethod.GET)
-	public ModelAndView mostrarInmueblesPorLocalidad(HttpServletRequest request)  {
+		ModelMap modelo = new ModelMap();
+		modelo.put("inmuebleDetalle", inmuebleDetalle );
 		
-		ModelMap modelo= new ModelMap();
-
-		String localidad = request.getParameter("localidad");
-		modelo.put("inmueblesLocalidad", servicioInmueble.buscarInmueblePorLocalidad(localidad));
-		
-		
-		return new ModelAndView("inmueblesPorLocalidad",modelo);
+		return new ModelAndView ("detallesInmueble",modelo);
 	}
-
+	
 }

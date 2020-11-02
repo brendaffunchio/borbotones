@@ -18,7 +18,6 @@
 
 	<header>
 
-
 		<nav class="contenedorNav">
 
 			<a href="inicio" id="btnHome"> HOME </a> <a href="ver-inmuebles"
@@ -28,57 +27,46 @@
 
 		</nav>
 
-
-
 	</header>
 
 	<h2 class="titulo-torn">TORNEOS DISPONIBLES</h2>
 
-	<div class="cont-acciones">
+
+	<div class="opcionesUsuario">
+
+<div>
+           <a class="boton-part" href="ver-torneos" role="button">
+			TODOS LOS TORNEOS </a>
+ </div>
+
+			<div> <p class="pp">Organizá tu 
+			<a class="organizaPropioTorneo" href="ver-formulario-torneo" role="button">
+				propio torneo </a></p>
+				
+				</div>
+		</div>
 	
-		<div class="buscador">
-			<form:form action="buscar-torneo" method="GET">
-
-				<label class="ors">Buscar torneo deseado</label>
-				</br>
-				<input name="busqueda" class="busc" type="search">
-				<button class="btn-org" type="submit">Buscar</button>
-
-			</form:form>
-			
-		</div>
-
-		<div class="organizar-tor">
-			<p class="pp">Para organizar tu propio torneo, hacé clic en el
-				botón:</p>
-			</br> <a class="boton-part" href="ver-formulario-torneo" role="button">
-				ORGANIZAR </a>
-
-
-		</div>
-	</div>
-
 	<div class="torneos">
-		<c:forEach items="${torneos}" var="T">
+		<c:forEach items="${torneosBusqueda}" var="TB">
+
 
 			<div class="tor">
-				<h2 class="nombre-tor">${T.nombre}</h2>
+				<h2 class="nombre-tor">${TB.nombre}</h2>
 				</br>
 				<p>
-					<span>Juego:</span> ${T.juego}
+					<span>Juego:</span> ${TB.juego}
 				</p>
+				</br>
+				<p>
+					<span>Precio:</span> ${TB.precio}
+				</p>
+				</br>
 				
-				</br>
-				<p>
-					<span>Precio:</span>$ ${T.precio}
-				</p>
-				</br> 
-				<a class="detalles" href="/proyecto-practica/ver-torneo-detalles/${T.id}" role="button">ver
-					detalles</a> 
+				<a class="detalles"
+					href="/proyecto-practica/ver-torneo-detalles/${TB.id}" role="button">ver
+					detalles</a> <br>
 					
-					<br>
-					
-				<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles/${T.id}"
+					<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles/${TB.id}"
 					role="button"> PARTICIPAR </a>
 			</div>
 

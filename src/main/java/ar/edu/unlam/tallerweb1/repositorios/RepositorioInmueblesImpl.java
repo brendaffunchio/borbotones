@@ -38,26 +38,23 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 
 	}
 
-	
-	//unir los métodos de busqueda (provincia y localidad)
-	
 	@Override
-	public List<Inmueble> buscarInmueblePorProvincia(String provincia) {
+	public List<Inmueble> buscarInmueble(String provincia, String localidad) {
+
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Inmueble.class);
-		if (provincia != null && provincia.equals("")) {
+		if (provincia != null && !provincia.equals(""))
 			criteria.add(Restrictions.like("provincia", provincia));
-		}
+		if (localidad != null && !localidad.equals(""))
+			criteria.add(Restrictions.like("localidad", localidad));
+
 		return criteria.list();
 
 	}
 
 	@Override
-	public List<Inmueble> buscarInmueblePorLocalidad(String localidad) {
-		List<Inmueble> inmueblesLocalidad = sessionFactory.getCurrentSession().createCriteria(Inmueble.class)
-				.add(Restrictions.like("localidad", localidad)).list();
-
-		return inmueblesLocalidad;
-
+	public Inmueble verDetallesInmueble(Long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

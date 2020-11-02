@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
+import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioInmueble;
 
 @Service
@@ -37,16 +38,22 @@ public class ServicioInmuebleImpl implements ServicioInmueble{
 	
 	}
 
+	
 	@Override
-	public List<Inmueble> buscarInmueblePorProvincia(String provincia) {
+	public List<Inmueble> buscarInmueble(String provincia, String localidad) {
+	
+		return repositorioInmueble.buscarInmueble(provincia,localidad);
 		
-		return repositorioInmueble.buscarInmueblePorProvincia(provincia);
 	}
 
 	@Override
-	public List<Inmueble> buscarInmueblePorLocalidad(String localidad) {
+	public Inmueble verDetallesInmueble(Long id) {
 		
-		return repositorioInmueble.buscarInmueblePorLocalidad(localidad);
+		Inmueble inmueble = repositorioInmueble.verDetallesInmueble(id);
+		
+		return inmueble;
 	}
 
+	
+	
 }

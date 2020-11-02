@@ -2,11 +2,14 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 
 
@@ -17,22 +20,38 @@ public class Torneo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
+	private String juego;
+	private Double precio;
 	private String fecha;
 	private String horario;
-	private Integer cupo;
 	private String categoria;
-	private Double precio;
-	private String direccion;
-	private String ciudad;
 	private String provincia;
-	private String juego;
+	private String ciudad;
+	private String direccion;
+	private Integer cupo;
+	private Integer inscriptos;
+	private Boolean estadoCompleto;
+	
+	
+	@OneToOne(mappedBy = "torneo", fetch = FetchType.LAZY)
+	private Inmueble inmueble;
 	
 	@ManyToMany(mappedBy = "torneos")
 	private List <Usuario>participantes;
 	
 	
-	
-	
+	public Integer getInscriptos() {
+		return inscriptos;
+	}
+	public void setInscriptos(Integer inscriptos) {
+		this.inscriptos = inscriptos;
+	}
+	public Boolean getEstadoCompleto() {
+		return estadoCompleto;
+	}
+	public void setEstadoCompleto(Boolean estadoCompleto) {
+		this.estadoCompleto = estadoCompleto;
+	}
 	public String getCategoria() {
 		return categoria;
 	}
@@ -111,6 +130,13 @@ public class Torneo {
 	}
 	public void setParticipantes(List<Usuario> participantes) {
 		this.participantes = participantes;
+	}
+	
+	public Inmueble getInmueble() {
+		return inmueble;
+	}
+	public void setInmueble(Inmueble inmueble) {
+		this.inmueble = inmueble;
 	}
 	
 	
