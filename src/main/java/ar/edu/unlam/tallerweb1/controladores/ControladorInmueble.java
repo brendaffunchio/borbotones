@@ -57,29 +57,6 @@ public class ControladorInmueble {
 		
 	}
 	
-	@RequestMapping (path="buscar-inmueble-por-provincia",method=RequestMethod.GET)
-	public ModelAndView mostrarInmueblesPorProvincia(HttpServletRequest request)  {
-		
-		ModelMap modelo= new ModelMap();
-
-		String provincia = request.getParameter("provincia");
-		modelo.put("inmueblesProvincia", servicioInmueble.buscarInmueblePorProvincia(provincia));
-		
-		
-		return new ModelAndView("inmueblesPorProvincia",modelo);
-	}
-
-	@RequestMapping (path="buscar-inmueble-por-localidad",method=RequestMethod.GET)
-	public ModelAndView mostrarInmueblesPorLocalidad(HttpServletRequest request)  {
-		
-		ModelMap modelo= new ModelMap();
-
-		String localidad = request.getParameter("localidad");
-		modelo.put("inmueblesLocalidad", servicioInmueble.buscarInmueblePorLocalidad(localidad));
-		
-		
-		return new ModelAndView("inmueblesPorLocalidad",modelo);
-	}
 	@RequestMapping(path = "buscar-inmueble", method = RequestMethod.GET)
 	public ModelAndView mostrarTorneosPorJuego(HttpServletRequest request) {
 
@@ -103,7 +80,7 @@ public class ControladorInmueble {
 		
 	}
 	
-	@RequestMapping(path = "detalle/{id}", method = RequestMethod.GET)
+	@RequestMapping(path = "ver-inmueble-detalle/{id}", method = RequestMethod.GET)
 	public ModelAndView irAi(@PathVariable Long id) {
 		
 		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(id);
@@ -116,6 +93,32 @@ public class ControladorInmueble {
 
 
 	}
+	
+	/*
+	@RequestMapping (path="buscar-inmueble-por-provincia",method=RequestMethod.GET)
+	public ModelAndView mostrarInmueblesPorProvincia(HttpServletRequest request)  {
+		
+		ModelMap modelo= new ModelMap();
+
+		String provincia = request.getParameter("provincia");
+		modelo.put("inmueblesProvincia", servicioInmueble.buscarInmueblePorProvincia(provincia));
+		
+		
+		return new ModelAndView("inmueblesPorProvincia",modelo);
+	}
+
+	@RequestMapping (path="buscar-inmueble-por-localidad",method=RequestMethod.GET)
+	public ModelAndView mostrarInmueblesPorLocalidad(HttpServletRequest request)  {
+		
+		ModelMap modelo= new ModelMap();
+
+		String localidad = request.getParameter("localidad");
+		modelo.put("inmueblesLocalidad", servicioInmueble.buscarInmueblePorLocalidad(localidad));
+		
+		
+		return new ModelAndView("inmueblesPorLocalidad",modelo);
+	}
+	*/
 	
 	
 }

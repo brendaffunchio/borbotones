@@ -54,14 +54,25 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 
 	@Override
 	public List<Torneo> buscarTorneo(String categoria, String juego) {
-
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Torneo.class);
+        //esto es and:
+		/*Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Torneo.class);
 		if (categoria != null && !categoria.equals(""))
 			criteria.add(Restrictions.like("categoria", categoria));
 		if (juego != null && !juego.equals(""))
 			criteria.add(Restrictions.like("juego", juego));
 
 		return criteria.list();
+*/
+		//esto es or:
+		
+		Criteria criteria=sessionFactory.getCurrentSession().createCriteria(Torneo.class);
+		if(categoria!=null&&!categoria.equals("")&&juego != null && !juego.equals("")) 
+		criteria.add(Restrictions.or
+				(Restrictions.like("categoria",categoria), Restrictions.like("juego",juego)));
+			
+
+		return criteria.list();
+		
 
 	}
 
