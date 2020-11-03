@@ -36,8 +36,7 @@ public class ControladorInmueble {
 		
 		return new ModelAndView("InmueblesParaAlquilar",modelo);
 	}
-	
-	
+		
 	@RequestMapping(path="ver-formulario-inmueble", method=RequestMethod.GET)
 	public ModelAndView nuevoInmueble() {
 		
@@ -95,6 +94,23 @@ public class ControladorInmueble {
 
 
 	}
+	
+//	No funciona el metodo, para usar el select de inmuebles en el formulario de torneo. La firma del RequesMapping ya esta usada en el metodo de ver torneos
+//	en el controlador Torneo, y no se puede repetir. 
+	  
+//	@RequestMapping(path = "ver-formulario-torneo", method = RequestMethod.GET)
+//	public ModelAndView inmueblesDisponiblesParaElTorneo() {
+//	
+//		ModelMap modelo = new ModelMap();
+//		
+//		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
+//
+//		return new ModelAndView("organizarTorneos", modelo);
+//
+//	}
+
+
+	
 
 	
 }

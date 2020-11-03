@@ -15,23 +15,27 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
 
 @Controller
 public class ControladorTorneo {
 
 	private ServicioTorneo servicioTorneo;
+	
 
 	@Autowired
 	public ControladorTorneo(ServicioTorneo servicioTorneo) {
 		this.servicioTorneo = servicioTorneo;
 	}
+	
 
 	@RequestMapping(path = "ver-torneos", method = RequestMethod.GET)
 	public ModelAndView mostrarTorneos() {
 
 		ModelMap modelo = new ModelMap();
 		modelo.put("torneos", servicioTorneo.mostrarTorneos());
+		
 
 		return new ModelAndView("torneosParaParticipar", modelo);
 
@@ -39,14 +43,18 @@ public class ControladorTorneo {
 
 	@RequestMapping(path = "ver-formulario-torneo", method = RequestMethod.GET)
 	public ModelAndView nuevoTorneo() {
+		
 		Torneo torneo = new Torneo();
+		
 		ModelMap modelo = new ModelMap();
-
+		
 		modelo.put("torneo", torneo);
-
+		
 		return new ModelAndView("organizarTorneos", modelo);
 
 	}
+	
+	
 
 	@RequestMapping(path = "crear-torneo", method = RequestMethod.POST)
 	public ModelAndView crearTorneo(@ModelAttribute("torneo") Torneo torneo) {
@@ -62,7 +70,7 @@ public class ControladorTorneo {
 		ModelMap modelo = new ModelMap();
 		Usuario usuario = new Usuario();
 		modelo.put("usuario", usuario);
-
+		
 		return new ModelAndView("participarTorneo", modelo);
 
 	}

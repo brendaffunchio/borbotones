@@ -34,12 +34,41 @@
 
 
 	<h2 class="titulo-inmuebles">INMUEBLES DISPONIBLES</h2>
-	<div class="opcionesUsuario">
+	
+	<div class="cont-acciones">
+		<div class="buscador">
 
-		<div>
-			<a class="boton-part" href="ver-inmuebles" role="button"> TODOS
-				LOS INMUEBLES </a>
+			<form:form action="buscar-inmueble" method="GET">
+
+				<label class="ors">Buscar inmueble por Provincia</label>
+				</br>
+				<input name="busqueda" class="busc" type="search">
+				<button class="btn-org" type="submit" id="buscarInmueble">Buscar</button>
+
+
+			</form:form>
+
+
+
 		</div>
+		
+	
+
+		<div class="organizar-tor">
+		<div>
+			<a class="boton-pub" href="ver-formulario-inmueble" role="button">
+				PUBLICAR </a>
+				
+				</div>
+				
+				<br> <br>
+				<div>
+				
+				<a class="boton-pub" href="ver-inmuebles" role="button">
+				Lista de Inmuebles </a></div>
+
+		</div>
+			</div>
 
 
 		<div class="inmuebles">
