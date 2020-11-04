@@ -48,6 +48,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 
 		final Session session = sessionFactory.getCurrentSession();
 
+		
 		session.save(usuario);
 
 	}
