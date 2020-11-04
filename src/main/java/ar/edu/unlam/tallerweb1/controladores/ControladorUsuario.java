@@ -45,43 +45,47 @@ public class ControladorUsuario {
 	public ModelAndView crearUsuario (@ModelAttribute ("usuario") Usuario usuario, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		String emailParametro = request.getParameter("email");
+		
+		servicioUsuarios.guardarUsuario(usuario);
+		
+		return new ModelAndView ("registracionExitosa");
 
-		List<String> emails = servicioUsuarios.mostrarEmails();	
+//		List<String> emails = servicioUsuarios.mostrarEmails();	
+//		
+//		Boolean esRepetido = servicioUsuarios.devolverEstadoDelEmail(emailParametro);
+//		
+//		for (String email : emails) {
+//			
+//			if(!email.equals(emailParametro)) {
+//				
+//				esRepetido = true;
+//				
+//				
+//			}
+//			else {
+//				
+//				esRepetido = false;
+//				
+//				
+//			}
+//		}
 		
-		Boolean esRepetido = servicioUsuarios.devolverEstadoDelEmail(emailParametro);
-		
-		for (String email : emails) {
-			
-			if(!email.equals(emailParametro)) {
-				
-				esRepetido = true;
-				
-				
-			}
-			else {
-				
-				esRepetido = false;
-				
-				
-			}
-		}
-		
-		if(esRepetido) {
-			servicioUsuarios.guardarUsuario(usuario);
-			
-			return new ModelAndView ("registracionExitosa");
-			
-		}
-		
-		else {
-			
-			modelo.put("error","Su email ya existe");
-		}
-		
-		
-				return new ModelAndView ("formularioUsuario",modelo);
-			
-}
+//		if(esRepetido) {
+//			servicioUsuarios.guardarUsuario(usuario);
+//			
+//			return new ModelAndView ("registracionExitosa");
+//			
+//		}
+//		
+//		else {
+//			
+//			modelo.put("error","Su email ya existe");
+//		}
+//		
+//		
+//				return new ModelAndView ("formularioUsuario",modelo);
+//			
+//}
 		
 		/*for(!usuario.getEmail().equals(email)) {
 		
@@ -97,5 +101,7 @@ public class ControladorUsuario {
 		return new ModelAndView ("formularioUsuario");
 		*/
 }
+	
+}	
 	
 

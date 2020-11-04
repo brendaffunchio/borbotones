@@ -11,10 +11,6 @@ public interface ServicioInmueble {
 
 	public void guardarInmueble(Inmueble inmueble);
 
-	//public List<Inmueble> buscarInmueblePorProvincia(String provincia);
-
-	//public List<Inmueble> buscarInmueblePorLocalidad(String localidad);
-
 	public List<Inmueble> buscarInmueble(String provincia, String localidad);
 
 	public Inmueble verDetallesInmueble(Long id);

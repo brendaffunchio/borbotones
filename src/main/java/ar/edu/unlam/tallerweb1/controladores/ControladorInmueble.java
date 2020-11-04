@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
@@ -35,8 +36,7 @@ public class ControladorInmueble {
 		
 		return new ModelAndView("InmueblesParaAlquilar",modelo);
 	}
-	
-	
+		
 	@RequestMapping(path="ver-formulario-inmueble", method=RequestMethod.GET)
 	public ModelAndView nuevoInmueble() {
 		
@@ -56,7 +56,7 @@ public class ControladorInmueble {
 		return new ModelAndView ("redirect:/ver-inmuebles");
 		
 	}
-	
+
 	@RequestMapping(path = "buscar-inmueble", method = RequestMethod.GET)
 	public ModelAndView mostrarTorneosPorJuego(HttpServletRequest request) {
 
@@ -67,6 +67,7 @@ public class ControladorInmueble {
 
 		return new ModelAndView("inmueblesPorBusqueda", modelo);
 	}
+
 	
 	@RequestMapping (path="ver-inmueble-detalles/{id}",method=RequestMethod.GET)
 	public ModelAndView verDetallesInmueble (@PathVariable Long id) {
@@ -94,31 +95,22 @@ public class ControladorInmueble {
 
 	}
 	
-	/*
-	@RequestMapping (path="buscar-inmueble-por-provincia",method=RequestMethod.GET)
-	public ModelAndView mostrarInmueblesPorProvincia(HttpServletRequest request)  {
-		
-		ModelMap modelo= new ModelMap();
+//	No funciona el metodo, para usar el select de inmuebles en el formulario de torneo. La firma del RequesMapping ya esta usada en el metodo de ver torneos
+//	en el controlador Torneo, y no se puede repetir. 
+	  
+//	@RequestMapping(path = "ver-formulario-torneo", method = RequestMethod.GET)
+//	public ModelAndView inmueblesDisponiblesParaElTorneo() {
+//	
+//		ModelMap modelo = new ModelMap();
+//		
+//		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
+//
+//		return new ModelAndView("organizarTorneos", modelo);
+//
+//	}
 
-		String provincia = request.getParameter("provincia");
-		modelo.put("inmueblesProvincia", servicioInmueble.buscarInmueblePorProvincia(provincia));
-		
-		
-		return new ModelAndView("inmueblesPorProvincia",modelo);
-	}
 
-	@RequestMapping (path="buscar-inmueble-por-localidad",method=RequestMethod.GET)
-	public ModelAndView mostrarInmueblesPorLocalidad(HttpServletRequest request)  {
-		
-		ModelMap modelo= new ModelMap();
-
-		String localidad = request.getParameter("localidad");
-		modelo.put("inmueblesLocalidad", servicioInmueble.buscarInmueblePorLocalidad(localidad));
-		
-		
-		return new ModelAndView("inmueblesPorLocalidad",modelo);
-	}
-	*/
 	
+
 	
 }

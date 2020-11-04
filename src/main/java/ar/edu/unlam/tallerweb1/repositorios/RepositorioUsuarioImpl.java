@@ -4,13 +4,13 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.inject.Inject;
 
 // implelemtacion del repositorio de usuarios, la anotacion @Repository indica a Spring que esta clase es un componente que debe
 // ser manejado por el framework, debe indicarse en applicationContext que busque en el paquete ar.edu.unlam.tallerweb1.dao
@@ -45,11 +45,14 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 	public void guardarUsuario(Usuario usuario) {
 		String rol = "invitado";
 		usuario.setRol(rol);
+		
 
 		final Session session = sessionFactory.getCurrentSession();
 
+
 		
 		session.save(usuario);
+
 
 	}
 
@@ -89,5 +92,15 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 
 		return esRepetido;
 	}
+
+	@Override
+	public List<String> emailsUsuarios() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+
+	
 
 }

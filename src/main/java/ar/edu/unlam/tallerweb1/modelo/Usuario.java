@@ -1,15 +1,20 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 // Clase que modela el concepto de Usuario, la anotacion @Entity le avisa a hibernate que esta clase es persistible
 // el paquete ar.edu.unlam.tallerweb1.modelo esta indicado en el archivo hibernateCOntext.xml para que hibernate
@@ -31,9 +36,8 @@ public class Usuario {
 	private String password;
 	private String rol;
 	
-	
-	@ManyToMany(cascade = { CascadeType.ALL })
-	List <Torneo>torneos;
+	@ManyToMany
+	private List <Torneo> torneos = new LinkedList<Torneo>();
 	
 	public String getNombre() {
 		return nombre;

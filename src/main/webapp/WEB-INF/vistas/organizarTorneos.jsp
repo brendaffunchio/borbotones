@@ -66,6 +66,25 @@
 				</br>
 				<form:input class="f" path="ciudad" type="text" />
 				</br>
+				</br>
+				<select>
+		
+				<form:label for="inmubles-disponibles" path="inmueble">Choose a pet</form:label>
+				
+				<c:forEach items="${inmuebles}" var="I">
+
+				<option value="dog">${I.nombre}</option>
+				
+				<h2 class="nombre-inmueble">${I.nombre}</h2>
+				
+				<h2>${I.precio}</h2>
+				</c:forEach>
+				
+				
+				
+    			
+				</select>
+				</br>
 				<label class="or">Direccion</label>
 				</br>
 				<form:input class="f" path="direccion" type="text" />

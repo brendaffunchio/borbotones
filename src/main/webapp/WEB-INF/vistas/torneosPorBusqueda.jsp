@@ -28,23 +28,37 @@
 		</nav>
 
 	</header>
-
 	<h2 class="titulo-torn">TORNEOS DISPONIBLES</h2>
 
+	<div class="cont-acciones">
+	
+		<div class="buscador">
+			<form:form action="buscar-torneo" method="GET">
 
-	<div class="opcionesUsuario">
+				<label class="ors">Buscar torneo deseado</label>
+				</br>
+				<input name="busqueda" class="busc" type="search">
+				<button class="btn-org" type="submit">Buscar</button>
 
-<div>
-           <a class="boton-part" href="ver-torneos" role="button">
-			TODOS LOS TORNEOS </a>
- </div>
-
-			<div> <p class="pp">Organizá tu 
-			<a class="organizaPropioTorneo" href="ver-formulario-torneo" role="button">
-				propio torneo </a></p>
-				
-				</div>
+			</form:form>
+			
 		</div>
+
+		<div class="organizar-tor">
+			<p class="pp">Para organizar tu propio torneo, hacé clic en el
+				botón:</p>
+			</br> <a class="boton-part" href="ver-formulario-torneo" role="button">
+				ORGANIZAR </a> <br> <br>
+				
+			</br> <a class="boton-part" href="ver-torneos" role="button">
+				Lista de Torneos </a>
+
+
+		</div>
+	</div>
+		
+		
+		
 	
 	<div class="torneos">
 		<c:forEach items="${torneosBusqueda}" var="TB">

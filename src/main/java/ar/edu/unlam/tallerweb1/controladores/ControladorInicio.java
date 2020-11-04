@@ -24,6 +24,7 @@ public class ControladorInicio {
 
 	}
 	
+
 	@RequestMapping(path = "inmueble", method = RequestMethod.GET)
 	public ModelAndView irAi() {
 		return new ModelAndView("inmuebleDetalle");
@@ -33,5 +34,5 @@ public class ControladorInicio {
 	
 
 	
-	// mas sarasas SARASAS SARASAS DE LOS SARASASS//
+
 }

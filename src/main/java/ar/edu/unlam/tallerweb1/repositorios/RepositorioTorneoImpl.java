@@ -30,7 +30,8 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 
 		List<Usuario> participantes = new LinkedList<>();
 
-		Integer cupo = participantes.size();
+
+Integer cupo = participantes.size();
 
 		return session.createCriteria(Torneo.class)
 

@@ -37,20 +37,7 @@ public class ServicioInmuebleImpl implements ServicioInmueble{
 	repositorioInmueble.guardarInmueble(inmueble);
 	
 	}
-/*
-	@Override
-	public List<Inmueble> buscarInmueblePorProvincia(String provincia) {
-		
-		return repositorioInmueble.buscarInmueblePorProvincia(provincia);
-	}
 
-	@Override
-	public List<Inmueble> buscarInmueblePorLocalidad(String localidad) {
-		
-		return repositorioInmueble.buscarInmueblePorLocalidad(localidad);
-	}
-
-	*/
 	@Override
 	public List<Inmueble> buscarInmueble(String provincia, String localidad) {
 	

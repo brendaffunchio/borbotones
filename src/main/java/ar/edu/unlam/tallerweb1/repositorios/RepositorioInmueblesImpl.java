@@ -36,20 +36,14 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 
 		session.save(inmueble);
 
+		session.save(inmueble);
+
 	}
 	
 	@Override
 	public List<Inmueble> buscarInmueble(String provincia, String localidad) {
 
-		/*
-		 * Criteria criteria =
-		 * sessionFactory.getCurrentSession().createCriteria(Inmueble.class); if
-		 * (provincia != null && !provincia.equals(""))
-		 * criteria.add(Restrictions.like("provincia", provincia));
-		 * 
-		 * if (localidad != null && !localidad.equals(""))
-		 * criteria.add(Restrictions.like("localidad", localidad));
-		 */
+		
 		Criteria criteria=sessionFactory.getCurrentSession().createCriteria(Inmueble.class);
 		if(provincia!=null&&!provincia.equals("")&&localidad != null && !localidad.equals("")) 
 		criteria.add(Restrictions.or
@@ -69,27 +63,10 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 		//		.add(Restrictions.eq("id", id)).uniqueResult();
 
 		return sessionFactory.getCurrentSession().get(Inmueble.class, id);
-	}
-
-/*
-	@Override
-	public List<Inmueble> buscarInmueblePorProvincia(String provincia) {
-		List<Inmueble> inmueblesProvincia = sessionFactory.getCurrentSession().createCriteria(Inmueble.class)
-				.add(Restrictions.like("provincia", provincia)).list();
-
-		return inmueblesProvincia;
 
 	}
 
-	@Override
-	public List<Inmueble> buscarInmueblePorLocalidad(String localidad) {
-		List<Inmueble> inmueblesLocalidad = sessionFactory.getCurrentSession().createCriteria(Inmueble.class)
-				.add(Restrictions.like("localidad", localidad)).list();
 
-		return inmueblesLocalidad;
-
-	}
-*/
 	
 	
 }
