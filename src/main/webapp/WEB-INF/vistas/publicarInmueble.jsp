@@ -32,7 +32,7 @@
 			<h2 class="titulo-publicar">PUBLICÁ TU INMUEBLE</h2>
 		</div>
 		<div class="formulario-publicar">
-			<form:form action="crear-inmueble" method="POST"
+			
 				modelAttribute="inmueble">
 				<p class="datos">DATOS DEL INMUEBLE</p>
 				</br>

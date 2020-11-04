@@ -22,6 +22,7 @@ public class Inmueble {
 	private String provincia;
 	private String localidad;
 	private String direccion;
+	private String foto;
 	private Double precio;
 	
 	@ManyToOne
@@ -29,8 +30,6 @@ public class Inmueble {
 	
 	@OneToOne
 	private Torneo torneo;
-	
-	
 	
 	public Torneo getTorneo() {
 		return torneo;
@@ -79,6 +78,16 @@ public class Inmueble {
 	}
 	public void setPrecio(Double precio) {
 		this.precio = precio;
+	}
+	
+	public String getFoto() {
+		return foto;
+	}
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+	public void setTorneo(Torneo torneo) {
+		this.torneo = torneo;
 	}
 	
 	

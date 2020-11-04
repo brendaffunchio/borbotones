@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -29,9 +31,9 @@ public class Torneo {
 	private Integer inscriptos;
 	private Boolean estadoCompleto;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Usuario usuario;
-
+	
 	@ManyToMany(mappedBy = "torneos")
 	private List<Usuario> participantes = new LinkedList<Usuario>();
 
@@ -46,14 +48,7 @@ public class Torneo {
 		this.inmueble = inmueble;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
+	
 	public List<Usuario> getParticipantes() {
 		return participantes;
 	}
@@ -148,6 +143,10 @@ public class Torneo {
 
 	public void setJuego(String juego) {
 		this.juego = juego;
+	}
+	
+	public Usuario getInquilino() {
+		return usuario;
 	}
 
 }

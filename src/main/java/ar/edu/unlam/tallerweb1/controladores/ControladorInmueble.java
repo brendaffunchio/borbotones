@@ -1,5 +1,10 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
@@ -94,6 +101,34 @@ public class ControladorInmueble {
 
 
 	}
+	
+//	
+//	public String guardarFoto(@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble, RedirectAttributes flash) {
+//		
+//		if(!foto.isEmpty()) {
+//			
+//			String ruta = "C://Temp//uploads";
+//	
+//		
+//		try {
+//			
+//			
+//			byte[] bytes = foto.getBytes();
+//			
+//			Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
+//			Files.write(rutaAbsoluta, bytes);
+//			inmueble.setFoto(foto.getOriginalFilename());
+//			
+//			
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+//		
+//		}
+//		
+//		return "redirect:/";
+//				
+//	}
 	
 //	No funciona el metodo, para usar el select de inmuebles en el formulario de torneo. La firma del RequesMapping ya esta usada en el metodo de ver torneos
 //	en el controlador Torneo, y no se puede repetir. 
