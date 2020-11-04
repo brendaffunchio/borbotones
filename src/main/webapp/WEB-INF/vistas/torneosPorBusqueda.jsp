@@ -51,7 +51,7 @@
 				ORGANIZAR </a> <br> <br>
 				
 			</br> <a class="boton-part" href="ver-torneos" role="button">
-				Lista de Torneos </a>
+				TODOS LOS TORNEOS </a>
 
 
 		</div>
