@@ -36,6 +36,7 @@ public class Usuario {
 	private String password;
 	private String rol;
 	
+	
 	@ManyToMany(cascade = { CascadeType.ALL})
 	@JoinTable(name = "participa")
 	private List <Torneo> torneos = new LinkedList<Torneo>();

@@ -46,12 +46,7 @@
 				<br>
 				${torneoDetalle.categoria}
 				<br>
-				${torneoDetalle.provincia}
-				<br>
-				${torneoDetalle.ciudad}
-				<br>
-				${torneoDetalle.direccion}
-				<br>
+				
 				
 				<a class="boton-part" href="ver-formulario-participar"
 					role="button"> PARTICIPAR </a>

@@ -82,7 +82,7 @@
 				</br> 
 				
 				<a class="detalles"
-					href="/proyecto-practica/ver-inmueble-detalle/${I.id}">ver
+					href="/proyecto-practica/ver-inmueble-detalle?id=${I.id}">ver
 					detalles</a> <br>
 					
 				<a class="boton-alqui"

@@ -31,7 +31,7 @@ public class Torneo {
 	private Integer inscriptos;
 	private Boolean estadoCompleto;
 
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private Usuario usuario;
 	
 	@ManyToMany(mappedBy = "torneos")

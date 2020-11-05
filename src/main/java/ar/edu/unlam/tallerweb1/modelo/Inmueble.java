@@ -31,6 +31,15 @@ public class Inmueble {
 	@OneToOne
 	private Torneo torneo;
 	
+	@OneToOne
+	private Direccion direccion1;
+	
+	public Direccion getDireccion1() {
+		return direccion1;
+	}
+	public void setDireccion1(Direccion direccion1) {
+		this.direccion1 = direccion1;
+	}
 	public Torneo getTorneo() {
 		return torneo;
 	}
