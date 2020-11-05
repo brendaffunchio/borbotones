@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
+
 // Clase que modela el concepto de Usuario, la anotacion @Entity le avisa a hibernate que esta clase es persistible
 // el paquete ar.edu.unlam.tallerweb1.modelo esta indicado en el archivo hibernateCOntext.xml para que hibernate
 // busque entities en él
@@ -39,10 +40,12 @@ public class Usuario {
 	
 	@Transient
 	private List <Torneo> torneosCreados = new LinkedList <Torneo>();
+
 	
 	@Transient 
 	private List <Inmueble> inmueblesAlquilados = new LinkedList<Inmueble>();
 	
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "participa")
 	private List <Torneo> torneosParticipa = new LinkedList<Torneo>();

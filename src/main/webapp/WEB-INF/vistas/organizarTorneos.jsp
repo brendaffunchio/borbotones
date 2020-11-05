@@ -60,12 +60,12 @@
 
 				</br>
 				
-				<label class="or" for="inmubles-disponibles" path="inmueble">Inmueble</label>
+				<label class="or" for="inmuebles-disponibles">Inmueble</label>
 				<br>
 				<select>
 				<c:forEach items="${inmuebles}" var="I">
 
-				<option value="dog">${I.nombre}</option>
+				<option value="inmueble">${I.nombre}</option>
 				
 				</br>
 							
