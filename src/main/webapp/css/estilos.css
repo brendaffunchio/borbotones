@@ -122,6 +122,7 @@
 	max-width: 70%;
 	grid-column-gap: 40px;
 	padding-left: 170px;
+	color:white;
 }
 
 .tor {
@@ -147,6 +148,7 @@
 p {
 	width: 100%;
 	font-size: 16px;
+	color:white;
 }
 
 .nombre-tor, .nombre-inmueble {

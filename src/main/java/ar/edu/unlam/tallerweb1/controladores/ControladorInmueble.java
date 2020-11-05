@@ -63,7 +63,7 @@ public class ControladorInmueble {
 		
 	if(!foto.isEmpty()) {
 			
-			String ruta = "C:\\Users\\matia\\eclipse-workspace\\borbotones\\src\\main\\webapp\\img";
+			String ruta = "C:\\Java\\proyectos-taller\\borbotones\\src\\main\\webapp\\img";
 	
 		
 		try {

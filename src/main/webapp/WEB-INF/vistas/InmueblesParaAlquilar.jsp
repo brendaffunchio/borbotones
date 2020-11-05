@@ -68,7 +68,7 @@
 			
 				<p>
 			
-				<img src="img/${I.foto}" alt="imgText" width="180px" height="180px">
+				<img src="img/${I.foto}" alt="imgText" width="180px" height="155px">
 
 				</p>
 								
