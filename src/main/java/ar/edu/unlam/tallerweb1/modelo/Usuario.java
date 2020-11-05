@@ -41,6 +41,11 @@ public class Usuario {
 	@Transient
 	private List <Torneo> torneosCreados = new LinkedList <Torneo>();
 
+	
+	@Transient 
+	private List <Inmueble> inmueblesAlquilados = new LinkedList<Inmueble>();
+	
+
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "participa")
 	private List <Torneo> torneosParticipa = new LinkedList<Torneo>();

@@ -4,6 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,8 +30,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ControladorTorneo {
 
 	private ServicioTorneo servicioTorneo;
-	private ServicioInmueble servicioInmueble;
 	
+	private ServicioInmueble servicioInmueble;
 
 	@Autowired
 	public ControladorTorneo(ServicioTorneo servicioTorneo, ServicioInmueble servicioInmueble) {
@@ -38,7 +39,7 @@ public class ControladorTorneo {
 		this.servicioInmueble= servicioInmueble;
 	}
 	
-
+	
 	@RequestMapping(path = "ver-torneos", method = RequestMethod.GET)
 	public ModelAndView mostrarTorneos() {
 
@@ -60,6 +61,7 @@ public class ControladorTorneo {
 		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
 		
 		modelo.put("torneo", torneo);
+		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
 		
 		return new ModelAndView("organizarTorneos", modelo);
 
