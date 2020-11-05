@@ -46,7 +46,7 @@ public class Torneo {
 	@ManyToOne
 	private Usuario usuario;
 	
-	@ManyToMany(mappedBy = "torneos")
+	@ManyToMany(mappedBy = "torneos", fetch = FetchType.LAZY)
 	private List<Usuario> participantes = new LinkedList<Usuario>();
 
 	@OneToOne(mappedBy="torneo")
