@@ -32,7 +32,7 @@
 			<h2 class="titulo-publicar">PUBLICÁ TU INMUEBLE</h2>
 		</div>
 		<div class="formulario-publicar">
-			
+			<form:form action="crear-inmueble" method="POST" enctype="multipart/form-data"
 				modelAttribute="inmueble">
 				<p class="datos">DATOS DEL INMUEBLE</p>
 				</br>
@@ -51,6 +51,10 @@
 				<label class="or">Precio</label>
 				</br>
 				<form:input class="f" path="precio" type="number" />
+				</br>
+				<label class="or">Imagen del inmueble</label>
+				<input type="file" name="file"> 
+				
 				</br>
 				<button class="btn-pub" Type="Submit" />PUBLICAR</button>
 

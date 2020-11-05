@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,9 +16,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
@@ -55,8 +57,30 @@ public class ControladorInmueble {
 		
 	}
 	
+	//(@ModelAttribute ("inmueble") Inmueble inmueble) 
 	@RequestMapping(path="crear-inmueble", method=RequestMethod.POST)
-	public ModelAndView crearInmueble (@ModelAttribute ("inmueble") Inmueble inmueble) {
+	public ModelAndView crearInmueble(@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble, RedirectAttributes flash)  {
+		
+	if(!foto.isEmpty()) {
+			
+			String ruta = "C:\\Users\\matia\\eclipse-workspace\\borbotones\\src\\main\\webapp\\img";
+	
+		
+		try {
+			
+			
+			byte[] bytes = foto.getBytes();
+			
+			Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
+			Files.write(rutaAbsoluta, bytes);
+			inmueble.setFoto(foto.getOriginalFilename());
+			
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		}
 		
 		servicioInmueble.guardarInmueble(inmueble);
 		
@@ -102,7 +126,7 @@ public class ControladorInmueble {
 
 	}
 	
-//	
+	
 //	public String guardarFoto(@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble, RedirectAttributes flash) {
 //		
 //		if(!foto.isEmpty()) {

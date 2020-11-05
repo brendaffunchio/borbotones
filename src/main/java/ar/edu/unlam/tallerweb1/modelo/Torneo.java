@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,6 +18,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 @Entity
 public class Torneo {
 
@@ -27,11 +37,13 @@ public class Torneo {
 	private String fecha;
 	private String horario;
 	private String categoria;
+	private String foto;
 	private Integer cupo;
 	private Integer inscriptos;
 	private Boolean estadoCompleto;
+	
 
-	@ManyToOne(optional = false)
+	@ManyToOne
 	private Usuario usuario;
 	
 	@ManyToMany(mappedBy = "torneos")
@@ -147,6 +159,15 @@ public class Torneo {
 	
 	public Usuario getInquilino() {
 		return usuario;
+	}
+	
+	public String getFoto() {
+		return foto;
+	}
+	
+	
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 }

@@ -65,6 +65,15 @@
 		<c:forEach items="${inmuebles}" var="I">
 
 			<div class="inm">
+			
+				<p>
+			
+				<img src="img/${I.foto}" alt="imgText" width="180px" height="180px">
+
+				</p>
+								
+				</br>
+			
 				<h2 class="nombre-inmueble">${I.nombre}</h2>
 				</br>
 
@@ -80,6 +89,8 @@
 
 				</p>
 				</br> 
+				
+				
 				
 				<a class="detalles"
 					href="/proyecto-practica/detalle/${I.id}">ver

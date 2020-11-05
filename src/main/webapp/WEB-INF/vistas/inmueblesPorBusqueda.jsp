@@ -73,8 +73,18 @@
 
 		<div class="inmuebles">
 			<c:forEach items="${inmueblesBusqueda}" var="IB">
-
+			
 				<div class="inm">
+				
+				<p> 
+				
+					<img src="img/${IB.foto}" alt="imgText" width="180px" height="180px">
+					
+					</p> 
+					
+					</br>
+				
+				
 					<h2 class="nombre-inmueble">${IB.nombre}</h2>
 					</br>
 
@@ -94,6 +104,8 @@
 
 					</p>
 					</br> 
+					
+					
 					    <a class="detalles"
 						href="/proyecto-practica/ver-inmueble-detalles/${IB.id}" role="button">ver
 						detalles</a> <br>

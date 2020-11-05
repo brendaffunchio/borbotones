@@ -63,8 +63,14 @@
 	<div class="torneos">
 		<c:forEach items="${torneosBusqueda}" var="TB">
 
-
 			<div class="tor">
+			
+			<p>
+			
+				<img src="img/${TB.foto}" alt="imgText" width="180px" height="180px">
+
+				</p>
+			
 				<h2 class="nombre-tor">${TB.nombre}</h2>
 				</br>
 				<p>

@@ -34,7 +34,7 @@
 			<h2 class="titulo-organizar">ORGANIZÁ TU TORNEO</h2>
 		</div>
 		<div class="formulario-torneo">
-			<form:form action="crear-torneo" method="POST"
+			<form:form action="crear-torneo" method="POST" enctype="multipart/form-data"
 				modelAttribute="torneo">
 
 				<label class="or">Nombre del torneo</label>
@@ -58,15 +58,6 @@
 				</br>
 				<form:input class="f" path="horario" type="time" />
 				</br>
-				<label class="or">Provincia</label>
-				</br>
-				<form:input class="f" path="provincia" type="text" />
-				</br>
-				<label class="or">Ciudad</label>
-				</br>
-				<form:input class="f" path="ciudad" type="text" />
-				</br>
-				</br>
 				<select>
 		
 				<form:label for="inmubles-disponibles" path="inmueble">Choose a pet</form:label>
@@ -75,20 +66,12 @@
 
 				<option value="dog">${I.nombre}</option>
 				
-				<h2 class="nombre-inmueble">${I.nombre}</h2>
-				
-				<h2>${I.precio}</h2>
+				</br>
+							
 				</c:forEach>
 				
-				
-				
-    			
 				</select>
-				</br>
-				<label class="or">Direccion</label>
-				</br>
-				<form:input class="f" path="direccion" type="text" />
-				</br>
+				
 				<label class="or">Cupo</label>
 				</br>
 				<form:input class="f" path="cupo" type="number" />
@@ -97,6 +80,12 @@
 				</br>
 				<form:input class="f" path="precio" type="number" />
 				</br>
+				
+				<label class="or">Imagen del inmueble</label>
+				<input type="file" name="file"> 
+				
+				</br>
+				
 				<div class="boton-organizar">
 					<button class="btn-org" Type="Submit" />
 					CREAR TORNEO
