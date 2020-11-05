@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 // Clase que modela el concepto de Usuario, la anotacion @Entity le avisa a hibernate que esta clase es persistible
 // el paquete ar.edu.unlam.tallerweb1.modelo esta indicado en el archivo hibernateCOntext.xml para que hibernate
@@ -36,10 +37,28 @@ public class Usuario {
 	private String password;
 	private String rol;
 	
+	@Transient
+	private List <Torneo> torneosCreados = new LinkedList <Torneo>();
 	
-	@ManyToMany(cascade = { CascadeType.ALL})
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "participa")
-	private List <Torneo> torneos = new LinkedList<Torneo>();
+	private List <Torneo> torneosParticipa = new LinkedList<Torneo>();
+	
+	
+	
+	public List<Torneo> getTorneosCreados() {
+		return torneosCreados;
+	}
+	public void setTorneosCreados(List<Torneo> torneosCreados) {
+		this.torneosCreados = torneosCreados;
+	}
+	public List<Torneo> getTorneosParticipa() {
+		return torneosParticipa;
+	}
+	public void setTorneosParticipa(List<Torneo> torneosParticipa) {
+		this.torneosParticipa = torneosParticipa;
+	}
+
 	
 	public String getNombre() {
 		return nombre;

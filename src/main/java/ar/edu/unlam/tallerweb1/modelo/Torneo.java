@@ -41,17 +41,16 @@ public class Torneo {
 	private Integer cupo;
 	private Integer inscriptos;
 	private Boolean estadoCompleto;
-	
 
 	@ManyToOne
 	private Usuario usuario;
-	
-	@ManyToMany(mappedBy = "torneos")
+
+	@ManyToMany(mappedBy = "torneosParticipa", fetch = FetchType.LAZY)
 	private List<Usuario> participantes = new LinkedList<Usuario>();
 
-	@OneToOne(mappedBy="torneo")
+	@OneToOne(mappedBy = "torneo")
 	private Inmueble inmueble;
-	
+
 	public Inmueble getInmueble() {
 		return inmueble;
 	}
@@ -60,7 +59,6 @@ public class Torneo {
 		this.inmueble = inmueble;
 	}
 
-	
 	public List<Usuario> getParticipantes() {
 		return participantes;
 	}
@@ -156,16 +154,15 @@ public class Torneo {
 	public void setJuego(String juego) {
 		this.juego = juego;
 	}
-	
+
 	public Usuario getInquilino() {
 		return usuario;
 	}
-	
+
 	public String getFoto() {
 		return foto;
 	}
-	
-	
+
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}

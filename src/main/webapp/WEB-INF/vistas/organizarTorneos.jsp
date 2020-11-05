@@ -70,7 +70,9 @@
 				</br>
 							
 				</c:forEach>
-			<br>
+				</select>
+				
+			   <br>
 
 				<label class="or">Cupo</label>
 				<br>

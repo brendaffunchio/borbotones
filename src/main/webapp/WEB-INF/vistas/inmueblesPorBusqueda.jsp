@@ -65,7 +65,7 @@
 				<div>
 				
 				<a class="boton-pub" href="ver-inmuebles" role="button">
-				TODOS LOS INMUEBLES </a></div>
+				INMUEBLES </a></div>
 
 		</div>
 			</div>
@@ -78,7 +78,7 @@
 				
 				<p> 
 				
-					<img src="img/${IB.foto}" alt="imgText" width="180px" height="180px">
+					<img src="img/${IB.foto}" alt="imgText" width="180px" height="155px">
 					
 					</p> 
 					

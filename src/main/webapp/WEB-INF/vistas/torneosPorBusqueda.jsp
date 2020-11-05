@@ -51,7 +51,7 @@
 				ORGANIZAR </a> <br> <br>
 				
 			</br> <a class="boton-part" href="ver-torneos" role="button">
-				TODOS LOS TORNEOS </a>
+				TORNEOS </a>
 
 
 		</div>
@@ -67,7 +67,7 @@
 			
 			<p>
 			
-				<img src="img/${TB.foto}" alt="imgText" width="180px" height="180px">
+				<img src="img/${TB.foto}" alt="imgText" width="180px" height="155px">
 
 				</p>
 			

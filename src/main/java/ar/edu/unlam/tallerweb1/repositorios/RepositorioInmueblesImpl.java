@@ -59,10 +59,10 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 	@Override
 	public Inmueble verDetallesInmueble(Long id_inmueble) {
 
-		//return (Inmueble) sessionFactory.getCurrentSession().createCriteria(Inmueble.class)
-		//		.add(Restrictions.eq("id", id)).uniqueResult();
+		return (Inmueble) sessionFactory.getCurrentSession().createCriteria(Inmueble.class)
+				.add(Restrictions.eq("id", id_inmueble)).uniqueResult();
 
-		return sessionFactory.getCurrentSession().get(Inmueble.class, id_inmueble);
+		//return sessionFactory.getCurrentSession().get(Inmueble.class, id_inmueble);
 
 	}
 
