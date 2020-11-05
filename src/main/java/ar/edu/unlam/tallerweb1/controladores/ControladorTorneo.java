@@ -1,13 +1,10 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,7 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-
+import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
 
 
@@ -32,11 +29,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class ControladorTorneo {
 
 	private ServicioTorneo servicioTorneo;
+	private ServicioInmueble servicioInmueble;
 	
 
 	@Autowired
-	public ControladorTorneo(ServicioTorneo servicioTorneo) {
+	public ControladorTorneo(ServicioTorneo servicioTorneo, ServicioInmueble servicioInmueble) {
 		this.servicioTorneo = servicioTorneo;
+		this.servicioInmueble= servicioInmueble;
 	}
 	
 
@@ -58,6 +57,8 @@ public class ControladorTorneo {
 		
 		ModelMap modelo = new ModelMap();
 		
+		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
+		
 		modelo.put("torneo", torneo);
 		
 		return new ModelAndView("organizarTorneos", modelo);
@@ -69,12 +70,14 @@ public class ControladorTorneo {
 	public ModelAndView crearTorneo(@RequestParam(name = "file", required = false) MultipartFile foto, Torneo torneo, RedirectAttributes flash)  {
 		
 	if(!foto.isEmpty()) {
-			
-		String ruta = "C:\\Java\\proyectos-taller\\borbotones\\src\\main\\webapp\\img";
 		
+//		String currentUsersDir = System.getProperty("user.dir");
+//		
+//		String ruta = currentUsersDir+"\\src\\main\\webapp\\img";
 		
+		String currentUsersHomeDir = System.getProperty("user.home");
 		
-	
+		String ruta = currentUsersHomeDir+"eclipse-workspace\\borbotones\\src\\main\\webapp\\img";
 		
 		try {
 			
@@ -129,3 +132,4 @@ public class ControladorTorneo {
 	}
 	
 }
+

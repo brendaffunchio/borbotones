@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -61,10 +62,18 @@ public class ControladorInmueble {
 	@RequestMapping(path="crear-inmueble", method=RequestMethod.POST)
 	public ModelAndView crearInmueble(@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble, RedirectAttributes flash)  {
 		
+		
+		
 	if(!foto.isEmpty()) {
-			
-			String ruta = "C:\\Java\\proyectos-taller\\borbotones\\src\\main\\webapp\\img";
-	
+		
+//		String currentUsersDir = System.getProperty("user.dir");
+//			
+//		String ruta = currentUsersDir+"\\src\\main\\webapp\\img";
+		
+		
+		String currentUsersHomeDir = System.getProperty("user.home");
+		
+		String ruta = currentUsersHomeDir+"eclipse-workspace\\borbotones\\src\\main\\webapp\\img";
 		
 		try {
 			
@@ -128,33 +137,6 @@ public class ControladorInmueble {
 	}
 	
 	
-//	public String guardarFoto(@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble, RedirectAttributes flash) {
-//		
-//		if(!foto.isEmpty()) {
-//			
-//			String ruta = "C://Temp//uploads";
-//	
-//		
-//		try {
-//			
-//			
-//			byte[] bytes = foto.getBytes();
-//			
-//			Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
-//			Files.write(rutaAbsoluta, bytes);
-//			inmueble.setFoto(foto.getOriginalFilename());
-//			
-//			
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
-//		
-//		}
-//		
-//		return "redirect:/";
-//				
-//	}
-	
 //	No funciona el metodo, para usar el select de inmuebles en el formulario de torneo. La firma del RequesMapping ya esta usada en el metodo de ver torneos
 //	en el controlador Torneo, y no se puede repetir. 
 	  
@@ -168,9 +150,9 @@ public class ControladorInmueble {
 //		return new ModelAndView("organizarTorneos", modelo);
 //
 //	}
-
-
 	
-
 	
 }
+
+
+
