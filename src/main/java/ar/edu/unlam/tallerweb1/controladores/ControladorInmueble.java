@@ -127,47 +127,6 @@ public class ControladorInmueble {
 
 	}
 	
-	
-//	public String guardarFoto(@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble, RedirectAttributes flash) {
-//		
-//		if(!foto.isEmpty()) {
-//			
-//			String ruta = "C://Temp//uploads";
-//	
-//		
-//		try {
-//			
-//			
-//			byte[] bytes = foto.getBytes();
-//			
-//			Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
-//			Files.write(rutaAbsoluta, bytes);
-//			inmueble.setFoto(foto.getOriginalFilename());
-//			
-//			
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
-//		
-//		}
-//		
-//		return "redirect:/";
-//				
-//	}
-	
-//	No funciona el metodo, para usar el select de inmuebles en el formulario de torneo. La firma del RequesMapping ya esta usada en el metodo de ver torneos
-//	en el controlador Torneo, y no se puede repetir. 
-	  
-//	@RequestMapping(path = "ver-formulario-torneo", method = RequestMethod.GET)
-//	public ModelAndView inmueblesDisponiblesParaElTorneo() {
-//	
-//		ModelMap modelo = new ModelMap();
-//		
-//		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
-//
-//		return new ModelAndView("organizarTorneos", modelo);
-//
-//	}
 
 
 	

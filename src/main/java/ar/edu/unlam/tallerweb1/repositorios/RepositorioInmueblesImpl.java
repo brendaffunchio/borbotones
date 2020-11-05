@@ -27,16 +27,18 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 	public List<Inmueble> todosLosInmuebles() {
 		final Session session = sessionFactory.getCurrentSession();
 
-		return session.createCriteria(Inmueble.class).list();
+		return session.createCriteria(Inmueble.class)
+				
+				.add(Restrictions.eq("disponible",true)).list();
 	}
 
 	@Override
 	public void guardarInmueble(Inmueble inmueble) {
 		final Session session = sessionFactory.getCurrentSession();
 
+		inmueble.setDisponible(true);
 		session.save(inmueble);
 
-		session.save(inmueble);
 
 	}
 	
@@ -47,13 +49,13 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 		Criteria criteria=sessionFactory.getCurrentSession().createCriteria(Inmueble.class);
 		if(provincia!=null&&!provincia.equals("")&&localidad != null && !localidad.equals("")) 
 		criteria.add(Restrictions.or
-				(Restrictions.like("provincia", provincia), Restrictions.like("localidad", localidad)));
+				(Restrictions.like("provincia", provincia), Restrictions.like("localidad", localidad)))
+				.add(Restrictions.eq("disponible",true));
 			
 
 		return criteria.list();
 		
-		
-		
+			
 	}
 
 	@Override

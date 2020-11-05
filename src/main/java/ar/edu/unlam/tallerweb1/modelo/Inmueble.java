@@ -24,6 +24,7 @@ public class Inmueble {
 	private String direccion;
 	private String foto;
 	private Double precio;
+	private Boolean disponible;
 	
 	@ManyToOne
 	private Usuario inquilino;
@@ -33,6 +34,7 @@ public class Inmueble {
 	
 	@OneToOne
 	private Direccion direccion1;
+	
 	
 	public Direccion getDireccion1() {
 		return direccion1;
@@ -97,6 +99,12 @@ public class Inmueble {
 	}
 	public void setTorneo(Torneo torneo) {
 		this.torneo = torneo;
+	}
+	public Boolean getDisponible() {
+		return disponible;
+	}
+	public void setDisponible(Boolean disponible) {
+		this.disponible = disponible;
 	}
 	
 	
