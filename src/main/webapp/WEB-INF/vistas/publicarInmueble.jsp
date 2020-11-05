@@ -32,8 +32,10 @@
 			<h2 class="titulo-publicar">PUBLICÁ TU INMUEBLE</h2>
 		</div>
 		<div class="formulario-publicar">
+
 			<form:form action="crear-inmueble" method="POST" enctype="multipart/form-data"
 				modelAttribute="inmueble">
+				
 				<p class="datos">DATOS DEL INMUEBLE</p>
 				</br>
 				<label class="or">Nombre del inmueble</label>
@@ -47,6 +49,10 @@
 				<label class="or">Localidad</label>
 				</br>
 				<form:input class="f" path="localidad" type="text" />
+				</br>
+				<label class="or">Direccion</label>
+				</br>
+				<form:input class="f" path="direccion" type="text" />
 				</br>
 				<label class="or">Precio</label>
 				</br>

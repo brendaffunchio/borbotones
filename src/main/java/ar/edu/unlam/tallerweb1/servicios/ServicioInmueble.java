@@ -13,6 +13,6 @@ public interface ServicioInmueble {
 
 	public List<Inmueble> buscarInmueble(String provincia, String localidad);
 
-	public Inmueble verDetallesInmueble(Long id);
+	public Inmueble verDetallesInmueble(Long id_inmueble);
 	
 }

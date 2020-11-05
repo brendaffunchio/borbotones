@@ -38,30 +38,31 @@
 				modelAttribute="torneo">
 
 				<label class="or">Nombre del torneo</label>
-				</br>
+				<br>
 				<form:input class="f" path="nombre" type="text" />
-				</br>
+				<br>
 				<label class="or">Juego</label>
-				</br>
+				<br>
 				<form:input class="f" path="juego" type="text" />
-				</br>
+				<br>
 				<label class="or">Categoria</label>
-				</br>
+				<br>
 				<form:input class="f" path="categoria" type="text" />
-				</br>
+				<br>
 				<label class="or">Fecha</label>
-				</br>
+				<br>
 				<form:input class="f" path="fecha" type="date" />
-				</br>
+				<br>
 
 				<label class="or">Horario</label>
-				</br>
+				<br>
 				<form:input class="f" path="horario" type="time" />
+
 				</br>
-				<select>
-		
-				<form:label for="inmubles-disponibles" path="inmueble">Choose a pet</form:label>
 				
+				<label class="or" for="inmubles-disponibles" path="inmueble">Inmueble</label>
+				<br>
+				<select>
 				<c:forEach items="${inmuebles}" var="I">
 
 				<option value="dog">${I.nombre}</option>
@@ -69,25 +70,25 @@
 				</br>
 							
 				</c:forEach>
-				
-				</select>
-				
+			<br>
+
 				<label class="or">Cupo</label>
-				</br>
+				<br>
 				<form:input class="f" path="cupo" type="number" />
-				</br>
+				<br>
 				<label class="or">Precio</label>
-				</br>
+				<br>
 				<form:input class="f" path="precio" type="number" />
+
 				</br>
 				
 				<label class="or">Imagen del inmueble</label>
 				<input type="file" name="file"> 
 				
 				</br>
-				
+			
 				<div class="boton-organizar">
-					<button class="btn-org" Type="Submit" />
+					<button class="btn-org" Type="Submit">
 					CREAR TORNEO
 					</button>
 					

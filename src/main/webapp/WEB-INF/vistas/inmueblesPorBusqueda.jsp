@@ -40,7 +40,7 @@
 
 			<form:form action="buscar-inmueble" method="GET">
 
-				<label class="ors">Buscar inmueble por Provincia</label>
+				<label class="ors">Buscar inmueble</label>
 				</br>
 				<input name="busqueda" class="busc" type="search">
 				<button class="btn-org" type="submit" id="buscarInmueble">Buscar</button>
@@ -65,7 +65,7 @@
 				<div>
 				
 				<a class="boton-pub" href="ver-inmuebles" role="button">
-				Lista de Inmuebles </a></div>
+				TODOS LOS INMUEBLES </a></div>
 
 		</div>
 			</div>
