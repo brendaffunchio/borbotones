@@ -7,9 +7,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Provincia;
 
+@Repository
 public class RepositorioProvinciaImpl implements RepositorioProvincia {
 	
 	private SessionFactory sessionFactory;
@@ -24,11 +27,11 @@ public class RepositorioProvinciaImpl implements RepositorioProvincia {
 	
 
 	@Override
-	public LinkedList<Provincia> todasLasProvincias() {
+	public List<Provincia> todasLasProvincias() {
 		
 		final Session session = sessionFactory.getCurrentSession();
 
-		return (LinkedList<Provincia>) session.createCriteria(Provincia.class).list();
+		return session.createCriteria(Provincia.class).list();
 				
 				
 	}

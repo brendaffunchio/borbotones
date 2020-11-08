@@ -4,12 +4,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Provincia;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioProvincia;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioProvincia;
 
+@Service
+@Transactional
 public class ServicioProvinciaImpl implements ServicioProvincia {
 	
 	private RepositorioProvincia repositorioProvincia;
@@ -22,7 +26,7 @@ public class ServicioProvinciaImpl implements ServicioProvincia {
 	
 
 	@Override
-	public LinkedList<Provincia> mostrarProvincias() {
+	public List<Provincia> mostrarProvincias() {
 		
 		return repositorioProvincia.todasLasProvincias();
 	}

@@ -58,9 +58,7 @@ public class ControladorTorneo {
 		Torneo torneo = new Torneo();
 		
 		ModelMap modelo = new ModelMap();
-		
-		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
-		
+			
 		modelo.put("torneo", torneo);
 		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
 		
@@ -75,12 +73,16 @@ public class ControladorTorneo {
 	if(!foto.isEmpty()) {
 		
 //		String currentUsersDir = System.getProperty("user.dir");
-//		
+		
 //		String ruta = currentUsersDir+"\\src\\main\\webapp\\img";
 		
-		String currentUsersHomeDir = System.getProperty("user.home");
+//		String currentUsersHomeDir = System.getProperty("user.home");
 		
-		String ruta = currentUsersHomeDir+"\\eclipse-workspace\\borbotones\\src\\main\\webapp\\img";
+//		String ruta = currentUsersHomeDir+"\\proyectos-taller\\borbotones\\src\\main\\webapp\\img";
+		
+
+		String ruta = "C:\\Java\\proyectos-taller\\borbotones\\src\\main\\webapp\\img";
+
 		
 		try {
 			
@@ -123,10 +125,11 @@ public class ControladorTorneo {
 		return new ModelAndView("torneosPorBusqueda", modelo);
 	}
 	
-	@RequestMapping (path="ver-torneo-detalles/{id}",method=RequestMethod.GET)
-	public ModelAndView verDetallesTorneo (@PathVariable Long id) {
+	@RequestMapping (path="ver-torneo-detalles",method=RequestMethod.GET)
+	public ModelAndView verDetallesTorneo (@RequestParam("id") Long id) {
 		
-	Torneo torneoDetalle = servicioTorneo.verDetallesTorneo(id);
+		Long id_torneo=id;
+	Torneo torneoDetalle = servicioTorneo.verDetallesTorneo(id_torneo);
 
 		ModelMap modelo = new ModelMap();
 		

@@ -105,14 +105,10 @@
 					</p>
 					</br> 
 					
-					
-					    <a class="detalles"
-						href="/proyecto-practica/ver-inmueble-detalles/${IB.id}" role="button">ver
-						detalles</a> <br>
-						
-						 <a class="boton-alqui"
-						href="/proyecto-practica/ver-inmueble-detalles/${IB.id}" role="button">ALQUILAR</a>
-					<br>
+				
+					<a class="boton-alqui"
+					href="/proyecto-practica/ver-inmueble-detalle?id=${IB.id}" role="button">ver detalles</a> <br>
+
 
 				</div>
 			</c:forEach>

@@ -43,11 +43,12 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 	}
 
 	@Override
-	public Inmueble verDetallesInmueble(Long id_inmueble) {
 
-		Inmueble inmueble = repositorioInmueble.verDetallesInmueble(id_inmueble);
-
-		return inmueble;
+	public Inmueble verDetallesInmueble(Long id) {
+		
+		return repositorioInmueble.verDetallesInmueble(id);
+		
+		
 	}
 
 }

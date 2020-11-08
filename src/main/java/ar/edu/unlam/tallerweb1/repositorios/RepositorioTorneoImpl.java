@@ -80,10 +80,7 @@ Integer cupo = participantes.size();
 	@Override
 	public Torneo verDetallesTorneo(Long id) {
 		
-		return (Torneo) sessionFactory.getCurrentSession().createCriteria(Torneo.class)
-				.add(Restrictions.eq("id", id)).uniqueResult();
-
-		// return sessionFactory.getCurrentSession().get(Torneo.class, id);
+		 return sessionFactory.getCurrentSession().get(Torneo.class, id);
 	}
 
 }

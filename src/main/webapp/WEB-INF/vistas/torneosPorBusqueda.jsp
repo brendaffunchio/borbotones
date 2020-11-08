@@ -82,12 +82,11 @@
 				</p>
 				</br>
 				
-				<a class="detalles"
-					href="/proyecto-practica/ver-torneo-detalles/${TB.id}" role="button">ver
-					detalles</a> <br>
+			<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles?id=${TB.id}" role="button">ver
+					detalles</a> 
 					
-					<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles/${TB.id}"
-					role="button"> PARTICIPAR </a>
+					
+					
 			</div>
 
 		</c:forEach>

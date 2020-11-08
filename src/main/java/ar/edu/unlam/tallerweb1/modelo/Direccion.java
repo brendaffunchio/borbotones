@@ -17,7 +17,7 @@ public class Direccion {
 	private String calle;
 	private Integer numero;
 	
-	@OneToOne(mappedBy ="direccion1")
+	@OneToOne(mappedBy ="direccion")
 	private Inmueble inmueble;
 	
 	@ManyToOne

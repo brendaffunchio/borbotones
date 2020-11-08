@@ -42,17 +42,19 @@
 				</br>
 				<form:input class="f" path="nombre" type="text" />
 				</br>
+				
 				<label class="or">Provincia</label>
+				
+				<select>
+				
+				<c:forEach items="${provincias}" var="P">
+				
+               <option value="provincia">${P.nombre}</option>
+              
+              </c:forEach>
+         	  <select>
 				</br>
-				<form:input class="f" path="provincia" type="text" />
-				</br>
-				<label class="or">Localidad</label>
-				</br>
-				<form:input class="f" path="localidad" type="text" />
-				</br>
-				<label class="or">Direccion</label>
-				</br>
-				<form:input class="f" path="direccion" type="text" />
+				<input class="f" path="direccion" type="text"/>
 				</br>
 				<label class="or">Precio</label>
 				</br>

@@ -23,16 +23,19 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
+import ar.edu.unlam.tallerweb1.servicios.ServicioProvincia;
 
 @Controller
 public class ControladorInmueble {
 
 	public ServicioInmueble servicioInmueble;
+	public ServicioProvincia servicioProvincia;
 
 	@Autowired
-	public ControladorInmueble(ServicioInmueble servicioInmueble) {
+	public ControladorInmueble(ServicioInmueble servicioInmueble, ServicioProvincia servicioProvincia) {
 
 		this.servicioInmueble = servicioInmueble;
+		this.servicioProvincia = servicioProvincia;
 
 	}
 
@@ -50,11 +53,13 @@ public class ControladorInmueble {
 
 		ModelMap modelo = new ModelMap();
 		Inmueble inmueble = new Inmueble();
+		modelo.put("provincias", servicioProvincia.mostrarProvincias());
 		modelo.put("inmueble", inmueble);
 
 		return new ModelAndView("publicarInmueble", modelo);
 
 	}
+
 
 	private void guardarFoto(MultipartFile foto) {
 
@@ -63,23 +68,25 @@ public class ControladorInmueble {
 			String currentUsersDir = System.getProperty("user.dir");
 			
 			String ruta = "C:\\repositorioImagenes";
-
-		
-
+			
 			try {
 
 				byte[] bytes = foto.getBytes();
 
 				Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
 				Files.write(rutaAbsoluta, bytes);
-
-			} catch (Exception e) {
+				
 				
 			}
-
+			
+		 catch (Exception e) {
+			
 		}
-
+		
+		}
 	}
+		
+
 
 	// (@ModelAttribute ("inmueble") Inmueble inmueble)
 	@RequestMapping(path = "crear-inmueble", method = RequestMethod.POST)
@@ -89,6 +96,7 @@ public class ControladorInmueble {
 		guardarFoto(foto);
 
 		inmueble.setFoto(foto.getOriginalFilename());
+
 
 		servicioInmueble.guardarInmueble(inmueble);
 
@@ -120,16 +128,16 @@ public class ControladorInmueble {
 	}
 
 	@RequestMapping(path = "ver-inmueble-detalle", method = RequestMethod.GET)
-	public ModelAndView irAi(@RequestParam("id") Long id) {
+	public ModelAndView verDetalle(@RequestParam("id") Long id) {
 
-		Long id_inmueble = id;
-		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(id_inmueble);
+		
+		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(id);
 
-		ModelMap model = new ModelMap();
+		ModelMap modelo = new ModelMap();
 
-		model.put("detalle", inmuebleBuscado);
+		modelo.put("detalleInmueble", inmuebleBuscado);
 
-		return new ModelAndView("inmuebleDetalle");
+		return new ModelAndView("inmuebleDetalle", modelo);
 
 	}
 

@@ -43,20 +43,20 @@ public class Torneo {
 	private Boolean estadoCompleto;
 
 	@ManyToOne
-	private Usuario usuario;
+	private Usuario creador;
 
 	@ManyToMany(mappedBy = "torneosParticipa", fetch = FetchType.LAZY)
 	private List<Usuario> participantes = new LinkedList<Usuario>();
 
-	@OneToOne(mappedBy = "torneo")
-	private Inmueble inmueble;
+	@ManyToOne
+	private Inmueble inmuebleDelTorneo;
 
 	public Inmueble getInmueble() {
-		return inmueble;
+		return inmuebleDelTorneo;
 	}
 
 	public void setInmueble(Inmueble inmueble) {
-		this.inmueble = inmueble;
+		this.inmuebleDelTorneo = inmueble;
 	}
 
 	public List<Usuario> getParticipantes() {
@@ -156,7 +156,7 @@ public class Torneo {
 	}
 
 	public Usuario getInquilino() {
-		return usuario;
+		return creador;
 	}
 
 	public String getFoto() {

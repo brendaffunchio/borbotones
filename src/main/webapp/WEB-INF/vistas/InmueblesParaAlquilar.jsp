@@ -81,26 +81,24 @@
 					<span>Precio:</span>$ ${I.precio}
 
 				</p>
+				
+				</br>
+				
+				<p> 
+				
+				
+					
+
+				</p>
 
 				</br>
 
-				<p>
-					<span>Localidad:</span> ${I.localidad}
-
-				</p>
+			
 				</br> 
 				
-				
-				
-				<a href="/proyecto-practica/ver-inmueble-detalle?id=${I.id}"> <span class="detalles">
-					ver
-					detalles 
-					
-					
-					 </span>  </a> <br>
-					
+
 				<a class="boton-alqui"
-					href="/proyecto-practica/ver-inmueble-detalle/${I.id}" role="button">ALQUILAR</a> <br>
+					href="/proyecto-practica/ver-inmueble-detalle?id=${I.id}" role="button">ver detalles</a> <br>
 
 			</div>
 		</c:forEach>

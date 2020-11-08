@@ -7,6 +7,6 @@ import ar.edu.unlam.tallerweb1.modelo.Provincia;
 
 public interface RepositorioProvincia {
 	
-	public LinkedList<Provincia> todasLasProvincias();
+	public List<Provincia> todasLasProvincias();
 
 }
