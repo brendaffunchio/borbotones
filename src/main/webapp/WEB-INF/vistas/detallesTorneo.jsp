@@ -47,6 +47,7 @@
 				<p>${torneoDetalle.nombre}</p>
 				<br>
 				<p>${torneoDetalle.juego}</p>
+				<br>
 				<p>$ ${torneoDetalle.precio}</p>
 				<br>
 				<p>${torneoDetalle.fecha}</p>

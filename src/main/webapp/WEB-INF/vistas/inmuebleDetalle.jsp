@@ -46,10 +46,6 @@
 
 		<p>${detalleInmueble.nombre}</p>
 		<br>
-		<p>${detalleInmueble.provincia}</p>
-		<br>
-		<p>${detalleInmueble.localidad}</p>
-		<br>
 		<p>$ ${detalleInmueble.precio}</p>
 		<br>
 		<button class="boton-alqui" Type="Submit">ALQUILAR</button>

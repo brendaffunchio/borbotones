@@ -85,8 +85,7 @@
 				</br>
 
 				<p>
-					<span>Localidad:</span> ${I.localidad}
-
+				
 				</p>
 				</br> 
 				

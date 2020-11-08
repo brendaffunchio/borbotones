@@ -4,7 +4,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import javax.inject.Inject;
+
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,8 +57,6 @@ public class ControladorTorneo {
 		Torneo torneo = new Torneo();
 		
 		ModelMap modelo = new ModelMap();
-		
-		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
 		
 		modelo.put("torneo", torneo);
 		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());

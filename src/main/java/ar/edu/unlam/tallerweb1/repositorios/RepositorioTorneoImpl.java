@@ -28,16 +28,12 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 
 		final Session session = sessionFactory.getCurrentSession();
 
-		List<Usuario> participantes = new LinkedList<>();
+	/*	List<Usuario> participantes = new LinkedList<>();
 
 
 Integer cupo = participantes.size();
-
-		return session.createCriteria(Torneo.class)
-
-				.add(Restrictions.ge("cupo", cupo))
-
-				.list();
+*/
+		return session.createCriteria(Torneo.class).list();
 	}
 
 	@Override

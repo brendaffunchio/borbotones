@@ -42,17 +42,26 @@
 				</br>
 				<form:input class="f" path="nombre" type="text" />
 				</br>
+				<label class="or" for="ciudades">Ciudad</label>
+				<br>
+				<select>
+				<c:forEach items="${ciudades}" var="C">
+
+				<option value="ciudad"> ${C.nombre} </option>
 				
-				<label class="or">Direccion</label>
 				</br>
-				<form:input class="f" path="direccion" type="text" />
-				</br>
+							
+				</c:forEach>
+				</select>
+				
+			   <br>
+				
 				<label class="or">Precio</label>
 				</br>
 				<form:input class="f" path="precio" type="number" />
 				</br>
 				<label class="or">Imagen del inmueble</label>
-				<input type="file" name="file"> 
+				<input type="file" name="file"/> 
 				
 				</br>
 				<button class="btn-pub" Type="Submit" />PUBLICAR</button>

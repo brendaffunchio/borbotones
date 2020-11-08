@@ -31,10 +31,10 @@ public class Inmueble {
 	private Direccion direccion;
 	
 	
-	public Direccion getDireccion1() {
+	public Direccion getDireccion() {
 		return direccion;
 	}
-	public void setDireccion1(Direccion direccion) {
+	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
 	}
 

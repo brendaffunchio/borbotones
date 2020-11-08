@@ -47,7 +47,16 @@
 				<br>
 				<label class="or">Categoria</label>
 				<br>
-				<form:input class="f" path="categoria" type="text" />
+				
+				<form:select path="categoria">
+				<form:option value="Deporte">Deporte</form:option>
+				<form:option value="Aventura">Aventura</form:option>
+				<form:option value="Terror">Terror</form:option>
+				<form:option value="Accion">Accion</form:option>
+				<form:option value="Fantasia">Fantasia</form:option>
+				<form:option value="Otra">Otra</form:option>
+				
+				</form:select>
 				<br>
 				<label class="or">Fecha</label>
 				<br>

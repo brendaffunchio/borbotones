@@ -22,17 +22,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
+import ar.edu.unlam.tallerweb1.servicios.ServicioCiudad;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
 
 @Controller
 public class ControladorInmueble {
 
 	public ServicioInmueble servicioInmueble;
+	public ServicioCiudad servicioCiudad;
 
 	@Autowired
-	public ControladorInmueble(ServicioInmueble servicioInmueble) {
+	public ControladorInmueble(ServicioInmueble servicioInmueble,ServicioCiudad servicioCiudad) {
 
 		this.servicioInmueble = servicioInmueble;
+		this.servicioCiudad = servicioCiudad;
 
 	}
 
@@ -51,6 +54,7 @@ public class ControladorInmueble {
 		ModelMap modelo = new ModelMap();
 		Inmueble inmueble = new Inmueble();
 		modelo.put("inmueble", inmueble);
+		modelo.put("ciudades", servicioCiudad.mostrarCiudades());
 
 		return new ModelAndView("publicarInmueble", modelo);
 
