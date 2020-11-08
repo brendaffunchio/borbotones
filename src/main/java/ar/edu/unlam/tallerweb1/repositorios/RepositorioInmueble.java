@@ -10,7 +10,6 @@ public interface RepositorioInmueble {
 	
 	public void guardarInmueble(Inmueble inmueble);
 
-
 	List<Inmueble> buscarInmueble(String provincia, String localidad);
 
 	public Inmueble verDetallesInmueble(Long id);

@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -57,7 +58,7 @@ public class ControladorTorneo {
 		Torneo torneo = new Torneo();
 		
 		ModelMap modelo = new ModelMap();
-		
+
 		modelo.put("torneo", torneo);
 		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
 		
@@ -79,7 +80,9 @@ public class ControladorTorneo {
 		
 //		String ruta = currentUsersHomeDir+"\\proyectos-taller\\borbotones\\src\\main\\webapp\\img";
 		
+
 		String ruta = "C:\\Java\\proyectos-taller\\borbotones\\src\\main\\webapp\\img";
+
 		
 		try {
 			
@@ -92,6 +95,7 @@ public class ControladorTorneo {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
+			
 		}
 		
 		}

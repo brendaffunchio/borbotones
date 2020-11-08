@@ -81,15 +81,17 @@
 					<span>Precio:</span>$ ${I.precio}
 
 				</p>
+				
+				</br>
+
+				</p>
 
 				</br>
 
-				<p>
-				
-				</p>
+			
 				</br> 
 				
-					
+
 				<a class="boton-alqui"
 					href="/proyecto-practica/ver-inmueble-detalle?id=${I.id}" role="button">ver detalles</a> <br>
 

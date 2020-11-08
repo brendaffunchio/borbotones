@@ -12,40 +12,38 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioInmueble;
 
 @Service
 @Transactional
-public class ServicioInmuebleImpl implements ServicioInmueble{
-
+public class ServicioInmuebleImpl implements ServicioInmueble {
 
 	private RepositorioInmueble repositorioInmueble;
-	
-	
+
 	@Autowired
 	public ServicioInmuebleImpl(RepositorioInmueble repositorioInmueble) {
-		
+
 		this.repositorioInmueble = repositorioInmueble;
 	}
 
 	@Override
 	public List<Inmueble> mostrarInmuebles() {
-		
-				
+
 		return repositorioInmueble.todosLosInmuebles();
 	}
 
 	@Override
 	public void guardarInmueble(Inmueble inmueble) {
-		
-	repositorioInmueble.guardarInmueble(inmueble);
-	
+
+		repositorioInmueble.guardarInmueble(inmueble);
+
 	}
 
 	@Override
 	public List<Inmueble> buscarInmueble(String provincia, String localidad) {
-	
-		return repositorioInmueble.buscarInmueble(provincia,localidad);
-		
+
+		return repositorioInmueble.buscarInmueble(provincia, localidad);
+
 	}
 
 	@Override
+
 	public Inmueble verDetallesInmueble(Long id) {
 		
 		return repositorioInmueble.verDetallesInmueble(id);
@@ -53,6 +51,4 @@ public class ServicioInmuebleImpl implements ServicioInmueble{
 		
 	}
 
-	
-	
 }

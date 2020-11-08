@@ -24,21 +24,24 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCiudad;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
+import ar.edu.unlam.tallerweb1.servicios.ServicioProvincia;
 
 @Controller
 public class ControladorInmueble {
 
 	public ServicioInmueble servicioInmueble;
 	public ServicioCiudad servicioCiudad;
+    public ServicioProvincia servicioProvincia;
 
 	@Autowired
-	public ControladorInmueble(ServicioInmueble servicioInmueble,ServicioCiudad servicioCiudad) {
+	public ControladorInmueble(ServicioInmueble servicioInmueble,ServicioCiudad servicioCiudad, ServicioProvincia servicioProvincia) {
 
 		this.servicioInmueble = servicioInmueble;
 		this.servicioCiudad = servicioCiudad;
+		this.servicioProvincia = servicioProvincia;
 
 	}
-
+	
 	@RequestMapping(path = "ver-inmuebles", method = RequestMethod.GET)
 	public ModelAndView mostrarInmuebles() {
 
@@ -53,6 +56,7 @@ public class ControladorInmueble {
 
 		ModelMap modelo = new ModelMap();
 		Inmueble inmueble = new Inmueble();
+		modelo.put("provincias", servicioProvincia.mostrarProvincias());
 		modelo.put("inmueble", inmueble);
 		modelo.put("ciudades", servicioCiudad.mostrarCiudades());
 
@@ -60,29 +64,40 @@ public class ControladorInmueble {
 
 	}
 
-	// (@ModelAttribute ("inmueble") Inmueble inmueble)
-	@RequestMapping(path = "crear-inmueble", method = RequestMethod.POST)
-	public ModelAndView crearInmueble(@RequestParam(name = "file", required = false) MultipartFile foto,
-			Inmueble inmueble, RedirectAttributes flash) {
+
+	private void guardarFoto(MultipartFile foto) {
 
 		if (!foto.isEmpty()) {
 
-
-			String ruta = "C:\\Java\\proyectos-taller\\borbotones\\src\\main\\webapp\\img";
-
+			String currentUsersDir = System.getProperty("user.dir");
+			
+			String ruta = "C:\\repositorioImagenes";
+			
 			try {
 
 				byte[] bytes = foto.getBytes();
 
 				Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
 				Files.write(rutaAbsoluta, bytes);
-				inmueble.setFoto(foto.getOriginalFilename());
-
-			} catch (Exception e) {
-				// TODO: handle exception
+				
+				
 			}
-
+			
+		 catch (Exception e) {
+			
 		}
+		
+		}
+	}
+		
+	@RequestMapping(path = "crear-inmueble", method = RequestMethod.POST)
+	public ModelAndView crearInmueble(@RequestParam(name = "file", required = false) MultipartFile foto,
+			Inmueble inmueble, RedirectAttributes flash) {
+
+		guardarFoto(foto);
+
+		inmueble.setFoto(foto.getOriginalFilename());
+
 
 		servicioInmueble.guardarInmueble(inmueble);
 
