@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,7 +80,7 @@ public class ControladorTorneo {
 		
 		String currentUsersHomeDir = System.getProperty("user.home");
 		
-		String ruta = currentUsersHomeDir+"eclipse-workspace\\borbotones\\src\\main\\webapp\\img";
+		String ruta = currentUsersHomeDir+"\\eclipse-workspace\\borbotones\\src\\main\\webapp\\img";
 		
 		try {
 			
@@ -92,6 +93,7 @@ public class ControladorTorneo {
 			
 		} catch (Exception e) {
 			// TODO: handle exception
+			
 		}
 		
 		}
