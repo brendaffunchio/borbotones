@@ -80,13 +80,11 @@
 					<span>Precio:</span>$ ${T.precio}
 				</p>
 				</br> 
-				<a class="detalles" href="/proyecto-practica/ver-torneo-detalles/${T.id}" role="button">ver
+				<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles?id=${T.id}" role="button">ver
 					detalles</a> 
 					
 					<br>
-					
-				<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles/$.id}"
-					role="button"> PARTICIPAR </a>
+			
 			</div>
 
 		</c:forEach>

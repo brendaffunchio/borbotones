@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/estilo-inicio.css" />
 <meta charset="ISO-8859-1">
@@ -31,32 +32,37 @@
 	<h2 class="titulo-torn">TORNEOS DISPONIBLES</h2>
 
 	
-
-	<div class="torneos">
+<main class="container">
+	<div class="row mt-5">
 		
-				${torneoDetalle.nombre}
+		<div class="col-4 ml-4">
+		<p>
+			
+				<img src="img/${torneoDetalle.foto}" alt="imgText" width="380px" height="255px">
+
+				</p>
+		
+		</div>
+		<div class="col-4 ml-3">
+				<p>${torneoDetalle.nombre}</p>
 				<br>
-				${torneoDetalle.juego}
+				<p>${torneoDetalle.juego}</p>
+				<p>$ ${torneoDetalle.precio}</p>
 				<br>
-				$ ${torneoDetalle.precio}
+				<p>${torneoDetalle.fecha}</p>
 				<br>
-				${torneoDetalle.fecha}
+				<p>${torneoDetalle.horario}</p>
 				<br>
-				${torneoDetalle.horario}
+				<p>${torneoDetalle.categoria}</p>
 				<br>
-				${torneoDetalle.categoria}
-				<br>
-				
 				
 				<a class="boton-part" href="ver-formulario-participar"
 					role="button"> PARTICIPAR </a>
+				
+			</div>	
+				
 			</div>
 
-	
-
-	</div>
-
-
-
+</main>
 </body>
 </html>

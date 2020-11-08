@@ -28,8 +28,8 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 		final Session session = sessionFactory.getCurrentSession();
 
 		return session.createCriteria(Inmueble.class)
-				
-				.add(Restrictions.eq("disponible",true)).list();
+
+				.add(Restrictions.eq("disponible", true)).list();
 	}
 
 	@Override
@@ -39,36 +39,27 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 		inmueble.setDisponible(true);
 		session.save(inmueble);
 
-
 	}
-	
+
 	@Override
 	public List<Inmueble> buscarInmueble(String provincia, String localidad) {
 
-		
-		Criteria criteria=sessionFactory.getCurrentSession().createCriteria(Inmueble.class);
-		if(provincia!=null&&!provincia.equals("")&&localidad != null && !localidad.equals("")) 
-		criteria.add(Restrictions.or
-				(Restrictions.like("provincia", provincia), Restrictions.like("localidad", localidad)))
-				.add(Restrictions.eq("disponible",true));
-			
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Inmueble.class);
+		if (provincia != null && !provincia.equals("") && localidad != null && !localidad.equals(""))
+			criteria.add(Restrictions.or(Restrictions.like("provincia", provincia),
+					Restrictions.like("localidad", localidad))).add(Restrictions.eq("disponible", true));
 
 		return criteria.list();
+
 		
-			
+		//hacer test
 	}
 
 	@Override
-	public Inmueble verDetallesInmueble(Long id_inmueble) {
+	public Inmueble verDetallesInmueble(Long id) {
 
-		return (Inmueble) sessionFactory.getCurrentSession().createCriteria(Inmueble.class)
-				.add(Restrictions.eq("id", id_inmueble)).uniqueResult();
-
-		//return sessionFactory.getCurrentSession().get(Inmueble.class, id_inmueble);
+		return sessionFactory.getCurrentSession().get(Inmueble.class, id);
 
 	}
 
-
-	
-	
 }

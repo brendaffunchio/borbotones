@@ -19,9 +19,6 @@ public class Inmueble {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nombre;
-	private String provincia;
-	private String localidad;
-	private String direccion;
 	private String foto;
 	private Double precio;
 	private Boolean disponible;
@@ -29,35 +26,24 @@ public class Inmueble {
 	@ManyToOne
 	private Usuario inquilino;
 	
-	@OneToOne
-	private Torneo torneo;
 	
 	@OneToOne
-	private Direccion direccion1;
+	private Direccion direccion;
 	
 	
 	public Direccion getDireccion1() {
-		return direccion1;
+		return direccion;
 	}
-	public void setDireccion1(Direccion direccion1) {
-		this.direccion1 = direccion1;
+	public void setDireccion1(Direccion direccion) {
+		this.direccion = direccion;
 	}
-	public Torneo getTorneo() {
-		return torneo;
-	}
+
 	public Usuario getInquilino() {
 		return inquilino;
 	}
 	public void setInquilino(Usuario inquilino) {
 		this.inquilino = inquilino;
 	}
-	public String getDireccion() {
-		return direccion;
-	}
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-	
 	
 	public Long getId() {
 		return id;
@@ -65,18 +51,7 @@ public class Inmueble {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getProvincia() {
-		return provincia;
-	}
-	public void setProvincia(String provincia) {
-		this.provincia = provincia;
-	}
-	public String getLocalidad() {
-		return localidad;
-	}
-	public void setLocalidad(String localidad) {
-		this.localidad = localidad;
-	}
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -97,9 +72,7 @@ public class Inmueble {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	public void setTorneo(Torneo torneo) {
-		this.torneo = torneo;
-	}
+
 	public Boolean getDisponible() {
 		return disponible;
 	}

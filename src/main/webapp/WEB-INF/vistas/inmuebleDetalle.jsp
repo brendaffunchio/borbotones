@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/estilo-inicio.css" />
 <meta charset="ISO-8859-1">
@@ -27,27 +28,37 @@
 
 
 	</header>
-	
-	
+
+
 	<h2 class="titulo-inmuebles">DETALLES DEL INMUEBLE</h2>
+	
+<main class="container">
+	
+	<div class="row mt-5">
 
-<div class="inmuebles">
-		
-	<p>	${detalle.nombre} </p>
-		<br>
-	<p>	${detalle.provincia} </p>
-		<br>
-	<p>	${detalle.localidad} </p>
-		<br>
-	<p>	$ ${detalle.precio} </p>
-		<br>
-		<button class="boton-alqui" Type="Submit"> ALQUILAR </button>
+<div class="col-4  ml-4">
 
-			
-		
+<img src="img/${detalleInmueble.foto}" alt="imgText" width="380px" height="265px">
+
+</div>
+
+<div class="col-4  ml-3">
+
+		<p>${detalleInmueble.nombre}</p>
+		<br>
+		<p>${detalleInmueble.provincia}</p>
+		<br>
+		<p>${detalleInmueble.localidad}</p>
+		<br>
+		<p>$ ${detalleInmueble.precio}</p>
+		<br>
+		<button class="boton-alqui" Type="Submit">ALQUILAR</button>
+
+
+</div>
 	</div>
 
-	
-	
+</main>
+
 </body>
 </html>

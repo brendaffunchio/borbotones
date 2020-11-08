@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,72 +28,62 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
 public class ControladorInmueble {
 
 	public ServicioInmueble servicioInmueble;
-	
+
 	@Autowired
 	public ControladorInmueble(ServicioInmueble servicioInmueble) {
-		
-		this.servicioInmueble=servicioInmueble;
-		
+
+		this.servicioInmueble = servicioInmueble;
+
 	}
-	
-	
-	@RequestMapping (path="ver-inmuebles",method = RequestMethod.GET)
+
+	@RequestMapping(path = "ver-inmuebles", method = RequestMethod.GET)
 	public ModelAndView mostrarInmuebles() {
-		
-		ModelMap modelo= new ModelMap();
+
+		ModelMap modelo = new ModelMap();
 		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
-		
-		return new ModelAndView("InmueblesParaAlquilar",modelo);
+
+		return new ModelAndView("InmueblesParaAlquilar", modelo);
 	}
-		
-	@RequestMapping(path="ver-formulario-inmueble", method=RequestMethod.GET)
+
+	@RequestMapping(path = "ver-formulario-inmueble", method = RequestMethod.GET)
 	public ModelAndView nuevoInmueble() {
-		
+
 		ModelMap modelo = new ModelMap();
 		Inmueble inmueble = new Inmueble();
-		modelo.put("inmueble",inmueble);
-		
-		return new ModelAndView ("publicarInmueble",modelo);
-		
+		modelo.put("inmueble", inmueble);
+
+		return new ModelAndView("publicarInmueble", modelo);
+
 	}
-	
-	//(@ModelAttribute ("inmueble") Inmueble inmueble) 
-	@RequestMapping(path="crear-inmueble", method=RequestMethod.POST)
-	public ModelAndView crearInmueble(@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble, RedirectAttributes flash)  {
-		
-		
-		
-	if(!foto.isEmpty()) {
-		
-//		String currentUsersDir = System.getProperty("user.dir");
-//			
-//		String ruta = currentUsersDir+"\\src\\main\\webapp\\img";
-		
-		
-		String currentUsersHomeDir = System.getProperty("user.home");
-		
-		String ruta = currentUsersHomeDir+"eclipse-workspace\\borbotones\\src\\main\\webapp\\img";
-		
-		try {
-			
-			
-			byte[] bytes = foto.getBytes();
-			
-			Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
-			Files.write(rutaAbsoluta, bytes);
-			inmueble.setFoto(foto.getOriginalFilename());
-			
-			
-		} catch (Exception e) {
-			// TODO: handle exception
+
+	// (@ModelAttribute ("inmueble") Inmueble inmueble)
+	@RequestMapping(path = "crear-inmueble", method = RequestMethod.POST)
+	public ModelAndView crearInmueble(@RequestParam(name = "file", required = false) MultipartFile foto,
+			Inmueble inmueble, RedirectAttributes flash) {
+
+		if (!foto.isEmpty()) {
+
+
+			String ruta = "C:\\Java\\proyectos-taller\\borbotones\\src\\main\\webapp\\img";
+
+			try {
+
+				byte[] bytes = foto.getBytes();
+
+				Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
+				Files.write(rutaAbsoluta, bytes);
+				inmueble.setFoto(foto.getOriginalFilename());
+
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
 		}
-		
-		}
-		
+
 		servicioInmueble.guardarInmueble(inmueble);
-		
-		return new ModelAndView ("redirect:/ver-inmuebles");
-		
+
+		return new ModelAndView("redirect:/ver-inmuebles");
+
 	}
 
 	@RequestMapping(path = "buscar-inmueble", method = RequestMethod.GET)
@@ -103,40 +92,35 @@ public class ControladorInmueble {
 		ModelMap modelo = new ModelMap();
 		String provincia = request.getParameter("busqueda");
 		String localidad = request.getParameter("busqueda");
-		modelo.put("inmueblesBusqueda", servicioInmueble.buscarInmueble(provincia,localidad));
+		modelo.put("inmueblesBusqueda", servicioInmueble.buscarInmueble(provincia, localidad));
 
 		return new ModelAndView("inmueblesPorBusqueda", modelo);
 	}
 
-	
-	@RequestMapping (path="ver-inmueble-detalles/{id}",method=RequestMethod.GET)
-	public ModelAndView verDetallesInmueble (@PathVariable Long id) {
-		
-	Inmueble inmueble = servicioInmueble.verDetallesInmueble(id);
+	@RequestMapping(path = "ver-inmueble-detalles/{id}", method = RequestMethod.GET)
+	public ModelAndView verDetallesInmueble(@PathVariable Long id) {
+
+		Inmueble inmueble = servicioInmueble.verDetallesInmueble(id);
 
 		ModelMap modelo = new ModelMap();
-		modelo.put("detalleInmueble", inmueble );
-		
-		return new ModelAndView ("inmuebleDetalle",modelo);
-		
+		modelo.put("detalleInmueble", inmueble);
+
+		return new ModelAndView("inmuebleDetalle", modelo);
+
 	}
-	
+
 	@RequestMapping(path = "ver-inmueble-detalle", method = RequestMethod.GET)
-	public ModelAndView irAi(@RequestParam("id") Long id) {
-		
-		Long id_inmueble= id;
-		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(id_inmueble);
-		
-		ModelMap model= new ModelMap();
-		
-		model.put("detalle", inmuebleBuscado);
-		
-		return new ModelAndView("inmuebleDetalle");
+	public ModelAndView verDetalle(@RequestParam("id") Long id) {
 
+		
+		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(id);
+
+		ModelMap modelo = new ModelMap();
+
+		modelo.put("detalleInmueble", inmuebleBuscado);
+
+		return new ModelAndView("inmuebleDetalle", modelo);
 
 	}
-		
+
 }
-
-
-

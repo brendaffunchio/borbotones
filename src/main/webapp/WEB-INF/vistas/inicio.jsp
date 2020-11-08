@@ -39,7 +39,7 @@
 
 		<p>
 
-             Nuestro sitio está preparado para que vos puedas:
+             Nuestro sitio es ideal para que vos puedas:
              
              <br>
              
@@ -81,7 +81,7 @@
              
              <br>
 
-             - Estar logueado para organizar un torneo o alquilar un inmueble.
+             - Estar logueado para organizar un torneo, participar del mismo o alquilar un inmueble.
              
               <br>
              

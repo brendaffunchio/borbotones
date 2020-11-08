@@ -281,4 +281,15 @@ iframe {
 	color:white;
 }
 
+.detalles-inm{
+	color:white;
+	display:grid;
+	grid-templates-columns: 200px 200px;
+	justify-content:center;
+	width:100%;
+}
 
+
+p{
+	color:white;
+}

@@ -42,14 +42,7 @@
 				</br>
 				<form:input class="f" path="nombre" type="text" />
 				</br>
-				<label class="or">Provincia</label>
-				</br>
-				<form:input class="f" path="provincia" type="text" />
-				</br>
-				<label class="or">Localidad</label>
-				</br>
-				<form:input class="f" path="localidad" type="text" />
-				</br>
+				
 				<label class="or">Direccion</label>
 				</br>
 				<form:input class="f" path="direccion" type="text" />

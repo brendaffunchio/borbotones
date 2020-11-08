@@ -13,5 +13,5 @@ public interface RepositorioInmueble {
 
 	List<Inmueble> buscarInmueble(String provincia, String localidad);
 
-	public Inmueble verDetallesInmueble(Long id_inmueble);
+	public Inmueble verDetallesInmueble(Long id);
 }
