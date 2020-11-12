@@ -43,6 +43,7 @@ public class Usuario {
 	private String apellido;
 	private String password;
 	private String rol;
+	private Integer torGanados;
 	
 	@Transient
 	private List <Torneo> torneosCreados = new LinkedList <Torneo>();
@@ -51,6 +52,8 @@ public class Usuario {
 	@Transient 
 	private List <Inmueble> inmueblesAlquilados = new LinkedList<Inmueble>();
 	
+	@Transient
+	private List <Torneo> torneosGanados = new LinkedList <Torneo>();
 
 	@OneToOne
 	private Direccion direccion;
@@ -75,6 +78,12 @@ public class Usuario {
 	}
 
 	
+	public List<Torneo> getTorneosGanados() {
+		return torneosGanados;
+	}
+	public void setTorneosGanados(List<Torneo> torneosGanados) {
+		this.torneosGanados = torneosGanados;
+	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -129,6 +138,12 @@ public class Usuario {
 
 	public void setDireccion(Direccion direccion) {
 		this.direccion = direccion;
+	}
+	public Integer getTorGanados() {
+		return torGanados;
+	}
+	public void setTorGanados(Integer torGanados) {
+		this.torGanados = torGanados;
 	}
 
 

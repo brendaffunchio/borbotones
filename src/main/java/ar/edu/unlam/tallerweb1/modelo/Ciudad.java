@@ -19,6 +19,12 @@ public class Ciudad {
 	@ManyToOne
 	private Provincia provincia;
 	
+	public Provincia getProvincia() {
+		return provincia;
+	}
+	public void setProvincia(Provincia provincia) {
+		this.provincia = provincia;
+	}
 	public Long getId() {
 		return id;
 	}

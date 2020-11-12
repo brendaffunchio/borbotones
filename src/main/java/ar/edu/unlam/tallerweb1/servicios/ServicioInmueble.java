@@ -9,9 +9,9 @@ public interface ServicioInmueble {
 
 	public List<Inmueble> mostrarInmuebles();
 
-	public void guardarInmueble(Inmueble inmueble);
+	public void guardarInmueble(Inmueble inmueble, String calle, Integer numero);
 
-	public List<Inmueble> buscarInmueble(String provincia, String localidad);
+	public List<Inmueble> buscarInmueble(String nombreProvincia, String nombreCiudad);
 
 	public Inmueble verDetallesInmueble(Long id);
 	

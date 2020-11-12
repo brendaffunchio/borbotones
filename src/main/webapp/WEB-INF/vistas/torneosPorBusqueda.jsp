@@ -82,6 +82,21 @@
 					<span>Precio:</span> ${TB.precio}
 				</p>
 				</br>
+					<p>
+					<span>Direccion:</span> ${I.direccion.calle} ${I.direccion.numero}
+
+				</p>
+				</br>
+				<p>
+					<span>Ciudad:</span> ${I.direccion.ciudad.nombre} 
+				</p>
+				</br>
+				<p>
+					<span>Provincia:</span> ${I.direccion.ciudad.provincia.nombre} 
+				</p>
+				</br>
+			
+				</br>
 				
 			<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles?id=${TB.id}" role="button">ver
 					detalles</a> 

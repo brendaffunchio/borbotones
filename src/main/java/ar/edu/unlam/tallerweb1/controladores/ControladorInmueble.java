@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
+import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCiudad;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
@@ -56,8 +57,8 @@ public class ControladorInmueble {
 
 		ModelMap modelo = new ModelMap();
 		Inmueble inmueble = new Inmueble();
-		modelo.put("provincias", servicioProvincia.mostrarProvincias());
 		modelo.put("inmueble", inmueble);
+		modelo.put("provincias", servicioProvincia.mostrarProvincias());
 		modelo.put("ciudades", servicioCiudad.mostrarCiudades());
 
 		return new ModelAndView("publicarInmueble", modelo);
@@ -81,13 +82,15 @@ public class ControladorInmueble {
 	}
 
 	@RequestMapping(path="crear-inmueble",method=RequestMethod.POST)
-	public ModelAndView crearInmueble(@RequestParam(name="file",required=false)
+	public ModelAndView crearInmueble(@RequestParam(name="calle") String calle,
+	@RequestParam(name="numero") Integer numero,@RequestParam(name="file",required=false)
 	MultipartFile foto, Inmueble inmueble, RedirectAttributes flash) {
+		
 		
 		guardarFoto(foto);
 		inmueble.setFoto(foto.getOriginalFilename());
 		
-		servicioInmueble.guardarInmueble(inmueble);
+		servicioInmueble.guardarInmueble(inmueble,calle,numero);
 		
 		return new ModelAndView ("redirect:/ver-inmuebles");
 	}
@@ -98,24 +101,13 @@ public class ControladorInmueble {
 	public ModelAndView mostrarTorneosPorJuego(HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
-		String provincia = request.getParameter("busqueda");
-		String localidad = request.getParameter("busqueda");
-		modelo.put("inmueblesBusqueda", servicioInmueble.buscarInmueble(provincia, localidad));
+		String nombreProvincia = request.getParameter("busqueda");
+		String nombreCiudad = request.getParameter("busqueda");
+		modelo.put("inmueblesBusqueda", servicioInmueble.buscarInmueble(nombreProvincia,nombreCiudad));
 
 		return new ModelAndView("inmueblesPorBusqueda", modelo);
 	}
 
-	@RequestMapping(path = "ver-inmueble-detalles/{id}", method = RequestMethod.GET)
-	public ModelAndView verDetallesInmueble(@PathVariable Long id) {
-
-		Inmueble inmueble = servicioInmueble.verDetallesInmueble(id);
-
-		ModelMap modelo = new ModelMap();
-		modelo.put("detalleInmueble", inmueble);
-
-		return new ModelAndView("inmuebleDetalle", modelo);
-
-	}
 
 	@RequestMapping(path = "ver-inmueble-detalle", method = RequestMethod.GET)
 	public ModelAndView verDetalle(@RequestParam("id") Long id) {

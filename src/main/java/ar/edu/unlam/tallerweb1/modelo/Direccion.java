@@ -23,6 +23,13 @@ public class Direccion {
 	@ManyToOne
 	private Ciudad ciudad;
 	
+	
+	public Ciudad getCiudad() {
+		return ciudad;
+	}
+	public void setCiudad(Ciudad ciudad) {
+		this.ciudad = ciudad;
+	}
 	public Inmueble getInmueble() {
 		return inmueble;
 	}

@@ -42,7 +42,7 @@
 
 			<form:form action="buscar-inmueble" method="GET">
 
-				<label class="ors">Buscar inmueble por Provincia</label>
+				<label class="ors">Buscar inmueble</label>
 				</br>
 				<input name="busqueda" class="busc" type="search">
 				<button class="btn-org" type="submit" id="buscarInmueble">Buscar</button>
@@ -65,35 +65,26 @@
 		<c:forEach items="${inmuebles}" var="I">
 
 			<div class="inm">
-			
-				<p>
-			
-			<img src="<c:url value="/inmuebles/${I.foto}"/>" width="170px" height="150px"/>
-				
-				</p>
-								
-				</br>
-			
-				<h2 class="nombre-inmueble">${I.nombre}</h2>
-				</br>
 
+				<p>
+					<img src="<c:url value="/inmuebles/${I.foto}"/>" width="170px"
+						height="150px" />
+				</p>
+
+				<br>
+				<h2 class="nombre-inmueble">${I.nombre}</h2>
+				<br>
 				<p>
 					<span>Precio:</span>$ ${I.precio}
-
 				</p>
-				
-				</br>
-
+				<br>
+				<p>
+					<span>Direccion:</span> ${I.direccion.calle} ${I.direccion.numero}
 				</p>
 
-				</br>
-
-			
-				</br> 
-				
-
-				<a class="boton-alqui"
-					href="/proyecto-practica/ver-inmueble-detalle?id=${I.id}" role="button">ver detalles</a> <br>
+				<br> <a class="boton-alqui"
+					href="/proyecto-practica/ver-inmueble-detalle?id=${I.id}"
+					role="button">ver detalles</a> <br>
 
 			</div>
 		</c:forEach>

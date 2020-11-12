@@ -48,6 +48,13 @@
 		<br>
 		<p>$ ${detalleInmueble.precio}</p>
 		<br>
+		<p>${I.direccion.calle} ${I.direccion.numero}</p>
+		<br>
+		<p>${I.direccion.ciudad.nombre}</p> 
+		<br>
+		<p>${I.direccion.ciudad.provincia.nombre}</p>
+			
+		<br>
 		<button class="boton-alqui" Type="Submit">ALQUILAR</button>
 
 

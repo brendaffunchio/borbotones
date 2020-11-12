@@ -54,6 +54,9 @@ public class Torneo {
 	@ManyToOne
 	private Usuario creador;
 
+	@ManyToOne
+	private Usuario ganador;
+
 	@ManyToMany(mappedBy = "torneosParticipa")
 	private Set<Usuario> participantes = new TreeSet<Usuario>();
 
@@ -68,7 +71,6 @@ public class Torneo {
 		this.inmuebleDelTorneo = inmuebleDelTorneo;
 	}
 
-	
 	public Set<Usuario> getParticipantes() {
 		return participantes;
 	}
@@ -172,6 +174,14 @@ public class Torneo {
 
 	public String getFoto() {
 		return foto;
+	}
+
+	public Usuario getGanador() {
+		return ganador;
+	}
+
+	public void setGanador(Usuario ganador) {
+		this.ganador = ganador;
 	}
 
 	public void setFoto(String foto) {

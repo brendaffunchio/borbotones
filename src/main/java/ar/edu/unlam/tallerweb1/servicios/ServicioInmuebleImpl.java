@@ -29,16 +29,16 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 	}
 
 	@Override
-	public void guardarInmueble(Inmueble inmueble) {
+	public void guardarInmueble(Inmueble inmueble, String calle, Integer numero) {
 
-		repositorioInmueble.guardarInmueble(inmueble);
+		repositorioInmueble.guardarInmueble(inmueble,calle,numero);
 
 	}
 
 	@Override
-	public List<Inmueble> buscarInmueble(String provincia, String localidad) {
+	public List<Inmueble> buscarInmueble(String nombreProvincia, String nombreCiudad) {
 
-		return repositorioInmueble.buscarInmueble(provincia, localidad);
+		return repositorioInmueble.buscarInmueble(nombreProvincia, nombreCiudad);
 
 	}
 

@@ -57,19 +57,24 @@
          	  
 				</br>
 				
-				<label class="or" for="ciudades">Ciudad</label>
+				<label for="nombreCiudad" class="or" for="ciudades">Ciudad</label>
 				<br>
 				<select>
 				<c:forEach items="${ciudades}" var="C">
 
-				<option value="ciudad"> ${C.nombre} </option>
+				<option name="nombreCiudad" value="ciudad"> ${C.nombre} </option>
 				
 				</c:forEach>
 				</select>
 				</br>
-				<label class="or">Precio</label>
+				<label class="or">Direccion</label>
 				</br>
-				<form:input class="f" path="precio" type="number" required="required"/>
+				<input name="calle" class="f"  type="text" placeholder="calle" required/>
+				</br>
+				<input name="numero" class="f" type="number" placeholder="numero" required/>
+				<label for="precio"class="or">Precio</label>
+				</br>
+				<form:input name="precio" class="f" path="precio" type="number" required="required"/>
 				</br>
 				<label class="or">Imagen del inmueble</label>
 				<input type="file" name="file"/> 

@@ -8,9 +8,9 @@ public interface RepositorioInmueble {
 
 	public List<Inmueble>todosLosInmuebles();
 	
-	public void guardarInmueble(Inmueble inmueble);
+	public void guardarInmueble(Inmueble inmueble, String calle, Integer numero);
 
-	List<Inmueble> buscarInmueble(String provincia, String localidad);
+	List<Inmueble> buscarInmueble(String nombreProvincia, String nombreCiudad);
 
 	public Inmueble verDetallesInmueble(Long id);
 }
