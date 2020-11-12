@@ -24,8 +24,14 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 
 	@Override
 	public List<Torneo> mostrarTorneos() {
-
+       /* Torneo torneo= repositorioTorneo.verTorneo();
+        List <Torneo> torneos= repositorioTorneo.torneos();
+          
+      if (torneo.getCupo()>=torneo.getInscriptos());
+        	  
+        	  return torneos;*/
 		return repositorioTorneo.torneos();
+          
 	}
 
 	@Override
@@ -35,12 +41,7 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 
 	}
 
-	@Override
-	public void guardarParticipante(Usuario usuario) {
-
-		repositorioTorneo.guardarParticipante(usuario);
-	}
-
+	
 	@Override
 	public List<Torneo> buscarTorneo(String categoria, String juego) {
 		return repositorioTorneo.buscarTorneo(categoria, juego);
@@ -53,6 +54,18 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 		return repositorioTorneo.verDetallesTorneo(id);
 		
 	
+	}
+
+	@Override
+	public void agregarParticipante(Long torneoId, Long usuarioId) {
+
+		repositorioTorneo.agregarParticipante(torneoId, usuarioId);
+	}
+
+	@Override
+	public void eliminarParticipante(Long torneoId, Long usuarioId) {
+		repositorioTorneo.eliminarParticipante(torneoId,usuarioId); 
+		
 	}
 
 }

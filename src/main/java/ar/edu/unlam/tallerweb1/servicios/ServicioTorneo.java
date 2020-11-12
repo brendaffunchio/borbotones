@@ -13,10 +13,12 @@ public interface ServicioTorneo {
 
 	public void guardarTorneo(Torneo torneo);
 
-	public void guardarParticipante(Usuario usuario);
-
 	public List <Torneo> buscarTorneo(String categoria, String juego);
 
 	public Torneo verDetallesTorneo(Long id);
+	
+	void agregarParticipante(Long torneoId, Long usuarioId);
+
+	public void eliminarParticipante(Long torneoId, Long usuarioId);
 
 }

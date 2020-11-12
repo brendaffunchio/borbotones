@@ -57,8 +57,10 @@
 				<p>${torneoDetalle.categoria}</p>
 				<br>
 				
-				<a class="boton-part" href="ver-formulario-participar"
+				<a class="boton-part" href="agregar-participante?torneoId=${torneoDetalle.id}&usuarioId=1"
 					role="button"> PARTICIPAR </a>
+					<a class="boton-part" href="eliminar-participante?torneoId=${torneoDetalle.id}&usuarioId=1"
+					role="button"> DESUSCRIBIRSE </a>
 				
 			</div>	
 				

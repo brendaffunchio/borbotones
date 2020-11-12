@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,6 +17,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+
+import org.hibernate.Session;
 
 
 // Clase que modela el concepto de Usuario, la anotacion @Entity le avisa a hibernate que esta clase es persistible
@@ -46,10 +49,23 @@ public class Usuario {
 	private List <Inmueble> inmueblesAlquilados = new LinkedList<Inmueble>();
 	
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany
 	@JoinTable(name = "participa")
 	private List <Torneo> torneosParticipa = new LinkedList<Torneo>();
 	
+	public void agregarTorneo(Torneo torneo) {
+		if(!this.torneosParticipa.contains(torneo)){
+		torneosParticipa.add(torneo);
+		}
+	}
+	
+	public void eliminarTorneo(Torneo torneo) {
+	 
+		  if(this.torneosParticipa.contains(torneo));
+		  this.torneosParticipa.remove(torneo);
+		 
+		 }
+		
 	
 	
 	public List<Torneo> getTorneosCreados() {

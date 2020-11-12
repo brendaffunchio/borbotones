@@ -3,10 +3,12 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -16,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,25 +42,66 @@ public class Torneo {
 	private String categoria;
 	private String foto;
 	private Integer cupo;
+
+	@Column(nullable = false)
 	private Integer inscriptos;
+
+	@Column(nullable = false)
 	private Boolean estadoCompleto;
 
 	@ManyToOne
 	private Usuario creador;
 
-	@ManyToMany(mappedBy = "torneosParticipa", fetch = FetchType.LAZY)
+	@ManyToMany(mappedBy = "torneosParticipa")
 	private List<Usuario> participantes = new LinkedList<Usuario>();
 
 	@ManyToOne
 	private Inmueble inmuebleDelTorneo;
 
-	public Inmueble getInmueble() {
+	public Inmueble getInmuebleDelTorneo() {
 		return inmuebleDelTorneo;
 	}
 
-	public void setInmueble(Inmueble inmueble) {
-		this.inmuebleDelTorneo = inmueble;
+	public void setInmuebleDelTorneo(Inmueble inmuebleDelTorneo) {
+		this.inmuebleDelTorneo = inmuebleDelTorneo;
 	}
+
+	public void agregarParticipante(Usuario participante) {
+
+		if (!this.participantes.contains(participante)) {
+			this.participantes.add(participante);
+			this.inscriptos++;
+
+		}
+
+		if (this.inscriptos >= this.cupo) {
+			this.estadoCompleto = true;
+
+		}
+
+	}
+
+	public void eliminarParticipante(Usuario participante) {
+
+		 if(this.participantes.contains(participante));
+		  this.participantes.remove(participante);
+		 this.inscriptos--;
+		 
+		 }
+		
+		/*  Iterator <Usuario> it =participantes.iterator(); 
+		  while (it.hasNext()) {
+		  Usuario participante = it.next(); 
+		  if(participante.getId().equals(usuarioId)&&this.id.equals(torneoId));
+		  it.remove();
+		 
+		 }
+		  
+		  this.inscriptos--;*/
+		
+		
+
+	
 
 	public List<Usuario> getParticipantes() {
 		return participantes;
@@ -80,6 +124,7 @@ public class Torneo {
 	}
 
 	public void setEstadoCompleto(Boolean estadoCompleto) {
+
 		this.estadoCompleto = estadoCompleto;
 	}
 
@@ -155,7 +200,7 @@ public class Torneo {
 		this.juego = juego;
 	}
 
-	public Usuario getInquilino() {
+	public Usuario getCreador() {
 		return creador;
 	}
 

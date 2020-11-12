@@ -9,7 +9,5 @@ public interface ServicioUsuarios {
 	
 	void guardarUsuario(Usuario usuario);
 
-	List<String> mostrarEmails();
 
-	Boolean devolverEstadoDelEmail(String emailParametro);
 }

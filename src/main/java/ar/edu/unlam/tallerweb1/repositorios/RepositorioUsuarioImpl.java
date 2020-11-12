@@ -46,59 +46,11 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		String rol = "invitado";
 		usuario.setRol(rol);
 		
-
 		final Session session = sessionFactory.getCurrentSession();
-
-
 		
 		session.save(usuario);
-
-
-	}
-
-	@Override
-	public List<String> mostrarEmails() {
-		final Session session = sessionFactory.getCurrentSession();
-
-		List<Usuario> usuarios = session.createCriteria(Usuario.class).list();
-
-		List<String> emails = new LinkedList();
-
-		for (Usuario usuario : usuarios) {
-			String email = usuario.getEmail();
-			emails.add(email);
-		}
-
-		return emails;
-	}
-
-	@Override
-	public Boolean devolverEstadoDelEmail(String emailParametro) {
-		final Session session = sessionFactory.getCurrentSession();
-		
-		
-		List<Usuario> usuarios = session.createCriteria(Usuario.class).list();
-
-		List<String> emails = new LinkedList();
-		
-		Boolean esRepetido=false;
-		for (Usuario usuario : usuarios) {
-			
-			if(usuario.getEmail().equals(emailParametro)) 
-				
-				esRepetido = true;
-			
 			}
 
-		return esRepetido;
-	}
-
-	@Override
-	public List<String> emailsUsuarios() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 
 
 	

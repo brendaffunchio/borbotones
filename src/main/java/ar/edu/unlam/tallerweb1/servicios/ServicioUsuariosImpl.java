@@ -33,17 +33,6 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
 		
 	}
 
-	@Override
-	public List<String> mostrarEmails() {
-		
-		return repositorioUsuario.mostrarEmails();
-	}
-
-	@Override
-	public Boolean devolverEstadoDelEmail(String emailParametro) {
-	
-		return repositorioUsuario.devolverEstadoDelEmail(emailParametro);
-	}
 
 	
 
