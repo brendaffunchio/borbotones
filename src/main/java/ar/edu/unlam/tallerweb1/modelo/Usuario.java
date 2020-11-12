@@ -16,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import org.hibernate.Session;
@@ -47,6 +48,11 @@ public class Usuario {
 	
 	@Transient 
 	private List <Inmueble> inmueblesAlquilados = new LinkedList<Inmueble>();
+	
+
+	@OneToOne
+	private Direccion direccion;
+	
 	
 
 	@ManyToMany
@@ -122,7 +128,21 @@ public class Usuario {
 		this.rol = rol;
 	}
 	
-	
+	public List<Inmueble> getInmueblesAlquilados() {
+		return inmueblesAlquilados;
+	}
+
+	public void setInmueblesAlquilados(List<Inmueble> inmueblesAlquilados) {
+		this.inmueblesAlquilados = inmueblesAlquilados;
+	}
+
+	public Direccion getDireccion() {
+		return direccion;
+	}
+
+	public void setDireccion(Direccion direccion) {
+		this.direccion = direccion;
+	}
 
 
 }
