@@ -68,8 +68,8 @@
 			
 				<p>
 			
-				<img src="img/${I.foto}" alt="imgText" width="180px" height="155px">
-
+			<img src="<c:url value="/inmuebles/${I.foto}"/>" width="170px" height="150px"/>
+				
 				</p>
 								
 				</br>

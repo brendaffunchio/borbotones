@@ -38,8 +38,8 @@
 		<div class="col-4 ml-4">
 		<p>
 			
-				<img src="img/${torneoDetalle.foto}" alt="imgText" width="380px" height="255px">
-
+			<img src="<c:url value="/torneos/${torneoDetalle.foto}"/>" width="380px" height="265px"/>
+				
 				</p>
 		
 		</div>

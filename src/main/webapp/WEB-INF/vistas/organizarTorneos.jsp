@@ -39,11 +39,11 @@
 
 				<label class="or">Nombre del torneo</label>
 				<br>
-				<form:input class="f" path="nombre" type="text" />
+				<form:input class="f" path="nombre" type="text" required="required" />
 				<br>
 				<label class="or">Juego</label>
 				<br>
-				<form:input class="f" path="juego" type="text" />
+				<form:input class="f" path="juego" type="text" required="required"/>
 				<br>
 				<label class="or">Categoria</label>
 				<br>
@@ -60,12 +60,12 @@
 				<br>
 				<label class="or">Fecha</label>
 				<br>
-				<form:input class="f" path="fecha" type="date" />
+				<form:input class="f" path="fecha" type="date" required="required"/>
 				<br>
 
 				<label class="or">Horario</label>
 				<br>
-				<form:input class="f" path="horario" type="time" />
+				<form:input class="f" path="horario" type="time" required="required" />
 
 				</br>
 				
@@ -85,11 +85,11 @@
 
 				<label class="or">Cupo</label>
 				<br>
-				<form:input class="f" path="cupo" type="number" />
+				<form:input class="f" path="cupo" type="number" required="required" />
 				<br>
 				<label class="or">Precio</label>
 				<br>
-				<form:input class="f" path="precio" type="number" />
+				<form:input class="f" path="precio" type="number" required="required" />
 
 				</br>
 				

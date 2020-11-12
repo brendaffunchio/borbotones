@@ -61,42 +61,32 @@ public class ControladorTorneo {
 		return new ModelAndView("organizarTorneos", modelo);
 
 	}
+	public void guardarFoto (MultipartFile foto) {
+		if (!foto.isEmpty()) {
+			String ruta = "C://Producto//torneos";
+			
+		 try {
+			
+			byte[] bytes = foto.getBytes();
+			Path rutaAbsoluta=Paths.get(ruta+"//"+foto.getOriginalFilename());
+			Files.write(rutaAbsoluta, bytes);
+			
+		} catch (Exception e) {
+			
+		}
+		}
+	}
 
 	@RequestMapping(path = "crear-torneo", method = RequestMethod.POST)
 	public ModelAndView crearTorneo(@RequestParam(name = "file", required = false) MultipartFile foto, Torneo torneo,
 			RedirectAttributes flash) {
 
-		if (!foto.isEmpty()) {
-
-//		String currentUsersDir = System.getProperty("user.dir");
-
-//		String ruta = currentUsersDir+"\\src\\main\\webapp\\img";
-
-//		String currentUsersHomeDir = System.getProperty("user.home");
-
-//		String ruta = currentUsersHomeDir+"\\proyectos-taller\\borbotones\\src\\main\\webapp\\img";
-
-			String ruta = "C:\\Java\\proyectos-taller\\borbotones\\src\\main\\webapp\\img";
-
-			try {
-
-				byte[] bytes = foto.getBytes();
-
-				Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
-				Files.write(rutaAbsoluta, bytes);
-				torneo.setFoto(foto.getOriginalFilename());
-
-			} catch (Exception e) {
-				// TODO: handle exception
-
-			}
-
-		}
-
+		guardarFoto(foto);
+		torneo.setFoto(foto.getOriginalFilename());
+		
 		servicioTorneo.guardarTorneo(torneo);
-
-		return new ModelAndView("redirect:/ver-torneos");
-
+		
+		return new ModelAndView ("redirect:/ver-torneos");
 	}
 
 	@RequestMapping(path = "agregar-participante")

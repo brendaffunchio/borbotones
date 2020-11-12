@@ -65,7 +65,8 @@
 			
 			<p>
 			
-				<img src="img/${T.foto}" alt="imgText" width="180px" height="155px">
+				<img src="<c:url value="/torneos/${T.foto}"/>" width="170px" height="150px"/>
+				
 
 				</p>
 						

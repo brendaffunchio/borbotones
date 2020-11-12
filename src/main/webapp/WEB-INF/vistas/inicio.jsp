@@ -94,7 +94,7 @@
 
           <a class="btnEmpezar" href="/proyecto-practica/ver-formulario-usuario"> REGISTRARSE </a>
 
-           <a class="btnEmpezar" href="#"> INICIAR SESIÓN </a>
+           <a class="btnEmpezar" href="/proyecto-practica/login"> INICIAR SESIÓN </a>
              
               </div>
  

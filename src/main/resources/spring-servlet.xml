@@ -29,6 +29,9 @@
 		la aplicación Web: estilos, java script y fuentes -->
 	<!--Si se agregaran, por ejemplo, imagenes, es; es necesario agregar ese 
 		path acá -->
+	
+	<mvc:resources mapping="/inmuebles/**" location="file:///c:/Producto/inmuebles/"/>
+    <mvc:resources mapping="/torneos/**" location="file:///c:/Producto/torneos/"/>
 	<mvc:resources mapping="/img/**" location="/img/" />
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/js/**" location="/js/" />

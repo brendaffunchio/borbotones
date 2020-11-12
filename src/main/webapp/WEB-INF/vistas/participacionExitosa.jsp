@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/estilo-inicio.css" />
 <meta charset="ISO-8859-1">
-<title>Registrar Usuario</title>
+<title>Participar</title>
 </head>
 <body>
 	<h1 class="titulo-index">INMOBILIARIA GAMING HOUSE</h1>

@@ -40,7 +40,7 @@
 				</br>
 				<label class="or">Nombre del inmueble</label>
 				</br>
-				<form:input class="f" path="nombre" type="text" />
+				<form:input class="f" path="nombre" type="text" required="required"/>
 				</br>
 				
 
@@ -69,7 +69,7 @@
 				</br>
 				<label class="or">Precio</label>
 				</br>
-				<form:input class="f" path="precio" type="number" />
+				<form:input class="f" path="precio" type="number" required="required"/>
 				</br>
 				<label class="or">Imagen del inmueble</label>
 				<input type="file" name="file"/> 

@@ -3,6 +3,8 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -53,25 +55,9 @@ public class Usuario {
 	@OneToOne
 	private Direccion direccion;
 	
-	
-
 	@ManyToMany
 	@JoinTable(name = "participa")
-	private List <Torneo> torneosParticipa = new LinkedList<Torneo>();
-	
-	public void agregarTorneo(Torneo torneo) {
-		if(!this.torneosParticipa.contains(torneo)){
-		torneosParticipa.add(torneo);
-		}
-	}
-	
-	public void eliminarTorneo(Torneo torneo) {
-	 
-		  if(this.torneosParticipa.contains(torneo));
-		  this.torneosParticipa.remove(torneo);
-		 
-		 }
-		
+	private Set <Torneo> torneosParticipa = new TreeSet<Torneo>();
 	
 	
 	public List<Torneo> getTorneosCreados() {
@@ -80,10 +66,11 @@ public class Usuario {
 	public void setTorneosCreados(List<Torneo> torneosCreados) {
 		this.torneosCreados = torneosCreados;
 	}
-	public List<Torneo> getTorneosParticipa() {
+	
+	public Set<Torneo> getTorneosParticipa() {
 		return torneosParticipa;
 	}
-	public void setTorneosParticipa(List<Torneo> torneosParticipa) {
+	public void setTorneosParticipa(Set<Torneo> torneosParticipa) {
 		this.torneosParticipa = torneosParticipa;
 	}
 

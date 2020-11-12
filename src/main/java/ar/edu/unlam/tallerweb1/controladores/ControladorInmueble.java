@@ -64,46 +64,35 @@ public class ControladorInmueble {
 
 	}
 
-
-	private void guardarFoto(MultipartFile foto) {
-
+	public void guardarFoto (MultipartFile foto) {
 		if (!foto.isEmpty()) {
-
-			String currentUsersDir = System.getProperty("user.dir");
+			String ruta = "C://Producto//inmuebles";
 			
-			String ruta = "C:\\repositorioImagenes";
+		 try {
 			
-			try {
-
-				byte[] bytes = foto.getBytes();
-
-				Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
-				Files.write(rutaAbsoluta, bytes);
-				
-				
-			}
+			byte[] bytes = foto.getBytes();
+			Path rutaAbsoluta=Paths.get(ruta+"//"+foto.getOriginalFilename());
+			Files.write(rutaAbsoluta, bytes);
 			
-		 catch (Exception e) {
+		} catch (Exception e) {
 			
 		}
-		
 		}
 	}
-		
-	@RequestMapping(path = "crear-inmueble", method = RequestMethod.POST)
-	public ModelAndView crearInmueble(@RequestParam(name = "file", required = false) MultipartFile foto,
-			Inmueble inmueble, RedirectAttributes flash) {
 
+	@RequestMapping(path="crear-inmueble",method=RequestMethod.POST)
+	public ModelAndView crearInmueble(@RequestParam(name="file",required=false)
+	MultipartFile foto, Inmueble inmueble, RedirectAttributes flash) {
+		
 		guardarFoto(foto);
-
 		inmueble.setFoto(foto.getOriginalFilename());
-
-
+		
 		servicioInmueble.guardarInmueble(inmueble);
-
-		return new ModelAndView("redirect:/ver-inmuebles");
-
+		
+		return new ModelAndView ("redirect:/ver-inmuebles");
 	}
+	
+  
 
 	@RequestMapping(path = "buscar-inmueble", method = RequestMethod.GET)
 	public ModelAndView mostrarTorneosPorJuego(HttpServletRequest request) {

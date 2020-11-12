@@ -1,5 +1,4 @@
 package ar.edu.unlam.tallerweb1.persistencia;
-
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.junit.Test;

@@ -6,6 +6,8 @@ import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -53,7 +55,7 @@ public class Torneo {
 	private Usuario creador;
 
 	@ManyToMany(mappedBy = "torneosParticipa")
-	private List<Usuario> participantes = new LinkedList<Usuario>();
+	private Set<Usuario> participantes = new TreeSet<Usuario>();
 
 	@ManyToOne
 	private Inmueble inmuebleDelTorneo;
@@ -66,48 +68,12 @@ public class Torneo {
 		this.inmuebleDelTorneo = inmuebleDelTorneo;
 	}
 
-	public void agregarParticipante(Usuario participante) {
-
-		if (!this.participantes.contains(participante)) {
-			this.participantes.add(participante);
-			this.inscriptos++;
-
-		}
-
-		if (this.inscriptos >= this.cupo) {
-			this.estadoCompleto = true;
-
-		}
-
-	}
-
-	public void eliminarParticipante(Usuario participante) {
-
-		 if(this.participantes.contains(participante));
-		  this.participantes.remove(participante);
-		 this.inscriptos--;
-		 
-		 }
-		
-		/*  Iterator <Usuario> it =participantes.iterator(); 
-		  while (it.hasNext()) {
-		  Usuario participante = it.next(); 
-		  if(participante.getId().equals(usuarioId)&&this.id.equals(torneoId));
-		  it.remove();
-		 
-		 }
-		  
-		  this.inscriptos--;*/
-		
-		
-
 	
-
-	public List<Usuario> getParticipantes() {
+	public Set<Usuario> getParticipantes() {
 		return participantes;
 	}
 
-	public void setParticipantes(List<Usuario> participantes) {
+	public void setParticipantes(Set<Usuario> participantes) {
 		this.participantes = participantes;
 	}
 

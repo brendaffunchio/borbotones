@@ -38,19 +38,19 @@
 				</br>
 				<label class="or">Nombre</label>
 				</br>
-				<form:input class="f" path="nombre" type="text" />
+				<form:input class="f" path="nombre" type="text" required="required"/>
 				</br>
 				<label class="or">Apellido</label>
 				</br>
-				<form:input class="f" path="apellido" type="text" />
+				<form:input class="f" path="apellido" type="text" required="required"/>
 				</br>
 				<label class="or">Email</label>
 				</br>
-				<form:input class="f" path="email" type="email" />
+				<form:input class="f" path="email" type="email" required="required" />
 				</br>
 				<label class="or">Password</label>
 				</br>
-				<form:input class="f" path="password" type="password" />
+				<form:input class="f" path="password" type="password" required="required"/>
 				</br>
 				
 				<button class="btn-pub" Type="Submit" />REGISTRARSE</button>

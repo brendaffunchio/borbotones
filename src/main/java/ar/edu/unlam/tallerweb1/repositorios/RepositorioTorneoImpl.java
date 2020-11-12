@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -29,9 +30,8 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 
 		final Session session = sessionFactory.getCurrentSession();
 
-		return session.createCriteria(Torneo.class)
-				.add(Restrictions.eq("estadoCompleto",false))
-				
+		return session.createCriteria(Torneo.class).add(Restrictions.eq("estadoCompleto", false))
+
 				.list();
 
 	}
@@ -81,12 +81,28 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		Torneo torneo = session.get(Torneo.class, torneoId);
 		Usuario participante = session.get(Usuario.class, usuarioId);
 
-		if (torneo.getCupo() > torneo.getInscriptos())
-			torneo.agregarParticipante(participante);
-			participante.agregarTorneo(torneo);
-		
-}
+		Set<Torneo> torneosParticipa = participante.getTorneosParticipa();
+		Set<Usuario> participantes = torneo.getParticipantes();
 
+		Integer inscriptos = torneo.getInscriptos();
+
+		if (!participantes.contains(participante)
+				&&torneo.getCupo() > torneo.getInscriptos()) {
+			participantes.add(participante);
+			torneosParticipa.add(torneo);
+			inscriptos++;
+			torneo.setInscriptos(inscriptos);
+
+		}
+
+		
+		if (torneo.getInscriptos() >= torneo.getCupo()) {
+			torneo.setEstadoCompleto(true);
+
+		}
+
+	}
+	
 	@Override
 	public void eliminarParticipante(Long torneoId, Long usuarioId) {
 		final Session session = sessionFactory.getCurrentSession();
@@ -94,8 +110,18 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		Torneo torneo = session.get(Torneo.class, torneoId);
 		Usuario participante = session.get(Usuario.class, usuarioId);
 
-		torneo.eliminarParticipante(participante);
-		participante.eliminarTorneo(torneo);
+		Set<Torneo> torneosParticipa = participante.getTorneosParticipa();
+		Set<Usuario> participantes = torneo.getParticipantes();
+
+		Integer inscriptos = torneo.getInscriptos();
+
+		if (participantes.contains(participante) && torneosParticipa.contains(torneo)) {
+			participantes.remove(participante);
+			torneosParticipa.remove(torneo);
+			inscriptos--;
+			torneo.setInscriptos(inscriptos);
+
+		}
+		
 	}
-	
 }
