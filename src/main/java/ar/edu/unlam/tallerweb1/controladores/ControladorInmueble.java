@@ -122,5 +122,15 @@ public class ControladorInmueble {
 		return new ModelAndView("inmuebleDetalle", modelo);
 
 	}
+	
+	@RequestMapping(path = "alquilar")
+	public ModelAndView agregarInquilino(@RequestParam("inmuebleId") Long inmuebleId,
+			@RequestParam("usuarioId") Long usuarioId) {
+
+		servicioInmueble.agregarInquilino(inmuebleId, usuarioId);
+
+		return new ModelAndView("redirect:/ver-inmuebles");
+	}
+
 
 }

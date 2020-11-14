@@ -30,6 +30,13 @@
 				id="btnTorneo"> TORNEOS </a> <a href="contacto" id="btnContacto">
 				CONTACTO </a>
 
+			<c:when test="${sessionScope.ROL=='invitado'}">
+
+				<a href="" id="btnHome"> MIS TORNEOS CREADOS </a>
+				<a href="" id="btnHome"> TORNEOS QUE PARTICIPO </a>
+				<a href="" id="btnHome"> MIS INMUEBLES  </a>
+				
+			</c:when>
 		</nav>
 
 	</header>
@@ -39,66 +46,32 @@
 
 		<p>
 
-             Nuestro sitio es ideal para que vos puedas:
-             
-             <br>
-             
-             <br>
-
-             - Elegir un lugar donde prepararte, stremear o jugar. 
-             
-
-              <br>
-             
-             <br>
+			Nuestro sitio es ideal para que vos puedas: <br> <br> -
+			Elegir un lugar donde prepararte, stremear o jugar. <br> <br>
 
 
-             - Participar de un evento con los mejores jugadores del país.
+			- Participar de un evento con los mejores jugadores del país. <br>
 
-            <br>
-             
-             <br>
+			<br> - Crear un torneo para jugar con tus amigos/as. <br> <br>
 
 
-             - Crear un torneo para jugar con tus amigos/as.
+			- Competir con profesionales o con quien desees. <br> <br>
 
-              <br>
-             
-             <br>
+			<br> Requisitos: <br> <br> - Estar logueado para
+			organizar un torneo, participar del mismo o alquilar un inmueble. <br>
 
+			<br> - Tener al menos un inmueble alquilado para poder organizar
+			el torneo.
+		<div class="contenedorBotonesInicio">
 
-             - Competir con profesionales o con quien desees. 
+			<a class="btnEmpezar"
+				href="/proyecto-practica/ver-formulario-usuario"> REGISTRARSE </a> <a
+				class="btnEmpezar" href="/proyecto-practica/login"> INICIAR
+				SESIÓN </a>
 
-             <br>
-             
-             <br>
-             
-             <br>
+		</div>
 
-            Requisitos: 
-             
-             <br>
-             
-             <br>
-
-             - Estar logueado para organizar un torneo, participar del mismo o alquilar un inmueble.
-             
-              <br>
-             
-             <br>
-             
-
-             - Tener al menos un inmueble alquilado para poder organizar el torneo.
-             
-             <div class="contenedorBotonesInicio">
-
-          <a class="btnEmpezar" href="/proyecto-practica/ver-formulario-usuario"> REGISTRARSE </a>
-
-           <a class="btnEmpezar" href="/proyecto-practica/login"> INICIAR SESIÓN </a>
-             
-              </div>
- 
-        </p>
+		</p>
 
 
 	</div>

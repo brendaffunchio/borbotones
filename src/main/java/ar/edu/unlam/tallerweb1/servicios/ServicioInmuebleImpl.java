@@ -51,4 +51,11 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 		
 	}
 
+	@Override
+	public void agregarInquilino(Long inmuebleId, Long usuarioId) {
+		
+		repositorioInmueble.agregarInquilino(inmuebleId,usuarioId);
+		
+	}
+
 }

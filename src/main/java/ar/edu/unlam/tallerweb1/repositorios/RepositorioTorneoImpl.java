@@ -62,7 +62,8 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Torneo.class);
 		if (categoria != null && !categoria.equals("") && juego != null && !juego.equals(""))
-			criteria.add(Restrictions.or(Restrictions.like("categoria", categoria), Restrictions.like("juego", juego)));
+			criteria.add(Restrictions.or(Restrictions.like("categoria", categoria), Restrictions.like("juego", juego)))
+			.add(Restrictions.eq("estadoCompleto", false));
 
 		return criteria.list();
 

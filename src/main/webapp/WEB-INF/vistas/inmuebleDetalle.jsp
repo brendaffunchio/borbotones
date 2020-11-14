@@ -48,15 +48,15 @@
 		<br>
 		<p>$ ${detalleInmueble.precio}</p>
 		<br>
-		<p>${I.direccion.calle} ${I.direccion.numero}</p>
+		<p>${detalleInmueble.direccion.calle} ${detalleInmueble.direccion.numero}</p>
 		<br>
-		<p>${I.direccion.ciudad.nombre}</p> 
+		<p>${detalleInmueble.direccion.ciudad.nombre}</p> 
 		<br>
-		<p>${I.direccion.ciudad.provincia.nombre}</p>
+		<p>${detalleInmueble.direccion.ciudad.provincia.nombre}</p>
 			
 		<br>
-		<button class="boton-alqui" Type="Submit">ALQUILAR</button>
-
+		<a class="boton-part" href="alquilar?inmuebleId=${detalleInmueble.id}&usuarioId=1"
+					role="button"> ALQUILAR </a>
 
 </div>
 	</div>

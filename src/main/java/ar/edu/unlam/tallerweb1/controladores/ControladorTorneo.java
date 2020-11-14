@@ -89,7 +89,7 @@ public class ControladorTorneo {
 		return new ModelAndView ("redirect:/ver-torneos");
 	}
 
-	@RequestMapping(path = "agregar-participante")
+	@RequestMapping(path = "participar")
 	public ModelAndView agregarParticipante(@RequestParam("torneoId") Long torneoId,
 			@RequestParam("usuarioId") Long usuarioId) {
 
@@ -98,7 +98,7 @@ public class ControladorTorneo {
 		return new ModelAndView("participacionExitosa");
 	}
 
-	@RequestMapping(path = "eliminar-participante")
+	@RequestMapping(path = "desubscribirse")
 	public ModelAndView eliminarParticipante(@RequestParam("torneoId") Long torneoId,
 			@RequestParam("usuarioId") Long usuarioId) {
 

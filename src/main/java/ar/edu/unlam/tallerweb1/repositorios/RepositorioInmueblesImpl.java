@@ -15,6 +15,7 @@ import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Provincia;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 @Repository
 public class RepositorioInmueblesImpl implements RepositorioInmueble {
@@ -78,6 +79,22 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 
 		return sessionFactory.getCurrentSession().get(Inmueble.class, id);
 
+	}
+
+	@Override
+	public void agregarInquilino(Long inmuebleId, Long usuarioId) {
+		
+		final Session session = sessionFactory.getCurrentSession();
+
+		Inmueble inmueble = session.get(Inmueble.class, inmuebleId);
+		Usuario inquilino = session.get(Usuario.class, usuarioId);
+		
+
+		if(inmueble.getDisponible().equals(true)) {
+			inmueble.setInquilino(inquilino);
+			inmueble.setDisponible(false);
+		}
+		
 	}
 
 }

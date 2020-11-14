@@ -48,18 +48,18 @@
 				<br>
 				<p>${torneoDetalle.juego}</p>
 				<br>
+				
 				<p>$ ${torneoDetalle.precio}</p>
 				<br>
 				<p>${torneoDetalle.fecha}</p>
 				<br>
 				<p>${torneoDetalle.horario}</p>
 				<br>
-				<p>${torneoDetalle.categoria}</p>
-				<br>
 				
-				<a class="boton-part" href="agregar-participante?torneoId=${torneoDetalle.id}&usuarioId=1"
+				
+				<a class="boton-part" href="participar?torneoId=${torneoDetalle.id}&usuarioId=1"
 					role="button"> PARTICIPAR </a>
-					<a class="boton-part" href="eliminar-participante?torneoId=${torneoDetalle.id}&usuarioId=1"
+					<a class="boton-part" href="desubscribirse?torneoId=${torneoDetalle.id}&usuarioId=1"
 					role="button"> DESUSCRIBIRSE </a>
 				
 			</div>	
