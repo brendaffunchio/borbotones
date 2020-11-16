@@ -16,6 +16,8 @@ public class Direccion {
 	
 	private String calle;
 	private Integer numero;
+	private Double latitud;
+	private Double longitud;
 	
 	@OneToOne(mappedBy ="direccion")
 	private Inmueble inmueble;
@@ -53,6 +55,18 @@ public class Direccion {
 	}
 	public void setNumero(Integer numero) {
 		this.numero = numero;
+	}
+	public Double getLatitud() {
+		return latitud;
+	}
+	public void setLatitud(Double latitud) {
+		this.latitud = latitud;
+	}
+	public Double getLongitud() {
+		return longitud;
+	}
+	public void setLongitud(Double longitud) {
+		this.longitud = longitud;
 	}
 	
 	

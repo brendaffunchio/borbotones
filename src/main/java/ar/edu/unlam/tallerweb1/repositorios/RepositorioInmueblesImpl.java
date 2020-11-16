@@ -37,14 +37,17 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 	}
 
 	@Override
-	public void guardarInmueble(Inmueble inmueble, String calle, Integer numero) {
+	public void guardarInmueble(Inmueble inmueble,Direccion direccion) {
 		final Session session = sessionFactory.getCurrentSession();
-         Direccion direccion= (Direccion) session.createCriteria(Direccion.class)
+		
+		String calle=direccion.getCalle();
+		Integer numero= direccion.getNumero();
+         Direccion direccionBuscada= (Direccion) session.createCriteria(Direccion.class)
         		.add(Restrictions.eq("calle", calle))
         		.add(Restrictions.eq("numero", numero))
         		.uniqueResult();
         
-        inmueble.setDireccion(direccion);
+        inmueble.setDireccion(direccionBuscada);
 		inmueble.setDisponible(true);
 		
 		session.save(inmueble);

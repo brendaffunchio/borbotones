@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioInmueble;
@@ -29,9 +30,9 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 	}
 
 	@Override
-	public void guardarInmueble(Inmueble inmueble, String calle, Integer numero) {
+	public void guardarInmueble(Inmueble inmueble,Direccion direccion) {
 
-		repositorioInmueble.guardarInmueble(inmueble,calle,numero);
+		repositorioInmueble.guardarInmueble(inmueble,direccion);
 
 	}
 

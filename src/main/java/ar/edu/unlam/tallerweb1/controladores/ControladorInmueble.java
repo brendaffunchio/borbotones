@@ -86,11 +86,14 @@ public class ControladorInmueble {
 	@RequestParam(name="numero") Integer numero,@RequestParam(name="file",required=false)
 	MultipartFile foto, Inmueble inmueble, RedirectAttributes flash) {
 		
+		Direccion direccion = new Direccion ();
 		
+		direccion.setCalle(calle);
+		direccion.setNumero(numero);
 		guardarFoto(foto);
 		inmueble.setFoto(foto.getOriginalFilename());
 		
-		servicioInmueble.guardarInmueble(inmueble,calle,numero);
+		servicioInmueble.guardarInmueble(inmueble,direccion);
 		
 		return new ModelAndView ("redirect:/ver-inmuebles");
 	}

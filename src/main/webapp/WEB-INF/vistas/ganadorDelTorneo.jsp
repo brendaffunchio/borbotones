@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/estilo-inicio.css" />
 <meta charset="ISO-8859-1">
-<title>Torneos Detalles</title>
+<title>Inmueble Detalle</title>
 </head>
 <body>
 	<h1 class="titulo-index">INMOBILIARIA GAMING HOUSE</h1>
@@ -29,47 +29,13 @@
 
 	</header>
 
-	<h2 class="titulo-torn">TORNEOS DISPONIBLES</h2>
 
-	
-<main class="container">
-	<div class="row mt-5">
-		
-		<div class="col-4 ml-4">
-		<p>
-			
-			<img src="<c:url value="/torneos/${torneoDetalle.foto}"/>" width="380px" height="265px"/>
-				
-				</p>
-		
-		</div>
-		<div class="col-4 ml-3">
-				<p>${torneoDetalle.nombre}</p>
-				<br>
-				<p>${torneoDetalle.juego}</p>
-				<br>
-				
-				<p>$ ${torneoDetalle.precio}</p>
-				<br>
-				<p>${torneoDetalle.fecha}</p>
-				<br>
-				<p>${torneoDetalle.horario}</p>
-				<br>
-				
-				
-				<a class="boton-part" href="participar?torneoId=${torneoDetalle.id}&usuarioId=1"
-					role="button"> PARTICIPAR </a>
-					<br>
-					<a class="boton-part" href="desubscribirse?torneoId=${torneoDetalle.id}&usuarioId=1"
-					role="button"> DESUSCRIBIRSE </a>
-					<br>
-					<a class="boton-part" href=""
-					role="button"> ELEGIR GANADOR </a>
-				
-			</div>	
-				
-			</div>
 
-</main>
+
+
+
+
+
+
 </body>
 </html>

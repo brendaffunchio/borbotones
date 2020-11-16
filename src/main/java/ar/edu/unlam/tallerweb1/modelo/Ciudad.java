@@ -15,6 +15,8 @@ public class Ciudad {
 	
 	private String nombre;
 	private String codigoPostal;
+	private Double latitud;
+	private Double longitud;
 	
 	@ManyToOne
 	private Provincia provincia;
@@ -42,6 +44,18 @@ public class Ciudad {
 	}
 	public void setCodigoPostal(String codigoPostal) {
 		this.codigoPostal = codigoPostal;
+	}
+	public Double getLatitud() {
+		return latitud;
+	}
+	public void setLatitud(Double latitud) {
+		this.latitud = latitud;
+	}
+	public Double getLongitud() {
+		return longitud;
+	}
+	public void setLongitud(Double longitud) {
+		this.longitud = longitud;
 	}
 	
 	
