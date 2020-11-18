@@ -46,9 +46,20 @@
 
 		<h5>${detalleInmueble.nombre}</h5>
 		<br>
+
 		<h6>Valor del Inmueble ${detalleInmueble.precio} $</h6>
 		<br>		
-		<button class="boton-alqui" Type="Submit">ALQUILAR</button>
+
+		<p>${detalleInmueble.direccion.calle} ${detalleInmueble.direccion.numero}</p>
+		<br>
+		<p>${detalleInmueble.direccion.ciudad.nombre}</p> 
+		<br>
+		<p>${detalleInmueble.direccion.ciudad.provincia.nombre}</p>
+			
+		<br>
+		
+		<a class="boton-alqui" href="alquilar?inmuebleId=${detalleInmueble.id}&usuarioId=1"
+					role="button"> ALQUILAR </a>
 
 
 </div>

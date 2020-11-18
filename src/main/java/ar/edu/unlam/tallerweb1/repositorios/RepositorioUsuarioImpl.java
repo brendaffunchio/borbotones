@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -42,13 +43,25 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 	}
 
 	@Override
-	public void guardarUsuario(Usuario usuario) {
-		String rol = "invitado";
-		usuario.setRol(rol);
+	public void guardarUsuario(Usuario usuario, Direccion direccion) {
 		
 		final Session session = sessionFactory.getCurrentSession();
 		
+		String rol = "invitado";
+		usuario.setRol(rol);
+		
+		String calle = direccion.getCalle();
+		Integer numero = direccion.getNumero();
+		
+		Direccion direccionBuscada= (Direccion) session.createCriteria(Direccion.class)
+       		.add(Restrictions.eq("calle",calle))
+       		.add(Restrictions.eq("numero",numero))
+       		.uniqueResult();
+       
+        usuario.setDireccion(direccionBuscada);
+        
 		session.save(usuario);
+		
 			}
 
 

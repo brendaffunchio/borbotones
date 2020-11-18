@@ -44,6 +44,36 @@
 				</br>
 				<form:input class="f" path="apellido" type="text" required="required"/>
 				</br>
+				
+				<label class="or">Provincia</label>
+				
+				<select>
+				
+				<c:forEach items="${provincias}" var="P">
+				
+               <option value="provincia">${P.nombre}</option>
+              
+              </c:forEach>
+         	  </select>
+         	  
+				</br>
+				
+				<label for="nombreCiudad" class="or" for="ciudades">Ciudad</label>
+				<br>
+				<select>
+				<c:forEach items="${ciudades}" var="C">
+
+				<option name="nombreCiudad" value="ciudad"> ${C.nombre} </option>
+				
+				</c:forEach>
+				</select>
+				</br>
+				<label class="or">Direccion</label>
+				</br>
+				<input name="calle" class="f"  type="text" placeholder="calle" required/>
+				</br>
+				<input name="numero" class="f" type="number" placeholder="numero" required/>
+				<br>
 				<label class="or">Email</label>
 				</br>
 				<form:input class="f" path="email" type="email" required="required" />

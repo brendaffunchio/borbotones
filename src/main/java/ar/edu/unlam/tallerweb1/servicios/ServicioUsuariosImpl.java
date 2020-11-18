@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTorneo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
@@ -28,8 +29,8 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
 	}
 
 	@Override
-	public void guardarUsuario(Usuario usuario) {
-		repositorioUsuario.guardarUsuario(usuario);
+	public void guardarUsuario(Usuario usuario, Direccion direccion) {
+		repositorioUsuario.guardarUsuario(usuario, direccion);
 		
 	}
 

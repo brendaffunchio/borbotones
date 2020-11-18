@@ -42,15 +42,15 @@ values ("Cañuelas","B1814",1),
 ("Lobos", "B7240",1),
 ("Luján","B6700",1);
 
-insert into direccion(calle, numero, ciudad_id)
-values ("Libertad",325,1),
-("Rivadavia",1356,1),
-("Machado",728,2),
-("Mendoza",1850,2),
-("Balcarce",852,3),
-("Necochea",1605,3),
-("Los Claveles",963,4),
-("Los Lotos",2560,4);
+insert into direccion(calle, numero, latitud, longitud, ciudad_id )
+values ("Libertad",325,-35.056713, -58.757346,1),
+("Rivadavia",1356,-35.0497958,-58.7654189,1),
+("Machado",728,-34.646546,-58.6211149,2),
+("Mendoza",1850,-34.6454243,-58.6247797,2),
+("Balcarce",852,-35.186508,-59.0886316,3),
+("Necochea",1605,-35.1872029,-59.0782694,3),
+("Los Claveles",963,-34.5470022,-59.1295741,4),
+("Los Lotos",2560,-34.5425304,-59.1153651,4);
 
  select*from inmueble;
 select*from torneo;

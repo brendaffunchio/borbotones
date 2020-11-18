@@ -9,16 +9,16 @@ public interface RepositorioTorneo {
 
 	
 	
-	List <Torneo>torneos();
+	public List <Torneo>torneos();
 
 	void guardarTorneo(Torneo torneo);
 
-	List<Torneo> buscarTorneo(String categoria, String juego);
+	public List<Torneo> buscarTorneo(String categoria, String juego);
 
-	Torneo verDetallesTorneo(Long id);
+	public Torneo verDetallesTorneo(Long id);
 
-	void agregarParticipante(Long torneoId, Long usuarioId);
+	public void agregarParticipante(Long torneoId, Long usuarioId);
 
-	void eliminarParticipante(Long torneoId, Long usuarioId);
+	public void eliminarParticipante(Long torneoId, Long usuarioId);
 
 }

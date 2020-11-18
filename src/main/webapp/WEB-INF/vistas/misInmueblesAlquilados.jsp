@@ -30,10 +30,12 @@
 		</nav>
 
 
+
 	</header>
 
 
 	<h2 class="titulo-inmuebles">INMUEBLES DISPONIBLES</h2>
+
 
 	<div class="cont-acciones">
 		<div class="buscador">
@@ -53,53 +55,35 @@
 		</div>
 
 
-
-		<div class="organizar-tor">
-			<div>
-				<a class="boton-pub" href="ver-formulario-inmueble" role="button">
-					PUBLICAR </a>
-
-			</div>
-
-			<br> <br>
-			<div>
-
-				<a class="boton-pub" href="ver-inmuebles" role="button">
-					INMUEBLES </a>
-			</div>
-
-		</div>
 	</div>
-
-
 	<div class="inmuebles">
-		<c:forEach items="${inmueblesBusqueda}" var="IB">
+		<c:forEach items="${misInmuebles}" var="IA">
 
 			<div class="inm">
 
 				<p>
-					<img src="<c:url value="/inmuebles/${IB.foto}"/>" width="170px"
+					<img src="<c:url value="/inmuebles/${IA.foto}"/>" width="170px"
 						height="150px" />
 				</p>
 
 				<br>
-				<h2 class="nombre-inmueble">${IB.nombre}</h2>
+				<h2 class="nombre-inmueble">${IA.nombre}</h2>
 				<br>
 				<p>
-					<span>Precio:</span>$ ${IB.precio}
+					<span>Precio:</span>$ ${IA.precio}
 				</p>
 				<br>
 				<p>
-					<span>Direccion:</span> ${IB.direccion.calle} ${I.direccion.numero}
+					<span>Direccion:</span> ${IA.direccion.calle} ${IA.direccion.numero}
 				</p>
 
 				<br> <a class="boton-alqui"
-					href="/proyecto-practica/ver-inmueble-detalle?id=${IB.id}"
+					href="/proyecto-practica/ver-inmueble-detalle?id=${IA.id}"
 					role="button">ver detalles</a> <br>
-
 
 			</div>
 		</c:forEach>
 	</div>
+
 </body>
 </html>

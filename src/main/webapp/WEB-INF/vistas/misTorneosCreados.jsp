@@ -18,6 +18,7 @@
 
 	<header>
 
+
 		<nav class="contenedorNav">
 
 			<a href="inicio" id="btnHome"> HOME </a> <a href="ver-inmuebles"
@@ -27,7 +28,10 @@
 
 		</nav>
 
+
+
 	</header>
+
 	<h2 class="titulo-torn">TORNEOS DISPONIBLES</h2>
 
 	<div class="cont-acciones">
@@ -44,65 +48,35 @@
 			
 		</div>
 
-		<div class="organizar-tor">
-			<p class="pp">Para organizar tu propio torneo, hacé clic en el
-				botón:</p>
-			</br> <a class="boton-part" href="ver-formulario-torneo" role="button">
-				ORGANIZAR </a> <br> <br>
-				
-			</br> <a class="boton-part" href="ver-torneos" role="button">
-				TORNEOS </a>
-
-
-		</div>
 	</div>
-		
-		
-		
-	
+
 	<div class="torneos">
-		<c:forEach items="${torneosBusqueda}" var="TB">
+		<c:forEach items="${misTorneosCreados}" var="TC">
 
 			<div class="tor">
 			
 			<p>
 			
-			<img src="<c:url value="/torneos/${TB.foto}"/>" width="170px" height="150px"/>
+				<img src="<c:url value="/torneos/${TC.foto}"/>" width="170px" height="150px"/>
 				
 
 				</p>
-			
-				<h2 class="nombre-tor">${TB.nombre}</h2>
+						
+				<h2 class="nombre-tor">${TC.nombre}</h2>
 				</br>
 				<p>
-					<span>Juego:</span> ${TB.juego}
+					<span>Juego:</span> ${TC.juego}
 				</p>
-				</br>
-				<p>
-					<span>Precio:</span> ${TB.precio}
-				</p>
-				</br>
-					<p>
-					<span>Direccion:</span> ${I.direccion.calle} ${I.direccion.numero}
-
-				</p>
-				</br>
-				<p>
-					<span>Ciudad:</span> ${I.direccion.ciudad.nombre} 
-				</p>
-				</br>
-				<p>
-					<span>Provincia:</span> ${I.direccion.ciudad.provincia.nombre} 
-				</p>
-				</br>
-			
-				</br>
 				
-			<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles?id=${TB.id}" role="button">ver
+				</br>
+				<p>
+					<span>Precio:</span>$ ${TC.precio}
+				</p>
+				</br> 
+				<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles?id=${TC.id}" role="button">ver
 					detalles</a> 
 					
-					
-					
+				
 			</div>
 
 		</c:forEach>
