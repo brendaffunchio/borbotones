@@ -55,7 +55,7 @@
 		</div>
 
 		<div class="organizar-tor">
-			<a class="boton-pub" href="ver-formulario-inmueble" role="button">
+			<a class="boton-pub" href="formulario-inmueble" role="button">
 				PUBLICAR </a>
 
 		</div>
@@ -72,25 +72,21 @@
 				
 				</p>
 								
-				</br>
+				<br>
 			
 				<h2 class="nombre-inmueble">${I.nombre}</h2>
-				</br>
+				<br>
 
 				<p>
 					<span>Precio:</span>$ ${I.precio}
 
 				</p>
 				
-				</br>
+				<br>
 
 				</p>
 
-				</br>
-
-			
-				</br> 
-				
+				<br>
 
 				<a class="boton-alqui"
 					href="/proyecto-practica/ver-inmueble-detalle?id=${I.id}" role="button">ver detalles</a> <br>

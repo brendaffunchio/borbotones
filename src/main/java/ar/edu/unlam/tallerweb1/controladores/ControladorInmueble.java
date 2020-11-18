@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -51,7 +53,7 @@ public class ControladorInmueble {
 		return new ModelAndView("InmueblesParaAlquilar", modelo);
 	}
 
-	@RequestMapping(path = "ver-formulario-inmueble", method = RequestMethod.GET)
+	@RequestMapping(path = "formulario-inmueble", method = RequestMethod.GET)
 	public ModelAndView nuevoInmueble() {
 
 		ModelMap modelo = new ModelMap();
@@ -64,32 +66,54 @@ public class ControladorInmueble {
 
 	}
 
-	public void guardarFoto (MultipartFile foto) {
+	public void guardarFoto(MultipartFile foto)  {
+
 		if (!foto.isEmpty()) {
-			String ruta = "C://Producto//inmuebles";
-			
-		 try {
-			
-			byte[] bytes = foto.getBytes();
-			Path rutaAbsoluta=Paths.get(ruta+"//"+foto.getOriginalFilename());
-			Files.write(rutaAbsoluta, bytes);
-			
-		} catch (Exception e) {
-			
+			try {
+
+				String ruta = "C://Producto//inmuebles";
+
+				byte[] bytes;
+				bytes = foto.getBytes();
+				Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
+				Files.write(rutaAbsoluta, bytes);
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				
+			}
+
 		}
-		}
+
 	}
 
 	@RequestMapping(path="crear-inmueble",method=RequestMethod.POST)
 	public ModelAndView crearInmueble(@RequestParam(name="file",required=false)
-	MultipartFile foto, Inmueble inmueble, RedirectAttributes flash) {
+	MultipartFile foto, Inmueble inmueble, RedirectAttributes flash) throws FileNotFoundException  {
 		
-		guardarFoto(foto);
-		inmueble.setFoto(foto.getOriginalFilename());
+		ModelMap modelo = new ModelMap();
 		
-		servicioInmueble.guardarInmueble(inmueble);
 		
-		return new ModelAndView ("redirect:/ver-inmuebles");
+		if(foto.isEmpty()) {
+			
+			
+			modelo.put("error", "No seleccióno una foto");
+			
+			
+		}
+		
+		else {
+			
+			guardarFoto(foto);
+			inmueble.setFoto(foto.getOriginalFilename());
+			servicioInmueble.guardarInmueble(inmueble);
+			
+			return new ModelAndView ("redirect:/ver-inmuebles");
+		}
+		
+		return new ModelAndView("errorSubidaDeImagen", modelo);
+		
+		
 	}
 	
   
@@ -105,17 +129,7 @@ public class ControladorInmueble {
 		return new ModelAndView("inmueblesPorBusqueda", modelo);
 	}
 
-	@RequestMapping(path = "ver-inmueble-detalles/{id}", method = RequestMethod.GET)
-	public ModelAndView verDetallesInmueble(@PathVariable Long id) {
 
-		Inmueble inmueble = servicioInmueble.verDetallesInmueble(id);
-
-		ModelMap modelo = new ModelMap();
-		modelo.put("detalleInmueble", inmueble);
-
-		return new ModelAndView("inmuebleDetalle", modelo);
-
-	}
 
 	@RequestMapping(path = "ver-inmueble-detalle", method = RequestMethod.GET)
 	public ModelAndView verDetalle(@RequestParam("id") Long id) {

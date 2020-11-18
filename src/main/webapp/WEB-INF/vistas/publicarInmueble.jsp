@@ -66,19 +66,20 @@
 				
 				</c:forEach>
 				</select>
-				</br>
-				<label class="or">Precio</label>
+				<br>
+				<label class="or">Valor del inmueble</label>
 				</br>
 				<form:input class="f" path="precio" type="number" required="required"/>
-				</br>
+				<br>
+				
 				<label class="or">Imagen del inmueble</label>
 				<input type="file" name="file"/> 
 				
-				</br>
+				<br>
 				<button class="btn-pub" Type="Submit" />PUBLICAR</button>
 
 			</form:form>
-
+		
 		</div>
 	</div>
 

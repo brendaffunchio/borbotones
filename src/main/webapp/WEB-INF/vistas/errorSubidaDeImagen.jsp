@@ -5,11 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/estilo-inicio.css" />
 <meta charset="ISO-8859-1">
-<title>Inmueble Detalle</title>
+<title>Participar</title>
 </head>
 <body>
 	<h1 class="titulo-index">INMOBILIARIA GAMING HOUSE</h1>
@@ -28,33 +27,21 @@
 
 
 	</header>
-
-
-	<h2 class="titulo-inmuebles">DETALLES DEL INMUEBLE</h2>
 	
-<main class="container">
-	
-	<div class="row mt-5">
-
-<div class="col-4  ml-4">
-
-<img src="<c:url value="/inmuebles/${detalleInmueble.foto}"/>" width="380px" height="265px"/>
-
-</div>
-
-<div class="col-4  ml-3">
-
-		<h5>${detalleInmueble.nombre}</h5>
-		<br>
-		<h6>Valor del Inmueble ${detalleInmueble.precio} $</h6>
-		<br>		
-		<button class="boton-alqui" Type="Submit">ALQUILAR</button>
-
-
-</div>
+	<div class="contenedor-publicar">
+		<div class="titulo-pub">
+			<h2 class="titulo-publicar">	<c:if test="${not empty error}">
+				<h4>
+					<span>${error}</span>
+				</h4>
+				<br>
+				</c:if></h2> 
+			<br>
+			<h6> <a href="ver-formulario-inmueble"> Volvé </a> a publicar tú inmueble ¡Esta vez con foto!</h6>
+			<img src="img/fileNotFound.png" width="300px" height="300px">
+			
+		</div>
 	</div>
-
-</main>
 
 </body>
 </html>
