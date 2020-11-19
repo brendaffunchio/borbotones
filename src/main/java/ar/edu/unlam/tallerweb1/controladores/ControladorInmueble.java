@@ -172,7 +172,7 @@ public class ControladorInmueble {
 
 		modelo.put("detalleInmuebleAlquilado", inmuebleBuscado);
 
-		return new ModelAndView("misInmueblesAlquilados", modelo);
+		return new ModelAndView("inmuebleDetalleAlquilado", modelo);
 
 	}
 	

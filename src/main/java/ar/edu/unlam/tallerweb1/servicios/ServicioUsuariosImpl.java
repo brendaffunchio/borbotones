@@ -55,6 +55,12 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
 		return repositorioUsuario.mostrarTorneosQueCree(usuarioId);
 	}
 
+	@Override
+	public List<Usuario> usuariosMasGanadores() {
+		
+		return repositorioUsuario.usuariosMasGanadores();
+	}
+
 	
 
 	

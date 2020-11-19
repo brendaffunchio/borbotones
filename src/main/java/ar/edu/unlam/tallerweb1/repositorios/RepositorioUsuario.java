@@ -21,5 +21,7 @@ public interface RepositorioUsuario {
 
 	public List<Torneo> mostrarTorneosQueCree(Long usuarioId);
 
+	List<Usuario> usuariosMasGanadores();
+
 
 }

@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <link rel="stylesheet" href="css/estilo-inicio.css" />
 <link rel="stylesheet" type="text/css" href="css/estilos.css">
 
@@ -45,7 +46,7 @@
 				<label class="ors">Buscar inmueble</label>
 				</br>
 				<input name="busqueda" class="busc" type="search">
-				<button class="btn-org" type="submit" id="buscarInmueble">Buscar</button>
+				<button class="btn btn-outline-warning btn-sm" type="submit">Buscar</button>
 
 
 			</form:form>
@@ -55,46 +56,37 @@
 		</div>
 
 		<div class="organizar-tor">
-			<a class="boton-pub" href="ver-formulario-inmueble" role="button">
-				PUBLICAR </a>
+			<a class="btn btn-outline-warning" href="ver-formulario-inmueble" role="button">
+				PUBLICÁ TU INMUEBLE </a>
 
 		</div>
 
 	</div>
-	<div class="inmuebles">
-		<c:forEach items="${inmuebles}" var="I">
-
-			<div class="inm">
-
-				<p>
-					<img src="<c:url value="/inmuebles/${I.foto}"/>" width="170px"
-						height="150px" />
-				</p>
-
-				<br>
-				<h2 class="nombre-inmueble">${I.nombre}</h2>
-				<br>
-				<p>
-					<span>Precio:</span>$ ${I.precio}
-				</p>
-
-				<br>
-
-				</p>
-
-				<br>
-
-				<p>
-					<span>Direccion:</span> ${I.direccion.calle} ${I.direccion.numero}
-				</p>
-
-				<br> <a class="boton-alqui"
-					href="/proyecto-practica/ver-inmueble-detalle?id=${I.id}"
-					role="button">ver detalles</a> <br>
-
-			</div>
-		</c:forEach>
-	</div>
+	<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Imagen</th>
+      <th scope="col">Inmueble</th>
+      <th scope="col">Direccion</th>
+      <th scope="col">Precio</th>
+       <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <c:forEach items="${inmuebles}" var="I">
+  <tbody>
+    <tr>
+      <th scope="row"><img src="<c:url value="/inmuebles/${I.foto}"/>" width="150px" height="120px"/></th>
+      <td>${I.nombre}</td>
+      <td>${I.direccion}</td>
+      <td>$ ${I.precio}</td>
+      <td><a class="btn btn-outline-warning btn-sm" href="/proyecto-practica/ver-torneo-detalles?id=${T.id}" role="button">ver
+					detalles</a>  </td>
+    </tr>
+   
+  </tbody>
+  
+  </c:forEach>
+</table>
 
 </body>
 </html>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -41,9 +43,16 @@
 
 	<div class="contenedorDescripcion">
 
-	ranking de ganadores
+	ranking de ganadores: <div> 
 
-			
+	<c:forEach items="${usuarios}" var="U">
+
+	<h3> ${U.nombre} Torneos ganados ${U.torGanados} </h3> 
+
+	</c:forEach>
+
+	</div>
+		
 	</div>
 
 
@@ -105,6 +114,7 @@
 
 	</div>
 	<!-- .sheetSlider -->
+
 
 	<footer>
 		<div class="contenedorFooter">

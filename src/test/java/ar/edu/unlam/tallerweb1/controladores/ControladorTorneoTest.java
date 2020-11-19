@@ -5,6 +5,7 @@ import java.util.List;
 import org.junit.Test;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
+import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
@@ -68,5 +69,27 @@ public class ControladorTorneoTest{
 	
    	   verify(sessionMock, times(1)).setAttribute("inscriptos",0);
 	}
-
+	
+	@Test
+	public void validarQueElFormularioDeCrearTorneoMuestreLosInmueblesAlquilados() {
+		
+		
+		// preparacion
+		 ServicioTorneo servicioTorneoMock = mock(ServicioTorneo.class);
+	   	   ServicioUsuarios servicioUsuariosMock = mock(ServicioUsuarios.class);
+	       ControladorTorneo controladorTorneo = new ControladorTorneo (servicioTorneoMock, servicioUsuariosMock);
+	       Torneo torneoMock=mock(Torneo.class);
+	       
+	       Long usuarioId = 1L;
+	       List<Inmueble> listaInmuebleMock = mock(List.class);
+	       
+	       when(servicioUsuariosMock.mostrarInmueblesAlquilados(usuarioId)).thenReturn(listaInmuebleMock);
+	       
+	    // ejecucion
+			ModelAndView mav = controladorTorneo.nuevoTorneo(usuarioId);
+			
+			// validacion
+			assertThat(mav.getViewName()).isEqualTo("organizarTorneos");
+		
+	}
 }

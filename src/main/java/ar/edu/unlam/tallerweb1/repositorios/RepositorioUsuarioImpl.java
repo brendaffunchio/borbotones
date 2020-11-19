@@ -6,6 +6,7 @@ import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +104,14 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		
 
 		
+	}
+
+	@Override
+	public List<Usuario> usuariosMasGanadores() {
+		final Session session = sessionFactory.getCurrentSession();
+		
+		
+		return session.createCriteria(Usuario.class).add(Restrictions.gt("torGanados", 2)).addOrder(Order.asc("torGanados")).list();
 	}
 
 	

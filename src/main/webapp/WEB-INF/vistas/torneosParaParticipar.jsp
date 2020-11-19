@@ -7,12 +7,12 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <link rel="stylesheet" href="css/estilo-inicio.css" />
 <link rel="stylesheet" type="text/css" href="css/estilos.css">
-
 <title>Torneos</title>
 </head>
-<body>
+<body class="">
 
 	<h1 class="titulo-index">INMOBILIARIA GAMING HOUSE</h1>
 
@@ -42,56 +42,47 @@
 				<label class="ors">Buscar torneo deseado</label>
 				</br>
 				<input name="busqueda" class="busc" type="search">
-				<button class="btn-org" type="submit">Buscar</button>
+				<button class="btn btn-outline-success" type="submit">Buscar</button>
 
 			</form:form>
 			
 		</div>
 
 		<div class="organizar-tor">
-			<p class="pp">Para organizar tu propio torneo, hacé clic en el
-				botón:</p>
-			</br> <a class="boton-part" href="ver-formulario-torneo?usuarioId=1" role="button">
-				ORGANIZAR </a>
+			
+			</br> <a class="btn btn-outline-success" href="ver-formulario-torneo?usuarioId=1" role="button">
+				ORGANIZÁ TU TORNEO </a>
 
 
 		</div>
 	</div>
 
-	<div class="torneos">
-		<c:forEach items="${torneos}" var="T">
 
-			<div class="tor">
-			
-			<p>
-			
-				<img src="<c:url value="/torneos/${T.foto}"/>" width="170px" height="150px"/>
-				
-
-				</p>
-						
-				<h2 class="nombre-tor">${T.nombre}</h2>
-				</br>
-				<p>
-					<span>Juego:</span> ${T.juego}
-				</p>
-				
-				</br>
-				<p>
-					<span>Precio:</span>$ ${T.precio}
-				</p>
-				</br> 
-				<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles?id=${T.id}" role="button">ver
-					detalles</a> 
-					
-					<br>
-			
-			</div>
-
-		</c:forEach>
-
-
-	</div>
+	<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Imagen</th>
+      <th scope="col">Torneo</th>
+      <th scope="col">Juego</th>
+      <th scope="col">Precio</th>
+       <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <c:forEach items="${torneos}" var="T">
+  <tbody>
+    <tr>
+      <th scope="row"><img src="<c:url value="/torneos/${T.foto}"/>" width="150px" height="120px"/></th>
+      <td>${T.nombre}</td>
+      <td>${T.juego}</td>
+      <td>$ ${T.precio}</td>
+      <td><a class="btn btn-outline-success btn-sm"  href="/proyecto-practica/ver-torneo-detalles?id=${T.id}" role="button">ver
+					detalles</a>  </td>
+    </tr>
+   
+  </tbody>
+  
+  </c:forEach>
+</table>
 
 
 

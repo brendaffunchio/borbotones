@@ -2,7 +2,6 @@ create database db;
 
 use db;
 
-
 insert into usuario (apellido, email, nombre, password, rol,torGanados)
 values ("Inmobiliaria Gaming", 
 "gamehouse@borbotones.com",

@@ -178,11 +178,10 @@ public class ControladorTorneo {
 	@RequestMapping(path = "elegirGanador", method = RequestMethod.GET)
 	public ModelAndView elegirGanador(@RequestParam("ganadorId") Long ganadorId, @RequestParam("torneoGanadoId") Long torneoGanadoId) {
 		
-		ModelMap modelo = new ModelMap();
-		
+	
 		servicioTorneo.elegirGanador(ganadorId, torneoGanadoId);
 		
-		return new ModelAndView("ganadorDelTorneo", modelo);
+		return new ModelAndView("inicioInvitado");
 		
 		
 	}

@@ -119,6 +119,20 @@ public class ControladorUsuario {
 		
 		return new ModelAndView("misTorneosCreados", modelo);
 	}
-}	
+	
+	@RequestMapping(path = "inicio-invitado", method = RequestMethod.GET)
+		public ModelAndView mostrarRankingDeLosGanadoresDeTorneos() {
+			
+		ModelMap modelo = new ModelMap();
+		
+		modelo.put("usuarios", servicioUsuarios.usuariosMasGanadores());
+		
+		return new ModelAndView("inicioInvitado", modelo);
+		
+			
+		}
+		
+	}
+	
 	
 
