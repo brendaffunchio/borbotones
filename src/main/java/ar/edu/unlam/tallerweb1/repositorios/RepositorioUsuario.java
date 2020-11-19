@@ -19,5 +19,7 @@ public interface RepositorioUsuario {
 
 	public Set<Torneo> mostrarTorneosQueParticipo(Long usuarioId);
 
+	public List<Torneo> mostrarTorneosQueCree(Long usuarioId);
+
 
 }

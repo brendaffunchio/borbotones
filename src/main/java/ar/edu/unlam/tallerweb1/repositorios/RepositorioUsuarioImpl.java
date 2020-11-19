@@ -92,6 +92,20 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 				
 		
 	}
+	
+	
+	@Override
+	public List<Torneo> mostrarTorneosQueCree(Long usuarioId) {
+		
+		final Session session = sessionFactory.getCurrentSession();
+		Usuario usuario = session.get(Usuario.class, usuarioId);
+		
+		List <Torneo>torneosQueCree = usuario.getTorneosCreados();
+		
+		return torneosQueCree;
+				
+		
+	}
 
 	
 }
