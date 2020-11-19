@@ -81,7 +81,7 @@
 					<span>Precio:</span>$ ${T.precio}
 				</p>
 				</br> 
-				<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles?id=${T.id}" role="button">ver
+				<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles?torneoId=${T.id}&usuarioId=1" role="button">ver
 					detalles</a> 
 					
 					<br>

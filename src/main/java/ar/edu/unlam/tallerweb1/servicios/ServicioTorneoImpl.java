@@ -82,4 +82,11 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 		
 	}
 
+	
+	@Override
+	public Integer calcularDistanciaConElUsuario(Long usuarioId, Long torneoId) {
+		
+		return repositorioTorneo.calcularDistanciaConElUsuario(usuarioId, torneoId);
+	}
+
 }

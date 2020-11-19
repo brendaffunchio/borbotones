@@ -11,6 +11,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -165,4 +166,32 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		
 		
 	}
+
+	
+	@Override
+	public Integer calcularDistanciaConElUsuario(Long usuarioId, Long torneoId) {
+		final Session session = sessionFactory.getCurrentSession();
+	Torneo torneo=session.get(Torneo.class,torneoId);
+	Usuario usuario= session.get(Usuario.class, usuarioId);
+	Direccion direccionUsuario = usuario.getDireccion();
+	Inmueble inmueble=torneo.getInmuebleDelTorneo();
+	Direccion direccionTorneo = inmueble.getDireccion();
+	
+	Integer distancia=0;
+	
+	
+    distancia= -1*(int) (6371*Math.asin(Math.cos(direccionUsuario.getLatitud())
+    		*Math.cos(direccionTorneo.getLatitud())+Math.sin(direccionUsuario.getLatitud())
+    		*Math.sin(direccionTorneo.getLatitud())
+    		-Math.cos(direccionUsuario.getLongitud()-direccionTorneo.getLongitud())));
+	
+    return distancia;
+	
+	}
+	
+	/*=6371*ACOS(COS(RADIANES(90-A6))*COS(RADIANES(90-C6))+SENO(RADIANES(90-
+			A6))*SENO(RADIANES(90-C6))*COS(RADIANES(B6-D6)))
+		*/
+	
+	
 }

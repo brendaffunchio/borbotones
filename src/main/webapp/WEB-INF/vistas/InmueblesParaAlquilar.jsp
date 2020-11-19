@@ -89,7 +89,7 @@
 				</p>
 
 				<br> <a class="boton-alqui"
-					href="/proyecto-practica/ver-inmueble-detalle?id=${I.id}"
+					href="/proyecto-practica/ver-inmueble-detalle?inmuebleId=${I.id}"
 					role="button">ver detalles</a> <br>
 
 			</div>

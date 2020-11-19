@@ -98,7 +98,7 @@
 			
 				</br>
 				
-			<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles?id=${TB.id}" role="button">ver
+			<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles?torneoId=${TB.id}&usuarioId=1" role="button">ver
 					detalles</a> 
 					
 					

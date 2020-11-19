@@ -41,7 +41,7 @@
 
 			<div class="col-4  ml-4">
 
-				<img src="<c:url value="/inmuebles/${detalleInmueble.foto}"/>"
+				<img src="<c:url value="/inmuebles/${detalleInmuebleAlquilado.foto}"/>"
 					width="380px" height="265px" />
 
 			</div>
