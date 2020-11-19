@@ -35,10 +35,11 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	}
 
 	@Override
-	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) {
+	public Boolean guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) {
 
-		repositorioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
+		return repositorioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
 
+		
 	}
 
 	

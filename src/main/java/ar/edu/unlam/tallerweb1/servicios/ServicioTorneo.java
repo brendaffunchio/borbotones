@@ -11,7 +11,7 @@ public interface ServicioTorneo {
 	
 	public List<Torneo> mostrarTorneos();
 
-	void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId);
+	public Boolean guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId);
 
 	public List <Torneo> buscarTorneo(String categoria, String juego);
 

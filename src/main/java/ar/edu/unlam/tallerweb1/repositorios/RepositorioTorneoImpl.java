@@ -37,7 +37,7 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 	}
 
 	@Override
-	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) {
+	public Boolean guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) {
 		
 		
 		final Session session = sessionFactory.getCurrentSession();
@@ -53,6 +53,9 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		torneosCreados.add(torneo);
 		
 		session.save(torneo);
+		Boolean guardado= true;
+		
+		return guardado;
 	
 
 	}
