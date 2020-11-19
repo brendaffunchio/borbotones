@@ -81,8 +81,14 @@ public class ControladorUsuario {
 	public ModelAndView mostrarMisInmuebles(@RequestParam("usuarioId") Long usuarioId) {
 
 		ModelMap modelo = new ModelMap();
-		modelo.put("misInmueblesAlquilados", servicioUsuarios.mostrarInmueblesAlquilados(usuarioId));
+		
 
+		if(servicioUsuarios.mostrarInmueblesAlquilados(usuarioId).isEmpty()) {
+			modelo.put("error", "No alquilaste ningún inmueble");
+		}else {
+			modelo.put("misInmueblesAlquilados", servicioUsuarios.mostrarInmueblesAlquilados(usuarioId));
+		}
+		
 		return new ModelAndView("misInmueblesAlquilados", modelo);
 	}
 
@@ -90,8 +96,13 @@ public class ControladorUsuario {
 	public ModelAndView mostrarTorneosQueParticipaElUsuario(@RequestParam("usuarioId") Long usuarioId) {
 
 		ModelMap modelo = new ModelMap();
-		modelo.put("misTorneosParticipo", servicioUsuarios.mostrarTorneosQueParticipo(usuarioId));
-
+		
+		if (servicioUsuarios.mostrarTorneosQueParticipo(usuarioId).isEmpty()) {
+			modelo.put("error", "No estás participando de ningún torneo");
+		}else {
+			modelo.put("misTorneosParticipo", servicioUsuarios.mostrarTorneosQueParticipo(usuarioId));
+		}
+		
 		return new ModelAndView("misTorneosParticipo", modelo);
 	}
 
@@ -99,8 +110,13 @@ public class ControladorUsuario {
 	public ModelAndView mostrarTorneosQueCreoElUsuario(@RequestParam("usuarioId") Long usuarioId) {
 
 		ModelMap modelo = new ModelMap();
-		modelo.put("misTorneosCreados", servicioUsuarios.mostrarTorneosQueCree(usuarioId));
-
+		
+		if (servicioUsuarios.mostrarTorneosQueCree(usuarioId).isEmpty()) {
+			modelo.put("error", "No creaste ningún torneo");
+		}else {
+			modelo.put("misTorneosCreados", servicioUsuarios.mostrarTorneosQueCree(usuarioId));
+		}
+		
 		return new ModelAndView("misTorneosCreados", modelo);
 	}
 }	

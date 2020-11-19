@@ -28,10 +28,14 @@
 
 
 	</header>
-
+<div class="col-md-12 text-center">
+<h1>ELEGÍR GANADOR DEL TORNEO</h1>
 <form:form action="elegirGanador" method="get">
-<div class="col-md-12">
-	<div class="form-group col-md-12"> 
+
+	<div class="form-group col-md-12 text-center">
+	 
+	<input type="hidden" name="torneoGanadoId" value="${torneoId}">
+	
 	<select name="ganadorId">
 
 	<c:forEach items="${participantes}" var="P">
@@ -42,8 +46,7 @@
 
 	</select>
 	
-	
-	<input class="btn-btn-danger" type="submit" value= "Elegir Ganador">
+	<button class="btn btn-primary" type="submit">ELEGIR GANADOR</button>
 	
 	</div>
 	

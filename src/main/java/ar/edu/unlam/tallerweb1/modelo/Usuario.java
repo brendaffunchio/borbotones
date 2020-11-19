@@ -43,33 +43,19 @@ public class Usuario {
 	private String apellido;
 	private String password;
 	private String rol;
+	@Column(nullable = false)
 	private Integer torGanados;
 	
-	@OneToMany
-	private List <Torneo> torneosCreados = new LinkedList <Torneo>();
-
-	
-	@OneToMany (fetch = FetchType.EAGER)
-	private List <Inmueble> inmueblesAlquilados = new LinkedList<Inmueble>();
-	
-	@Transient
-	private List <Torneo> torneosGanados = new LinkedList <Torneo>();
 
 	@OneToOne
 	private Direccion direccion;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "participa")
 	private Set <Torneo> torneosParticipa = new TreeSet<Torneo>();
 	
 	
-	public List<Torneo> getTorneosCreados() {
-		return torneosCreados;
-	}
-	public void setTorneosCreados(List<Torneo> torneosCreados) {
-		this.torneosCreados = torneosCreados;
-	}
-	
+		
 	public Set<Torneo> getTorneosParticipa() {
 		return torneosParticipa;
 	}
@@ -78,12 +64,6 @@ public class Usuario {
 	}
 
 	
-	public List<Torneo> getTorneosGanados() {
-		return torneosGanados;
-	}
-	public void setTorneosGanados(List<Torneo> torneosGanados) {
-		this.torneosGanados = torneosGanados;
-	}
 	public String getNombre() {
 		return nombre;
 	}
@@ -124,14 +104,7 @@ public class Usuario {
 		this.rol = rol;
 	}
 	
-	public List<Inmueble> getInmueblesAlquilados() {
-		return inmueblesAlquilados;
-	}
-
-	public void setInmueblesAlquilados(List<Inmueble> inmueblesAlquilados) {
-		this.inmueblesAlquilados = inmueblesAlquilados;
-	}
-
+	
 	public Direccion getDireccion() {
 		return direccion;
 	}

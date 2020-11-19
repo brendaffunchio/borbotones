@@ -43,15 +43,13 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		final Session session = sessionFactory.getCurrentSession();
 		
 		Usuario creadorTorneo= session.get(Usuario.class, creadorId);
-		List<Torneo> torneosCreados = creadorTorneo.getTorneosCreados();
 		Inmueble inmueble = session.get(Inmueble.class, inmuebleId);
 		
 		torneo.setEstadoCompleto(false);
 		torneo.setInscriptos(0);
 		torneo.setCreador(creadorTorneo);
 		torneo.setInmuebleDelTorneo(inmueble);
-		torneosCreados.add(torneo);
-		
+				
 		session.save(torneo);
 		Boolean guardado= true;
 		
@@ -157,11 +155,12 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 	public void elegirGanador(Long ganadorId, Long torneoGanadoId) {
 		final Session session = sessionFactory.getCurrentSession();
 		
-		Usuario usuario = session.get(Usuario.class, ganadorId);
+		Usuario ganador = session.get(Usuario.class, ganadorId);
 		Torneo torneo = session.get(Torneo.class, torneoGanadoId);
-		
-		Integer torneosGanados = usuario.getTorGanados();
-		usuario.setTorGanados(torneosGanados++);
+		Integer torGanados= ganador.getTorGanados();
+		torGanados++;
+		ganador.setTorGanados(torGanados);
+		torneo.setGanador(ganador);
 	
 		
 		

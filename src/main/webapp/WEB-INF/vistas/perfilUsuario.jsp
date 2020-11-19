@@ -39,7 +39,7 @@
 	<div class="col-12 text-center">
 	
 	
-	<a class="boton-part" href="/proyecto-practica/ver-inmuebles-alquilados?usuarioId=1" role="button">MIS INMUEBLES QUE ALQUILÉ</a>
+	<a class="boton-part" href="/proyecto-practica/ver-inmuebles-alquilados?usuarioId=1" role="button">MIS INMUEBLES</a>
 					<br>
 					<br>
 					<a class="boton-part" href="/proyecto-practica/ver-torneos-que-participo?usuarioId=1"
@@ -47,7 +47,10 @@
 					<br>
 					<br>
 					<a class="boton-part" href="/proyecto-practica/ver-torneos-que-cree?usuarioId=1"
-					role="button">TORNEOS QUE CREE</a>
+					role="button">MIS TORNEOS</a>
+					
+					
+	
 	
 	</div>
 	

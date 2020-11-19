@@ -3,12 +3,13 @@ create database db;
 use db;
 
 
-insert into usuario (apellido, email, nombre, password, rol)
+insert into usuario (apellido, email, nombre, password, rol,torGanados)
 values ("Inmobiliaria Gaming", 
 "gamehouse@borbotones.com",
 "Los Borbotones",
 "borbotones",
-"admin");
+"admin",
+0);
 
 insert into provincia (nombre) 
 values ("Buenos Aires"),
@@ -58,3 +59,5 @@ select*from participa;
 select*from direccion;
 select*from ciudad;
 select*from provincia;
+
+drop database db;

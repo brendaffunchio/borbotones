@@ -91,12 +91,10 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 
 		Inmueble inmueble = session.get(Inmueble.class, inmuebleId);
 		Usuario inquilino = session.get(Usuario.class, usuarioId);
-		List <Inmueble> inmueblesAlquilados = inquilino.getInmueblesAlquilados();
 		
 
 		if(inmueble.getDisponible().equals(true)) {
 			inmueble.setInquilino(inquilino);
-			inmueblesAlquilados.add(inmueble);
 			inmueble.setDisponible(false);
 		}
 		

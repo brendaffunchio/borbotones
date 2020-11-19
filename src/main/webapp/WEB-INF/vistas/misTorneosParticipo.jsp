@@ -32,8 +32,13 @@
 
 	</header>
 
-	<h2 class="titulo-torn">TORNEOS DISPONIBLES</h2>
-
+	<h2 class="titulo-torn">TORNEOS QUE PARTICIPO</h2>
+     <c:if test="${not empty error}">
+				<h2 class="text-center">
+					${error}
+				</h2>
+				<br>
+			</c:if>
 	<div class="cont-acciones">
 	
 		<div class="buscador">

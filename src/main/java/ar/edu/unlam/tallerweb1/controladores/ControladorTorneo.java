@@ -168,7 +168,8 @@ public class ControladorTorneo {
 		ModelMap modelo = new ModelMap();
 		
 		modelo.put("participantes", servicioTorneo.mostrarParticipantesDelTorneo(torneoId));
-		
+	    modelo.put("torneoId", torneoId);
+	
 		return new ModelAndView("ganadorDelTorneo", modelo);
 		
 		

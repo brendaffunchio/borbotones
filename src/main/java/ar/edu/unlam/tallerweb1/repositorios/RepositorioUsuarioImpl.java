@@ -52,7 +52,7 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		
 		String rol = "invitado";
 		usuario.setRol(rol);
-		
+		usuario.setTorGanados(0);
 		String calle = direccion.getCalle();
 		Integer numero = direccion.getNumero();
 		
@@ -71,11 +71,10 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 	public List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId) {
 		
 		final Session session = sessionFactory.getCurrentSession();
-		Usuario usuario = session.get(Usuario.class, usuarioId);
 		
-		List <Inmueble>inmuebles = usuario.getInmueblesAlquilados();
 		
-		return inmuebles;
+		 return session.createCriteria(Inmueble.class).add(Restrictions.eq("inquilino.id",usuarioId)).list();
+		
 				
 		
 	}
@@ -98,12 +97,11 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 	public List<Torneo> mostrarTorneosQueCree(Long usuarioId) {
 		
 		final Session session = sessionFactory.getCurrentSession();
-		Usuario usuario = session.get(Usuario.class, usuarioId);
 		
-		List <Torneo>torneosQueCree = usuario.getTorneosCreados();
 		
-		return torneosQueCree;
-				
+		return session.createCriteria(Torneo.class).add(Restrictions.eq("creador.id",usuarioId)).list();
+		
+
 		
 	}
 
