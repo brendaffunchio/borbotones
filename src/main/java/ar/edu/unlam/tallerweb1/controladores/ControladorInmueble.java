@@ -35,13 +35,16 @@ public class ControladorInmueble {
 	public ServicioInmueble servicioInmueble;
 	public ServicioCiudad servicioCiudad;
     public ServicioProvincia servicioProvincia;
+   
 
 	@Autowired
-	public ControladorInmueble(ServicioInmueble servicioInmueble,ServicioCiudad servicioCiudad, ServicioProvincia servicioProvincia) {
+	public ControladorInmueble(ServicioInmueble servicioInmueble,
+			ServicioCiudad servicioCiudad, ServicioProvincia servicioProvincia) {
 
 		this.servicioInmueble = servicioInmueble;
 		this.servicioCiudad = servicioCiudad;
 		this.servicioProvincia = servicioProvincia;
+		
 
 	}
 	
@@ -159,5 +162,19 @@ public class ControladorInmueble {
 		return new ModelAndView("redirect:/ver-inmuebles");
 	}
 
+	@RequestMapping(path = "ver-inmueble-alquilado-detalle", method = RequestMethod.GET)
+	public ModelAndView verDetalleInmuebleAlquilado(@RequestParam("id") Long id) {
 
+		
+		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(id);
+
+		ModelMap modelo = new ModelMap();
+
+		modelo.put("detalleInmuebleAlquilado", inmuebleBuscado);
+
+		return new ModelAndView("misInmueblesAlquilados", modelo);
+
+	}
+	
+	
 }

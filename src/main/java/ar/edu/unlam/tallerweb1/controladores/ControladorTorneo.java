@@ -135,4 +135,30 @@ public class ControladorTorneo {
 		return new ModelAndView("detallesTorneo", modelo);
 	}
 
+	
+	@RequestMapping(path = "ver-mis-torneos-detalles", method = RequestMethod.GET)
+	public ModelAndView verDetallesMiTorneoCreado(@RequestParam("id") Long id) {
+
+		Long id_torneo = id;
+		Torneo miTorneoDetalle = servicioTorneo.verDetallesTorneo(id_torneo);
+
+		ModelMap modelo = new ModelMap();
+
+		modelo.put("miTorneoDetalle", miTorneoDetalle);
+
+		return new ModelAndView("torneoCreadoDetalle", modelo);
+	}
+	
+	@RequestMapping(path = "ver-torneos-participo-detalles", method = RequestMethod.GET)
+	public ModelAndView verDetallesTorneoQueParticipo(@RequestParam("id") Long id) {
+
+		Long id_torneo = id;
+		Torneo torneoParticipoDetalle = servicioTorneo.verDetallesTorneo(id_torneo);
+
+		ModelMap modelo = new ModelMap();
+
+		modelo.put("torneoParticipoDetalle", torneoParticipoDetalle);
+
+		return new ModelAndView("torneosParticipoDetalle", modelo);
+	}
 }

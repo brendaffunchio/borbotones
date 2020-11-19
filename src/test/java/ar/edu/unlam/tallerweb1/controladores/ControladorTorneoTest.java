@@ -63,6 +63,7 @@ public class ControladorTorneoTest{
    	   
    	   ModelAndView mav = controladorTorneo.crearTorneo(fotoMock, creadorIdMock, torneoMock, requestMock, flashMock);
  
+   	   
    	   assertThat(mav.getView()).isEqualTo("redirect:/ver-torneos");
 	
    	   verify(sessionMock, times(1)).setAttribute("inscriptos",0);
