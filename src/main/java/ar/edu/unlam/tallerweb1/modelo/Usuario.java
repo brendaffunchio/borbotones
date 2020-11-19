@@ -45,7 +45,7 @@ public class Usuario {
 	private String rol;
 	private Integer torGanados;
 	
-	@Transient
+	@OneToMany
 	private List <Torneo> torneosCreados = new LinkedList <Torneo>();
 
 	

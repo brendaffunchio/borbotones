@@ -51,7 +51,7 @@ public class Torneo {
 	@Column(nullable = false)
 	private Boolean estadoCompleto;
 
-	@ManyToOne
+	@ManyToOne(fetch =FetchType.EAGER)
 	private Usuario creador;
 
 	@ManyToOne

@@ -70,8 +70,6 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		
 		final Session session = sessionFactory.getCurrentSession();
 		Usuario usuario = session.get(Usuario.class, usuarioId);
-		//Inmueble inmueble = session.get(Inmueble.class, inmuebleId);
-		//List<Inmueble>inmueblesAlquilados = session.createCriteria(Inmueble.class).add(Restrictions.eq("id", inmuebleId)).add(Restrictions.eq("id", inmueble.getInquilino().getId())).list();
 		
 		List <Inmueble>inmuebles = usuario.getInmueblesAlquilados();
 		
