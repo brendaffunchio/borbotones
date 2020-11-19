@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
+import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -64,8 +65,20 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		
 			}
 
-
+	@Override
+	public List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId, Long inmuebleId) {
+		
+		final Session session = sessionFactory.getCurrentSession();
+		Usuario usuario = session.get(Usuario.class, usuarioId);
+		Inmueble inmueble = session.get(Inmueble.class, inmuebleId);
+		List<Inmueble>inmueblesAlquilados = session.createCriteria(Inmueble.class).add(Restrictions.eq("id", inmuebleId)).add(Restrictions.eq("id", inmueble.getInquilino().getId())).list();
+		
+		
+		
+		return inmueblesAlquilados;
+				
+		
+	}
 
 	
-
 }

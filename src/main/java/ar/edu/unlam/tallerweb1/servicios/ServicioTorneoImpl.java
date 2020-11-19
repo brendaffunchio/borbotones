@@ -35,9 +35,9 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	}
 
 	@Override
-	public void guardarTorneo(Torneo torneo) {
+	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) {
 
-		repositorioTorneo.guardarTorneo(torneo);
+		repositorioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
 
 	}
 

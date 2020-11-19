@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
+import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTorneo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
@@ -32,6 +33,12 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
 	public void guardarUsuario(Usuario usuario, Direccion direccion) {
 		repositorioUsuario.guardarUsuario(usuario, direccion);
 		
+	}
+
+	@Override
+	public List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId, Long inmuebleId) {
+		
+		return repositorioUsuario.mostrarInmueblesAlquilados(usuarioId, inmuebleId);
 	}
 
 

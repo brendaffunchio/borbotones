@@ -37,12 +37,20 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 	}
 
 	@Override
-	public void guardarTorneo(Torneo torneo) {
-
+	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) {
+		
+		
 		final Session session = sessionFactory.getCurrentSession();
+		Usuario creadorTorneo= session.get(Usuario.class, creadorId);
+		List<Torneo> torneosCreados = creadorTorneo.getTorneosCreados();
+		Inmueble inmueble = session.get(Inmueble.class, inmuebleId);
 		torneo.setEstadoCompleto(false);
 		torneo.setInscriptos(0);
+		torneo.setCreador(creadorTorneo);
+		torneo.setInmuebleDelTorneo(inmueble);
+		torneosCreados.add(torneo);
 		session.save(torneo);
+	
 
 	}
 
@@ -78,10 +86,10 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 	@Override
 	public void agregarParticipante(Long torneoId, Long usuarioId) {
 		final Session session = sessionFactory.getCurrentSession();
-
+	
 		Torneo torneo = session.get(Torneo.class, torneoId);
 		Usuario participante = session.get(Usuario.class, usuarioId);
-
+		
 		Set<Torneo> torneosParticipa = participante.getTorneosParticipa();
 		Set<Usuario> participantes = torneo.getParticipantes();
 
@@ -93,6 +101,7 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 			torneosParticipa.add(torneo);
 			inscriptos++;
 			torneo.setInscriptos(inscriptos);
+			
 
 		}
 

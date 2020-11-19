@@ -11,7 +11,7 @@ public interface ServicioTorneo {
 	
 	public List<Torneo> mostrarTorneos();
 
-	public void guardarTorneo(Torneo torneo);
+	void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId);
 
 	public List <Torneo> buscarTorneo(String categoria, String juego);
 
@@ -20,5 +20,7 @@ public interface ServicioTorneo {
 	void agregarParticipante(Long torneoId, Long usuarioId);
 
 	public void eliminarParticipante(Long torneoId, Long usuarioId);
+
+	
 
 }

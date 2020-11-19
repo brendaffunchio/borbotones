@@ -188,4 +188,8 @@ public class Torneo {
 		this.foto = foto;
 	}
 
+	public void setCreador(Usuario creador) {
+		this.creador = creador;
+	}
+
 }

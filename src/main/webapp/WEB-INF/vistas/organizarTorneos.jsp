@@ -37,6 +37,8 @@
 			<form:form action="crear-torneo" method="POST" enctype="multipart/form-data"
 				modelAttribute="torneo">
 
+				<input type="hidden" value="1" name="creadorId">
+				
 				<label class="or">Nombre del torneo</label>
 				<br>
 				<form:input class="f" path="nombre" type="text" required="required" />
@@ -57,6 +59,7 @@
 				<form:option value="Otra">Otra</form:option>
 				
 				</form:select>
+	
 				<br>
 				<label class="or">Fecha</label>
 				<br>
@@ -71,15 +74,16 @@
 				
 				<label class="or" for="inmuebles-disponibles">Inmueble</label>
 				<br>
-				<select>
-				<c:forEach items="${inmuebles}" var="I">
-
-				<option value="inmueble">${I.nombre}</option>
+					
+				<select name="inmuebleDelTorneo">
 				
-				</br>
-							
-				</c:forEach>
+				<c:forEach items="${inmuebles}" var="I">
+			
+				<option value="${I.id}">${I.nombre}</option>
+				
 				</select>
+				
+				</c:forEach>
 				
 			   <br>
 
@@ -102,12 +106,8 @@
 					<button class="btn-org" Type="Submit">
 					CREAR TORNEO
 					</button>
-					
+			
 					<br>
-					
-					<br>
-					
-					
 					
 					<p  class="avisoUsuario"> Necesitas  <a class="organizaPropioTorneo"> iniciar sesión  </a>para crear un torneo. </p>
 					

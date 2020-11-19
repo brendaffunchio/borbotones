@@ -27,16 +27,13 @@
 
 			<a href="inicio" id="btnHome"> HOME </a> <a href="ver-inmuebles"
 				id="btnInmueble"> INMUEBLES </a> <a href="ver-torneos"
-				id="btnTorneo"> TORNEOS </a> <a href="contacto" id="btnContacto">
-				CONTACTO </a>
-
-			<c:when test="${sessionScope.ROL=='invitado'}">
-
-				<a href="" id="btnHome"> MIS TORNEOS CREADOS </a>
-				<a href="" id="btnHome"> TORNEOS QUE PARTICIPO </a>
-				<a href="" id="btnHome"> MIS INMUEBLES  </a>
+				id="btnTorneo"> TORNEOS </a> 
 				
-			</c:when>
+				<a href="contacto" id="btnContacto"> CONTACTO </a>
+				
+				<a href="ver-perfil-del-usuario?usuarioId=1" id="btnPerfil"> PERFIL </a>
+				
+
 		</nav>
 
 	</header>

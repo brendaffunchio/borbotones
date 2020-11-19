@@ -21,6 +21,7 @@ import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarios;
 
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -30,12 +31,12 @@ public class ControladorTorneo {
 
 	private ServicioTorneo servicioTorneo;
 
-	private ServicioInmueble servicioInmueble;
+	private ServicioUsuarios servicioUsuario;
 
 	@Autowired
-	public ControladorTorneo(ServicioTorneo servicioTorneo, ServicioInmueble servicioInmueble) {
+	public ControladorTorneo(ServicioTorneo servicioTorneo, ServicioUsuarios servicioUsuario) {
 		this.servicioTorneo = servicioTorneo;
-		this.servicioInmueble = servicioInmueble;
+		this.servicioUsuario = servicioUsuario;
 	}
 
 	@RequestMapping(path = "ver-torneos", method = RequestMethod.GET)
@@ -49,14 +50,14 @@ public class ControladorTorneo {
 	}
 
 	@RequestMapping(path = "ver-formulario-torneo", method = RequestMethod.GET)
-	public ModelAndView nuevoTorneo() {
+	public ModelAndView nuevoTorneo(@RequestParam("usuarioId") Long usuarioId, @RequestParam(name = "inmuebleId") Long inmuebleId) {
 
 		Torneo torneo = new Torneo();
 
 		ModelMap modelo = new ModelMap();
-
+	
 		modelo.put("torneo", torneo);
-		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
+		modelo.put("inmuebles", servicioUsuario.mostrarInmueblesAlquilados(usuarioId, inmuebleId));
 
 		return new ModelAndView("organizarTorneos", modelo);
 
@@ -78,13 +79,13 @@ public class ControladorTorneo {
 	}
 
 	@RequestMapping(path = "crear-torneo", method = RequestMethod.POST)
-	public ModelAndView crearTorneo(@RequestParam(name = "file", required = false) MultipartFile foto, Torneo torneo,
-			RedirectAttributes flash) {
+	public ModelAndView crearTorneo(@RequestParam(name = "file", required = false) MultipartFile foto, @RequestParam(name = "creadorId") Long creadorId, 
+			@RequestParam(name = "inmuebleDelTorneo") Long inmuebleId, Torneo torneo, RedirectAttributes flash) {
 
 		guardarFoto(foto);
 		torneo.setFoto(foto.getOriginalFilename());
 		
-		servicioTorneo.guardarTorneo(torneo);
+		servicioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
 		
 		return new ModelAndView ("redirect:/ver-torneos");
 	}
