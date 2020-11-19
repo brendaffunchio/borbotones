@@ -74,7 +74,7 @@
 				<h6>Inscriptos:</h6>
 				<h6>${miTorneoDetalle.inscriptos}</h6>
 				
-					<a class="boton-part" href=""
+					<a class="boton-part" href="ver-lista-de-participantes"
 					role="button"> ELEGIR GANADOR </a>
 				
 			</div>	

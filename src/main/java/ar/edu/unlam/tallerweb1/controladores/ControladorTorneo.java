@@ -161,4 +161,28 @@ public class ControladorTorneo {
 
 		return new ModelAndView("torneosParticipoDetalle", modelo);
 	}
+	
+	@RequestMapping(path = "ver-lista-de-participantes", method = RequestMethod.GET)
+	public ModelAndView verListaDeParticipantesDelTorneo(@RequestParam("torneoId") Long torneoId) {
+		
+		ModelMap modelo = new ModelMap();
+		
+		modelo.put("participantes", servicioTorneo.mostrarParticipantesDelTorneo(torneoId));
+		
+		return new ModelAndView("ganadorDelTorneo", modelo);
+		
+		
+	}
+	
+	@RequestMapping(path = "elegirGanador", method = RequestMethod.GET)
+	public ModelAndView elegirGanador(@RequestParam("ganadorId") Long ganadorId, @RequestParam("torneoGanadoId") Long torneoGanadoId) {
+		
+		ModelMap modelo = new ModelMap();
+		
+		servicioTorneo.elegirGanador(ganadorId, torneoGanadoId);
+		
+		return new ModelAndView("ganadorDelTorneo", modelo);
+		
+		
+	}
 }

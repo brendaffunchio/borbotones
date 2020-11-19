@@ -29,11 +29,26 @@
 
 	</header>
 
+<form:form action="elegirGanador" method="get">
+<div class="col-md-12">
+	<div class="form-group col-md-12"> 
+	<select name="ganadorId">
 
+	<c:forEach items="${participantes}" var="P">
 
+	<option value="${P.id}">${P.nombre}</option>
 
+	</c:forEach>
 
-
+	</select>
+	
+	
+	<input class="btn-btn-danger" type="submit" value= "Elegir Ganador">
+	
+	</div>
+	
+	</div>
+</form:form>
 
 
 

@@ -73,7 +73,8 @@
 				
 				<br>
 				
-				
+				<a class="boton-part" href="ver-lista-de-participantes?torneoId=1"
+					role="button"> Lista de participantes </a>
 				
 				<a class="boton-part" href="participar?torneoId=${torneoDetalle.id}&usuarioId=1"
 					role="button"> PARTICIPAR </a>

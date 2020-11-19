@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
+import java.util.Set;
 
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -20,6 +21,10 @@ public interface ServicioTorneo {
 	void agregarParticipante(Long torneoId, Long usuarioId);
 
 	public void eliminarParticipante(Long torneoId, Long usuarioId);
+
+	public Set<Usuario> mostrarParticipantesDelTorneo(Long torneoId);
+
+	public void elegirGanador(Long ganadorId, Long torneoGanadoId);
 
 	
 

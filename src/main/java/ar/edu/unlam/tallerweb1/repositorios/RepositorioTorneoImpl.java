@@ -140,4 +140,30 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		}
 		
 	}
+
+	@Override
+	public Set<Usuario> mostrarParticipantesDelTorneo(Long torneoId) {
+		
+		final Session session = sessionFactory.getCurrentSession();
+		
+		Torneo torneo = session.get(Torneo.class, torneoId);
+		
+		 Set<Usuario>participantesDelTorneo = torneo.getParticipantes();
+		
+		return participantesDelTorneo;
+	}
+
+	@Override
+	public void elegirGanador(Long ganadorId, Long torneoGanadoId) {
+		final Session session = sessionFactory.getCurrentSession();
+		
+		Usuario usuario = session.get(Usuario.class, ganadorId);
+		Torneo torneo = session.get(Torneo.class, torneoGanadoId);
+		
+		Integer torneosGanados = usuario.getTorGanados();
+		usuario.setTorGanados(torneosGanados++);
+	
+		
+		
+	}
 }

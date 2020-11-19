@@ -2,7 +2,6 @@ create database db;
 
 use db;
 
-/*drop database db;*/
 
 insert into usuario (apellido, email, nombre, password, rol)
 values ("Inmobiliaria Gaming", 

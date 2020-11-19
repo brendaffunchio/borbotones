@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -66,6 +67,18 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	@Override
 	public void eliminarParticipante(Long torneoId, Long usuarioId) {
 		repositorioTorneo.eliminarParticipante(torneoId,usuarioId); 
+		
+	}
+
+	@Override
+	public Set<Usuario> mostrarParticipantesDelTorneo(Long torneoId) {
+		return repositorioTorneo.mostrarParticipantesDelTorneo(torneoId);
+	}
+
+	@Override
+	public void elegirGanador(Long ganadorId, Long torneoGanadoId) {
+		
+		repositorioTorneo.elegirGanador(ganadorId, torneoGanadoId);
 		
 	}
 

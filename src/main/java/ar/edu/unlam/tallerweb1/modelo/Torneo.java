@@ -57,7 +57,7 @@ public class Torneo {
 	@ManyToOne
 	private Usuario ganador;
 
-	@ManyToMany(mappedBy = "torneosParticipa")
+	@ManyToMany(mappedBy = "torneosParticipa", fetch = FetchType.EAGER) 
 	private Set<Usuario> participantes = new TreeSet<Usuario>();
 
 	@ManyToOne
