@@ -51,7 +51,7 @@
 		<div class="organizar-tor">
 			<p class="pp">Para organizar tu propio torneo, hacé clic en el
 				botón:</p>
-			</br> <a class="boton-part" href="ver-formulario-torneo?usuarioId=1&inmuebleId=4" role="button">
+			</br> <a class="boton-part" href="ver-formulario-torneo?usuarioId=1" role="button">
 				ORGANIZAR </a>
 
 

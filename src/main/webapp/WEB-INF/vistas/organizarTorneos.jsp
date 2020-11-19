@@ -72,20 +72,18 @@
 
 				</br>
 				
-				<label class="or" for="inmuebles-disponibles">Inmueble</label>
+				<label class="or" for="inmuebleId">Inmueble</label>
 				<br>
-					
-				<select name="inmuebleDelTorneo">
-				
-				<c:forEach items="${inmuebles}" var="I">
-			
-				<option value="${I.id}">${I.nombre}</option>
-				
-				</select>
-				
-				</c:forEach>
-				
-			   <br>
+							 
+			    <select name="inmuebleId">
+			    
+			    <c:forEach items="${inmuebles}" var="I">
+			    
+			    <option value="${I.id}">${I.nombre}</option>
+			    
+			    </c:forEach>
+			    
+			    </select>
 
 				<label class="or">Cupo</label>
 				<br>

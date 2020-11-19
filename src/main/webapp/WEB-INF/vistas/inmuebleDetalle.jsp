@@ -47,7 +47,7 @@
 		<h5>${detalleInmueble.nombre}</h5>
 		<br>
 
-		<h6>Valor del Inmueble ${detalleInmueble.precio} $</h6>
+		<p>$ ${detalleInmueble.precio}</p>
 		<br>		
 
 		<p>${detalleInmueble.direccion.calle} ${detalleInmueble.direccion.numero}</p>

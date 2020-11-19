@@ -45,7 +45,7 @@
 				
 
 				<label class="or">Provincia</label>
-				
+				<br>
 				<select>
 				
 				<c:forEach items="${provincias}" var="P">
@@ -67,20 +67,14 @@
 				</c:forEach>
 				</select>
 
-				<br>
-				<label class="or">Valor del inmueble</label>
-				</br>
-				<form:input class="f" path="precio" type="number" required="required"/>
-				<br>
-				
-
 				</br>
 				<label class="or">Direccion</label>
 				</br>
 				<input name="calle" class="f"  type="text" placeholder="calle" required/>
 				</br>
 				<input name="numero" class="f" type="number" placeholder="numero" required/>
-				<label for="precio"class="or">Precio</label>
+				<br>
+				<label for="precio"class="or">Valor del inmueble</label>
 				</br>
 				<form:input name="precio" class="f" path="precio" type="number" required="required"/>
 				</br>

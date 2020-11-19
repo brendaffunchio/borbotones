@@ -49,7 +49,7 @@ public class Usuario {
 	private List <Torneo> torneosCreados = new LinkedList <Torneo>();
 
 	
-	@Transient 
+	@OneToMany (fetch = FetchType.EAGER)
 	private List <Inmueble> inmueblesAlquilados = new LinkedList<Inmueble>();
 	
 	@Transient

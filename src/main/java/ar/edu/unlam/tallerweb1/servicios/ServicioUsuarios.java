@@ -11,7 +11,7 @@ public interface ServicioUsuarios {
 	
 	void guardarUsuario(Usuario usuario, Direccion direccion);
 
-	public List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId, Long inmuebleId);
+	public List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId);
 
 
 }

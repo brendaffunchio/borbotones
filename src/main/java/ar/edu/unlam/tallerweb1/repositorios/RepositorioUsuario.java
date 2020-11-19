@@ -13,7 +13,7 @@ public interface RepositorioUsuario {
 
 	void guardarUsuario(Usuario usuario, Direccion direccion);
 
-	List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId, Long inmuebleId);
+	List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId);
 
 
 

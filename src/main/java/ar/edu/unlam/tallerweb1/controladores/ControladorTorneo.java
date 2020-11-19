@@ -50,14 +50,14 @@ public class ControladorTorneo {
 	}
 
 	@RequestMapping(path = "ver-formulario-torneo", method = RequestMethod.GET)
-	public ModelAndView nuevoTorneo(@RequestParam("usuarioId") Long usuarioId, @RequestParam(name = "inmuebleId") Long inmuebleId) {
+	public ModelAndView nuevoTorneo(@RequestParam("usuarioId") Long usuarioId) {
 
 		Torneo torneo = new Torneo();
 
 		ModelMap modelo = new ModelMap();
 	
 		modelo.put("torneo", torneo);
-		modelo.put("inmuebles", servicioUsuario.mostrarInmueblesAlquilados(usuarioId, inmuebleId));
+		modelo.put("inmuebles", servicioUsuario.mostrarInmueblesAlquilados(usuarioId));
 
 		return new ModelAndView("organizarTorneos", modelo);
 
@@ -79,9 +79,11 @@ public class ControladorTorneo {
 	}
 
 	@RequestMapping(path = "crear-torneo", method = RequestMethod.POST)
-	public ModelAndView crearTorneo(@RequestParam(name = "file", required = false) MultipartFile foto, @RequestParam(name = "creadorId") Long creadorId, 
-			@RequestParam(name = "inmuebleDelTorneo") Long inmuebleId, Torneo torneo, RedirectAttributes flash) {
+	public ModelAndView crearTorneo(@RequestParam(name = "file", required = false) MultipartFile foto, 
+			@RequestParam(name = "creadorId") Long creadorId, 
+			Torneo torneo, HttpServletRequest request,RedirectAttributes flash) {
 
+		Long inmuebleId= Long.parseLong(request.getParameter("inmuebleId"));
 		guardarFoto(foto);
 		torneo.setFoto(foto.getOriginalFilename());
 		

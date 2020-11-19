@@ -41,14 +41,17 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		
 		
 		final Session session = sessionFactory.getCurrentSession();
+		
 		Usuario creadorTorneo= session.get(Usuario.class, creadorId);
 		List<Torneo> torneosCreados = creadorTorneo.getTorneosCreados();
 		Inmueble inmueble = session.get(Inmueble.class, inmuebleId);
+		
 		torneo.setEstadoCompleto(false);
 		torneo.setInscriptos(0);
 		torneo.setCreador(creadorTorneo);
 		torneo.setInmuebleDelTorneo(inmueble);
 		torneosCreados.add(torneo);
+		
 		session.save(torneo);
 	
 

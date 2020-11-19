@@ -66,16 +66,16 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 			}
 
 	@Override
-	public List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId, Long inmuebleId) {
+	public List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId) {
 		
 		final Session session = sessionFactory.getCurrentSession();
 		Usuario usuario = session.get(Usuario.class, usuarioId);
-		Inmueble inmueble = session.get(Inmueble.class, inmuebleId);
-		List<Inmueble>inmueblesAlquilados = session.createCriteria(Inmueble.class).add(Restrictions.eq("id", inmuebleId)).add(Restrictions.eq("id", inmueble.getInquilino().getId())).list();
+		//Inmueble inmueble = session.get(Inmueble.class, inmuebleId);
+		//List<Inmueble>inmueblesAlquilados = session.createCriteria(Inmueble.class).add(Restrictions.eq("id", inmuebleId)).add(Restrictions.eq("id", inmueble.getInquilino().getId())).list();
 		
+		List <Inmueble>inmuebles = usuario.getInmueblesAlquilados();
 		
-		
-		return inmueblesAlquilados;
+		return inmuebles;
 				
 		
 	}

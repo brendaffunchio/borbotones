@@ -36,9 +36,9 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
 	}
 
 	@Override
-	public List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId, Long inmuebleId) {
+	public List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId) {
 		
-		return repositorioUsuario.mostrarInmueblesAlquilados(usuarioId, inmuebleId);
+		return repositorioUsuario.mostrarInmueblesAlquilados(usuarioId);
 	}
 
 
