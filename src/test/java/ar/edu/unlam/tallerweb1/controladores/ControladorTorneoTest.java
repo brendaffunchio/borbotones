@@ -71,7 +71,7 @@ public class ControladorTorneoTest{
 	}
 	
 	@Test
-	public void validarQueElFormularioDeCrearTorneoMuestreLosInmueblesAlquilados() {
+	public void validarQueRetorneAlFormularioDeCrearTorneoConListaDeInmueblesAlquilados() {
 		
 		
 		// preparacion
