@@ -56,7 +56,7 @@ public class ControladorTorneoTest{
    	   Long inmuebleIdMock = mock(Long.class);
    	   MultipartFile fotoMock = mock(MultipartFile.class);
    	   HttpServletRequest requestMock=mock(HttpServletRequest.class);
-   	HttpSession sessionMock = mock(HttpSession.class);
+   	   HttpSession sessionMock = mock(HttpSession.class);
    	   RedirectAttributes flashMock = mock(RedirectAttributes.class);
    	   
    	   when(servicioTorneoMock.guardarTorneo(torneoMock, creadorIdMock, inmuebleIdMock)).thenReturn(true);
