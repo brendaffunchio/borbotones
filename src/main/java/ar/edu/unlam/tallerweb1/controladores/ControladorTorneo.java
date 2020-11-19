@@ -180,7 +180,7 @@ public class ControladorTorneo {
 
 		servicioTorneo.elegirGanador(ganadorId, torneoGanadoId);
 		
-		return new ModelAndView("redirect:inicioInvitado");
+		return new ModelAndView("inicioInvitado");
 		
 		
 	}

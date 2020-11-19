@@ -43,7 +43,7 @@
 
 	<div class="contenedorDescripcion">
 
-	ranking de ganadores: <div> 
+	RANKING DE GANADORES: <div> 
 
 	<c:forEach items="${usuarios}" var="U">
 
