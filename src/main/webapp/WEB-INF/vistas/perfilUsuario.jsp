@@ -46,7 +46,7 @@
 					role="button">TORNEOS QUE PARTICIPO </a>
 					<br>
 					<br>
-					<a class="boton-part" href=""
+					<a class="boton-part" href="/proyecto-practica/ver-torneos-que-cree?usuarioId=1"
 					role="button">TORNEOS QUE CREE</a>
 	
 	</div>

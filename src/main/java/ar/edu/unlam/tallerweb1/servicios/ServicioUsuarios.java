@@ -17,5 +17,6 @@ public interface ServicioUsuarios {
 
 	public Set<Torneo> mostrarTorneosQueParticipo(Long usuarioId);
 
+	public List<Torneo> mostrarTorneosQueCree(Long usuarioId);
 
 }

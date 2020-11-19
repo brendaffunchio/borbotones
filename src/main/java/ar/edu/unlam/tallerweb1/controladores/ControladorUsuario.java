@@ -95,6 +95,14 @@ public class ControladorUsuario {
 		return new ModelAndView("misTorneosParticipo", modelo);
 	}
 
+	@RequestMapping(path = "ver-torneos-que-cree", method = RequestMethod.GET)
+	public ModelAndView mostrarTorneosQueCreoElUsuario(@RequestParam("usuarioId") Long usuarioId) {
+
+		ModelMap modelo = new ModelMap();
+		modelo.put("misTorneosCreados", servicioUsuarios.mostrarTorneosQueCree(usuarioId));
+
+		return new ModelAndView("misTorneosCreados", modelo);
+	}
 }	
 	
 

@@ -25,7 +25,7 @@
 
 		<nav class="contenedorNav">
 
-			<a href="inicio" id="btnHome"> HOME </a> <a href="ver-inmuebles"
+			<a href="inicioInvitado" id="btnHome"> HOME </a> <a href="ver-inmuebles"
 				id="btnInmueble"> INMUEBLES </a> <a href="ver-torneos"
 				id="btnTorneo"> TORNEOS </a> 
 				
