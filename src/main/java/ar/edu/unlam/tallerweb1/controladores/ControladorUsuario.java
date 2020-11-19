@@ -77,6 +77,24 @@ public class ControladorUsuario {
 		
 	}
 	
+	@RequestMapping(path = "ver-inmuebles-alquilados", method = RequestMethod.GET)
+	public ModelAndView mostrarMisInmuebles(@RequestParam("usuarioId") Long usuarioId) {
+
+		ModelMap modelo = new ModelMap();
+		modelo.put("misInmueblesAlquilados", servicioUsuarios.mostrarInmueblesAlquilados(usuarioId));
+
+		return new ModelAndView("misInmueblesAlquilados", modelo);
+	}
+
+	@RequestMapping(path = "ver-torneos-que-participo", method = RequestMethod.GET)
+	public ModelAndView mostrarTorneosQueParticipaElUsuario(@RequestParam("usuarioId") Long usuarioId) {
+
+		ModelMap modelo = new ModelMap();
+		modelo.put("misTorneosParticipo", servicioUsuarios.mostrarTorneosQueParticipo(usuarioId));
+
+		return new ModelAndView("misTorneosParticipo", modelo);
+	}
+
 }	
 	
 

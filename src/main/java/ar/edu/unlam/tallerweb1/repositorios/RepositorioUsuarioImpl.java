@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
+import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 
 // implelemtacion del repositorio de usuarios, la anotacion @Repository indica a Spring que esta clase es un componente que debe
@@ -74,6 +76,19 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		List <Inmueble>inmuebles = usuario.getInmueblesAlquilados();
 		
 		return inmuebles;
+				
+		
+	}
+
+	@Override
+	public Set<Torneo> mostrarTorneosQueParticipo(Long usuarioId) {
+		
+		final Session session = sessionFactory.getCurrentSession();
+		Usuario usuario = session.get(Usuario.class, usuarioId);
+		
+		Set <Torneo>torneosQueParticipo = usuario.getTorneosParticipa();
+		
+		return torneosQueParticipo;
 				
 		
 	}

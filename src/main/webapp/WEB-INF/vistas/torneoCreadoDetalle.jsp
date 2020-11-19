@@ -38,47 +38,44 @@
 		<div class="col-4 mr-5">
 		<p>
 			
-			<img src="<c:url value="/torneos/${torneoDetalle.foto}"/>" width="415px" height="350px"/>
+			<img src="<c:url value="/torneos/${miTorneoDetalle.foto}"/>" width="415px" height="350px"/>
 				
 				</p>
 		
 		</div>
 		<div class="col-2 ml-4">
 		<h6>Torneo:</h6>
-				<h6>${torneoDetalle.nombre}</h6>
+				<h6>${miTorneoDetalle.nombre}</h6>
 				<br>
 				<h6>Juego:</h6>
-				<h6>${torneoDetalle.juego}</h6>
+				<h6>${miTorneoDetalle.juego}</h6>
 				<br>
 				<h6>Precio:</h6>
-				<h6>$ ${torneoDetalle.precio}</h6>
+				<h6>$ ${miTorneoDetalle.precio}</h6>
 				<br>
 				<h6>Fecha:</h6>
-				<h6>${torneoDetalle.fecha}</h6>
+				<h6>${miTorneoDetalle.fecha}</h6>
 				<br>
 				<h6>Horario:</h6>
-				<h6>${torneoDetalle.horario}</h6>
+				<h6>${miTorneoDetalle.horario}</h6>
 				<br>
 				</div>
 				
 				<div class="col-2">
 				<h6>Dirección:</h6>
-				<h6>${torneoDetalle.inmuebleDelTorneo.direccion.calle} ${torneoDetalle.inmuebleDelTorneo.direccion.numero}</h6>
+				<h6>${miTorneoDetalle.inmuebleDelTorneo.direccion.calle} ${torneoDetalle.inmuebleDelTorneo.direccion.numero}</h6>
 				<br>
 				<h6>Ciudad:</h6>
-				<h6>${torneoDetalle.inmuebleDelTorneo.direccion.ciudad.nombre}</h6>
+				<h6>${miTorneoDetalle.inmuebleDelTorneo.direccion.ciudad.nombre}</h6>
 				<br>
 				<h6>Provincia:</h6>
-				<h6>${torneoDetalle.inmuebleDelTorneo.direccion.ciudad.provincia.nombre}</h6>
-				
+				<h6>${miTorneoDetalle.inmuebleDelTorneo.direccion.ciudad.provincia.nombre}</h6>
 				<br>
+				<h6>Inscriptos:</h6>
+				<h6>${miTorneoDetalle.inscriptos}</h6>
 				
-				
-				
-				<a class="boton-part" href="participar?torneoId=${torneoDetalle.id}&usuarioId=1"
-					role="button"> PARTICIPAR </a>
-					<br>
-					
+					<a class="boton-part" href=""
+					role="button"> ELEGIR GANADOR </a>
 				
 			</div>	
 				

@@ -57,7 +57,7 @@
 
 	</div>
 	<div class="inmuebles">
-		<c:forEach items="${misInmuebles}" var="IA">
+		<c:forEach items="${misInmueblesAlquilados}" var="IA">
 
 			<div class="inm">
 
@@ -78,7 +78,7 @@
 				</p>
 
 				<br> <a class="boton-alqui"
-					href="/proyecto-practica/ver-inmueble-detalle?id=${IA.id}"
+					href="/proyecto-practica/ver-inmueble-alquilado-detalle?id=${IA.id}"
 					role="button">ver detalles</a> <br>
 
 			</div>
