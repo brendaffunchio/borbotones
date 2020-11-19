@@ -26,6 +26,8 @@ public interface RepositorioTorneo {
 
 	public void elegirGanador(Long ganadorId, Long torneoGanadoId);
 
+	public Integer calcularDistanciaConElUsuario(Long usuarioId, Long torneoId);
+
 	
 
 	

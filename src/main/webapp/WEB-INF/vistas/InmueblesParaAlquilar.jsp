@@ -62,6 +62,7 @@
 		</div>
 
 	</div>
+<<<<<<< HEAD
 	<table class="table table-hover table-dark">
   <thead>
     <tr>
@@ -87,6 +88,42 @@
   
   </c:forEach>
 </table>
+=======
+	<div class="inmuebles">
+		<c:forEach items="${inmuebles}" var="I">
+
+			<div class="inm">
+
+				<p>
+					<img src="<c:url value="/inmuebles/${I.foto}"/>" width="170px"
+						height="150px" />
+				</p>
+
+				<br>
+				<h2 class="nombre-inmueble">${I.nombre}</h2>
+				<br>
+				<p>
+					<span>Precio:</span>$ ${I.precio}
+				</p>
+
+				<br>
+
+				</p>
+
+				<br>
+
+				<p>
+					<span>Direccion:</span> ${I.direccion.calle} ${I.direccion.numero}
+				</p>
+
+				<br> <a class="boton-alqui"
+					href="/proyecto-practica/ver-inmueble-detalle?inmuebleId=${I.id}"
+					role="button">ver detalles</a> <br>
+
+			</div>
+		</c:forEach>
+	</div>
+>>>>>>> 15d795c003172bd81bc5847b6d5ee99ec8fbc5d9
 
 </body>
 </html>

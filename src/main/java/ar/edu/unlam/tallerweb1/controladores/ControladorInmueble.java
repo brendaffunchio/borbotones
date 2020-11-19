@@ -140,10 +140,10 @@ public class ControladorInmueble {
 
 
 	@RequestMapping(path = "ver-inmueble-detalle", method = RequestMethod.GET)
-	public ModelAndView verDetalle(@RequestParam("id") Long id) {
+	public ModelAndView verDetalle(@RequestParam("inmuebleId") Long inmuebleId) {
 
 		
-		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(id);
+		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(inmuebleId);
 
 		ModelMap modelo = new ModelMap();
 
@@ -163,10 +163,10 @@ public class ControladorInmueble {
 	}
 
 	@RequestMapping(path = "ver-inmueble-alquilado-detalle", method = RequestMethod.GET)
-	public ModelAndView verDetalleInmuebleAlquilado(@RequestParam("id") Long id) {
+	public ModelAndView verDetalleInmuebleAlquilado(@RequestParam("inmuebleId") Long inmuebleId) {
 
 		
-		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(id);
+		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(inmuebleId);
 
 		ModelMap modelo = new ModelMap();
 

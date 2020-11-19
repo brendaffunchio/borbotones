@@ -39,22 +39,7 @@
 				</h2>
 				<br>
 			</c:if>
-	<div class="cont-acciones">
 	
-		<div class="buscador">
-			<form:form action="buscar-torneo" method="GET">
-
-				<label class="ors">Buscar torneo deseado</label>
-				</br>
-				<input name="busqueda" class="busc" type="search">
-				<button class="btn-org" type="submit">Buscar</button>
-
-			</form:form>
-			
-		</div>
-
-	</div>
-
 	<div class="torneos">
 		<c:forEach items="${misTorneosParticipo}" var="TP">
 
@@ -78,7 +63,7 @@
 					<span>Precio:</span>$ ${TP.precio}
 				</p>
 				</br> 
-				<a class="boton-part" href="/proyecto-practica/ver-torneos-participo-detalles?id=${TP.id}" role="button">ver
+				<a class="boton-part" href="/proyecto-practica/ver-torneos-participo-detalles?torneoId=${TP.id}" role="button">ver
 					detalles</a> 
 					
 				

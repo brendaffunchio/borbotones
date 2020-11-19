@@ -14,7 +14,7 @@ public interface ServicioInmueble {
 
 	public List<Inmueble> buscarInmueble(String nombreProvincia, String nombreCiudad);
 
-	public Inmueble verDetallesInmueble(Long id);
+	public Inmueble verDetallesInmueble(Long inmuebleId);
 
 	public void agregarInquilino(Long inmuebleId, Long usuarioId);
 

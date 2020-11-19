@@ -42,25 +42,7 @@
 				<br>
 			</c:if>
 
-	<div class="cont-acciones">
-		<div class="buscador">
-
-			<form:form action="buscar-inmueble" method="GET">
-
-				<label class="ors">Buscar inmueble</label>
-				</br>
-				<input name="busqueda" class="busc" type="search">
-				<button class="btn-org" type="submit" id="buscarInmueble">Buscar</button>
-
-
-			</form:form>
-
-
-
-		</div>
-
-
-	</div>
+	
 	<div class="inmuebles">
 		<c:forEach items="${misInmueblesAlquilados}" var="IA">
 
@@ -83,7 +65,7 @@
 				</p>
 
 				<br> <a class="boton-alqui"
-					href="/proyecto-practica/ver-inmueble-alquilado-detalle?id=${IA.id}"
+					href="/proyecto-practica/ver-inmueble-alquilado-detalle?inmuebleId=${IA.id}"
 					role="button">ver detalles</a> <br>
 
 			</div>

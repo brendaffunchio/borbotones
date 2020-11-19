@@ -78,9 +78,9 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 	}
 
 	@Override
-	public Inmueble verDetallesInmueble(Long id) {
+	public Inmueble verDetallesInmueble(Long inmuebleId) {
 
-		return sessionFactory.getCurrentSession().get(Inmueble.class, id);
+		return sessionFactory.getCurrentSession().get(Inmueble.class, inmuebleId);
 
 	}
 
