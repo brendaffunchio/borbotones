@@ -42,35 +42,32 @@
 				<br>
 			</c:if>
 
+	<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Imagen</th>
+      <th scope="col">Inmueble</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Precio</th>
+       <th scope="col">Acciones</th>
+    </tr>
+  </thead>
 	
-	<div class="inmuebles">
 		<c:forEach items="${misInmueblesAlquilados}" var="IA">
 
-			<div class="inm">
-
-				<p>
-					<img src="<c:url value="/inmuebles/${IA.foto}"/>" width="170px"
-						height="150px" />
-				</p>
-
-				<br>
-				<h2 class="nombre-inmueble">${IA.nombre}</h2>
-				<br>
-				<p>
-					<span>Precio:</span>$ ${IA.precio}
-				</p>
-				<br>
-				<p>
-					<span>Direccion:</span> ${IA.direccion.calle} ${IA.direccion.numero}
-				</p>
-
-				<br> <a class="boton-alqui"
-					href="/proyecto-practica/ver-inmueble-alquilado-detalle?inmuebleId=${IA.id}"
-					role="button">ver detalles</a> <br>
-
-			</div>
-		</c:forEach>
-	</div>
-
+		<tbody>
+    <tr>
+      <th scope="row"><img src="<c:url value="/inmuebles/${IA.foto}"/>" width="150px" height="120px"/></th>
+      <td>${IA.nombre}</td>
+      <td>${IA.direccion.calle} ${IA.direccion.numero}</td>
+      <td>$ ${IA.precio}</td>
+      <td><a class="btn btn-outline-warning btn-sm" href="/proyecto-practica/ver-inmueble-detalle?inmuebleId=${IA.id}" role="button">ver
+					detalles</a>  </td>
+    </tr>
+   
+  </tbody>
+  
+  </c:forEach>
+</table>
 </body>
 </html>

@@ -15,5 +15,7 @@ public interface RepositorioInmueble {
 
 	public Inmueble verDetallesInmueble(Long inmuebleId);
 
-	public void agregarInquilino(Long inmuebleId, Long usuarioId);
+	public Inmueble consultarInmueblePorId(Long inmuebleId);
+	
+	public void modificarInmueble(Inmueble inmueble);
 }

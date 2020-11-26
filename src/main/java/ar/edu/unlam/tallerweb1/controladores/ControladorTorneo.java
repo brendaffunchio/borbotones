@@ -91,7 +91,7 @@ public class ControladorTorneo {
 		
 		return new ModelAndView ("redirect:/ver-torneos");
 	}
-
+//cambiar a post
 	@RequestMapping(path = "participar")
 	public ModelAndView agregarParticipante(@RequestParam("torneoId") Long torneoId,
 			@RequestParam("usuarioId") Long usuarioId) {
@@ -117,6 +117,7 @@ public class ControladorTorneo {
 		ModelMap modelo = new ModelMap();
 		String categoria = request.getParameter("busqueda");
 		String juego = request.getParameter("busqueda");
+		
 		modelo.put("torneosBusqueda", servicioTorneo.buscarTorneo(categoria, juego));
 
 		return new ModelAndView("torneosPorBusqueda", modelo);
@@ -155,7 +156,7 @@ public class ControladorTorneo {
 		Torneo torneoParticipoDetalle = servicioTorneo.verDetallesTorneo(torneoId);
 
 		ModelMap modelo = new ModelMap();
-
+		
 		modelo.put("torneoParticipoDetalle", torneoParticipoDetalle);
 
 		return new ModelAndView("torneosParticipoDetalle", modelo);
@@ -167,13 +168,24 @@ public class ControladorTorneo {
 		ModelMap modelo = new ModelMap();
 		
 		modelo.put("participantes", servicioTorneo.mostrarParticipantesDelTorneo(torneoId));
+	   
+		return new ModelAndView("participantes", modelo);
+		
+		
+	}
+	@RequestMapping(path = "ver-lista-de-participantes-para-elegir-ganador",
+			method = RequestMethod.GET)
+	public ModelAndView verListaDeParticipantesDelTorneoParaElegirGanador(@RequestParam("torneoId") Long torneoId) {
+		
+		ModelMap modelo = new ModelMap();
+		
+		modelo.put("participantes", servicioTorneo.mostrarParticipantesDelTorneo(torneoId));
 	    modelo.put("torneoId", torneoId);
 	
 		return new ModelAndView("ganadorDelTorneo", modelo);
 		
 		
 	}
-	
 	@RequestMapping(path = "elegirGanador", method = RequestMethod.GET)
 	public ModelAndView elegirGanador(@RequestParam("ganadorId") Long ganadorId, @RequestParam("torneoGanadoId") Long torneoGanadoId) {
 		

@@ -111,7 +111,21 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		final Session session = sessionFactory.getCurrentSession();
 		
 		
-		return session.createCriteria(Usuario.class).add(Restrictions.gt("torGanados", 2)).addOrder(Order.asc("torGanados")).list();
+		return session.createCriteria(Usuario.class).addOrder(Order.asc("torGanados")).list();
+	}
+
+	@Override
+	public Usuario consultarUsuarioPorId(Long usuarioId) {
+		final Session session = sessionFactory.getCurrentSession();
+		Usuario usuario = session.get(Usuario.class, usuarioId);
+		return usuario;
+	}
+
+	@Override
+	public void modificarUsuario(Usuario usuario) {
+		final Session session = sessionFactory.getCurrentSession();
+		
+		session.update(usuario);
 	}
 
 	

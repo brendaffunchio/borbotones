@@ -44,6 +44,7 @@ public class Torneo {
 	private String categoria;
 	private String foto;
 	private Integer cupo;
+	private Double distanciaConUsuario;
 
 	@Column(nullable = false)
 	private Integer inscriptos;
@@ -63,6 +64,21 @@ public class Torneo {
 	@ManyToOne
 	private Inmueble inmuebleDelTorneo;
 
+	
+	public void agregarParticipante(Usuario participante) {
+				
+		this.participantes.add(participante);
+		this.inscriptos++;
+				
+	}
+	
+	public void eliminarParticipante(Usuario participante) {
+		if (this.participantes.contains(participante)) {
+			this.participantes.remove(participante);
+			this.inscriptos--;
+		}
+	}
+	
 	public Inmueble getInmuebleDelTorneo() {
 		return inmuebleDelTorneo;
 	}
@@ -118,6 +134,14 @@ public class Torneo {
 
 	public void setPrecio(Double precio) {
 		this.precio = precio;
+	}
+
+	public Double getDistanciaConUsuario() {
+		return distanciaConUsuario;
+	}
+
+	public void setDistanciaConUsuario(Double distancia) {
+		this.distanciaConUsuario = distancia;
 	}
 
 	public String getNombre() {

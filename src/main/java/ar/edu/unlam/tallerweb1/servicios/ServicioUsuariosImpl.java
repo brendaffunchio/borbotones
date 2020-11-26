@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -57,8 +58,15 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
 
 	@Override
 	public List<Usuario> usuariosMasGanadores() {
+		List <Usuario> ganadores = new LinkedList<>();
 		
-		return repositorioUsuario.usuariosMasGanadores();
+		for (int i = 0; i < 6; i++) {
+			
+		ganadores=repositorioUsuario.usuariosMasGanadores();
+			
+		}
+		
+		return ganadores;
 	}
 
 	

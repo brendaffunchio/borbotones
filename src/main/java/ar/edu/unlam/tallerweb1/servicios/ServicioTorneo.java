@@ -12,7 +12,7 @@ public interface ServicioTorneo {
 	
 	public List<Torneo> mostrarTorneos();
 
-	public Boolean guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId);
+	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId);
 
 	public List <Torneo> buscarTorneo(String categoria, String juego);
 
@@ -26,6 +26,6 @@ public interface ServicioTorneo {
 
 	public void elegirGanador(Long ganadorId, Long torneoGanadoId);
 
-	public Integer calcularDistanciaConElUsuario(Long usuarioId, Long torneoId);
+	public Double calcularDistanciaConElUsuario(Long usuarioId, Long torneoId);
 
 }

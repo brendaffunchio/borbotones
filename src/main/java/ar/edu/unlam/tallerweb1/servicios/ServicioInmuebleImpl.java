@@ -9,18 +9,23 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioInmueble;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 
 @Service
 @Transactional
 public class ServicioInmuebleImpl implements ServicioInmueble {
 
 	private RepositorioInmueble repositorioInmueble;
+	private RepositorioUsuario repositorioUsuario;
 
 	@Autowired
-	public ServicioInmuebleImpl(RepositorioInmueble repositorioInmueble) {
+	public ServicioInmuebleImpl(RepositorioInmueble repositorioInmueble,
+			RepositorioUsuario repositorioUsuario) {
 
 		this.repositorioInmueble = repositorioInmueble;
+		this.repositorioUsuario = repositorioUsuario;
 	}
 
 	@Override
@@ -55,7 +60,18 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 	@Override
 	public void agregarInquilino(Long inmuebleId, Long usuarioId) {
 		
-		repositorioInmueble.agregarInquilino(inmuebleId,usuarioId);
+		Inmueble inmueble=repositorioInmueble.consultarInmueblePorId(inmuebleId);
+		Usuario inquilino = repositorioUsuario.consultarUsuarioPorId(usuarioId);
+		
+		if (!inmueble.equals(null)&&!inquilino.equals(null)
+				&&inmueble.getDisponible().equals(true)){
+			inmueble.setInquilino(inquilino);
+			inmueble.setDisponible(false);
+			repositorioInmueble.modificarInmueble(inmueble);
+			
+			
+		}
+		
 		
 	}
 

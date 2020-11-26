@@ -54,12 +54,18 @@ public class ControladorLogin {
 		if (usuarioBuscado != null) {
 			request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
 			request.getSession().setAttribute("usuarioId", usuarioBuscado.getId());
-			return new ModelAndView("redirect:/inicio");
+			return new ModelAndView("redirect:/inicioInvitado");
 		} else {
 			// si el usuario no existe agrega un mensaje de error en el modelo.
 			model.put("error", "Usuario o clave incorrecta");
 		}
 		
+		/*if(usuarioBuscado.getRol().equals("invitado")){
+			return new ModelAndView ("redirect:/inicioInvitado");
+		}else if(usuarioBuscado.getRol().equals("admin")) {
+			return new ModelAndView ("redirect:/inicio");
+		}
+			*/
 		return new ModelAndView("login", model);
 	}
 

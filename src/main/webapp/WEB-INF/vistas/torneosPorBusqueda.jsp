@@ -57,60 +57,33 @@
 		</div>
 	</div>
 		
-		
+		<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Imagen</th>
+      <th scope="col">Torneo</th>
+      <th scope="col">Juego</th>
+      <th scope="col">Precio</th>
+       <th scope="col">Acciones</th>
+    </tr>
+  </thead>
 		
 	
-	<div class="torneos">
 		<c:forEach items="${torneosBusqueda}" var="TB">
-
-			<div class="tor">
-			
-			<p>
-			
-			<img src="<c:url value="/torneos/${TB.foto}"/>" width="170px" height="150px"/>
-				
-
-				</p>
-			
-				<h2 class="nombre-tor">${TB.nombre}</h2>
-				</br>
-				<p>
-					<span>Juego:</span> ${TB.juego}
-				</p>
-				</br>
-				<p>
-					<span>Precio:</span> ${TB.precio}
-				</p>
-				</br>
-					<p>
-					<span>Direccion:</span> ${I.direccion.calle} ${I.direccion.numero}
-
-				</p>
-				</br>
-				<p>
-					<span>Ciudad:</span> ${I.direccion.ciudad.nombre} 
-				</p>
-				</br>
-				<p>
-					<span>Provincia:</span> ${I.direccion.ciudad.provincia.nombre} 
-				</p>
-				</br>
-			
-				</br>
-				
-			<a class="boton-part" href="/proyecto-practica/ver-torneo-detalles?torneoId=${TB.id}&usuarioId=1" role="button">ver
-					detalles</a> 
-					
-					
-					
-			</div>
-
-		</c:forEach>
-
-
-	</div>
-
-
+<tbody>
+    <tr>
+      <th scope="row"><img src="<c:url value="/torneos/${TB.foto}"/>" width="150px" height="120px"/></th>
+      <td>${TB.nombre}</td>
+      <td>${TB.juego}</td>
+      <td>$ ${TB.precio}</td>
+      <td><a class="btn btn-outline-success btn-sm"  href="/proyecto-practica/ver-torneo-detalles?torneoId=${TB.id}&usuarioId=3" role="button">ver
+					detalles</a>  </td>
+    </tr>
+   
+  </tbody>
+  
+  </c:forEach>
+</table>
 
 </body>
 </html>

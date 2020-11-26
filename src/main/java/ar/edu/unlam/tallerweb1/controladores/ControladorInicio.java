@@ -26,13 +26,16 @@ public class ControladorInicio {
 	
 
 	@RequestMapping(path = "inmueble", method = RequestMethod.GET)
-	public ModelAndView irAi() {
+	public ModelAndView irADetalle() {
 		return new ModelAndView("inmuebleDetalle");
 
 
 	}
 	
 
-	
+	@RequestMapping(path="inicioInvitado")
+	public ModelAndView irAInicioInvitado() {
+		return new ModelAndView("inicioInvitado");
+	}
 
 }

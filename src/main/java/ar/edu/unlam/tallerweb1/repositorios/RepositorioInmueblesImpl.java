@@ -84,20 +84,22 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 
 	}
 
+	
+
 	@Override
-	public void agregarInquilino(Long inmuebleId, Long usuarioId) {
-		
+	public Inmueble consultarInmueblePorId(Long inmuebleId) {
 		final Session session = sessionFactory.getCurrentSession();
 
 		Inmueble inmueble = session.get(Inmueble.class, inmuebleId);
-		Usuario inquilino = session.get(Usuario.class, usuarioId);
 		
+		return inmueble;
+	}
 
-		if(inmueble.getDisponible().equals(true)) {
-			inmueble.setInquilino(inquilino);
-			inmueble.setDisponible(false);
-		}
+	@Override
+	public void modificarInmueble(Inmueble inmueble) {
+		final Session session = sessionFactory.getCurrentSession();
 		
+		session.update(inmueble);
 	}
 	
 	

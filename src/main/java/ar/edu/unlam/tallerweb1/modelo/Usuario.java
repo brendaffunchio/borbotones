@@ -55,7 +55,19 @@ public class Usuario {
 	private Set <Torneo> torneosParticipa = new TreeSet<Torneo>();
 	
 	
+	public void participarEnTorneo(Torneo torneo) {
 		
+		this.torneosParticipa.add(torneo);
+	}
+	
+	public void desuscribirseDeTorneo(Torneo torneo) {
+		if (this.torneosParticipa.contains(torneo)) {
+			
+			this.torneosParticipa.remove(torneo);
+		}
+		
+	}
+	
 	public Set<Torneo> getTorneosParticipa() {
 		return torneosParticipa;
 	}

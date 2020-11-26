@@ -2,17 +2,6 @@ create database db;
 
 use db;
 
-<<<<<<< HEAD
-insert into usuario (apellido, email, nombre, password, rol,torGanados)
-values ("Inmobiliaria Gaming", 
-"gamehouse@borbotones.com",
-"Los Borbotones",
-"borbotones",
-"admin",
-0);
-
-=======
->>>>>>> 15d795c003172bd81bc5847b6d5ee99ec8fbc5d9
 insert into provincia (nombre) 
 values ("Buenos Aires"),
 ("Catamarca"),
@@ -64,7 +53,7 @@ values ("Inmobiliaria Gaming",
 "admin",
 0, 9);
 
- select*from inmueble;
+select*from inmueble;
 select*from torneo;
 select*from usuario;
 select*from participa;

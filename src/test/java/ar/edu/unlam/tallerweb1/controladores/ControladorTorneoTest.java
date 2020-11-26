@@ -60,21 +60,21 @@ public class ControladorTorneoTest{
    	   HttpSession sessionMock = mock(HttpSession.class);
    	   RedirectAttributes flashMock = mock(RedirectAttributes.class);
    	   
-   	   when(servicioTorneoMock.guardarTorneo(torneoMock, creadorIdMock, inmuebleIdMock)).thenReturn(true);
+   	  // when(servicioTorneoMock.guardarTorneo(torneoMock, creadorIdMock, inmuebleIdMock)).thenReturn(true);
    	   
    	   ModelAndView mav = controladorTorneo.crearTorneo(fotoMock, creadorIdMock, torneoMock, requestMock, flashMock);
  
-   	   
+   	   verify(servicioTorneoMock).guardarTorneo(torneoMock, creadorIdMock, inmuebleIdMock);
    	   assertThat(mav.getView()).isEqualTo("redirect:/ver-torneos");
 	
    	   verify(sessionMock, times(1)).setAttribute("inscriptos",0);
+   	   
 	}
 	
 	@Test
 	public void validarQueRetorneAlFormularioDeCrearTorneoConListaDeInmueblesAlquilados() {
 		
 		
-		// preparacion
 		 ServicioTorneo servicioTorneoMock = mock(ServicioTorneo.class);
 	   	   ServicioUsuarios servicioUsuariosMock = mock(ServicioUsuarios.class);
 	       ControladorTorneo controladorTorneo = new ControladorTorneo (servicioTorneoMock, servicioUsuariosMock);
@@ -84,12 +84,16 @@ public class ControladorTorneoTest{
 	       List<Inmueble> listaInmuebleMock = mock(List.class);
 	       
 	       when(servicioUsuariosMock.mostrarInmueblesAlquilados(usuarioId)).thenReturn(listaInmuebleMock);
-	       
-	    // ejecucion
+	     
 			ModelAndView mav = controladorTorneo.nuevoTorneo(usuarioId);
 			
-			// validacion
+			
+			verify(servicioUsuariosMock).mostrarInmueblesAlquilados(usuarioId);
+		
+			
 			assertThat(mav.getViewName()).isEqualTo("organizarTorneos");
+			
+			
 		
 	}
 }

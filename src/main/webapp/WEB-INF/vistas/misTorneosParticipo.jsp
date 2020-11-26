@@ -40,40 +40,33 @@
 				<br>
 			</c:if>
 	
-	<div class="torneos">
+			<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Imagen</th>
+      <th scope="col">Torneo</th>
+      <th scope="col">Juego</th>
+      <th scope="col">Precio</th>
+       <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+		
 		<c:forEach items="${misTorneosParticipo}" var="TP">
 
-			<div class="tor">
-			
-			<p>
-			
-				<img src="<c:url value="/torneos/${TP.foto}"/>" width="170px" height="150px"/>
-				
-
-				</p>
-						
-				<h2 class="nombre-tor">${TP.nombre}</h2>
-				</br>
-				<p>
-					<span>Juego:</span> ${TP.juego}
-				</p>
-				
-				</br>
-				<p>
-					<span>Precio:</span>$ ${TP.precio}
-				</p>
-				</br> 
-				<a class="boton-part" href="/proyecto-practica/ver-torneos-participo-detalles?torneoId=${TP.id}" role="button">ver
-					detalles</a> 
-					
-				
-			</div>
-
-		</c:forEach>
-
-
-	</div>
-
+			<tbody>
+    <tr>
+      <th scope="row"><img src="<c:url value="/torneos/${TP.foto}"/>" width="150px" height="120px"/></th>
+      <td>${TP.nombre}</td>
+      <td>${TP.juego}</td>
+      <td>$ ${TP.precio}</td>
+      <td><a class="btn btn-outline-success btn-sm"  href="/proyecto-practica/ver-torneo-detalles?torneoId=${TP.id}&usuarioId=3" role="button">ver
+					detalles</a>  </td>
+    </tr>
+   
+  </tbody>
+  
+  </c:forEach>
+</table>
 
 
 </body>

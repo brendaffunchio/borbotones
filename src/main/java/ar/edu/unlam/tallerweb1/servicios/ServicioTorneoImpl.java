@@ -7,38 +7,39 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import ar.edu.unlam.tallerweb1.modelo.Direccion;
+import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTorneo;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 
 @Service
 @Transactional
 public class ServicioTorneoImpl implements ServicioTorneo {
 
 	public RepositorioTorneo repositorioTorneo;
+	public RepositorioUsuario repositorioUsuario;
 
 	@Autowired
-	public ServicioTorneoImpl(RepositorioTorneo repositorioTorneo) {
+	public ServicioTorneoImpl(RepositorioTorneo repositorioTorneo,RepositorioUsuario repositorioUsuario) {
 
 		this.repositorioTorneo = repositorioTorneo;
+		this.repositorioUsuario = repositorioUsuario;
 	}
 
 	@Override
 	public List<Torneo> mostrarTorneos() {
-       /* Torneo torneo= repositorioTorneo.verTorneo();
-        List <Torneo> torneos= repositorioTorneo.torneos();
-          
-      if (torneo.getCupo()>=torneo.getInscriptos());
-        	  
-        	  return torneos;*/
+       
 		return repositorioTorneo.torneos();
           
 	}
 
 	@Override
-	public Boolean guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) {
+	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) {
 
-		return repositorioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
+		repositorioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
 
 		
 	}
@@ -61,12 +62,41 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	@Override
 	public void agregarParticipante(Long torneoId, Long usuarioId) {
 
-		repositorioTorneo.agregarParticipante(torneoId, usuarioId);
+		Torneo torneo = repositorioTorneo.consultarTorneoPorId(torneoId);
+		Usuario participante = repositorioUsuario.consultarUsuarioPorId(usuarioId);
+		
+		if (!torneo.equals(null)&&!participante.equals(null)
+				&& torneo.getCupo() > torneo.getInscriptos()) {
+			torneo.agregarParticipante(participante);
+			participante.participarEnTorneo(torneo);
+			repositorioTorneo.modificarTorneo(torneo);
+			repositorioUsuario.modificarUsuario(participante);
+			
+		}else if (torneo.getInscriptos() >= torneo.getCupo()) {
+			torneo.setEstadoCompleto(true);
+			repositorioTorneo.modificarTorneo(torneo);
+
+			
+		}
+		
 	}
 
 	@Override
 	public void eliminarParticipante(Long torneoId, Long usuarioId) {
-		repositorioTorneo.eliminarParticipante(torneoId,usuarioId); 
+		Torneo torneo = repositorioTorneo.consultarTorneoPorId(torneoId);
+		Usuario participante = repositorioUsuario.consultarUsuarioPorId(usuarioId);
+		
+		if (!torneo.equals(null)&&!participante.equals(null)){
+			torneo.eliminarParticipante(participante);
+			participante.desuscribirseDeTorneo(torneo);
+			repositorioTorneo.modificarTorneo(torneo);;
+			repositorioUsuario.modificarUsuario(participante);
+		}
+		if (torneo.getInscriptos() < torneo.getCupo()) {
+			torneo.setEstadoCompleto(false);
+			repositorioTorneo.modificarTorneo(torneo);
+
+		}
 		
 	}
 
@@ -77,16 +107,47 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 
 	@Override
 	public void elegirGanador(Long ganadorId, Long torneoGanadoId) {
-		
-		repositorioTorneo.elegirGanador(ganadorId, torneoGanadoId);
+		Torneo torneo = repositorioTorneo.consultarTorneoPorId(torneoGanadoId);
+		Usuario ganador = repositorioUsuario.consultarUsuarioPorId(ganadorId);
+		Integer torGanados= ganador.getTorGanados();
+		if (!torneo.equals(null)&&!ganador.equals(null)){
+		torGanados++;
+		ganador.setTorGanados(torGanados);
+		torneo.setGanador(ganador);
+		repositorioTorneo.modificarTorneo(torneo);
+		repositorioUsuario.modificarUsuario(ganador);
+	
+		}
 		
 	}
 
 	
 	@Override
-	public Integer calcularDistanciaConElUsuario(Long usuarioId, Long torneoId) {
+	public Double calcularDistanciaConElUsuario(Long usuarioId, Long torneoId) {
+		Torneo torneo = repositorioTorneo.consultarTorneoPorId(torneoId);
+		Usuario usuario = repositorioUsuario.consultarUsuarioPorId(usuarioId);
+		Direccion direccionUsuario = usuario.getDireccion();
+		Inmueble inmueble=torneo.getInmuebleDelTorneo();
+		Direccion direccionTorneo = inmueble.getDireccion();
 		
-		return repositorioTorneo.calcularDistanciaConElUsuario(usuarioId, torneoId);
+		Double distancia = torneo.getDistanciaConUsuario();
+		
+		
+	    distancia= -1*(6371*Math.asin(Math.cos(direccionUsuario.getLatitud())
+	    		*Math.cos(direccionTorneo.getLatitud())+Math.sin(direccionUsuario.getLatitud())
+	    		*Math.sin(direccionTorneo.getLatitud())
+	    		-Math.cos(direccionUsuario.getLongitud()-direccionTorneo.getLongitud())));
+	    
+	    torneo.setDistanciaConUsuario(distancia);
+	    repositorioTorneo.modificarTorneo(torneo);
+	    
+	    return distancia;
+		
+		/*=6371*ACOS(COS(RADIANES(90-A6))*COS(RADIANES(90-C6))+SENO(RADIANES(90-
+				A6))*SENO(RADIANES(90-C6))*COS(RADIANES(B6-D6)))
+			*/
+		
 	}
+	
 
 }

@@ -31,14 +31,14 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 
 		final Session session = sessionFactory.getCurrentSession();
 
-		return session.createCriteria(Torneo.class).add(Restrictions.eq("estadoCompleto", false))
-
+		return session.createCriteria(Torneo.class)
+				.add(Restrictions.eq("estadoCompleto", false))
 				.list();
 
 	}
 
 	@Override
-	public Boolean guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) {
+	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) {
 		
 		
 		final Session session = sessionFactory.getCurrentSession();
@@ -52,9 +52,8 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		torneo.setInmuebleDelTorneo(inmueble);
 				
 		session.save(torneo);
-		Boolean guardado= true;
 		
-		return guardado;
+		
 	
 
 	}
@@ -88,57 +87,8 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		return sessionFactory.getCurrentSession().get(Torneo.class, id);
 	}
 
-	@Override
-	public void agregarParticipante(Long torneoId, Long usuarioId) {
-		final Session session = sessionFactory.getCurrentSession();
 	
-		Torneo torneo = session.get(Torneo.class, torneoId);
-		Usuario participante = session.get(Usuario.class, usuarioId);
-		
-		Set<Torneo> torneosParticipa = participante.getTorneosParticipa();
-		Set<Usuario> participantes = torneo.getParticipantes();
-
-		Integer inscriptos = torneo.getInscriptos();
-
-		if (!participantes.contains(participante)
-				&&torneo.getCupo() > torneo.getInscriptos()) {
-			participantes.add(participante);
-			torneosParticipa.add(torneo);
-			inscriptos++;
-			torneo.setInscriptos(inscriptos);
-			
-
-		}
-
-		
-		if (torneo.getInscriptos() >= torneo.getCupo()) {
-			torneo.setEstadoCompleto(true);
-
-		}
-
-	}
 	
-	@Override
-	public void eliminarParticipante(Long torneoId, Long usuarioId) {
-		final Session session = sessionFactory.getCurrentSession();
-
-		Torneo torneo = session.get(Torneo.class, torneoId);
-		Usuario participante = session.get(Usuario.class, usuarioId);
-
-		Set<Torneo> torneosParticipa = participante.getTorneosParticipa();
-		Set<Usuario> participantes = torneo.getParticipantes();
-
-		Integer inscriptos = torneo.getInscriptos();
-
-		if (participantes.contains(participante) && torneosParticipa.contains(torneo)) {
-			participantes.remove(participante);
-			torneosParticipa.remove(torneo);
-			inscriptos--;
-			torneo.setInscriptos(inscriptos);
-
-		}
-		
-	}
 
 	@Override
 	public Set<Usuario> mostrarParticipantesDelTorneo(Long torneoId) {
@@ -152,46 +102,24 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		return participantesDelTorneo;
 	}
 
+
 	@Override
-	public void elegirGanador(Long ganadorId, Long torneoGanadoId) {
+	public void modificarTorneo(Torneo torneo) {
 		final Session session = sessionFactory.getCurrentSession();
-		
-		Usuario ganador = session.get(Usuario.class, ganadorId);
-		Torneo torneo = session.get(Torneo.class, torneoGanadoId);
-		Integer torGanados= ganador.getTorGanados();
-		torGanados++;
-		ganador.setTorGanados(torGanados);
-		torneo.setGanador(ganador);
-	
-		
+		session.update(torneo);
 		
 	}
 
-	
 	@Override
-	public Integer calcularDistanciaConElUsuario(Long usuarioId, Long torneoId) {
+	public Torneo consultarTorneoPorId(Long torneoId) {
 		final Session session = sessionFactory.getCurrentSession();
-	Torneo torneo=session.get(Torneo.class,torneoId);
-	Usuario usuario= session.get(Usuario.class, usuarioId);
-	Direccion direccionUsuario = usuario.getDireccion();
-	Inmueble inmueble=torneo.getInmuebleDelTorneo();
-	Direccion direccionTorneo = inmueble.getDireccion();
-	
-	Integer distancia=0;
-	
-	
-    distancia= -1*(int) (6371*Math.asin(Math.cos(direccionUsuario.getLatitud())
-    		*Math.cos(direccionTorneo.getLatitud())+Math.sin(direccionUsuario.getLatitud())
-    		*Math.sin(direccionTorneo.getLatitud())
-    		-Math.cos(direccionUsuario.getLongitud()-direccionTorneo.getLongitud())));
-	
-    return distancia;
-	
+		
+		Torneo torneo= session.get(Torneo.class, torneoId);
+		
+		return torneo;
 	}
 	
-	/*=6371*ACOS(COS(RADIANES(90-A6))*COS(RADIANES(90-C6))+SENO(RADIANES(90-
-			A6))*SENO(RADIANES(90-C6))*COS(RADIANES(B6-D6)))
-		*/
+	
 	
 	
 }

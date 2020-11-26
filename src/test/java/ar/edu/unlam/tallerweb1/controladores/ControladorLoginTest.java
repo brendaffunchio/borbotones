@@ -31,7 +31,7 @@ public class ControladorLoginTest {
 		ControladorLogin controladorLogin = new ControladorLogin(servicioLoginMock);
 
 		when(servicioLoginMock.consultarUsuario(usuarioMock)).thenReturn(null);
-		when(usuarioBuscadoMock.getRol()).thenReturn("ADMIN");
+		when(usuarioBuscadoMock.getRol()).thenReturn("admin");
 
 		// ejecucion
 		ModelAndView mav = controladorLogin.validarLogin(usuarioMock, requestMock);
@@ -40,12 +40,12 @@ public class ControladorLoginTest {
 		assertThat(mav.getViewName()).isEqualTo("login");
 		assertThat(mav.getModel().get("error")).isEqualTo("Usuario o clave incorrecta");
 		// espia
-		verify(sessionMock, times(0)).setAttribute("ROL", "ADMIN");
+		verify(sessionMock, times(0)).setAttribute("rol", "admin");
 
 	}
 
 	@Test
-	public void loginConUsuarioYPasswordCorrectosDeberiaLlevarAlHome() {
+	public void loginConUsuarioYPasswordCorrectosDeberiaLlevarAlIinicio() {
 
 		// preparacion
 		ServicioLogin servicioLoginMock = mock(ServicioLogin.class);
@@ -59,16 +59,18 @@ public class ControladorLoginTest {
 		ControladorLogin controladorLogin = new ControladorLogin(servicioLoginMock);
 
 		when(requestMock.getSession()).thenReturn(sessionMock);
-		when(usuarioMock.getRol()).thenReturn("ADMIN");
+		when(usuarioMock.getRol()).thenReturn("invitado");
 		when(servicioLoginMock.consultarUsuario(usuarioMock)).thenReturn(usuarioMock);
 
 		// ejecucion
 		ModelAndView mav = controladorLogin.validarLogin(usuarioMock, requestMock);
 
 		// validacion
-		assertThat(mav.getViewName()).isEqualTo("redirect:/inicio");
+		assertThat(mav.getViewName()).isEqualTo("redirect:/inicioInvitado");
 		// espía
-		verify(sessionMock, times(1)).setAttribute("ROL", "ADMIN");
+		verify(sessionMock, times(1)).setAttribute("rol", "invitado");
 
 	}
+	
+	
 }

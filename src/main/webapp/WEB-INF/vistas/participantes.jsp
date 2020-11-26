@@ -28,10 +28,16 @@
 
 
 	</header>
+<div class="col-md-12 text-center">
+
+	<div class="form-group col-md-12 text-center">
+	
+	<c:forEach items="${participantes}" var="P">
+
+	<p>${P.nombre}</p>
 
 
-
-
+	</c:forEach>
 
 
 

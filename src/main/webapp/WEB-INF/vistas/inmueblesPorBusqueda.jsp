@@ -71,35 +71,36 @@
 		</div>
 	</div>
 
-
-	<div class="inmuebles">
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Imagen</th>
+      <th scope="col">Inmueble</th>
+      <th scope="col">Dirección</th>
+      <th scope="col">Precio</th>
+       <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+	
+   
 		<c:forEach items="${inmueblesBusqueda}" var="IB">
 
-			<div class="inm">
+		<tbody>
+    <tr>
+      <th scope="row"><img src="<c:url value="/inmuebles/${IB.foto}"/>" width="150px" height="120px"/></th>
+      <td>${IB.nombre}</td>
+      <td>${IB.direccion.calle} ${I.direccion.numero}</td>
+      <td>$ ${IB.precio}</td>
+      <td><a class="btn btn-outline-warning btn-sm" href="/proyecto-practica/ver-inmueble-detalle?inmuebleId=${IB.id}" role="button">ver
+					detalles</a>  </td>
+    </tr>
+   
+  </tbody>
+  
+  </c:forEach>
+</table>
 
-				<p>
-					<img src="<c:url value="/inmuebles/${IB.foto}"/>" width="170px"
-						height="150px" />
-				</p>
+	
 
-				<br>
-				<h2 class="nombre-inmueble">${IB.nombre}</h2>
-				<br>
-				<p>
-					<span>Precio:</span>$ ${IB.precio}
-				</p>
-				<br>
-				<p>
-					<span>Direccion:</span> ${IB.direccion.calle} ${I.direccion.numero}
-				</p>
-
-				<br> <a class="boton-alqui"
-					href="/proyecto-practica/ver-inmueble-detalle?inmuebleId=${IB.id}"
-					role="button">ver detalles</a> <br>
-
-
-			</div>
-		</c:forEach>
-	</div>
 </body>
 </html>

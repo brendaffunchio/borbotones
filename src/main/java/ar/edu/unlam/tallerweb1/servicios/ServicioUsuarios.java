@@ -19,6 +19,6 @@ public interface ServicioUsuarios {
 
 	public List<Torneo> mostrarTorneosQueCree(Long usuarioId);
 
-	List <Usuario> usuariosMasGanadores();
+	public List <Usuario> usuariosMasGanadores();
 
 }

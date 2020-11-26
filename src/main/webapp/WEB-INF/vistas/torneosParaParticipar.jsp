@@ -39,7 +39,7 @@
 		<div class="buscador">
 			<form:form action="buscar-torneo" method="GET">
 
-				<label class="ors">Buscar torneo deseado</label>
+				<label class="ors">Buscar torneo</label>
 				</br>
 				<input name="busqueda" class="busc" type="search">
 				<button class="btn btn-outline-success" type="submit">Buscar</button>
@@ -74,7 +74,7 @@
       <td>${T.nombre}</td>
       <td>${T.juego}</td>
       <td>$ ${T.precio}</td>
-      <td><a class="btn btn-outline-success btn-sm"  href="/proyecto-practica/ver-torneo-detalles?id=${T.id}" role="button">ver
+      <td><a class="btn btn-outline-success btn-sm"  href="/proyecto-practica/ver-torneo-detalles?torneoId=${T.id}&usuarioId=3" role="button">ver
 					detalles</a>  </td>
     </tr>
    
