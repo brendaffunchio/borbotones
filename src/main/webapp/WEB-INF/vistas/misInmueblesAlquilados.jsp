@@ -63,7 +63,7 @@
       <td>${IA.nombre}</td>
       <td>${IA.direccion.calle} ${IA.direccion.numero}</td>
       <td>$ ${IA.precio}</td>
-      <td><a class="btn btn-outline-warning btn-sm" href="/proyecto-practica/ver-inmueble-detalle?inmuebleId=${IA.id}" role="button">ver
+      <td><a class="btn btn-outline-warning btn-sm" href="/proyecto-practica/ver-inmueble-alquilado-detalle?inmuebleId=${IA.id}" role="button">ver
 					detalles</a>  </td>
     </tr>
    

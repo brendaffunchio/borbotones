@@ -73,9 +73,13 @@
 				
 				<br>
 			
-					<br>
-					<a class="boton-part" href="desubscribirse?torneoId=${torneoParticipoDetalle.id}&usuarioId=1"
-					role="button"> DESUSCRIBIRSE </a>
+			<form:form action="desubscribirse" method="POST">
+			
+			<input type="hidden" name="torneoId" value="${torneoParticipoDetalle.id}">
+			<input type="hidden" name="usuarioId" value ="1">
+			
+			<button type="submit">DESUSCRIBIRSE</button>
+			</form:form>
 					
 			</div>	
 				

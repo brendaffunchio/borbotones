@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
 <link rel="stylesheet" href="css/sheetslider.min.css" />
 <link rel="stylesheet" href="css/estilo-inicio.css" />
@@ -40,22 +41,33 @@
 
 	</header>
 
-
-	<div class="contenedorDescripcion">
-
-	RANKING DE GANADORES: <div> 
+<h2 class="text-center">RANKING DE GANADORES</h2>
+<div class="row justify-content-center">
+<div class="col-5">
+	<table class="table text-center table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Usuario</th>
+      <th scope="col">Torneos Ganados</th>
+      
+    </tr>
+  </thead>
 
 	<c:forEach items="${usuarios}" var="U">
 
-	<h3> ${U.nombre} Torneos ganados ${U.torGanados} </h3> 
-
-	</c:forEach>
-
-	</div>
-		
-	</div>
-
-
+	<tbody>
+    <tr>
+      <td>${U.nombre}</td>
+      <td>${U.torGanados}</td>
+      
+    </tr>
+   
+  </tbody>
+  
+  </c:forEach>
+</table>
+</div>
+</div>
 
 	<!--Sheet Slider-->
 	<div class="sheetSlider sh--default">

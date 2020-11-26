@@ -16,7 +16,7 @@ public interface ServicioInmueble {
 
 	public Inmueble verDetallesInmueble(Long inmuebleId);
 
-	public void agregarInquilino(Long inmuebleId, Long usuarioId);
+	public void agregarInquilino(Long detalleInmueble, Long usuarioId);
 
 	
 	

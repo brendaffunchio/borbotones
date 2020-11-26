@@ -92,18 +92,18 @@ public class ControladorTorneo {
 		return new ModelAndView ("redirect:/ver-torneos");
 	}
 //cambiar a post
-	@RequestMapping(path = "participar")
-	public ModelAndView agregarParticipante(@RequestParam("torneoId") Long torneoId,
-			@RequestParam("usuarioId") Long usuarioId) {
+	@RequestMapping(path = "participar", method=RequestMethod.POST)
+	public ModelAndView agregarParticipante(@RequestParam(name="torneoId") Long torneoId,
+			@RequestParam(name="usuarioId") Long usuarioId) {
 
 		servicioTorneo.agregarParticipante(torneoId, usuarioId);
 
 		return new ModelAndView("participacionExitosa");
 	}
 
-	@RequestMapping(path = "desubscribirse")
-	public ModelAndView eliminarParticipante(@RequestParam("torneoId") Long torneoId,
-			@RequestParam("usuarioId") Long usuarioId) {
+	@RequestMapping(path = "desubscribirse",method=RequestMethod.POST)
+	public ModelAndView eliminarParticipante(@RequestParam(name="torneoId") Long torneoId,
+			@RequestParam(name="usuarioId") Long usuarioId) {
 
 		servicioTorneo.eliminarParticipante(torneoId, usuarioId);
 
@@ -186,8 +186,8 @@ public class ControladorTorneo {
 		
 		
 	}
-	@RequestMapping(path = "elegirGanador", method = RequestMethod.GET)
-	public ModelAndView elegirGanador(@RequestParam("ganadorId") Long ganadorId, @RequestParam("torneoGanadoId") Long torneoGanadoId) {
+	@RequestMapping(path = "elegirGanador", method = RequestMethod.POST)
+	public ModelAndView elegirGanador(@RequestParam(name="ganadorId") Long ganadorId, @RequestParam(name="torneoGanadoId") Long torneoGanadoId) {
 		
 
 		servicioTorneo.elegirGanador(ganadorId, torneoGanadoId);

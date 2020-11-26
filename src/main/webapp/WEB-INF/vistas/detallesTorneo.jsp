@@ -81,12 +81,14 @@
 				<h6>${distancia} km</h6>
 
 				<br>
+				<form:form action="participar" method="POST">
 				
-				 <a class="boton-part"
-					href="participar?torneoId=${torneoDetalle.id}&usuarioId=1"
-					role="button"> PARTICIPAR </a> <br>
-
-
+				<input type="hidden" name="torneoId" value="${torneoDetalle.id}">
+				<input type="hidden" name="usuarioId" value="1">
+				
+				<button class="boton-part" type="submit">PARTICIPAR</button>
+				</form:form>
+				 
 			</div>
 
 		</div>

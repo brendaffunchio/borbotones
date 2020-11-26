@@ -61,7 +61,7 @@
       <td>${TP.nombre}</td>
       <td>${TP.juego}</td>
       <td>$ ${TP.precio}</td>
-      <td><a class="btn btn-outline-success btn-sm"  href="/proyecto-practica/ver-torneo-detalles?torneoId=${TP.id}&usuarioId=3" role="button">ver
+      <td><a class="btn btn-outline-success btn-sm"  href="/proyecto-practica/ver-torneos-participo-detalles?torneoId=${TP.id}&usuarioId=3" role="button">ver
 					detalles</a>  </td>
     </tr>
    

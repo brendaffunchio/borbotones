@@ -58,15 +58,10 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
 
 	@Override
 	public List<Usuario> usuariosMasGanadores() {
-		List <Usuario> ganadores = new LinkedList<>();
 		
-		for (int i = 0; i < 6; i++) {
+		 return repositorioUsuario.usuariosMasGanadores();
 			
-		ganadores=repositorioUsuario.usuariosMasGanadores();
-			
-		}
 		
-		return ganadores;
 	}
 
 	

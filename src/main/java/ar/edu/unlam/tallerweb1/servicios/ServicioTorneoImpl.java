@@ -72,7 +72,9 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 			repositorioTorneo.modificarTorneo(torneo);
 			repositorioUsuario.modificarUsuario(participante);
 			
-		}else if (torneo.getInscriptos() >= torneo.getCupo()) {
+		}
+		
+		if (torneo.getInscriptos() >= torneo.getCupo()) {
 			torneo.setEstadoCompleto(true);
 			repositorioTorneo.modificarTorneo(torneo);
 

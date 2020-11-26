@@ -98,7 +98,7 @@ public class ControladorUsuario {
 		ModelMap modelo = new ModelMap();
 		
 		if (servicioUsuarios.mostrarTorneosQueParticipo(usuarioId).isEmpty()) {
-			modelo.put("error", "No estás participando de ningún torneo");
+			modelo.put("error", "No estás participando en ningún torneo");
 		}else {
 			modelo.put("misTorneosParticipo", servicioUsuarios.mostrarTorneosQueParticipo(usuarioId));
 		}

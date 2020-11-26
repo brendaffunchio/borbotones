@@ -153,9 +153,9 @@ public class ControladorInmueble {
 
 	}
 	
-	@RequestMapping(path = "alquilar")
-	public ModelAndView agregarInquilino(@RequestParam("inmuebleId") Long inmuebleId,
-			@RequestParam("usuarioId") Long usuarioId) {
+	@RequestMapping(path = "alquilar",method=RequestMethod.POST )
+	public ModelAndView agregarInquilino(@RequestParam(name="inmuebleId") Long inmuebleId,
+			@RequestParam(name="usuarioId") Long usuarioId) {
 
 		servicioInmueble.agregarInquilino(inmuebleId, usuarioId);
 

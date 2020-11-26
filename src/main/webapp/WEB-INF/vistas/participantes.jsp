@@ -31,7 +31,7 @@
 <div class="col-md-12 text-center">
 
 	<div class="form-group col-md-12 text-center">
-	
+	<h2>PARTICIPANTES</h2>
 	<c:forEach items="${participantes}" var="P">
 
 	<p>${P.nombre}</p>

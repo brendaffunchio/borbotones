@@ -43,7 +43,7 @@
 </div>
 
 <div class="col-4  ml-3">
-
+<form:form action="alquilar" method="POST">
 		<h5>${detalleInmueble.nombre}</h5>
 		<br>
 
@@ -57,11 +57,14 @@
 		<p>${detalleInmueble.direccion.ciudad.provincia.nombre}</p>
 			
 		<br>
+		<input type="hidden" name ="usuarioId" value="1">
 		
-		<a class="boton-alqui" href="alquilar?inmuebleId=${detalleInmueble.id}&usuarioId=1"
-					role="button"> ALQUILAR </a>
-
-
+		<input type="hidden" name ="inmuebleId" value="${detalleInmueble.id}">
+		
+		<button class="boton-alqui" type="submit">ALQUILAR</button>
+		</form:form>
+		
+		
 </div>
 	</div>
 

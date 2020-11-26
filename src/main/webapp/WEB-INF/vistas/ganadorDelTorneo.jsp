@@ -30,7 +30,7 @@
 	</header>
 <div class="col-md-12 text-center">
 <h1>ELEGÍR GANADOR DEL TORNEO</h1>
-<form:form action="elegirGanador" method="get">
+<form:form action="elegirGanador" method="POST">
 
 	<div class="form-group col-md-12 text-center">
 	 

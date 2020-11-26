@@ -111,7 +111,9 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		final Session session = sessionFactory.getCurrentSession();
 		
 		
-		return session.createCriteria(Usuario.class).addOrder(Order.asc("torGanados")).list();
+		return session.createCriteria(Usuario.class)
+				.add(Restrictions.gt("torGanados", 0))
+				.addOrder(Order.desc("torGanados")).list();
 	}
 
 	@Override
