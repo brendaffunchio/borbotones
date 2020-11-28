@@ -16,21 +16,12 @@
 </head>
 <body>
 
-	<h1 class="titulo-index">INMOBILIARIA GAMING HOUSE</h1>
-
+	  
 	<header>
+     
+<h1 class="titulo-index">INMOBILIARIA GAMING HOUSE</h1>
 
-
-		<nav class="contenedorNav">
-
-			<a href="inicio" id="btnHome"> HOME </a> <a href="ver-inmuebles"
-				id="btnInmueble"> INMUEBLES </a> <a href="ver-torneos"
-				id="btnTorneo"> TORNEOS </a> <a href="contacto" id="btnContacto">
-				CONTACTO </a>
-
-		</nav>
-
-
+	<%@include file="nav.jsp"%>
 
 	</header>
 
@@ -45,7 +36,16 @@
 
 				<label class="ors">Buscar inmueble</label>
 				</br>
-				<input name="busqueda" class="busc" type="search">
+				<p>Seleccionar provincia</p>
+				<br>
+				<select name="provinciaId">
+				<c:forEach items="${provincias}" var="P">
+				<option value="${P.id}">${P.nombre}</option>
+				</c:forEach>
+				
+				</select>
+				<p>Escribir ciudad</p>
+				<input name="ciudad" class="busc" type="search">
 				<button class="btn btn-outline-warning btn-sm" type="submit">Buscar</button>
 
 
@@ -54,13 +54,15 @@
 
 
 		</div>
-
+		<c:choose>
+     <c:when test="${sessionScope.rol=='admin'}">
 		<div class="organizar-tor">
 			<a class="btn btn-outline-warning" href="ver-formulario-inmueble" role="button">
 				PUBLICÁ TU INMUEBLE </a>
 
 		</div>
-
+</c:when>
+</c:choose>
 	</div>
 
 	<table class="table table-hover table-dark">

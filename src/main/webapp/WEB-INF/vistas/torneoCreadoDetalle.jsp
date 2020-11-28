@@ -16,16 +16,7 @@
 
 	<header>
 
-
-		<nav class="contenedorNav">
-
-			<a href="inicio" id="btnHome"> HOME </a> <a href="ver-inmuebles"
-				id="btnInmueble"> INMUEBLES </a> <a href="ver-torneos"
-				id="btnTorneo"> TORNEOS </a> <a href="contacto" id="btnContacto">
-				CONTACTO </a>
-
-		</nav>
-
+<%@include file="nav.jsp"%>
 
 	</header>
 
@@ -76,6 +67,7 @@
 				
 				<a class="boton-part" href="ver-lista-de-participantes?torneoId=${miTorneoDetalle.id}"
 					role="button"> PARTICIPANTES </a>
+					<br>
 				<a class="boton-part" href="ver-lista-de-participantes-para-elegir-ganador?torneoId=${miTorneoDetalle.id}"
 					role="button"> ELEGIR GANADOR </a>
 				

@@ -15,9 +15,12 @@
 	rel="stylesheet">
 <script src="https://kit.fontawesome.com/233d4e0a24.js"
 	crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-	
-	<link rel="stylesheet" href="css/sheetslider.min.css" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+	crossorigin="anonymous">
+
+<link rel="stylesheet" href="css/sheetslider.min.css" />
 <link rel="stylesheet" href="css/estilo-inicio.css" />
 
 <title>INMOBILIARIA GAMING HOUSE</title>
@@ -28,58 +31,77 @@
 
 	<header>
 
+		<%@include file="nav.jsp"%>
 
-		<nav class="contenedorNav">
-
-			<a href="inicio" id="btnHome"> HOME </a> <a href="ver-inmuebles"
-				id="btnInmueble"> INMUEBLES </a> <a href="ver-torneos"
-				id="btnTorneo"> TORNEOS </a> 
-				
-				<a href="contacto" id="btnContacto"> CONTACTO </a>
-				
-				<a href="ver-perfil-del-usuario?usuarioId=1" id="btnPerfil"> PERFIL </a>
-				
-
-		</nav>
 
 	</header>
 
+	<c:if test="${sessionScope.id == null}">
 
-	<div class="contenedorDescripcion">
+		<div class="row justify-content-center ">
 
-		<p>
+			<div class="col-4 border border-info">
+				<p>
 
-			Nuestro sitio es ideal para que vos puedas: <br> <br> -
-			Elegir un lugar donde prepararte, stremear o jugar. <br> <br>
+					Nuestro sitio es ideal para: <br> <br> - Elegir un lugar
+					donde prepararte, stremear o jugar. <br> <br> -
+					Participar de un evento con los mejores jugadores del país. <br>
 
+					<br> - Crear un torneo para jugar con tus amigos/as. <br>
+					<br> - Competir con profesionales o con quien desees.
+				</p>
+			</div>
+			<div class="col-4 border border-info">
 
-			- Participar de un evento con los mejores jugadores del país. <br>
+				<p>
+					Requisitos: <br> <br> - Estar logueado para organizar un
+					torneo, participar del mismo o alquilar un inmueble. <br> <br>
+					- Tener al menos un inmueble alquilado para poder organizar el
+					torneo.
+				</p>
+				</br> </br>
+				<div class="contenedorBotonesInicio">
 
-			<br> - Crear un torneo para jugar con tus amigos/as. <br> <br>
+					<a class="btnEmpezar"
+						href="/proyecto-practica/ver-formulario-usuario"> REGISTRARSE
+					</a> <a class="btnEmpezar" href="/proyecto-practica/login"> INICIAR
+						SESIÓN </a>
 
-
-			- Competir con profesionales o con quien desees. <br> <br>
-
-			<br> Requisitos: <br> <br> - Estar logueado para
-			organizar un torneo, participar del mismo o alquilar un inmueble. <br>
-
-			<br> - Tener al menos un inmueble alquilado para poder organizar
-			el torneo.
-		<div class="contenedorBotonesInicio">
-
-			<a class="btnEmpezar"
-				href="/proyecto-practica/ver-formulario-usuario"> REGISTRARSE </a> <a
-				class="btnEmpezar" href="/proyecto-practica/login"> INICIAR
-				SESIÓN </a>
-
+				</div>
+			</div>
 		</div>
 
-		</p>
+	</c:if>
+	<c:if
+		test="${(sessionScope.rol=='admin')or(sessionScope.rol=='invitado')}">
+		<h2 class="text-center">RANKING DE GANADORES</h2>
+		<div class="row justify-content-center">
+			<div class="col-5">
+				<table class="table text-center table-hover table-dark">
+					<thead>
+						<tr>
+							<th scope="col">Usuario</th>
+							<th scope="col">Torneos Ganados</th>
 
+						</tr>
+					</thead>
 
-	</div>
+					<c:forEach items="${usuarios}" var="U">
 
+						<tbody>
+							<tr>
+								<td>${U.nombre}</td>
+								<td>${U.torGanados}</td>
 
+							</tr>
+
+						</tbody>
+
+					</c:forEach>
+				</table>
+			</div>
+		</div>
+	</c:if>
 
 	<!--Sheet Slider-->
 	<div class="sheetSlider sh--default">
@@ -149,5 +171,9 @@
 	</footer>
 
 </body>
-
+<style>
+.border-info {
+	border-color: #f71df6 !important;
+}
+</style>
 </html>

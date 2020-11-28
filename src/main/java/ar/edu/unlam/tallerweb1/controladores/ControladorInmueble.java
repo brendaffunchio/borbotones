@@ -53,6 +53,7 @@ public class ControladorInmueble {
 
 		ModelMap modelo = new ModelMap();
 		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
+		modelo.put("provincias", servicioProvincia.mostrarProvincias());
 
 		return new ModelAndView("InmueblesParaAlquilar", modelo);
 	}
@@ -131,9 +132,9 @@ public class ControladorInmueble {
 	public ModelAndView mostrarTorneosPorJuego(HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
-		String nombreProvincia = request.getParameter("busqueda");
-		String nombreCiudad = request.getParameter("busqueda");
-		modelo.put("inmueblesBusqueda", servicioInmueble.buscarInmueble(nombreProvincia,nombreCiudad));
+		String provinciaId = request.getParameter("provinciaId");
+		String nombreCiudad = request.getParameter("ciudad");
+		modelo.put("inmueblesBusqueda", servicioInmueble.buscarInmueble(provinciaId,nombreCiudad));
 
 		return new ModelAndView("inmueblesPorBusqueda", modelo);
 	}

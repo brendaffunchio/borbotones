@@ -5,7 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+	crossorigin="anonymous">
 <link rel="stylesheet" href="css/estilos.css" />
 <link rel="stylesheet" href="css/estilo-inicio.css" />
 <meta charset="ISO-8859-1">
@@ -16,31 +19,30 @@
 
 	<header>
 
-
-		<nav class="contenedorNav">
-
-			<a href="inicio" id="btnHome"> HOME </a> <a href="ver-inmuebles"
-				id="btnInmueble"> INMUEBLES </a> <a href="ver-torneos"
-				id="btnTorneo"> TORNEOS </a> <a href="contacto" id="btnContacto">
-				CONTACTO </a>
-
-		</nav>
-
+<%@include file="nav.jsp"%>
 
 	</header>
-<div class="col-md-12 text-center">
+	<div class="row justify-content-center">
+	<div class="col-md-3 text-center">
 
-	<div class="form-group col-md-12 text-center">
-	<h2>PARTICIPANTES</h2>
-	<c:forEach items="${participantes}" var="P">
+	
+			<h2>PARTICIPANTES</h2>
+			
+			<table class="table table-hover table-dark">
+			
+				<c:forEach items="${participantes}" var="P">
 
-	<p>${P.nombre}</p>
+					<tbody>
+						<tr>
+							<td>${P.nombre}</td>
+						</tr>
+</tbody>
 
+</c:forEach>
+</table>
 
-	</c:forEach>
-
-
-
+</div>
+</div>
 
 
 </body>

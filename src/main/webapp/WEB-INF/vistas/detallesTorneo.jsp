@@ -20,15 +20,7 @@
 	<header>
 
 
-		<nav class="contenedorNav">
-
-			<a href="inicio" id="btnHome"> HOME </a> <a href="ver-inmuebles"
-				id="btnInmueble"> INMUEBLES </a> <a href="ver-torneos"
-				id="btnTorneo"> TORNEOS </a> <a href="contacto" id="btnContacto">
-				CONTACTO </a>
-
-		</nav>
-
+		<%@include file="nav.jsp"%>
 
 	</header>
 
@@ -84,7 +76,7 @@
 				<form:form action="participar" method="POST">
 				
 				<input type="hidden" name="torneoId" value="${torneoDetalle.id}">
-				<input type="hidden" name="usuarioId" value="1">
+				<input type="hidden" name="usuarioId" value="${sessionScope.id}">
 				
 				<button class="boton-part" type="submit">PARTICIPAR</button>
 				</form:form>

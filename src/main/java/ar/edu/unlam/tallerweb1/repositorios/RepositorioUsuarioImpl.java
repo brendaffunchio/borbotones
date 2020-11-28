@@ -131,4 +131,19 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 	}
 
 	
+	@Override
+	public void cerrarSesion() {
+		final Session session = sessionFactory.getCurrentSession();
+		
+		//session.disconnect();
+		//session.close();
+	}
+
+	@Override
+	public void cerrarSesion(Long usuarioId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }

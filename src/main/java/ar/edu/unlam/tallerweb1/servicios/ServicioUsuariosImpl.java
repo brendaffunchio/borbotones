@@ -64,6 +64,18 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
 		
 	}
 
+	@Override
+	public void cerrarSesion(Long usuarioId) {
+		repositorioUsuario.cerrarSesion(usuarioId);
+		
+	}
+
+	@Override
+	public void cerrarSesion() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 	

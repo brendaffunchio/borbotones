@@ -11,7 +11,7 @@ public interface RepositorioInmueble {
 	
 	public void guardarInmueble(Inmueble inmueble,Direccion direccion);
 
-	public List<Inmueble> buscarInmueble(String nombreProvincia, String nombreCiudad);
+	public List<Inmueble> buscarInmueble(String provinciaId, String nombreCiudad);
 
 	public Inmueble verDetallesInmueble(Long inmuebleId);
 

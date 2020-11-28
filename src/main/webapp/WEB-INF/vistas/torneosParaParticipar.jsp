@@ -18,16 +18,7 @@
 
 	<header>
 
-
-		<nav class="contenedorNav">
-
-			<a href="inicio" id="btnHome"> HOME </a> <a href="ver-inmuebles"
-				id="btnInmueble"> INMUEBLES </a> <a href="ver-torneos"
-				id="btnTorneo"> TORNEOS </a> <a href="contacto" id="btnContacto">
-				CONTACTO </a>
-
-		</nav>
-
+<%@include file="nav.jsp"%>
 
 
 	</header>
@@ -74,7 +65,7 @@
       <td>${T.nombre}</td>
       <td>${T.juego}</td>
       <td>$ ${T.precio}</td>
-      <td><a class="btn btn-outline-success btn-sm"  href="/proyecto-practica/ver-torneo-detalles?torneoId=${T.id}&usuarioId=1" role="button">ver
+      <td><a class="btn btn-outline-success btn-sm"  href="/proyecto-practica/ver-torneo-detalles?torneoId=${T.id}&usuarioId=${sessionScope.id}" role="button">ver
 					detalles</a>  </td>
     </tr>
    

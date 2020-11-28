@@ -21,4 +21,7 @@ public interface ServicioUsuarios {
 
 	public List <Usuario> usuariosMasGanadores();
 
+	public void cerrarSesion(Long usuarioId);
+
+	public void cerrarSesion();
 }

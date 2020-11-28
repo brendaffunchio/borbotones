@@ -22,11 +22,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import org.hibernate.Session;
+import org.springframework.context.annotation.Scope;
 
 
 // Clase que modela el concepto de Usuario, la anotacion @Entity le avisa a hibernate que esta clase es persistible
 // el paquete ar.edu.unlam.tallerweb1.modelo esta indicado en el archivo hibernateCOntext.xml para que hibernate
 // busque entities en él
+@Scope("session")
 @Entity
 public class Usuario {
 

@@ -17,15 +17,7 @@
 	<header>
 
 
-		<nav class="contenedorNav">
-
-			<a href="inicio" id="btnHome"> HOME </a> <a href="ver-inmuebles"
-				id="btnInmueble"> INMUEBLES </a> <a href="ver-torneos"
-				id="btnTorneo"> TORNEOS </a> <a href="contacto" id="btnContacto">
-				CONTACTO </a>
-
-		</nav>
-
+		<%@include file="nav.jsp"%>
 
 	</header>
 
@@ -57,7 +49,7 @@
 		<p>${detalleInmueble.direccion.ciudad.provincia.nombre}</p>
 			
 		<br>
-		<input type="hidden" name ="usuarioId" value="1">
+		<input type="hidden" name ="usuarioId" value="${sessionScope.id}">
 		
 		<input type="hidden" name ="inmuebleId" value="${detalleInmueble.id}">
 		

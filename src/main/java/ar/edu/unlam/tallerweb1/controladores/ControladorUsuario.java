@@ -106,7 +106,7 @@ public class ControladorUsuario {
 		return new ModelAndView("misTorneosParticipo", modelo);
 	}
 
-	@RequestMapping(path = "ver-torneos-que-cree", method = RequestMethod.GET)
+	@RequestMapping(path = "ver-torneos-que-cree")
 	public ModelAndView mostrarTorneosQueCreoElUsuario(@RequestParam("usuarioId") Long usuarioId) {
 
 		ModelMap modelo = new ModelMap();
@@ -120,18 +120,14 @@ public class ControladorUsuario {
 		return new ModelAndView("misTorneosCreados", modelo);
 	}
 	
-	@RequestMapping(path = "inicio-invitado", method = RequestMethod.GET)
-		public ModelAndView mostrarRankingDeLosGanadoresDeTorneos() {
-			
-		ModelMap modelo = new ModelMap();
+	@RequestMapping(path = "logout")
+	public ModelAndView cerrarSesion() {
+
+		servicioUsuarios.cerrarSesion();
 		
-		modelo.put("usuarios", servicioUsuarios.usuariosMasGanadores());
-		
-		return new ModelAndView("inicioInvitado", modelo);
-		
-			
-		}
-		
+		return new ModelAndView("redirect:/inicio");
+	}
+	
 	}
 	
 	

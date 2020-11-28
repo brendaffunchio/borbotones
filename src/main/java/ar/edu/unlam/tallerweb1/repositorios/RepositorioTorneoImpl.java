@@ -32,7 +32,6 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		final Session session = sessionFactory.getCurrentSession();
 
 		return session.createCriteria(Torneo.class)
-				.add(Restrictions.eq("estadoCompleto", false))
 				.list();
 
 	}
@@ -71,13 +70,16 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		 * return criteria.list();
 		 */
 		// esto es or:
-
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Torneo.class);
+		final Session session = sessionFactory.getCurrentSession();
+		List <Torneo> torneosBuscados = new LinkedList<>();
 		if (categoria != null && !categoria.equals("") && juego != null && !juego.equals(""))
-			criteria.add(Restrictions.or(Restrictions.like("categoria", categoria), Restrictions.like("juego", juego)))
-			.add(Restrictions.eq("estadoCompleto", false));
-
-		return criteria.list();
+			torneosBuscados= session.createCriteria(Torneo.class)
+			.add(Restrictions.or(Restrictions.like("categoria", categoria)
+					            ,Restrictions.like("juego", juego)))
+			.list();
+			
+		
+		return torneosBuscados;
 
 	}
 

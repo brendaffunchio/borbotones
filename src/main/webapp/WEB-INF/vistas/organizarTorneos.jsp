@@ -16,16 +16,7 @@
 
 	<header>
 
-
-		<nav class="contenedorNav">
-
-			<a href="inicio" id="btnHome"> HOME </a> <a href="ver-inmuebles"
-				id="btnInmueble"> INMUEBLES </a> <a href="ver-torneos"
-				id="btnTorneo"> TORNEOS </a> <a href="contacto" id="btnContacto">
-				CONTACTO </a>
-
-		</nav>
-
+<%@include file="nav.jsp"%>
 
 	</header>
 
@@ -103,13 +94,6 @@
 
 				<div class="boton-organizar">
 					<button class="btn-org" Type="Submit">CREAR TORNEO</button>
-
-					<br>
-
-					<p class="avisoUsuario">
-						Necesitas <a class="organizaPropioTorneo"> iniciar sesión </a>para
-						crear un torneo.
-					</p>
 
 				</div>
 			</form:form>

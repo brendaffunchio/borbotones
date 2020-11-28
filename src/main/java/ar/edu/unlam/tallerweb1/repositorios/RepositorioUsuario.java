@@ -26,4 +26,8 @@ public interface RepositorioUsuario {
     public Usuario consultarUsuarioPorId(Long usuarioId);
     
     public void modificarUsuario(Usuario usuario);
+
+	public void cerrarSesion(Long usuarioId);
+
+	void cerrarSesion();
 }

@@ -18,17 +18,7 @@
 
 	<header>
 
-
-		<nav class="contenedorNav">
-
-			<a href="inicio" id="btnHome"> HOME </a> <a href="ver-inmuebles"
-				id="btnInmueble"> INMUEBLES </a> <a href="ver-torneos"
-				id="btnTorneo"> TORNEOS </a> <a href="contacto" id="btnContacto">
-				CONTACTO </a>
-
-		</nav>
-
-
+<%@include file="nav.jsp"%>
 
 	</header>
 
@@ -39,14 +29,14 @@
 	<div class="col-12 text-center">
 	
 	
-	<a class="boton-part" href="/proyecto-practica/ver-inmuebles-alquilados?usuarioId=1" role="button">MIS INMUEBLES</a>
+	<a class="boton-part" href="/proyecto-practica/ver-inmuebles-alquilados?usuarioId=${sessionScope.id}" role="button">MIS INMUEBLES</a>
 					<br>
 					<br>
-					<a class="boton-part" href="/proyecto-practica/ver-torneos-que-participo?usuarioId=1"
+					<a class="boton-part" href="/proyecto-practica/ver-torneos-que-participo?usuarioId=${sessionScope.id}"
 					role="button">TORNEOS QUE PARTICIPO </a>
 					<br>
 					<br>
-					<a class="boton-part" href="/proyecto-practica/ver-torneos-que-cree?usuarioId=1"
+					<a class="boton-part" href="/proyecto-practica/ver-torneos-que-cree?usuarioId=${sessionScope.id}"
 					role="button">MIS TORNEOS</a>
 					
 					
