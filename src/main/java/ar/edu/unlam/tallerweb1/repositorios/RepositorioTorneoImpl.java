@@ -4,9 +4,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
+
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -59,27 +62,44 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 
 	@Override
 	public List<Torneo> buscarTorneo(String categoria, String juego) {
+
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Torneo.class);
+		
+		 if(categoria != null && !categoria.equals("")) {
+		 criteria.add(Restrictions.like("categoria", categoria));
+		 
+		 }
+		 
+		 if (juego != null &&!juego.equals("")) {
+		 criteria.add(Restrictions.like("juego", juego, MatchMode.ANYWHERE));
+		 }
+		 
+		return criteria.list();
+		
+		
+		
+
+
+
 		// esto es and:
-		/*
-		 * Criteria criteria =
-		 * sessionFactory.getCurrentSession().createCriteria(Torneo.class); if
-		 * (categoria != null && !categoria.equals(""))
-		 * criteria.add(Restrictions.like("categoria", categoria)); if (juego != null &&
-		 * !juego.equals("")) criteria.add(Restrictions.like("juego", juego));
-		 * 
-		 * return criteria.list();
-		 */
+		
+		 /*Criteria criteria =
+			sessionFactory.getCurrentSession().createCriteria(Torneo.class);
+		  criteria.add(Restrictions.like("categoria", categoria)); if (juego != null &&
+		  !juego.equals("")) criteria.add(Restrictions.like("juego", juego));
+		  return criteria.list();*/
+		 
 		// esto es or:
-		final Session session = sessionFactory.getCurrentSession();
+		/*final Session session = sessionFactory.getCurrentSession();
 		List <Torneo> torneosBuscados = new LinkedList<>();
 		if (categoria != null && !categoria.equals("") && juego != null && !juego.equals(""))
 			torneosBuscados= session.createCriteria(Torneo.class)
-			.add(Restrictions.or(Restrictions.like("categoria", categoria)
-					            ,Restrictions.like("juego", juego)))
-			.list();
+			.add(Restrictions.and(Restrictions.like("categoria", categoria),
+			 Restrictions.like("juego", juego)))
+			.list();*/
 			
 		
-		return torneosBuscados;
+		
 
 	}
 

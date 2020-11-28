@@ -115,10 +115,19 @@ public class ControladorTorneo {
 	public ModelAndView mostrarTorneosPorJuego(HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
-		String categoria = request.getParameter("busqueda");
-		String juego = request.getParameter("busqueda");
+		String categoria = request.getParameter("categoria");
+		String juego = request.getParameter("juego");
+		
+		if(servicioTorneo.buscarTorneo(categoria, juego).size() == 0) {
+			
+			modelo.put("error", "No se encontró ningún torneo.");
+		}
+		
+		else {
 		
 		modelo.put("torneosBusqueda", servicioTorneo.buscarTorneo(categoria, juego));
+		
+		}
 
 		return new ModelAndView("torneosPorBusqueda", modelo);
 	}
@@ -168,6 +177,7 @@ public class ControladorTorneo {
 		ModelMap modelo = new ModelMap();
 		
 		modelo.put("participantes", servicioTorneo.mostrarParticipantesDelTorneo(torneoId));
+
 	   
 		return new ModelAndView("participantes", modelo);
 		

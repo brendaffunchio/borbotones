@@ -40,7 +40,7 @@
 		</div>
 
 		<div class="organizar-tor">
-			<p class="pp">Para organizar tu propio torneo, hacé clic en el
+			<p class="pp">Para organizar tu propio torneo, hacé clikc en el
 				botón:</p>
 			</br> <a class="boton-part" href="ver-formulario-torneo" role="button">
 				ORGANIZAR </a> <br> <br>
@@ -79,6 +79,14 @@
   
   </c:forEach>
 </table>
+
+<c:if test="${not empty error}">
+	<h6>
+		${error}
+	</h6>
+	<br>
+</c:if>
+
 
 </body>
 </html>

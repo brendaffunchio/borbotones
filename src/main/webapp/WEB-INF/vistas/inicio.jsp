@@ -31,9 +31,10 @@
 
 	<header>
 
-		<%@include file="nav.jsp"%>
-
-
+		
+		<%@ include file="nav.jsp" %>  
+		
+		
 	</header>
 
 	<c:if test="${sessionScope.id == null}">
@@ -45,7 +46,7 @@
 
 					Nuestro sitio es ideal para: <br> <br> - Elegir un lugar
 					donde prepararte, stremear o jugar. <br> <br> -
-					Participar de un evento con los mejores jugadores del país. <br>
+					Participar de un evento con los mejores jugadores del paï¿½s. <br>
 
 					<br> - Crear un torneo para jugar con tus amigos/as. <br>
 					<br> - Competir con profesionales o con quien desees.

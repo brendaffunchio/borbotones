@@ -47,6 +47,8 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	
 	@Override
 	public List<Torneo> buscarTorneo(String categoria, String juego) {
+		
+		
 		return repositorioTorneo.buscarTorneo(categoria, juego);
 
 	}

@@ -25,28 +25,76 @@
 
 	<h2 class="titulo-torn">TORNEOS DISPONIBLES</h2>
 
-	<div class="cont-acciones">
+	<div class="row">
 	
-		<div class="buscador">
+		<div class="col 6">
+		
 			<form:form action="buscar-torneo" method="GET">
 
+
+	<div class="form-group col-sm-6">
+	
+	
+	
 				<label class="ors">Buscar torneo</label>
 				</br>
-				<input name="busqueda" class="busc" type="search">
+			</div>
+
+			<div class="form-group col-sm-5">
+				<label > Buscar por categoría </label>
+				<select class="form-control" name="categoria" multiple>
+					<option selected value="">Categoría</option>
+					<option value="Deporte">Deporte</option>
+					<option value="Aventura">Aventura</option>
+					<option value="Terror">Terror</option>
+					<option value="Accion">Accion</option>
+					<option value="Fantasia">Fantasia</option>
+					<option value="Otra">Otra</option>
+				  </select>
+
+			 
+				  <label > Buscar por juego </label>
+				<select class="form-control" name="juego" multiple>
+					<option selected value="">Categoría</option>
+					<option value="FIFA">FIFA</option>
+					<option value="PES">PES</option>
+					<option value="FORZA">Forza Horizon</option>
+					<option value="CS GO">Counter Strike Global Ofenssive</option>
+					<option value="LOL">League of Legends</option>
+					<option value="WOW">World of Worcraft</option>
+					<option value="F1">F1 Codemasters</option>
+				  </select>
+
+				</div>
+				
+			<div class="col 6">
+			
 				<button class="btn btn-outline-success" type="submit">Buscar</button>
+				
+				</div>
 
 			</form:form>
 			
 		</div>
-
-		<div class="organizar-tor">
+		
+		<div class="col-2">
+		
+			<div class="organizar-tor col">
 			
 			</br> <a class="btn btn-outline-success" href="ver-formulario-torneo?usuarioId=1" role="button">
 				ORGANIZÁ TU TORNEO </a>
 
 
 		</div>
+		
+		
+		 </div>
+
+		
 	</div>
+	
+	<div class="table-responsive col-sm-12"> 
+	
 
 	<table class="table table-hover table-dark">
   <thead>
@@ -71,8 +119,11 @@
    
   </tbody>
   
+  
   </c:forEach>
 </table>
+
+</div>
 
 
 
