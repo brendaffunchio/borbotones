@@ -13,8 +13,6 @@ public interface RepositorioInmueble {
 
 	public List<Inmueble> buscarInmueble(String provinciaId, String nombreCiudad);
 
-	public Inmueble verDetallesInmueble(Long inmuebleId);
-
 	public Inmueble consultarInmueblePorId(Long inmuebleId);
 	
 	public void modificarInmueble(Inmueble inmueble);

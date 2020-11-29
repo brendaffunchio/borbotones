@@ -56,7 +56,7 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	@Override
 	public Torneo verDetallesTorneo(Long id) {
 		
-		return repositorioTorneo.verDetallesTorneo(id);
+		return repositorioTorneo.consultarTorneoPorId(id);
 		
 	
 	}

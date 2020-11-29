@@ -16,8 +16,6 @@ public interface RepositorioTorneo {
 
 	public List<Torneo> buscarTorneo(String categoria, String juego);
 
-	public Torneo verDetallesTorneo(Long id);
-
 	public Set<Usuario> mostrarParticipantesDelTorneo(Long torneoId);
 
 	public void modificarTorneo(Torneo torneo);

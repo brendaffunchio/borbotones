@@ -52,7 +52,7 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 
 	public Inmueble verDetallesInmueble(Long inmuebleId) {
 		
-		return repositorioInmueble.verDetallesInmueble(inmuebleId);
+		return repositorioInmueble.consultarInmueblePorId(inmuebleId);
 		
 		
 	}

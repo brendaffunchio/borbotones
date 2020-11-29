@@ -90,15 +90,6 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 	
 
 	@Override
-	public Inmueble verDetallesInmueble(Long inmuebleId) {
-
-		return sessionFactory.getCurrentSession().get(Inmueble.class, inmuebleId);
-
-	}
-
-	
-
-	@Override
 	public Inmueble consultarInmueblePorId(Long inmuebleId) {
 		final Session session = sessionFactory.getCurrentSession();
 

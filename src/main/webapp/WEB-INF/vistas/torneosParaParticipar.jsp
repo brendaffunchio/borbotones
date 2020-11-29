@@ -41,7 +41,7 @@
 			</div>
 
 			<div class="form-group col-sm-5">
-				<label > Buscar por categoría </label>
+				<label > Elegir por categoría </label>
 				<select class="form-control" name="categoria" multiple>
 					<option selected value="">Categoría</option>
 					<option value="Deporte">Deporte</option>
@@ -53,17 +53,8 @@
 				  </select>
 
 			 
-				  <label > Buscar por juego </label>
-				<select class="form-control" name="juego" multiple>
-					<option selected value="">Categoría</option>
-					<option value="FIFA">FIFA</option>
-					<option value="PES">PES</option>
-					<option value="FORZA">Forza Horizon</option>
-					<option value="CS GO">Counter Strike Global Ofenssive</option>
-					<option value="LOL">League of Legends</option>
-					<option value="WOW">World of Worcraft</option>
-					<option value="F1">F1 Codemasters</option>
-				  </select>
+				  <label >Ingresar juego </label>
+				<input class="busc" type="text" name="juego">
 
 				</div>
 				

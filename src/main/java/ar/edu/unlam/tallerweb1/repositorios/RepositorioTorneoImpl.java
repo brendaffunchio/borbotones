@@ -68,7 +68,7 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		 if(categoria != null && !categoria.equals("")) {
 		 criteria.add(Restrictions.like("categoria", categoria));
 		 
-		 }
+		 } 
 		 
 		 if (juego != null &&!juego.equals("")) {
 		 criteria.add(Restrictions.like("juego", juego, MatchMode.ANYWHERE));
@@ -103,14 +103,6 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 
 	}
 
-	@Override
-	public Torneo verDetallesTorneo(Long id) {
-
-		return sessionFactory.getCurrentSession().get(Torneo.class, id);
-	}
-
-	
-	
 
 	@Override
 	public Set<Usuario> mostrarParticipantesDelTorneo(Long torneoId) {
