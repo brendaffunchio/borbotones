@@ -1,8 +1,10 @@
 package ar.edu.unlam.tallerweb1.persistencia;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
+import ar.edu.unlam.tallerweb1.modelo.Ciudad;
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
+import ar.edu.unlam.tallerweb1.modelo.Provincia;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import org.junit.Test;
@@ -601,8 +603,47 @@ public class ConexionBaseDeDatosTest extends SpringTest {
 		
 	}
 	
+	//test de repositorio Provincia
 	
+	@Test
+	@Transactional
+	@Rollback
+	public void mostrarListaDeProvincias() {
+	Provincia sanJuan = new Provincia();
+	sanJuan.setNombre("San Juan");
+	Provincia Formosa = new Provincia();
+	Formosa.setNombre("Formosa");
 	
+	session().save(Formosa);
+	session().save(sanJuan);
 	
+	Criteria criteria=session().createCriteria(Provincia.class);
 	
+	assertThat(criteria.list()).isNotEmpty();
+	assertThat(criteria.list()).hasSize(2);
+		
+	}
+	//test de repositorio Ciudad
+	
+		@Test
+		@Transactional
+		@Rollback
+		public void mostrarListaDeCiudades() {
+			Provincia bsas = new Provincia();
+			bsas.setNombre("Buenos Aires");
+			
+			session().save(bsas);
+			
+			Ciudad canuelas = new Ciudad(); 
+			canuelas.setNombre("Cañuelas");
+			canuelas.setCodigoPostal("B1814");
+			canuelas.setProvincia(bsas);
+			
+			session().save(canuelas);
+			
+			Criteria criteria= session().createCriteria(Ciudad.class);
+			
+			assertThat(criteria.list()).isNotEmpty();
+			assertThat(criteria.list()).hasSize(1);
+		}
 }
