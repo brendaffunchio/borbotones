@@ -199,10 +199,12 @@ public class ControladorTorneo {
 	@RequestMapping(path = "elegirGanador", method = RequestMethod.POST)
 	public ModelAndView elegirGanador(@RequestParam(name="ganadorId") Long ganadorId, @RequestParam(name="torneoGanadoId") Long torneoGanadoId) {
 		
+ModelMap modelo= new ModelMap();
 
+        modelo.put("torneo", servicioTorneo.verDetallesTorneo(torneoGanadoId));
 		servicioTorneo.elegirGanador(ganadorId, torneoGanadoId);
 		
-		return new ModelAndView("redirect:/inicio");
+		return new ModelAndView("ganadorExistoso", modelo);
 		
 		
 	}

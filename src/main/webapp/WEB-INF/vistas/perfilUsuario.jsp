@@ -1,27 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<link rel="stylesheet" href="css/estilo-inicio.css" />
-<link rel="stylesheet" type="text/css" href="css/estilos.css">
-
-<title>Torneos</title>
-</head>
-<body>
-
-	<h1 class="titulo-index">INMOBILIARIA GAMING HOUSE</h1>
-
-	<header>
-
-<%@include file="nav.jsp"%>
-
-	</header>
-
+		<%@include file="header.jsp"%>
+		
 	<div class="container">
 	
 	<div class="row">
