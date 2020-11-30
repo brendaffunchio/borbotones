@@ -17,9 +17,9 @@
 			</div>
 
 			<div class="form-group col-sm-5">
-				<label > Elegir por categorï¿½a </label>
+				<label > Elegir por categoría </label>
 				<select class="form-control" name="categoria" multiple>
-					<option selected value="">Categorï¿½a</option>
+					<option selected value="">Categoría</option>
 					<option value="Deporte">Deporte</option>
 					<option value="Aventura">Aventura</option>
 					<option value="Terror">Terror</option>
@@ -50,7 +50,7 @@
 		
 		
 			</br> <a class="btn btn-outline-success" href="ver-formulario-torneo?usuarioId=1" role="button">
-				ORGANIZï¿½ TU TORNEO </a>
+				ORGANIZÁ TU TORNEO </a>
 
 	
 	</div>
