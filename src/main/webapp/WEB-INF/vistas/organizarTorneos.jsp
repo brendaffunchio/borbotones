@@ -9,7 +9,7 @@
 			<form:form action="crear-torneo" method="POST"
 				enctype="multipart/form-data" modelAttribute="torneo">
 
-				<input type="hidden" value="1" name="creadorId">
+				<input type="hidden" value="${sessionScope.id}" name="creadorId">
 
 				<label class="or">Nombre del torneo</label>
 				<br>

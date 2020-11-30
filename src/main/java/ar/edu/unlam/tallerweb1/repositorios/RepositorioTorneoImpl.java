@@ -68,8 +68,7 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		 
 		 } 
 		 
-		 if (juego != null &&!juego.equals("")|| 
-				 categoria.equals(null)&& categoria.equals("")) {
+		 if (juego != null &&!juego.equals("")) {
 		 criteria.add(Restrictions.like("juego", juego, MatchMode.ANYWHERE));
 		 }
 		 

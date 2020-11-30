@@ -44,6 +44,12 @@
 
 			</form:form>
 			
+			
+		</div>
+		
+		<div>
+		<a href"">Filtrar Torneos cercanos</a>
+		
 		</div>
 		
 		<div class="col-2">
@@ -82,7 +88,7 @@
       <td>${T.nombre}</td>
       <td>${T.juego}</td>
       <td>$ ${T.precio}</td>
-      <td><a class="btn btn-outline-success btn-sm"  href="/proyecto-practica/ver-torneo-detalles?torneoId=${T.id}&usuarioId=${sessionScope.id}" role="button">ver
+      <td><a class="btn btn-outline-success btn-sm"  href="/proyecto-practica/ver-torneo-detalles?torneoId=${T.id}" role="button">ver
 					detalles</a>  </td>
     </tr>
    

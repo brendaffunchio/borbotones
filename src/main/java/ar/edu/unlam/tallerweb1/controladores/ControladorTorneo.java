@@ -40,10 +40,10 @@ public class ControladorTorneo {
 	}
 
 	@RequestMapping(path = "ver-torneos", method = RequestMethod.GET)
-	public ModelAndView mostrarTorneos() {
+	public ModelAndView mostrarTorneos(@RequestParam("usuarioId") Long usuarioId) {
 
 		ModelMap modelo = new ModelMap();
-		modelo.put("torneos", servicioTorneo.mostrarTorneos());
+		modelo.put("torneos", servicioTorneo.mostrarTorneos(usuarioId));
         
 		return new ModelAndView("torneosParaParticipar", modelo);
 
@@ -89,7 +89,7 @@ public class ControladorTorneo {
 		
 		servicioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
 		
-		return new ModelAndView ("redirect:/ver-torneos");
+		return new ModelAndView ("torneoExitoso");
 	}
 //cambiar a post
 	@RequestMapping(path = "participar", method=RequestMethod.POST)
@@ -133,13 +133,12 @@ public class ControladorTorneo {
 	}
 
 	@RequestMapping(path = "ver-torneo-detalles", method = RequestMethod.GET)
-	public ModelAndView verDetallesTorneo(@RequestParam("torneoId") Long torneoId, @RequestParam("usuarioId") Long usuarioId) {
-
+	public ModelAndView verDetallesTorneo(@RequestParam("torneoId") Long torneoId) {
 	
 		Torneo torneoDetalle = servicioTorneo.verDetallesTorneo(torneoId);
 
 		ModelMap modelo = new ModelMap();
-		modelo.put("distancia", servicioTorneo.calcularDistanciaConElUsuario(usuarioId, torneoId));
+	
 		modelo.put("torneoDetalle", torneoDetalle);
 
 		return new ModelAndView("detallesTorneo", modelo);

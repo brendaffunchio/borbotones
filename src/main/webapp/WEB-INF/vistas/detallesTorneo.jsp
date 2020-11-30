@@ -47,7 +47,7 @@
 
 				<br>
 				<h6>Distancia:</h6>
-				<h6>${distancia} km</h6>
+				<h6>${torneoDetalle.distanciaConUsuario} km</h6>
 
 				<br>
 				<form:form action="participar" method="POST">
