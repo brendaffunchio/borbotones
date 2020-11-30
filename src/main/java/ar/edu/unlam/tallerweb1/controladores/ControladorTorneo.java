@@ -201,7 +201,7 @@ public class ControladorTorneo {
 		
 ModelMap modelo= new ModelMap();
 
-        modelo.put("torneo", servicioTorneo.verDetallesTorneo(torneoGanadoId));
+        modelo.put("torneo", servicioTorneo.consultarTorneoPorId(torneoGanadoId));
 		servicioTorneo.elegirGanador(ganadorId, torneoGanadoId);
 		
 		return new ModelAndView("ganadorExistoso", modelo);

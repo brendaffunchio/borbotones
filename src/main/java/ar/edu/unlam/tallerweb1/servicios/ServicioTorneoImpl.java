@@ -152,6 +152,12 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 			*/
 		
 	}
+
+	@Override
+	public Torneo consultarTorneoPorId(Long torneoId) {
+		
+		return repositorioTorneo.consultarTorneoPorId(torneoId);
+	}
 	
 
 }

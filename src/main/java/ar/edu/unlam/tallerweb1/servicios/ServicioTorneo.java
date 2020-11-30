@@ -27,5 +27,6 @@ public interface ServicioTorneo {
 	public void elegirGanador(Long ganadorId, Long torneoGanadoId);
 
 	public Double calcularDistanciaConElUsuario(Long usuarioId, Long torneoId);
-
+	
+	public Torneo consultarTorneoPorId(Long torneoId);
 }
