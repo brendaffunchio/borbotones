@@ -55,9 +55,7 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 				
 		session.save(torneo);
 		
-		
 	
-
 	}
 
 	@Override
@@ -70,34 +68,12 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		 
 		 } 
 		 
-		 if (juego != null &&!juego.equals("")) {
+		 if (juego != null &&!juego.equals("")|| 
+				 categoria.equals(null)&& categoria.equals("")) {
 		 criteria.add(Restrictions.like("juego", juego, MatchMode.ANYWHERE));
 		 }
 		 
 		return criteria.list();
-		
-		
-		
-
-
-
-		// esto es and:
-		
-		 /*Criteria criteria =
-			sessionFactory.getCurrentSession().createCriteria(Torneo.class);
-		  criteria.add(Restrictions.like("categoria", categoria)); if (juego != null &&
-		  !juego.equals("")) criteria.add(Restrictions.like("juego", juego));
-		  return criteria.list();*/
-		 
-		// esto es or:
-		/*final Session session = sessionFactory.getCurrentSession();
-		List <Torneo> torneosBuscados = new LinkedList<>();
-		if (categoria != null && !categoria.equals("") && juego != null && !juego.equals(""))
-			torneosBuscados= session.createCriteria(Torneo.class)
-			.add(Restrictions.and(Restrictions.like("categoria", categoria),
-			 Restrictions.like("juego", juego)))
-			.list();*/
-			
 		
 		
 

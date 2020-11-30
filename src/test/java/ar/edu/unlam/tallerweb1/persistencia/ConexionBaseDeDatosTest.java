@@ -28,7 +28,72 @@ public class ConexionBaseDeDatosTest extends SpringTest {
 	public void pruebaConexion() {
 		assertThat(session().isConnected()).isTrue();
 	}
+	
+	private Torneo torneo() {
+		Usuario usuario= usuario();
+		Torneo torneo = new Torneo();
+		torneo.setCategoria("deporte");
+		torneo.setCreador(usuario);
+		torneo.setCupo(2);
+		torneo.setEstadoCompleto(false);
+		torneo.setFecha("12/04/2021");
+		torneo.setFoto("foto");
+		torneo.setHorario("10:30hs");
+		torneo.setInscriptos(0);
+		
+		return torneo;
+	}
+private Usuario usuario() {
+	Usuario usuario = new Usuario();
+	Direccion direccion = new Direccion();
+	usuario.setNombre("Brenda");
+	usuario.setApellido("Daffunchio");
+	usuario.setEmail("bren@gmail.com");
+	usuario.setPassword("1234");
+	usuario.setRol("admin");
+	usuario.setTorGanados(2);
+	usuario.setDireccion(direccion);
+	
+	return usuario;
+	
+}
 
+private Inmueble inmueble() {
+	
+	Inmueble inmueble = new Inmueble();
+	Direccion direccion = direccion();
+	inmueble.setDireccion(direccion);
+	inmueble.setNombre("Depto gamer");
+	inmueble.setDisponible(true);
+	inmueble.setFoto("foto");
+	inmueble.setPrecio(2000d);
+	
+	return inmueble;
+}
+
+private Direccion direccion() {
+	Direccion direccion = new Direccion();
+	Ciudad ciudad = ciudad();
+	direccion.setCalle("Rivadavia");
+	direccion.setNumero(1356);
+	direccion.setCiudad(ciudad);
+	return direccion;
+	
+}
+	private Ciudad ciudad() {
+	 Ciudad ciudad = new Ciudad();
+	 Provincia provincia = provincia();
+	 ciudad.setNombre("Cañuelas");
+		ciudad.setCodigoPostal("B1814");
+		ciudad.setProvincia(provincia);
+		
+	return ciudad;
+}
+
+	private Provincia provincia() {
+		
+		return provincia;
+	}
 	// test del repositorio usuario
 	@Test
 	@Transactional
