@@ -25,21 +25,21 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 import static org.mockito.Mockito.*;
 
-public class ControladorTorneoTest{
+public class ControladorTorneoTest {
 
 	@Test
 	public void validarQueSeVayaALaVistaDeLosTorneosCuandoTraemosLaListaDeTorneosAunqueEsteVacia() {
 
 		ServicioTorneo servicioTorneoMock = mock(ServicioTorneo.class);
 		ServicioUsuarios servicioUsuariosMock = mock(ServicioUsuarios.class);
-
+		Usuario usuarioMock = mock(Usuario.class);
 		List<Torneo> listaTorneoMock = mock(List.class);
-
+Long usuarioId = usuarioMock.getId();
 		ControladorTorneo controladorTorneo = new ControladorTorneo(servicioTorneoMock, servicioUsuariosMock);
 
-		when(servicioTorneoMock.mostrarTorneos()).thenReturn(listaTorneoMock);
+		when(servicioTorneoMock.mostrarTorneos(usuarioId)).thenReturn(listaTorneoMock);
 
-		ModelAndView mav = controladorTorneo.mostrarTorneos();
+		ModelAndView mav = controladorTorneo.mostrarTorneos(usuarioId);
 
 		assertThat(mav.getViewName()).isEqualTo("torneosParaParticipar");
 		assertThat(mav.getModel().isEmpty());
@@ -48,52 +48,48 @@ public class ControladorTorneoTest{
 
 	@Test
 	public void validarQueSeCreaUnTorneoYSeRedirigaAlaVistaDeLosTorneos() {
-		
-	   ServicioTorneo servicioTorneoMock = mock(ServicioTorneo.class);
-   	   ServicioUsuarios servicioUsuariosMock = mock(ServicioUsuarios.class);
-       ControladorTorneo controladorTorneo = new ControladorTorneo (servicioTorneoMock, servicioUsuariosMock);
-   	   Torneo torneoMock=mock(Torneo.class);
-   	   Long creadorIdMock =mock(Long.class);
-   	   Long inmuebleIdMock = mock(Long.class);
-   	   MultipartFile fotoMock = mock(MultipartFile.class);
-   	   HttpServletRequest requestMock=mock(HttpServletRequest.class);
-   	   HttpSession sessionMock = mock(HttpSession.class);
-   	   RedirectAttributes flashMock = mock(RedirectAttributes.class);
-   	   
-   	  // when(servicioTorneoMock.guardarTorneo(torneoMock, creadorIdMock, inmuebleIdMock)).thenReturn(true);
-   	   
-   	   ModelAndView mav = controladorTorneo.crearTorneo(fotoMock, creadorIdMock, torneoMock, requestMock, flashMock);
- 
-   	   verify(servicioTorneoMock).guardarTorneo(torneoMock, creadorIdMock, inmuebleIdMock);
-   	   assertThat(mav.getView()).isEqualTo("redirect:/ver-torneos");
-	
-   	   verify(sessionMock, times(1)).setAttribute("inscriptos",0);
-   	   
+
+		ServicioTorneo servicioTorneoMock = mock(ServicioTorneo.class);
+		ServicioUsuarios servicioUsuariosMock = mock(ServicioUsuarios.class);
+		ControladorTorneo controladorTorneo = new ControladorTorneo(servicioTorneoMock, servicioUsuariosMock);
+		Torneo torneoMock = mock(Torneo.class);
+		Long creadorIdMock = mock(Long.class);
+		Long inmuebleIdMock = mock(Long.class);
+		MultipartFile fotoMock = mock(MultipartFile.class);
+		HttpServletRequest requestMock = mock(HttpServletRequest.class);
+		HttpSession sessionMock = mock(HttpSession.class);
+		RedirectAttributes flashMock = mock(RedirectAttributes.class);
+
+		// when(servicioTorneoMock.guardarTorneo(torneoMock, creadorIdMock,
+		// inmuebleIdMock)).thenReturn(true);
+
+		ModelAndView mav = controladorTorneo.crearTorneo(fotoMock, creadorIdMock, torneoMock, requestMock, flashMock);
+
+		verify(servicioTorneoMock).guardarTorneo(torneoMock, creadorIdMock, inmuebleIdMock);
+		assertThat(mav.getView()).isEqualTo("redirect:/ver-torneos");
+
+		verify(sessionMock, times(1)).setAttribute("inscriptos", 0);
+
 	}
-	
+
 	@Test
 	public void validarQueRetorneAlFormularioDeCrearTorneoConListaDeInmueblesAlquilados() {
-		
-		
-		 ServicioTorneo servicioTorneoMock = mock(ServicioTorneo.class);
-	   	   ServicioUsuarios servicioUsuariosMock = mock(ServicioUsuarios.class);
-	       ControladorTorneo controladorTorneo = new ControladorTorneo (servicioTorneoMock, servicioUsuariosMock);
-	       Torneo torneoMock=mock(Torneo.class);
-	       
-	       Long usuarioId = 1L;
-	       List<Inmueble> listaInmuebleMock = mock(List.class);
-	       
-	       when(servicioUsuariosMock.mostrarInmueblesAlquilados(usuarioId)).thenReturn(listaInmuebleMock);
-	     
-			ModelAndView mav = controladorTorneo.nuevoTorneo(usuarioId);
-			
-			
-			verify(servicioUsuariosMock).mostrarInmueblesAlquilados(usuarioId);
-		
-			
-			assertThat(mav.getViewName()).isEqualTo("organizarTorneos");
-			
-			
-		
+
+		ServicioTorneo servicioTorneoMock = mock(ServicioTorneo.class);
+		ServicioUsuarios servicioUsuariosMock = mock(ServicioUsuarios.class);
+		ControladorTorneo controladorTorneo = new ControladorTorneo(servicioTorneoMock, servicioUsuariosMock);
+		Torneo torneoMock = mock(Torneo.class);
+
+		Long usuarioId = 1L;
+		List<Inmueble> listaInmuebleMock = mock(List.class);
+
+		when(servicioUsuariosMock.mostrarInmueblesAlquilados(usuarioId)).thenReturn(listaInmuebleMock);
+
+		ModelAndView mav = controladorTorneo.nuevoTorneo(usuarioId);
+
+		verify(servicioUsuariosMock).mostrarInmueblesAlquilados(usuarioId);
+
+		assertThat(mav.getViewName()).isEqualTo("organizarTorneos");
+
 	}
 }

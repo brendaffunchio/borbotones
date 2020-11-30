@@ -17,9 +17,9 @@
 			</div>
 
 			<div class="form-group col-sm-5">
-				<label > Elegir por categoría </label>
+				<label > Elegir por categorï¿½a </label>
 				<select class="form-control" name="categoria" multiple>
-					<option selected value="">Categoría</option>
+					<option selected value="">Categorï¿½a</option>
 					<option value="Deporte">Deporte</option>
 					<option value="Aventura">Aventura</option>
 					<option value="Terror">Terror</option>
@@ -50,7 +50,7 @@
 		
 		
 			</br> <a class="btn btn-outline-success" href="ver-formulario-torneo?usuarioId=1" role="button">
-				ORGANIZÁ TU TORNEO </a>
+				ORGANIZï¿½ TU TORNEO </a>
 
 	
 	</div>
@@ -79,7 +79,7 @@
       <td>${T.nombre}</td>
       <td>${T.juego}</td>
       <td>$ ${T.precio}</td>
-      <td><a class="btn btn-outline-success btn-sm"  href="/proyecto-practica/ver-torneo-detalles?torneoId=${T.id}&usuarioId=${sessionScope.id}" role="button">ver
+      <td><a class="btn btn-outline-success btn-sm"  href="/proyecto-practica/ver-torneo-detalles?torneoId=${T.id}" role="button">ver
 					detalles</a>  </td>
     </tr>
    

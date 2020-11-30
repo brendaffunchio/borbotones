@@ -10,7 +10,7 @@ import net.bytebuddy.dynamic.scaffold.MethodGraph.Linked;
 public interface ServicioTorneo {
 
 	
-	public List<Torneo> mostrarTorneos();
+	public List<Torneo> mostrarTorneos(Long usuarioId);
 
 	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId);
 
@@ -25,8 +25,6 @@ public interface ServicioTorneo {
 	public Set<Usuario> mostrarParticipantesDelTorneo(Long torneoId);
 
 	public void elegirGanador(Long ganadorId, Long torneoGanadoId);
-
-	public Double calcularDistanciaConElUsuario(Long usuarioId, Long torneoId);
 	
 	public Torneo consultarTorneoPorId(Long torneoId);
 }

@@ -30,9 +30,26 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	}
 
 	@Override
-	public List<Torneo> mostrarTorneos() {
+	public List<Torneo> mostrarTorneos(Long usuarioId) {
+       List<Torneo> torneos=repositorioTorneo.torneos();
        
-		return repositorioTorneo.torneos();
+       Usuario usuario = repositorioUsuario.consultarUsuarioPorId(usuarioId);
+		Direccion direccionUsuario = usuario.getDireccion();
+		
+		for (Torneo torneo:torneos) {
+			Inmueble inmueble=torneo.getInmuebleDelTorneo();
+			Direccion direccionTorneo = inmueble.getDireccion();
+			Double distancia = torneo.getDistanciaConUsuario();
+			distancia= -1*(6371*Math.asin(Math.cos(direccionUsuario.getLatitud())
+		    		*Math.cos(direccionTorneo.getLatitud())+Math.sin(direccionUsuario.getLatitud())
+		    		*Math.sin(direccionTorneo.getLatitud())
+		    		-Math.cos(direccionUsuario.getLongitud()-direccionTorneo.getLongitud())));
+		    
+		    torneo.setDistanciaConUsuario(distancia);
+		    repositorioTorneo.modificarTorneo(torneo);
+		}
+		
+		return torneos;
           
 	}
 
@@ -126,32 +143,11 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	}
 
 	
-	@Override
-	public Double calcularDistanciaConElUsuario(Long usuarioId, Long torneoId) {
-		Torneo torneo = repositorioTorneo.consultarTorneoPorId(torneoId);
-		Usuario usuario = repositorioUsuario.consultarUsuarioPorId(usuarioId);
-		Direccion direccionUsuario = usuario.getDireccion();
-		Inmueble inmueble=torneo.getInmuebleDelTorneo();
-		Direccion direccionTorneo = inmueble.getDireccion();
-		
-		Double distancia = torneo.getDistanciaConUsuario();
-		
-		
-	    distancia= -1*(6371*Math.asin(Math.cos(direccionUsuario.getLatitud())
-	    		*Math.cos(direccionTorneo.getLatitud())+Math.sin(direccionUsuario.getLatitud())
-	    		*Math.sin(direccionTorneo.getLatitud())
-	    		-Math.cos(direccionUsuario.getLongitud()-direccionTorneo.getLongitud())));
-	    
-	    torneo.setDistanciaConUsuario(distancia);
-	    repositorioTorneo.modificarTorneo(torneo);
-	    
-	    return distancia;
 		
 		/*=6371*ACOS(COS(RADIANES(90-A6))*COS(RADIANES(90-C6))+SENO(RADIANES(90-
 				A6))*SENO(RADIANES(90-C6))*COS(RADIANES(B6-D6)))
 			*/
-		
-	}
+	
 
 	@Override
 	public Torneo consultarTorneoPorId(Long torneoId) {
