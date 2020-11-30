@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -55,32 +56,27 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 	}
 
 	@Override
-	public List<Inmueble> buscarInmueble(String provinciaId, String nombreCiudad) {
+	public List<Inmueble> buscarInmueble(Long provinciaId, String nombreCiudad) {
+			
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Inmueble.class);
 		
-		final Session session = sessionFactory.getCurrentSession();
-		List <Inmueble> inmueblesBuscados = new LinkedList<Inmueble>();
+		criteria.createAlias("direccion", "direccionBuscada");
 		
-		
-		Provincia provincia = session.get(Provincia.class, provinciaId);
-		
-		String nombreProvincia = null;
-		Provincia prov = (Provincia) session.createCriteria(Provincia.class)
-				.add(Restrictions.eq("nombre", nombreProvincia)).uniqueResult();
-		Ciudad ciudad = (Ciudad) session.createCriteria(Ciudad.class)
-				.add(Restrictions.eq("nombre", nombreCiudad)).uniqueResult();
-		
-		if (provincia != null && !provinciaId.equals("")&&ciudad != null && !nombreCiudad.equals("")
-				&& ciudad.getProvincia().equals(provincia)) 
-			inmueblesBuscados = session.createCriteria(Inmueble.class)
-					.createAlias("direccion", "direccionBuscada")
-					.createAlias("direccionBuscada.ciudad", "ciudad")
-					.add(Restrictions.or(Restrictions.like("ciudad.nombre",nombreCiudad)
-					,Restrictions.like("ciudad.provincia", provincia)))	
-			.add(Restrictions.eq("disponible", true)).list();
-		
-		return inmueblesBuscados;
+		criteria.createAlias("direccionBuscada.ciudad", "ciudad");
 		
 		
+		if(provinciaId != null && provinciaId != 0 ) {
+		criteria.add(Restrictions.like("ciudad.provincia.id", provinciaId));
+		}
+		
+		if(nombreCiudad != null && nombreCiudad != "") {
+			
+			criteria.add(Restrictions.like("ciudad.nombre", nombreCiudad, MatchMode.ANYWHERE));
+		}
+		
+		return criteria.list();
+		
+	
 					
 		}
 	

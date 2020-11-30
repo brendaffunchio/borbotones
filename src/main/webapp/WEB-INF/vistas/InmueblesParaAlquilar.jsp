@@ -1,44 +1,66 @@
 
 		<%@include file="header.jsp"%>
 		
+	
 	<h2 class="titulo-inmuebles">INMUEBLES DISPONIBLES</h2>
-
-
-	<div class="cont-acciones">
-		<div class="buscador">
-
+	
+	<div class="row-12">
+	
 			<form:form action="buscar-inmueble" method="GET">
 
-				<label class="ors">Buscar inmueble</label>
+
+			<div class="form-group col-sm-6">
+	
+
+				<label class="ors">Buscar Inmueble</label>
 				</br>
-				<p>Seleccionar provincia</p>
-				<br>
-				<select name="provinciaId">
-				<c:forEach items="${provincias}" var="P">
+			</div>
+			
+			<div class="form-group col-sm-5">
+				<label > Elegir por provincia </label>
+				<select class="form-control" name="provinciaId" multiple>
+					<option selected value="0">Seleccionar provincia</option>
+						<c:forEach items="${provincias}" var="P">
 				<option value="${P.id}">${P.nombre}</option>
 				</c:forEach>
-				
-				</select>
-				<p>Escribir ciudad</p>
-				<input name="ciudad" class="busc" type="search">
-				<button class="btn btn-outline-warning btn-sm" type="submit">Buscar</button>
+				  </select>
 
+				  <label >Buscar por ciudad </label>
+			
+				<input name="ciudad" class="busc" type="search">
+
+				</div>
+				
+				<div class="col 6">
+			
+				<button class="btn btn-outline-warning" type="submit">Buscar</button>
+				
+				</div>
 
 			</form:form>
-
-
-
-		</div>
+			
+	
 		<c:choose>
      <c:when test="${sessionScope.rol=='admin'}">
+     <div class="col-2">
 		<div class="organizar-tor">
 			<a class="btn btn-outline-warning" href="ver-formulario-inmueble" role="button">
 				PUBLICÁ TU INMUEBLE </a>
-
+				
+				 </div>
+				
 		</div>
-</c:when>
+		
+		</c:when>
 </c:choose>
-	</div>
+		
+			</div>
+		
+	
+
+	
+	
+	<div class="row-12">
 
 	<table class="table table-hover table-dark">
   <thead>
@@ -66,7 +88,7 @@
   </c:forEach>
 </table>
 
-	
+	</div>
 
 </body>
 </html>

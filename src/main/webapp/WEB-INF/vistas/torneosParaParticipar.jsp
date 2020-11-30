@@ -3,16 +3,14 @@
 
 	<h2 class="titulo-torn">TORNEOS DISPONIBLES</h2>
 
-	<div class="row">
+	<div class="row-12">
 	
-		<div class="col 6">
+		<div class="col-6">
 		
 			<form:form action="buscar-torneo" method="GET">
 
 
-	<div class="form-group col-sm-6">
-	
-	
+	<div class="form-group">
 	
 				<label class="ors">Buscar torneo</label>
 				</br>
@@ -36,7 +34,7 @@
 
 				</div>
 				
-			<div class="col 6">
+			<div class="col-6">
 			
 				<button class="btn btn-outline-success" type="submit">Buscar</button>
 				
@@ -44,29 +42,22 @@
 
 			</form:form>
 			
-			
-		</div>
+			 </div>
+			 
+			 
+			 
+			<div class="col-2">
 		
-		<div>
-		<a href"">Filtrar Torneos cercanos</a>
 		
-		</div>
-		
-		<div class="col-2">
-		
-			<div class="organizar-tor col">
-			
 			</br> <a class="btn btn-outline-success" href="ver-formulario-torneo?usuarioId=1" role="button">
 				ORGANIZÁ TU TORNEO </a>
 
-
-		</div>
-		
-		
-		 </div>
-
-		
+	
 	</div>
+	
+	</div>
+	
+
 	
 	<div class="table-responsive col-sm-12"> 
 	
@@ -99,8 +90,6 @@
 </table>
 
 </div>
-
-
 
 </body>
 </html>

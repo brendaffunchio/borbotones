@@ -68,6 +68,12 @@
   </c:forEach>
 </table>
 
+	<c:if test="${not empty error}">
+	<h6>
+		${error}
+	</h6>
+	<br>
+</c:if>
 	
 
 </body>
