@@ -137,7 +137,7 @@ public class ControladorInmueble {
 		
 		if(servicioInmueble.buscarInmueble(Long.parseLong(provinciaId), nombreCiudad).size() == 0) {
 			
-			modelo.put("error", "No se encontró ningún torneo.");
+			modelo.put("error", "No se encontró ningún inmueble.");
 		}
 		
 		else { 
