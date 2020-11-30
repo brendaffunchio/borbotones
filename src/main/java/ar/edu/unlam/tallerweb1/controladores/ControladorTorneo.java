@@ -204,7 +204,7 @@ ModelMap modelo= new ModelMap();
         modelo.put("torneo", servicioTorneo.consultarTorneoPorId(torneoGanadoId));
 		servicioTorneo.elegirGanador(ganadorId, torneoGanadoId);
 		
-		return new ModelAndView("ganadorExistoso", modelo);
+		return new ModelAndView("ganadorExitoso", modelo);
 		
 		
 	}

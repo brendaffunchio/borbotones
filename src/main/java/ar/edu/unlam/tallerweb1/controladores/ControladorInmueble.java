@@ -131,10 +131,22 @@ public class ControladorInmueble {
 	@RequestMapping(path = "buscar-inmueble", method = RequestMethod.GET)
 	public ModelAndView mostrarTorneosPorJuego(HttpServletRequest request) {
 
-		ModelMap modelo = new ModelMap();
+		ModelMap modelo = new ModelMap();	
 		String provinciaId = request.getParameter("provinciaId");
 		String nombreCiudad = request.getParameter("ciudad");
-		modelo.put("inmueblesBusqueda", servicioInmueble.buscarInmueble(provinciaId,nombreCiudad));
+		
+		if(servicioInmueble.buscarInmueble(Long.parseLong(provinciaId), nombreCiudad).size() == 0) {
+			
+			modelo.put("error", "No se encontró ningún torneo.");
+		}
+		
+		else { 
+			
+			modelo.put("inmueblesBusqueda", servicioInmueble.buscarInmueble(Long.parseLong(provinciaId),nombreCiudad));
+		}
+		
+		
+		
 
 		return new ModelAndView("inmueblesPorBusqueda", modelo);
 	}

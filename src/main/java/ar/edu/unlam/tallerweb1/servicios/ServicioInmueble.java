@@ -12,7 +12,7 @@ public interface ServicioInmueble {
 
 	public void guardarInmueble(Inmueble inmueble,Direccion direccion);
 
-	public List<Inmueble> buscarInmueble(String provinciaId, String nombreCiudad);
+	public List<Inmueble> buscarInmueble(Long provinciaId, String nombreCiudad);
 
 	public Inmueble verDetallesInmueble(Long inmuebleId);
 
