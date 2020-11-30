@@ -43,8 +43,12 @@ public class ControladorTorneo {
 	public ModelAndView mostrarTorneos(@RequestParam("usuarioId") Long usuarioId) {
 
 		ModelMap modelo = new ModelMap();
-		modelo.put("torneos", servicioTorneo.mostrarTorneos(usuarioId));
-        
+		
+		if (usuarioId!=null) {
+		modelo.put("torneos", servicioTorneo.mostrarTorneosConDistancia(usuarioId));
+		}else {
+			modelo.put("torneos", servicioTorneo.mostrarTorneos());
+		}
 		return new ModelAndView("torneosParaParticipar", modelo);
 
 	}

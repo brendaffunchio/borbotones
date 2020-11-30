@@ -312,7 +312,9 @@ public class ConexionBaseDeDatosTest extends SpringTest {
 	@Transactional
 	@Rollback
 	public void buscarInmueblePorProvinciaYCiudad() {
-
+ Inmueble inmueble = inmueble();
+ 
+		
 	}
 
 	// test del repositorio torneo

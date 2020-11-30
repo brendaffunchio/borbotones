@@ -30,7 +30,7 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	}
 
 	@Override
-	public List<Torneo> mostrarTorneos(Long usuarioId) {
+	public List<Torneo> mostrarTorneosConDistancia(Long usuarioId) {
        List<Torneo> torneos=repositorioTorneo.torneos();
        
        Usuario usuario = repositorioUsuario.consultarUsuarioPorId(usuarioId);
@@ -48,6 +48,7 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 		    torneo.setDistanciaConUsuario(distancia);
 		    repositorioTorneo.modificarTorneo(torneo);
 		}
+
 		
 		return torneos;
           
@@ -153,6 +154,12 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	public Torneo consultarTorneoPorId(Long torneoId) {
 		
 		return repositorioTorneo.consultarTorneoPorId(torneoId);
+	}
+
+	@Override
+	public List<Torneo> mostrarTorneos() {
+		
+		return repositorioTorneo.torneos();
 	}
 	
 

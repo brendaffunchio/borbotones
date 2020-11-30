@@ -36,7 +36,10 @@
 
 			<a href="inicio" id="btnHome"> HOME </a> 
 			<a href="ver-inmuebles"	id="btnInmueble"> INMUEBLES </a>
-				 <a href="ver-torneos?usuarioId=${sessionScope.id}" id="btnTorneo"> TORNEOS </a> 
+			
+				 <a href="ver-torneos?usuarioId=${sessionScope.id}" id="btnTorneo"> TORNEOS </a>
+				 
+				
 				<a href="contacto" id="btnInmueble">CONTACTO </a>
 
 			<c:if
