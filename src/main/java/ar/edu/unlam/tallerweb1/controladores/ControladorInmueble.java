@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
@@ -71,62 +72,37 @@ public class ControladorInmueble {
 
 	}
 
-	public void guardarFoto(MultipartFile foto)  {
+	
+	@RequestMapping(path = "crear-inmueble", method = RequestMethod.POST)
+	public ModelAndView crearInmueble(@RequestParam(name = "calle") String calle,
+			@RequestParam(name = "numero") Integer numero,
+			@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble,
+			RedirectAttributes flash){
 
-		if (!foto.isEmpty()) {
+		try {
+			servicioInmueble.validarFoto(foto);
+		} catch (Exception e) {
+			
+			return new ModelAndView("errorSubidaDeImagen", new ModelMap("error", e.getMessage()));
+		}
+
 			try {
-
-				String ruta = "C://Producto//inmuebles";
-
-				byte[] bytes;
-				bytes = foto.getBytes();
-				Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
-				Files.write(rutaAbsoluta, bytes);
+				servicioInmueble.guardarFoto(foto);
 				
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
+			} catch (FileUploadException | IOException e) {
 				
+				return new ModelAndView("errorSubidaDeImagen", new ModelMap("errorSubida", e.getMessage()));
 			}
 
-		}
+		servicioInmueble.guardarInmueble(inmueble, servicioInmueble.crearDireccion(calle, numero));
+		
+		servicioInmueble.setFoto(inmueble, foto.getOriginalFilename());
+
+		return new ModelAndView("redirect:/ver-inmuebles");
 
 	}
 
-	@RequestMapping(path="crear-inmueble",method=RequestMethod.POST)
-	public ModelAndView crearInmueble(@RequestParam(name="calle") String calle,
-			@RequestParam(name="numero") Integer numero,@RequestParam(name="file",required=false)
-			MultipartFile foto, Inmueble inmueble, RedirectAttributes flash) throws FileNotFoundException  {
-		
-		ModelMap modelo = new ModelMap();
-		
-		
-		if(foto.isEmpty()) {
-			
-			
-			modelo.put("error", "No seleccióno una foto");
-			
-			
-		}
-		
-		else {
-			
-			Direccion direccion = new Direccion ();
-			
-			direccion.setCalle(calle);
-			direccion.setNumero(numero);
-			guardarFoto(foto);
-			inmueble.setFoto(foto.getOriginalFilename());
-			
-			servicioInmueble.guardarInmueble(inmueble,direccion);
-			
-			return new ModelAndView ("redirect:/ver-inmuebles");
-		}
-
-		
-		return new ModelAndView("errorSubidaDeImagen", modelo);
-		
-
-	}
+	
 
 	@RequestMapping(path = "buscar-inmueble", method = RequestMethod.GET)
 	public ModelAndView mostrarTorneosPorJuego(HttpServletRequest request) {
