@@ -1,27 +1,19 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
-
-import javax.persistence.CascadeType;
+import java.util.Comparator;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Transient;
 
-import org.hibernate.Session;
+import javax.persistence.OneToOne;
+
 import org.springframework.context.annotation.Scope;
 
 
@@ -30,7 +22,7 @@ import org.springframework.context.annotation.Scope;
 // busque entities en él
 @Scope("session")
 @Entity
-public class Usuario {
+public class Usuario implements Comparable<Usuario> {
 
 	// La anotacion id indica que este atributo es el utilizado como clave primaria de la entity, se indica que el valor es autogenerado.
 	@Id
@@ -71,7 +63,7 @@ public class Usuario {
 	}
 	
 	public Set<Torneo> getTorneosParticipa() {
-		return torneosParticipa;
+		return this.torneosParticipa;
 	}
 	public void setTorneosParticipa(Set<Torneo> torneosParticipa) {
 		this.torneosParticipa = torneosParticipa;
@@ -131,6 +123,40 @@ public class Usuario {
 	}
 	public void setTorGanados(Integer torGanados) {
 		this.torGanados = torGanados;
+	}
+
+	@Override
+	public int compareTo(Usuario usuario) {
+		
+		this.nombre.compareTo(usuario.getNombre());  
+		return this.nombre.compareTo(usuario.getNombre()); 
+		
+		
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
 	}
 
 

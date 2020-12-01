@@ -25,7 +25,7 @@
 				</c:forEach>
 				  </select>
 
-				  <label >Buscar por ciudad </label>
+				  <label >Ingresar ciudad </label>
 			
 				<input name="ciudad" class="busc" type="search">
 
@@ -40,8 +40,7 @@
 			</form:form>
 			
 	
-		<c:choose>
-     <c:when test="${sessionScope.rol=='admin'}">
+     <c:if test="${sessionScope.rol=='admin'}">
      <div class="col-2">
 		<div class="organizar-tor">
 			<a class="btn btn-outline-warning" href="ver-formulario-inmueble" role="button">
@@ -51,8 +50,8 @@
 				
 		</div>
 		
-		</c:when>
-</c:choose>
+		</c:if>
+
 		
 			</div>
 		

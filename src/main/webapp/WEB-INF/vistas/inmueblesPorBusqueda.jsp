@@ -3,41 +3,60 @@
 
 	<h2 class="titulo-inmuebles">INMUEBLES DISPONIBLES</h2>
 
-	<div class="cont-acciones">
-		<div class="buscador">
-
+	<div class="row-12">
+	
 			<form:form action="buscar-inmueble" method="GET">
 
-				<label class="ors">Buscar inmueble</label>
-				</br>
-				<input name="busqueda" class="busc" type="search">
-				<button class="btn-org" type="submit" id="buscarInmueble">Buscar</button>
 
+			<div class="form-group col-sm-6">
+	
+
+				<label class="ors">Buscar Inmueble</label>
+				</br>
+			</div>
+			
+			<div class="form-group col-sm-5">
+				<label > Elegir por provincia </label>
+				<select class="form-control" name="provinciaId" multiple>
+					<option selected value="0">Seleccionar provincia</option>
+						<c:forEach items="${provincias}" var="P">
+				<option value="${P.id}">${P.nombre}</option>
+				</c:forEach>
+				  </select>
+
+				  <label >Ingresar ciudad </label>
+			
+				<input name="ciudad" class="busc" type="search">
+
+				</div>
+				
+				<div class="col 6">
+			
+				<button class="btn btn-outline-warning" type="submit">Buscar</button>
+				
+				</div>
 
 			</form:form>
+			
 
 
-
-		</div>
-
-
-
+     <c:if test="${sessionScope.rol=='admin'}">
+     <div class="col-2">
 		<div class="organizar-tor">
-			<div>
-				<a class="boton-pub" href="ver-formulario-inmueble" role="button">
-					PUBLICAR </a>
-
-			</div>
-
-			<br> <br>
-			<div>
-
-				<a class="boton-pub" href="ver-inmuebles" role="button">
-					INMUEBLES </a>
-			</div>
-
+			<a class="btn btn-outline-warning" href="ver-formulario-inmueble" role="button">
+				PUBLICÁ TU INMUEBLE </a>
+				
+				 </div>
+				
 		</div>
-	</div>
+		
+		</c:if>
+
+		
+			</div>
+
+				
+		<div class="row-12">
 
 <table class="table table-hover table-dark">
   <thead>
@@ -67,7 +86,7 @@
   
   </c:forEach>
 </table>
-
+</div>
 	<c:if test="${not empty error}">
 	<h6>
 		${error}

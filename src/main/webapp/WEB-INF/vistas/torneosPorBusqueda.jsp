@@ -3,32 +3,66 @@
 		
 	<h2 class="titulo-torn">TORNEOS DISPONIBLES</h2>
 
-	<div class="cont-acciones">
+	<div class="row-12">
 	
-		<div class="buscador">
+		<div class="col-6">
+		
 			<form:form action="buscar-torneo" method="GET">
 
-				<label class="ors">Buscar torneo deseado</label>
+
+	<div class="form-group">
+	
+				<label class="ors">Buscar torneo</label>
 				</br>
-				<input name="busqueda" class="busc" type="search">
-				<button class="btn-org" type="submit">Buscar</button>
+			</div>
+
+			<div class="form-group col-sm-5">
+				<label > Elegir por categoría </label>
+				<select class="form-control" name="categoria" multiple>
+					<option selected value="">Categoría</option>
+					<option value="Deporte">Deporte</option>
+					<option value="Aventura">Aventura</option>
+					<option value="Terror">Terror</option>
+					<option value="Accion">Accion</option>
+					<option value="Fantasia">Fantasia</option>
+					<option value="Otra">Otra</option>
+				  </select>
+
+			 
+				  <label >Ingresar juego </label>
+				<input class="busc" type="text" name="juego">
+
+				</div>
+				
+			<div class="col-6">
+			
+				<button class="btn btn-outline-success" type="submit">Buscar</button>
+				
+				</div>
 
 			</form:form>
 			
-		</div>
+			
+			<div class="col-6">
+			
+			<a class="btn btn-outline-success" href="ver-torneos-filtrados-distancia">FILTRAR MAS CERCANOS</a>
+			</div>
+			 </div>
+			 
+			 
+			 
+			<div class="col-2">
+		
+		
+			</br> <a class="btn btn-outline-success" href="ver-formulario-torneo?usuarioId=1" role="button">
+				ORGANIZÁ TU TORNEO </a>
 
-		<div class="organizar-tor">
-			<p class="pp">Para organizar tu propio torneo, hacé clikc en el
-				botón:</p>
-			</br> <a class="boton-part" href="ver-formulario-torneo" role="button">
-				ORGANIZAR </a> <br> <br>
-				
-			</br> <a class="boton-part" href="ver-torneos" role="button">
-				TORNEOS </a>
-
-
-		</div>
+	
 	</div>
+	
+	</div>
+	
+		
 		
 		<table class="table table-hover table-dark">
   <thead>

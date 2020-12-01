@@ -49,7 +49,7 @@
 			<c:if
 				test="${(sessionScope.rol=='admin')or(sessionScope.rol=='invitado')}">
 				<h6>Distancia:</h6>
-				<h6>${torneoDetalle.distanciaConUsuario}km</h6>
+				<h6>${torneoDetalle.distanciaConUsuario} km</h6>
 			</c:if>
 			<br>
 			<form:form action="participar" method="POST">

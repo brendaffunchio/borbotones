@@ -22,6 +22,8 @@ public interface RepositorioTorneo {
 	
 	public Torneo consultarTorneoPorId(Long torneoId);
 
+	public List<Torneo> ordenarTorneosSegunDistancia();
+
 	
 
 }

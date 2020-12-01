@@ -63,10 +63,10 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 		criteria.createAlias("direccion", "direccionBuscada");
 		
 		criteria.createAlias("direccionBuscada.ciudad", "ciudad");
-		
+		criteria.createAlias("ciudad.provincia", "provincia");
 		
 		if(provinciaId != null && provinciaId != 0 ) {
-		criteria.add(Restrictions.like("ciudad.provincia.id", provinciaId));
+		criteria.add(Restrictions.like("provincia.id", provinciaId));
 		}
 		
 		if(nombreCiudad != null && nombreCiudad != "") {

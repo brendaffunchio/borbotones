@@ -39,20 +39,26 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 		for (Torneo torneo:torneos) {
 			Inmueble inmueble=torneo.getInmuebleDelTorneo();
 			Direccion direccionTorneo = inmueble.getDireccion();
+			
 			Double distancia = torneo.getDistanciaConUsuario();
-			distancia= -1*(6371*Math.asin(Math.cos(direccionUsuario.getLatitud())
-		    		*Math.cos(direccionTorneo.getLatitud())+Math.sin(direccionUsuario.getLatitud())
-		    		*Math.sin(direccionTorneo.getLatitud())
-		    		-Math.cos(direccionUsuario.getLongitud()-direccionTorneo.getLongitud())));
-		    
-		    torneo.setDistanciaConUsuario(distancia);
+			distancia=6371.137*Math.acos(Math.cos(direccionUsuario.getLatitud())
+					*Math.cos(direccionTorneo.getLatitud())
+					*Math.cos(direccionTorneo.getLongitud() - direccionUsuario.getLongitud())
+					+ Math.sin(direccionUsuario.getLatitud())*Math.sin(direccionTorneo.getLatitud()));
+			
+			distancia = redondearDecimales(distancia, 2);
+			
+			torneo.setDistanciaConUsuario(distancia);
 		    repositorioTorneo.modificarTorneo(torneo);
 		}
 
 		
 		return torneos;
           
+		
+		
 	}
+
 
 	@Override
 	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) {
@@ -161,6 +167,20 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 		
 		return repositorioTorneo.torneos();
 	}
-	
 
+	@Override
+	public List<Torneo> ordenarTorneosSegunDistancia() {
+		
+		return repositorioTorneo.ordenarTorneosSegunDistancia();
+	}
+	
+	private Double redondearDecimales(Double valorInicial, Integer numeroDecimales) {
+	        Double parteEntera, resultado;
+	        resultado = valorInicial;
+	        parteEntera = Math.floor(resultado);
+	        resultado=(resultado-parteEntera)*Math.pow(10, numeroDecimales);
+	        resultado= (double) Math.round(resultado);
+	        resultado=(resultado/Math.pow(10, numeroDecimales))+parteEntera;
+	        return resultado;
+	    }
 }
