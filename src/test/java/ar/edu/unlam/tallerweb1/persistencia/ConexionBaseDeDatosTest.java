@@ -312,8 +312,55 @@ public class ConexionBaseDeDatosTest extends SpringTest {
 	@Transactional
 	@Rollback
 	public void buscarInmueblePorProvinciaYCiudad() {
- Inmueble inmueble = inmueble();
- 
+       Inmueble inmueble = inmueble();
+       Criteria criteria = session().createCriteria(Inmueble.class);
+	
+	criteria.createAlias("direccion", "direccionBuscada");
+	
+	criteria.createAlias("direccionBuscada.ciudad", "ciudad");
+	
+	Long provinciaId= 1l;
+	String nombreCiudad ="Cañuelas";
+	if(provinciaId != null && provinciaId != 0 ) {
+	criteria.add(Restrictions.like("ciudad.provincia.id", provinciaId));
+	}
+	
+	if(nombreCiudad != null && nombreCiudad != "") {
+		
+		criteria.add(Restrictions.like("ciudad.nombre", nombreCiudad, MatchMode.ANYWHERE));
+	}
+	
+	assertThat(criteria.list()).hasSize(1);
+	assertThat(criteria.list()).isNotEmpty();
+	
+		
+	}
+	
+	@Test
+	@Transactional
+	@Rollback
+	public void buscarInmueblePorProvinciaVaciaYCiudadVaciaYQueDevuelvaTodosLosInmuebles() {
+       Inmueble inmueble = inmueble();
+       Criteria criteria = session().createCriteria(Inmueble.class);
+	
+	criteria.createAlias("direccion", "direccionBuscada");
+	
+	criteria.createAlias("direccionBuscada.ciudad", "ciudad");
+	
+	Long provinciaId= 0l;
+	String nombreCiudad ="";
+	if(provinciaId != null && provinciaId != 0 ) {
+	criteria.add(Restrictions.like("ciudad.provincia.id", provinciaId));
+	}
+	
+	if(nombreCiudad != null && nombreCiudad != "") {
+		
+		criteria.add(Restrictions.like("ciudad.nombre", nombreCiudad, MatchMode.ANYWHERE));
+	}
+	
+	assertThat(criteria.list()).hasSize(1);
+	assertThat(criteria.list()).isNotEmpty();
+	
 		
 	}
 
