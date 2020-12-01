@@ -52,6 +52,16 @@ public class ControladorTorneo {
 		return new ModelAndView("torneosParaParticipar", modelo);
 
 	}
+	
+	@RequestMapping(path = "ver-torneos-filtrados-distancia", method = RequestMethod.GET)
+	public ModelAndView mostrarTorneosSegunDistancia() {
+
+		ModelMap modelo = new ModelMap();
+		
+		modelo.put("torneos",servicioTorneo.ordenarTorneosSegunDistancia());
+		return new ModelAndView("torneosParaParticipar", modelo);
+
+	}
 
 	@RequestMapping(path = "ver-formulario-torneo", method = RequestMethod.GET)
 	public ModelAndView nuevoTorneo(@RequestParam("usuarioId") Long usuarioId) {

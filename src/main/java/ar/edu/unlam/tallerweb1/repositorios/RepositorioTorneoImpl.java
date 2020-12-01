@@ -10,6 +10,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -106,6 +107,19 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		Torneo torneo= session.get(Torneo.class, torneoId);
 		
 		return torneo;
+	}
+
+	@Override
+	public List<Torneo> ordenarTorneosSegunDistancia() {
+		final Session session = sessionFactory.getCurrentSession();
+
+		
+
+		List <Torneo> torneosOrdenados = session.createCriteria(Torneo.class)
+				.addOrder(Order.asc("distanciaConUsuario"))
+				.list();
+		
+		return torneosOrdenados;
 	}
 	
 	

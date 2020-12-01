@@ -28,4 +28,5 @@ public interface ServicioTorneo {
 	public void elegirGanador(Long ganadorId, Long torneoGanadoId);
 	
 	public Torneo consultarTorneoPorId(Long torneoId);
+	public List<Torneo> ordenarTorneosSegunDistancia();
 }

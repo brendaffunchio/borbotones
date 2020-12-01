@@ -42,6 +42,11 @@
 
 			</form:form>
 			
+			
+			<div class="col-6">
+			
+			<a class="btn btn-outline-success" href="ver-torneos-filtrados-distancia">FILTRAR MAS CERCANOS</a>
+			</div>
 			 </div>
 			 
 			 
@@ -57,7 +62,7 @@
 	
 	</div>
 	
-
+	
 	
 	<div class="table-responsive col-sm-12"> 
 	
@@ -69,6 +74,11 @@
       <th scope="col">Torneo</th>
       <th scope="col">Juego</th>
       <th scope="col">Precio</th>
+      <c:if
+				test="${(sessionScope.rol=='admin')or(sessionScope.rol=='invitado')}">
+				<th>Distancia</th>
+				
+			</c:if>
        <th scope="col">Acciones</th>
     </tr>
   </thead>
@@ -79,6 +89,11 @@
       <td>${T.nombre}</td>
       <td>${T.juego}</td>
       <td>$ ${T.precio}</td>
+      <c:if
+				test="${(sessionScope.rol=='admin')or(sessionScope.rol=='invitado')}">
+				
+				<td>${T.distanciaConUsuario} km</td>
+			</c:if>
       <td><a class="btn btn-outline-success btn-sm"  href="/proyecto-practica/ver-torneo-detalles?torneoId=${T.id}" role="button">ver
 					detalles</a>  </td>
     </tr>

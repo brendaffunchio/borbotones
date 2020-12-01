@@ -2,12 +2,16 @@
 		<%@include file="header.jsp"%>
 
 	<h2 class="titulo-torn">TORNEOS QUE PARTICIPO</h2>
+	
+	
      <c:if test="${not empty error}">
 				<h2 class="text-center">
 					${error}
 				</h2>
 				<br>
 			</c:if>
+			
+			
 	
 			<table class="table table-hover table-dark">
   <thead>
