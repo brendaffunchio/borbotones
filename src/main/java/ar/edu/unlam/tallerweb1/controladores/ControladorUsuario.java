@@ -60,17 +60,15 @@ public class ControladorUsuario {
 	public ModelAndView crearUsuario (@RequestParam(name="calle") String calle,
 			@RequestParam(name="numero") Integer numero, @ModelAttribute ("usuario") Usuario usuario, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
-		
-		modelo.put("provincias", servicioProvincia.mostrarProvincias());
-		modelo.put("ciudades", servicioCiudad.mostrarCiudades());
+	
         Direccion direccion = servicioDireccion.crearDireccion(calle, numero);
 		
 		try {
 			servicioUsuarios.guardarUsuario(usuario, direccion);
 		} catch (DireccionNoValidaException e) {
 			
-			modelo.put("errorDireccion",e.getMessage());
-			return new ModelAndView ("formularioUsuario",modelo);
+			modelo.put("errorDireccionUsuario",e.getMessage());
+			return new ModelAndView ("errores",modelo);
 		}
 		
 		return new ModelAndView ("registracionExitosa");

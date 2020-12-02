@@ -34,19 +34,19 @@
 
 		<nav class="contenedorNav">
 
-			<a href="inicio" id="btnHome"> HOME </a> 
-			<a href="ver-inmuebles"	id="btnInmueble"> INMUEBLES </a>
+			<a class="botonNav" href="inicio" id="btnHome"> HOME </a> 
+			<a class="botonNav" href="ver-inmuebles"	id="btnInmueble"> INMUEBLES </a>
 			
-				 <a href="ver-torneos?usuarioId=${sessionScope.id}" id="btnTorneo"> TORNEOS </a>
+				 <a class="botonNav" href="ver-torneos?usuarioId=${sessionScope.id}" id="btnTorneo"> TORNEOS </a>
 				 
 				
-				<a href="contacto" id="btnInmueble">CONTACTO </a>
+				<a class="botonNav" href="contacto" id="btnInmueble">CONTACTO </a>
 
 			<c:if
 				test="${(sessionScope.rol=='admin')or(sessionScope.rol=='invitado')}">
-				<a href="ver-perfil-del-usuario?usuarioId=${sessionScope.id}" id="btnTorneo">
+				<a class="botonNav" href="ver-perfil-del-usuario?usuarioId=${sessionScope.id}" id="btnTorneo">
 					PERFIL </a>
-				<a href="logout" id="btnContacto"> CERRAR SESIÓN </a>
+				<a class="botonNav" href="logout" id="btnContacto"> CERRAR SESIÓN </a>
 			</c:if>
 
 

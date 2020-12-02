@@ -26,6 +26,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
+import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteExeception;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCiudad;
 import ar.edu.unlam.tallerweb1.servicios.ServicioDireccion;
@@ -75,37 +76,25 @@ public class ControladorInmueble {
 	}
 
 	@RequestMapping(path = "crear-inmueble", method = RequestMethod.POST)
-	public ModelAndView crearInmueble(@RequestParam(name = "calle") String calle,
-			@RequestParam(name = "numero") Integer numero,
-			@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble,
-			RedirectAttributes flash) {
+	public ModelAndView crearInmueble(@RequestParam(name = "calle") String calle,@RequestParam(name = "numero") Integer numero,
+			@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble,RedirectAttributes flash) {
 
 		ModelMap modelo = new ModelMap();
 		Direccion direccion = servicioDireccion.crearDireccion(calle, numero);
 		
 		try {
 			servicioInmueble.validarFoto(foto);
-		} catch (Exception e) {
+			servicioInmueble.guardarFoto(foto);	
+		} catch (FotoInexistenteExeception | FileUploadException | IOException e) {
 			modelo.put("error", e.getMessage());
-			return new ModelAndView("erroresInmueble", modelo);
+			return new ModelAndView("errores", modelo);
 		}
-
-		try {
-			servicioInmueble.guardarFoto(foto);
-
-		} catch (FileUploadException | IOException e) {
-			modelo.put("errorSubida", e.getMessage());
-			return new ModelAndView("erroresInmuebles", modelo);
-		}
-
 		servicioInmueble.setFoto(inmueble, foto.getOriginalFilename());
-
 		try {
 			servicioInmueble.guardarInmueble(inmueble, direccion);
 		} catch (DireccionNoValidaException e) {
-			modelo.put("errorDireccion", e.getMessage());
-			
-			return new ModelAndView("erroresInmuebles", modelo);
+			modelo.put("errorDireccionInmueble", e.getMessage());
+			return new ModelAndView("errores", modelo);
 		}
 
 		return new ModelAndView("redirect:/ver-inmuebles");

@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
+import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteExeception;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 
 public interface ServicioInmueble {
@@ -17,7 +18,7 @@ public interface ServicioInmueble {
 
 	public void guardarInmueble(Inmueble inmueble,Direccion direccion) throws DireccionNoValidaException;
 	
-	void validarFoto(MultipartFile foto) throws FileNotFoundException;
+	void validarFoto(MultipartFile foto) throws FotoInexistenteExeception;
 	
 	public void guardarFoto(MultipartFile foto) throws FileUploadException,  IOException ;
 	

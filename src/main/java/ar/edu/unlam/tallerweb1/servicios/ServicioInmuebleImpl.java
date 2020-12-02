@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
+import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteExeception;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -62,11 +63,11 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 	
 	
 	@Override
-	public void validarFoto(MultipartFile foto) throws FileNotFoundException {
+	public void validarFoto(MultipartFile foto) throws FotoInexistenteExeception {
 		
 			if (foto.isEmpty())  {
 			
-			throw new FileNotFoundException("No se seleccionó una foto");
+			throw new FotoInexistenteExeception ();
 
 		}
 		

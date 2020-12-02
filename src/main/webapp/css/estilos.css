@@ -145,11 +145,6 @@
 	margin-top: 20px;
 }
 
-p {
-	width: 100%;
-	font-size: 16px;
-	color:white;
-}
 
 .nombre-tor, .nombre-inmueble {
 	color: white;
@@ -277,10 +272,7 @@ iframe {
 	height: 300px;
 }
 
-.detalles a {
-	color:white;
-	border:none; 
-}
+
 
 .detalles-inm{
 	color:white;
@@ -290,8 +282,4 @@ iframe {
 	width:100%;
 }
 
-
-p{
-	color:white;
-}
 

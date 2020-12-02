@@ -35,7 +35,7 @@ body {
 	background-color: #232323;
 }
 
-a {
+.botonNav {
 	margin: 0px auto;
 	text-align: center;
 	text-decoration: none;
@@ -45,7 +45,13 @@ a {
 	color: white;
 }
 
-
+.link{
+	
+	text-decoration: none;
+	font-weight: bold;
+	color: #f71df6;
+	
+}
 #btnContacto {
 	border: none;
 }
@@ -99,11 +105,17 @@ p {
 	border-bottom: #2BE4FF 1px solid;
 	padding: 0.3em;
 	margin: 30px;
+	color:white;
+	text-decoration:none;
 }
 
 .btnEmpezar:hover {
 	background-color: white;
 	color: black;
+	font-weight:bold;
+	text-decoration:none;
+	
+	
 }
 
 #verInmuebles {
