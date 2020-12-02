@@ -77,35 +77,35 @@ public class ControladorInmueble {
 	@RequestMapping(path = "crear-inmueble", method = RequestMethod.POST)
 	public ModelAndView crearInmueble(@RequestParam(name = "calle") String calle,
 			@RequestParam(name = "numero") Integer numero,
-			@RequestParam(name = "file", required = false) MultipartFile foto,
-			Inmueble inmueble, RedirectAttributes flash) {
-		
+			@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble,
+			RedirectAttributes flash) {
+
 		ModelMap modelo = new ModelMap();
 		Direccion direccion = servicioDireccion.crearDireccion(calle, numero);
-		modelo.put("provincias", servicioProvincia.mostrarProvincias());
-		modelo.put("ciudades", servicioCiudad.mostrarCiudades());
+		
 		try {
 			servicioInmueble.validarFoto(foto);
 		} catch (Exception e) {
-             modelo.put("error", e.getMessage());
-			return new ModelAndView("errorSubidaDeImagen",modelo);
+			modelo.put("error", e.getMessage());
+			return new ModelAndView("erroresInmueble", modelo);
 		}
 
 		try {
 			servicioInmueble.guardarFoto(foto);
 
 		} catch (FileUploadException | IOException e) {
-			 modelo.put("errorSubida", e.getMessage());
-			return new ModelAndView("errorSubidaDeImagen",modelo);
+			modelo.put("errorSubida", e.getMessage());
+			return new ModelAndView("erroresInmuebles", modelo);
 		}
-		
+
 		servicioInmueble.setFoto(inmueble, foto.getOriginalFilename());
-		
+
 		try {
 			servicioInmueble.guardarInmueble(inmueble, direccion);
 		} catch (DireccionNoValidaException e) {
-modelo.put("errorDireccion",e.getMessage());
-			return new ModelAndView("publicarInmueble",modelo);
+			modelo.put("errorDireccion", e.getMessage());
+			
+			return new ModelAndView("erroresInmuebles", modelo);
 		}
 
 		return new ModelAndView("redirect:/ver-inmuebles");

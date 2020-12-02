@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unlam.tallerweb1.modelo.CupoExcedidoException;
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.InmuebleInexistenteException;
+import ar.edu.unlam.tallerweb1.modelo.ParticipanteDuplicadoException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioInmueble;
@@ -107,10 +109,16 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	}
 
 	@Override
-	public void agregarParticipante(Long torneoId, Long usuarioId) {
+	public void agregarParticipante(Long torneoId, Long usuarioId) throws ParticipanteDuplicadoException
+	, CupoExcedidoException {
 
 		Torneo torneo = repositorioTorneo.consultarTorneoPorId(torneoId);
 		Usuario participante = repositorioUsuario.consultarUsuarioPorId(usuarioId);
+		
+		if (torneo.getParticipantes().contains(participante)) {
+			
+			throw new ParticipanteDuplicadoException();
+		}
 		
 		if (torneo.getCupo() > torneo.getInscriptos()) {
 			torneo.agregarParticipante(participante);
@@ -118,13 +126,14 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 			repositorioTorneo.modificarTorneo(torneo);
 			repositorioUsuario.modificarUsuario(participante);
 			
-		}
-		
-		if (torneo.getInscriptos() >= torneo.getCupo()) {
+		} else if (torneo.getInscriptos().equals(torneo.getCupo())) {
 			torneo.setEstadoCompleto(true);
 			repositorioTorneo.modificarTorneo(torneo);
 
 			
+		} else if(torneo.getInscriptos()>torneo.getCupo()) {
+			
+			throw new CupoExcedidoException();
 		}
 		
 	}

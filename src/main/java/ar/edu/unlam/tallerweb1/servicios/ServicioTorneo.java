@@ -3,7 +3,9 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.util.List;
 import java.util.Set;
 
+import ar.edu.unlam.tallerweb1.modelo.CupoExcedidoException;
 import ar.edu.unlam.tallerweb1.modelo.InmuebleInexistenteException;
+import ar.edu.unlam.tallerweb1.modelo.ParticipanteDuplicadoException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import net.bytebuddy.dynamic.scaffold.MethodGraph.Linked;
@@ -20,7 +22,7 @@ public interface ServicioTorneo {
 
 	public Torneo verDetallesTorneo(Long id);
 	
-	void agregarParticipante(Long torneoId, Long usuarioId);
+	void agregarParticipante(Long torneoId, Long usuarioId) throws ParticipanteDuplicadoException, CupoExcedidoException;
 
 	public void eliminarParticipante(Long torneoId, Long usuarioId);
 

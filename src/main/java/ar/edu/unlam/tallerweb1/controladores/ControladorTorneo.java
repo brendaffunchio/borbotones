@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.CupoExcedidoException;
 import ar.edu.unlam.tallerweb1.modelo.InmuebleInexistenteException;
+import ar.edu.unlam.tallerweb1.modelo.ParticipanteDuplicadoException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
@@ -119,8 +121,15 @@ public class ControladorTorneo {
 	@RequestMapping(path = "participar", method=RequestMethod.POST)
 	public ModelAndView agregarParticipante(@RequestParam(name="torneoId") Long torneoId,
 			@RequestParam(name="usuarioId") Long usuarioId) {
-
-		servicioTorneo.agregarParticipante(torneoId, usuarioId);
+        ModelMap modelo= new ModelMap();
+        Torneo miTorneoDetalle = servicioTorneo.verDetallesTorneo(torneoId);
+        
+		try {
+			servicioTorneo.agregarParticipante(torneoId, usuarioId);
+		} catch (ParticipanteDuplicadoException | CupoExcedidoException e) {
+			modelo.put("errorParticipar", e.getMessage());
+			return new ModelAndView("detallesTorneo",modelo);
+		}
 
 		return new ModelAndView("participacionExitosa");
 	}
