@@ -18,8 +18,6 @@ public interface ServicioInmueble {
 	
 	void validarFoto(MultipartFile foto) throws FileNotFoundException;
 	
-	public Direccion crearDireccion(String calle, Integer numero);
-	
 	public void guardarFoto(MultipartFile foto) throws FileUploadException,  IOException ;
 	
 	public void setFoto(Inmueble inmueble, String fotoNombre);

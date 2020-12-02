@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCiudad;
+import ar.edu.unlam.tallerweb1.servicios.ServicioDireccion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioProvincia;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarios;
 
@@ -27,12 +28,16 @@ public class ControladorUsuario {
 	private ServicioUsuarios servicioUsuarios;
 	public ServicioCiudad servicioCiudad;
     public ServicioProvincia servicioProvincia;
+	public ServicioDireccion servicioDireccion;
 	
 	@Autowired
-	public ControladorUsuario(ServicioUsuarios servicioUsuarios, ServicioCiudad servicioCiudad, ServicioProvincia servicioProvincia){
+	public ControladorUsuario(ServicioUsuarios servicioUsuarios, 
+			ServicioCiudad servicioCiudad, ServicioProvincia servicioProvincia
+			, ServicioDireccion servicioDireccion){
 		this.servicioUsuarios = servicioUsuarios;
 		this.servicioCiudad = servicioCiudad;
 		this.servicioProvincia = servicioProvincia;
+		this.servicioDireccion= servicioDireccion;
 	}
 
 	
@@ -55,10 +60,7 @@ public class ControladorUsuario {
 			@RequestParam(name="numero") Integer numero, @ModelAttribute ("usuario") Usuario usuario, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		
-        Direccion direccion = new Direccion ();
-		
-		direccion.setCalle(calle);
-		direccion.setNumero(numero);
+        Direccion direccion = servicioDireccion.crearDireccion(calle, numero);
 		
 		servicioUsuarios.guardarUsuario(usuario, direccion);
 		

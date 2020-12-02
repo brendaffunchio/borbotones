@@ -27,6 +27,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCiudad;
+import ar.edu.unlam.tallerweb1.servicios.ServicioDireccion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioProvincia;
 
@@ -36,15 +37,18 @@ public class ControladorInmueble {
 	public ServicioInmueble servicioInmueble;
 	public ServicioCiudad servicioCiudad;
     public ServicioProvincia servicioProvincia;
+    public ServicioDireccion servicioDireccion;
    
 
 	@Autowired
 	public ControladorInmueble(ServicioInmueble servicioInmueble,
-			ServicioCiudad servicioCiudad, ServicioProvincia servicioProvincia) {
+			ServicioCiudad servicioCiudad, ServicioProvincia servicioProvincia
+			,ServicioDireccion servicioDireccion) {
 
 		this.servicioInmueble = servicioInmueble;
 		this.servicioCiudad = servicioCiudad;
 		this.servicioProvincia = servicioProvincia;
+		this.servicioDireccion=servicioDireccion;
 		
 
 	}
@@ -94,7 +98,8 @@ public class ControladorInmueble {
 				return new ModelAndView("errorSubidaDeImagen", new ModelMap("errorSubida", e.getMessage()));
 			}
 
-		servicioInmueble.guardarInmueble(inmueble, servicioInmueble.crearDireccion(calle, numero));
+			Direccion direccion = servicioDireccion.crearDireccion(calle, numero);
+		servicioInmueble.guardarInmueble(inmueble, direccion );
 		
 		servicioInmueble.setFoto(inmueble, foto.getOriginalFilename());
 

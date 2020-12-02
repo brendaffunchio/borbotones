@@ -62,10 +62,11 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
        		.add(Restrictions.eq("numero",numero))
        		.uniqueResult();
        
+		if (direccionBuscada!=null) {
         usuario.setDireccion(direccionBuscada);
         
 		session.save(usuario);
-		
+		}
 			}
 
 	@Override

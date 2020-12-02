@@ -47,12 +47,12 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
         		.add(Restrictions.eq("calle", calle))
         		.add(Restrictions.eq("numero", numero))
         		.uniqueResult();
-        
+        if (direccionBuscada!=null) {
         inmueble.setDireccion(direccionBuscada);
 		inmueble.setDisponible(true);
 		
 		session.save(inmueble);
-
+        }
 	}
 
 	@Override

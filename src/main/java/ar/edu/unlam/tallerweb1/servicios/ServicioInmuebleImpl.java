@@ -114,15 +114,6 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 		
 	}
 
-	@Override
-	public Direccion crearDireccion(String calle, Integer numero) {
-		
-		Direccion direccion = new Direccion();
-		direccion.setCalle(calle);
-		direccion.setNumero(numero);
-		
-		return direccion;
-	}
 
 	@Override
 	public void setFoto(Inmueble inmueble, String fotoNombre) {
