@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
+import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCiudad;
 import ar.edu.unlam.tallerweb1.servicios.ServicioDireccion;
@@ -60,9 +61,17 @@ public class ControladorUsuario {
 			@RequestParam(name="numero") Integer numero, @ModelAttribute ("usuario") Usuario usuario, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 		
+		modelo.put("provincias", servicioProvincia.mostrarProvincias());
+		modelo.put("ciudades", servicioCiudad.mostrarCiudades());
         Direccion direccion = servicioDireccion.crearDireccion(calle, numero);
 		
-		servicioUsuarios.guardarUsuario(usuario, direccion);
+		try {
+			servicioUsuarios.guardarUsuario(usuario, direccion);
+		} catch (DireccionNoValidaException e) {
+			
+			modelo.put("errorDireccion",e.getMessage());
+			return new ModelAndView ("formularioUsuario",modelo);
+		}
 		
 		return new ModelAndView ("registracionExitosa");
 

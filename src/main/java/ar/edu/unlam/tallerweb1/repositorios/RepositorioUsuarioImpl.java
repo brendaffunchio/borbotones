@@ -47,28 +47,13 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 	}
 
 	@Override
-	public void guardarUsuario(Usuario usuario, Direccion direccion) {
+	public void guardarUsuario(Usuario usuario) {
 		
 		final Session session = sessionFactory.getCurrentSession();
 		
-		String rol = "invitado";
-		usuario.setRol(rol);
-		usuario.setTorGanados(0);
-		String calle = direccion.getCalle();
-		Integer numero = direccion.getNumero();
-		
-		Direccion direccionBuscada= (Direccion) session.createCriteria(Direccion.class)
-       		.add(Restrictions.eq("calle",calle))
-       		.add(Restrictions.eq("numero",numero))
-       		.uniqueResult();
-       
-		if (direccionBuscada!=null) {
-        usuario.setDireccion(direccionBuscada);
-        
 		session.save(usuario);
 		}
-			}
-
+		
 	@Override
 	public List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId) {
 		

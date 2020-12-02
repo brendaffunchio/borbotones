@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
+import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioDireccion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTorneo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 
@@ -23,19 +25,30 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
 	//siempre se referencia a la interfaz
 	
 	private RepositorioUsuario repositorioUsuario;
-
+private RepositorioDireccion repositorioDireccion;
 	
 	@Autowired
-	public ServicioUsuariosImpl(RepositorioUsuario repositorioUsuario) {
+	public ServicioUsuariosImpl(RepositorioUsuario repositorioUsuario
+			, RepositorioDireccion repositorioDireccion) {
 
 		this.repositorioUsuario = repositorioUsuario;
-		
+		this.repositorioDireccion = repositorioDireccion;
 	}
 
 	@Override
-	public void guardarUsuario(Usuario usuario, Direccion direccion) {
-		repositorioUsuario.guardarUsuario(usuario, direccion);
+	public void guardarUsuario(Usuario usuario, Direccion direccion) throws DireccionNoValidaException {
 		
+		Direccion direccionBuscada = repositorioDireccion.buscarDireccion(direccion);
+		
+		if (direccionBuscada!=(null)) {
+		usuario.setRol("invitado");
+		usuario.setTorGanados(0);
+		usuario.setDireccion(direccionBuscada);
+        
+		repositorioUsuario.guardarUsuario(usuario);
+		} else {
+			throw new DireccionNoValidaException();
+		}
 	}
 
 	@Override

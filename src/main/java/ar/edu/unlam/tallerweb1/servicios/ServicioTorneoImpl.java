@@ -10,8 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
+import ar.edu.unlam.tallerweb1.modelo.InmuebleInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioInmueble;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTorneo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 
@@ -21,12 +23,16 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 
 	public RepositorioTorneo repositorioTorneo;
 	public RepositorioUsuario repositorioUsuario;
+	public RepositorioInmueble repositorioInmueble;
 
 	@Autowired
-	public ServicioTorneoImpl(RepositorioTorneo repositorioTorneo,RepositorioUsuario repositorioUsuario) {
+	public ServicioTorneoImpl(RepositorioTorneo repositorioTorneo
+			,RepositorioUsuario repositorioUsuario
+			,RepositorioInmueble repositorioInmueble) {
 
 		this.repositorioTorneo = repositorioTorneo;
 		this.repositorioUsuario = repositorioUsuario;
+		this.repositorioInmueble = repositorioInmueble;
 	}
 
 	@Override
@@ -61,10 +67,25 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 
 
 	@Override
-	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) {
+	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) throws InmuebleInexistenteException {
 
-		repositorioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
-
+		
+		Usuario creador = repositorioUsuario.consultarUsuarioPorId(creadorId);
+		
+		if (inmuebleId!=null) {
+			Inmueble inmueble = repositorioInmueble.consultarInmueblePorId(inmuebleId);
+			torneo.setEstadoCompleto(false);
+			torneo.setInscriptos(0);
+			torneo.setCreador(creador);
+			torneo.setInmuebleDelTorneo(inmueble);
+			
+			repositorioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
+			
+		}else {
+			
+			throw new InmuebleInexistenteException();
+		}
+		
 		
 	}
 
@@ -91,8 +112,7 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 		Torneo torneo = repositorioTorneo.consultarTorneoPorId(torneoId);
 		Usuario participante = repositorioUsuario.consultarUsuarioPorId(usuarioId);
 		
-		if (!torneo.equals(null)&&!participante.equals(null)
-				&& torneo.getCupo() > torneo.getInscriptos()) {
+		if (torneo.getCupo() > torneo.getInscriptos()) {
 			torneo.agregarParticipante(participante);
 			participante.participarEnTorneo(torneo);
 			repositorioTorneo.modificarTorneo(torneo);

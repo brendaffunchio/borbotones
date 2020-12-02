@@ -50,16 +50,16 @@
 			 </div>
 			 
 			 
-			 
+			<c:if test="${sessionScope.id != null }"> 
 			<div class="col-2">
 		
 		
-			</br> <a class="btn btn-outline-success" href="ver-formulario-torneo?usuarioId=1" role="button">
+			</br> <a class="btn btn-outline-success" href="ver-formulario-torneo?usuarioId=${sessionScope.id}" role="button">
 				ORGANIZÁ TU TORNEO </a>
 
 	
 	</div>
-	
+	</c:if>
 	</div>
 	
 		

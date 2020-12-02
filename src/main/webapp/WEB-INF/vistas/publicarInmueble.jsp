@@ -5,6 +5,14 @@
 		<div class="titulo-pub">
 			<h2 class="titulo-publicar">PUBLICÁ TU INMUEBLE</h2>
 		</div>
+		<div class="text-center">
+		<c:if test="${not empty errorDireccion}">
+				<p>
+					<span>${errorDireccion}</span>
+				</p>
+				<br>
+			</c:if>
+			</div>
 		<div class="formulario-publicar">
 
 			<form:form action="crear-inmueble" method="POST" enctype="multipart/form-data"
@@ -60,7 +68,7 @@
 				<button class="btn-pub" Type="Submit" />PUBLICAR</button>
 
 			</form:form>
-		
+		 
 		</div>
 	</div>
 

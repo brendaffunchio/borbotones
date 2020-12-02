@@ -38,7 +38,7 @@
 
 	</c:if>
 	<c:if
-		test="${(sessionScope.rol=='admin')or(sessionScope.rol=='invitado')}">
+		test="${sessionScope.id != null}">
 		<h2 class="text-center">RANKING DE GANADORES</h2>
 		<div class="row justify-content-center">
 			<div class="col-5">

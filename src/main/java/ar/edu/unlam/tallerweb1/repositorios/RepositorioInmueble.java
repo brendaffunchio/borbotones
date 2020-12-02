@@ -9,7 +9,7 @@ public interface RepositorioInmueble {
 
 	public List<Inmueble>todosLosInmuebles();
 	
-	public void guardarInmueble(Inmueble inmueble,Direccion direccion);
+	public void guardarInmueble(Inmueble inmueble);
 
 	public List<Inmueble> buscarInmueble(Long provinciaId, String nombreCiudad);
 

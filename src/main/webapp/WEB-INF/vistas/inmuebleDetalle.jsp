@@ -32,8 +32,9 @@
 		<input type="hidden" name ="usuarioId" value="${sessionScope.id}">
 		
 		<input type="hidden" name ="inmuebleId" value="${detalleInmueble.id}">
-		
+		<c:if test="${sessionScope.id != null}">
 		<button class="boton-alqui" type="submit">ALQUILAR</button>
+		</c:if>
 		</form:form>
 		
 		

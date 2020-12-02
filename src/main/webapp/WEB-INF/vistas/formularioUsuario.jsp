@@ -5,6 +5,14 @@
 		<div class="titulo-pub">
 			<h2 class="titulo-publicar">REGISTRATE</h2>
 		</div>
+		<div class ="text-center">
+		 <c:if test="${not empty errorDireccion}">
+				<p>
+					<span>${errorDireccion}</span>
+				</p>
+				<br>
+			</c:if>
+			</div>
 		<div class="formulario-publicar">
 			<form:form action="crear-usuario" method="POST"
 				modelAttribute="usuario">
@@ -61,12 +69,7 @@
 
 			</form:form>
 
-            <c:if test="${not empty error}">
-				<h4>
-					<span>${error}</span>
-				</h4>
-				<br>
-			</c:if>
+           
 			
 		</div>
 	</div>

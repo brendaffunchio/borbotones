@@ -8,13 +8,14 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
+import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 
 public interface ServicioInmueble {
 
 	public List<Inmueble> mostrarInmuebles();
 
-	public void guardarInmueble(Inmueble inmueble,Direccion direccion);
+	public void guardarInmueble(Inmueble inmueble,Direccion direccion) throws DireccionNoValidaException;
 	
 	void validarFoto(MultipartFile foto) throws FileNotFoundException;
 	

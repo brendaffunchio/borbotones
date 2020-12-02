@@ -5,6 +5,14 @@
 		<div class="titulo-org">
 			<h2 class="titulo-organizar">ORGANIZÁ TU TORNEO</h2>
 		</div>
+		<div class="text-center">
+		<c:if test="${not empty errorInmueble}">
+				<p>
+					<span>${errorInmueble}</span>
+				</p>
+				<br>
+			</c:if>
+			</div>
 		<div class="formulario-torneo">
 			<form:form action="crear-torneo" method="POST"
 				enctype="multipart/form-data" modelAttribute="torneo">
@@ -48,7 +56,7 @@
 				<br>
 
 				<select name="inmuebleId">
-
+				
 					<c:forEach items="${inmuebles}" var="I">
 
 						<option value="${I.id}">${I.nombre}</option>
@@ -78,7 +86,8 @@
 
 				</div>
 			</form:form>
-
+              
+			
 		</div>
 	</div>
 </body>

@@ -14,9 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
+import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioDireccion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioInmueble;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 
@@ -26,13 +28,15 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 
 	private RepositorioInmueble repositorioInmueble;
 	private RepositorioUsuario repositorioUsuario;
+	private RepositorioDireccion repositorioDireccion;
 
 	@Autowired
 	public ServicioInmuebleImpl(RepositorioInmueble repositorioInmueble,
-			RepositorioUsuario repositorioUsuario) {
+			RepositorioUsuario repositorioUsuario, RepositorioDireccion repositorioDireccion) {
 
 		this.repositorioInmueble = repositorioInmueble;
 		this.repositorioUsuario = repositorioUsuario;
+		this.repositorioDireccion = repositorioDireccion;
 	}
 
 	@Override
@@ -42,10 +46,18 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 	}
 
 	@Override
-	public void guardarInmueble(Inmueble inmueble,Direccion direccion) {
+	public void guardarInmueble(Inmueble inmueble,Direccion direccion) throws DireccionNoValidaException {
 
-		repositorioInmueble.guardarInmueble(inmueble,direccion);
+		Direccion direccionBuscada = repositorioDireccion.buscarDireccion(direccion);
+		
+		if (direccionBuscada!=(null)) {
+			inmueble.setDireccion(direccionBuscada);
+		repositorioInmueble.guardarInmueble(inmueble);
 
+	} else {
+		throw new DireccionNoValidaException();
+		
+	}
 	}
 	
 	
@@ -102,7 +114,7 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 		Inmueble inmueble=repositorioInmueble.consultarInmueblePorId(inmuebleId);
 		Usuario inquilino = repositorioUsuario.consultarUsuarioPorId(usuarioId);
 		
-		if (!inmueble.equals(null)&&!inquilino.equals(null)
+		if (inmueble!=(null)&&inquilino!=(null)
 				&&inmueble.getDisponible().equals(true)){
 			inmueble.setInquilino(inquilino);
 			inmueble.setDisponible(false);

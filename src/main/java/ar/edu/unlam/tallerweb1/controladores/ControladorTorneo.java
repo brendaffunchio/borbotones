@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.InmuebleInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
@@ -76,6 +77,7 @@ public class ControladorTorneo {
 		return new ModelAndView("organizarTorneos", modelo);
 
 	}
+	
 	public void guardarFoto (MultipartFile foto) {
 		if (!foto.isEmpty()) {
 			String ruta = "C://Producto//torneos";
@@ -94,14 +96,22 @@ public class ControladorTorneo {
 
 	@RequestMapping(path = "crear-torneo", method = RequestMethod.POST)
 	public ModelAndView crearTorneo(@RequestParam(name = "file", required = false) MultipartFile foto, 
-			@RequestParam(name = "creadorId") Long creadorId, 
-			Torneo torneo, HttpServletRequest request,RedirectAttributes flash) {
-
-		Long inmuebleId= Long.parseLong(request.getParameter("inmuebleId"));
+			@RequestParam(name = "creadorId") Long creadorId,
+			@RequestParam(name = "inmuebleId") Long inmuebleId,
+			Torneo torneo,RedirectAttributes flash) {
+		
+        ModelMap modelo= new ModelMap();
+        
 		guardarFoto(foto);
 		torneo.setFoto(foto.getOriginalFilename());
-		
-		servicioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
+		if(inmuebleId == null) {
+		try {
+			servicioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
+		} catch (InmuebleInexistenteException e) {
+			modelo.put("errorInmueble", e.getMessage());
+			return new ModelAndView("organizarTorneos", modelo);
+		}
+		}
 		
 		return new ModelAndView ("torneoExitoso");
 	}
