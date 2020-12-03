@@ -54,10 +54,6 @@
 
 		
 			</div>
-		
-	
-
-	
 	
 	<div class="row-12">
 
