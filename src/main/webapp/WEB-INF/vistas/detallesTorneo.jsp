@@ -56,8 +56,19 @@
 
 				<input type="hidden" name="torneoId" value="${torneoDetalle.id}">
 				<input type="hidden" name="usuarioId" value="${sessionScope.id}">
+				
+				<c:if
+				test="${(torneoDetalle.estadoCompleto == false) and (sessionScope.id != null)}">
+					<button class="boton-part" type="submit" >PARTICIPAR</button>
+			</c:if>
 
-				<button class="boton-part" type="submit">PARTICIPAR</button>
+			
+				
+					<c:if
+				test="${(torneoDetalle.estadoCompleto == true) and (sessionScope.rol != null)}">
+				<button class="boton-part" type="submit" disabled="disabled">Cupo Lleno</button>
+			</c:if>
+				
 			</form:form>
 
 		</div>
