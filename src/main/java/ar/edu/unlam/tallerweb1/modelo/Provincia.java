@@ -54,8 +54,7 @@ public class Provincia {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((latitud == null) ? 0 : latitud.hashCode());
-		result = prime * result + ((longitud == null) ? 0 : longitud.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		return result;
 	}
 
@@ -68,15 +67,10 @@ public class Provincia {
 		if (getClass() != obj.getClass())
 			return false;
 		Provincia other = (Provincia) obj;
-		if (latitud == null) {
-			if (other.latitud != null)
+		if (nombre == null) {
+			if (other.nombre != null)
 				return false;
-		} else if (!latitud.equals(other.latitud))
-			return false;
-		if (longitud == null) {
-			if (other.longitud != null)
-				return false;
-		} else if (!longitud.equals(other.longitud))
+		} else if (!nombre.equals(other.nombre))
 			return false;
 		return true;
 	}

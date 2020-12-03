@@ -75,18 +75,7 @@ private RepositorioDireccion repositorioDireccion;
 		
 	}
 
-	@Override
-	public void cerrarSesion(Long usuarioId) {
-		repositorioUsuario.cerrarSesion(usuarioId);
-		
-	}
-
-	@Override
-	public void cerrarSesion() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 	@Override
 	public Usuario consultarUsuarioPorId(Long usuarioId) {
 		

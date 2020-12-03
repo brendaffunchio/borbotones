@@ -246,13 +246,13 @@ public class ControladorTorneo {
 		
 ModelMap modelo= new ModelMap();
         Torneo torneo = servicioTorneo.consultarTorneoPorId(torneoGanadoId);
-        Usuario ganador = servicioUsuario.consultarUsuarioPorId(ganadorId);
+        Usuario usuario = servicioUsuario.consultarUsuarioPorId(ganadorId);
          
          
-        if (torneo!=null && ganador!=null) {
+        if (torneo!=null && usuario!=null) {
         	modelo.put("torneo", torneo);
 		try {
-			servicioTorneo.elegirGanador(torneo, ganador);
+			servicioTorneo.elegirGanador(torneo, usuario);
 		} catch (GanadorYaExistenteException e) {
 			modelo.put("errorGanador",e.getMessage());
 			return new ModelAndView ("errores",modelo);

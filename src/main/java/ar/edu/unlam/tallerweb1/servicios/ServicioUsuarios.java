@@ -24,7 +24,5 @@ public interface ServicioUsuarios {
 	
 	public Usuario consultarUsuarioPorId(Long usuarioId);
 
-	public void cerrarSesion(Long usuarioId);
-
-	public void cerrarSesion();
+	
 }

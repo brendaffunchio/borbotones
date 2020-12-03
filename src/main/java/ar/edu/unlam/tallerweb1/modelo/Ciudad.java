@@ -61,8 +61,8 @@ public class Ciudad {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((latitud == null) ? 0 : latitud.hashCode());
-		result = prime * result + ((longitud == null) ? 0 : longitud.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((provincia == null) ? 0 : provincia.hashCode());
 		return result;
 	}
 	@Override
@@ -74,15 +74,15 @@ public class Ciudad {
 		if (getClass() != obj.getClass())
 			return false;
 		Ciudad other = (Ciudad) obj;
-		if (latitud == null) {
-			if (other.latitud != null)
+		if (nombre == null) {
+			if (other.nombre != null)
 				return false;
-		} else if (!latitud.equals(other.latitud))
+		} else if (!nombre.equals(other.nombre))
 			return false;
-		if (longitud == null) {
-			if (other.longitud != null)
+		if (provincia == null) {
+			if (other.provincia != null)
 				return false;
-		} else if (!longitud.equals(other.longitud))
+		} else if (!provincia.equals(other.provincia))
 			return false;
 		return true;
 	}

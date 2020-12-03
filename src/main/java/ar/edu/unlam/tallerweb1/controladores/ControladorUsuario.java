@@ -128,9 +128,10 @@ public class ControladorUsuario {
 	}
 	
 	@RequestMapping(path = "logout")
-	public ModelAndView cerrarSesion() {
-
-		servicioUsuarios.cerrarSesion();
+	public ModelAndView cerrarSesion(HttpServletRequest request) {
+		request.getSession().removeAttribute("rol");
+		request.getSession().removeAttribute("id");
+		request.getSession().invalidate();
 		
 		return new ModelAndView("redirect:/login");
 	}

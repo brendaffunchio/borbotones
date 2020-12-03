@@ -72,8 +72,9 @@ public class Direccion {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((latitud == null) ? 0 : latitud.hashCode());
-		result = prime * result + ((longitud == null) ? 0 : longitud.hashCode());
+		result = prime * result + ((calle == null) ? 0 : calle.hashCode());
+		result = prime * result + ((ciudad == null) ? 0 : ciudad.hashCode());
+		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
 		return result;
 	}
 	@Override
@@ -85,15 +86,20 @@ public class Direccion {
 		if (getClass() != obj.getClass())
 			return false;
 		Direccion other = (Direccion) obj;
-		if (latitud == null) {
-			if (other.latitud != null)
+		if (calle == null) {
+			if (other.calle != null)
 				return false;
-		} else if (!latitud.equals(other.latitud))
+		} else if (!calle.equals(other.calle))
 			return false;
-		if (longitud == null) {
-			if (other.longitud != null)
+		if (ciudad == null) {
+			if (other.ciudad != null)
 				return false;
-		} else if (!longitud.equals(other.longitud))
+		} else if (!ciudad.equals(other.ciudad))
+			return false;
+		if (numero == null) {
+			if (other.numero != null)
+				return false;
+		} else if (!numero.equals(other.numero))
 			return false;
 		return true;
 	}

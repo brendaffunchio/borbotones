@@ -172,7 +172,7 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	public void elegirGanador(Torneo torneo, Usuario ganador) throws GanadorYaExistenteException{
 		Integer torGanados= ganador.getTorGanados();
 		
-		if (!torneo.getGanador().equals(ganador)) {
+		if (torneo.getGanador()== null) {
 			
 			torGanados++;
 			ganador.setTorGanados(torGanados);
