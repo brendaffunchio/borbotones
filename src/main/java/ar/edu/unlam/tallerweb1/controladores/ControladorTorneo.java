@@ -18,9 +18,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.CupoExcedidoException;
-import ar.edu.unlam.tallerweb1.modelo.InmuebleInexistenteException;
+import ar.edu.unlam.tallerweb1.modelo.GanadorYaExistenteException;
+
 import ar.edu.unlam.tallerweb1.modelo.ParticipanteDuplicadoException;
+import ar.edu.unlam.tallerweb1.modelo.ParticipanteInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
+import ar.edu.unlam.tallerweb1.modelo.TorneoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
@@ -99,25 +102,25 @@ public class ControladorTorneo {
 	@RequestMapping(path = "crear-torneo", method = RequestMethod.POST)
 	public ModelAndView crearTorneo(@RequestParam(name = "file", required = false) MultipartFile foto, 
 			@RequestParam(name = "creadorId") Long creadorId,
-			@RequestParam(name = "inmuebleId") Long inmuebleId,
+			@RequestParam(name = "inmuebleId",required = false) Long inmuebleId,
 			Torneo torneo,RedirectAttributes flash) {
 		
         ModelMap modelo= new ModelMap();
         
 		guardarFoto(foto);
 		torneo.setFoto(foto.getOriginalFilename());
-		if(inmuebleId == null) {
-		try {
-			servicioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
-		} catch (InmuebleInexistenteException e) {
-			modelo.put("errorInmueble", e.getMessage());
-			return new ModelAndView("organizarTorneos", modelo);
+		if(inmuebleId != null) {
+		servicioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
+		
+		}else {
+			modelo.put("errorInmueble", "Necesitas alquilar al menos un inmueble para organizar un torneo");
+		return new ModelAndView ("organizarTorneos",modelo);
 		}
-		}
+				
 		
 		return new ModelAndView ("torneoExitoso");
 	}
-//cambiar a post
+
 	@RequestMapping(path = "participar", method=RequestMethod.POST)
 	public ModelAndView agregarParticipante(@RequestParam(name="torneoId") Long torneoId,
 			@RequestParam(name="usuarioId") Long usuarioId) {
@@ -128,7 +131,7 @@ public class ControladorTorneo {
 			servicioTorneo.agregarParticipante(torneoId, usuarioId);
 		} catch (ParticipanteDuplicadoException | CupoExcedidoException e) {
 			modelo.put("errorParticipar", e.getMessage());
-			return new ModelAndView("detallesTorneo",modelo);
+			return new ModelAndView("errores",modelo);
 		}
 
 		return new ModelAndView("participacionExitosa");
@@ -138,7 +141,14 @@ public class ControladorTorneo {
 	public ModelAndView eliminarParticipante(@RequestParam(name="torneoId") Long torneoId,
 			@RequestParam(name="usuarioId") Long usuarioId) {
 
-		servicioTorneo.eliminarParticipante(torneoId, usuarioId);
+		ModelMap modelo = new ModelMap();
+
+		try {
+			servicioTorneo.eliminarParticipante(torneoId, usuarioId);
+		} catch (ParticipanteInexistenteException | TorneoInexistenteException e) {
+			 modelo.put("errorDesubscribirse", e.getMessage());
+			return new ModelAndView("errores", modelo);
+		}
 
 		return new ModelAndView("redirect:/ver-torneos");
 	}
@@ -234,7 +244,12 @@ public class ControladorTorneo {
 ModelMap modelo= new ModelMap();
 
         modelo.put("torneo", servicioTorneo.consultarTorneoPorId(torneoGanadoId));
-		servicioTorneo.elegirGanador(ganadorId, torneoGanadoId);
+		try {
+			servicioTorneo.elegirGanador(ganadorId, torneoGanadoId);
+		} catch (GanadorYaExistenteException | TorneoInexistenteException | ParticipanteInexistenteException e) {
+			modelo.put("errorGanador",e.getMessage());
+			return new ModelAndView ("errores",modelo);
+		}
 		
 		return new ModelAndView("ganadorExitoso", modelo);
 		

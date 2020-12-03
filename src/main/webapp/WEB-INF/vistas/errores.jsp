@@ -36,7 +36,7 @@
 				<br>
 				
 			<h6>
-			<a class="link" href="ver-formulario-inmueble">  Volvé</a> a publicar tú inmueble
+			<a class="link" href="ver-formulario-inmueble">Volvé</a> a publicar tú inmueble
 			¡Esta vez con una dirección válida!
 		</h6>
 			
@@ -60,6 +60,23 @@
 				<br>
 			
 			</c:if>
+			
+			
+				<c:if test="${not empty errorDesubscribirse}">
+				<p>
+					<span>${errorDesubscribirse}</span>
+				</p>
+				<br>
+			
+			</c:if>
+			<c:if test="${not empty errorGanador}">
+				<p>
+					<span>${errorGanador}</span>
+				</p>
+				<br>
+			
+			</c:if>
+			
 		<br>
 		
 		<img src="img/fileNotFound.png" width="300px" height="300px">

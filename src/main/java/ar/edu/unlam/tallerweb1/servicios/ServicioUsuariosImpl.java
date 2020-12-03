@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
+
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioDireccion;
@@ -52,10 +53,11 @@ private RepositorioDireccion repositorioDireccion;
 	}
 
 	@Override
-	public List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId) {
-		
+	public List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId){
 		return repositorioUsuario.mostrarInmueblesAlquilados(usuarioId);
+			
 	}
+	
 
 	@Override
 	public Set<Torneo> mostrarTorneosQueParticipo(Long usuarioId) {

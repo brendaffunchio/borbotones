@@ -90,14 +90,12 @@ public class ControladorUsuario {
 	public ModelAndView mostrarMisInmuebles(@RequestParam("usuarioId") Long usuarioId) {
 
 		ModelMap modelo = new ModelMap();
-		
-
-		if(servicioUsuarios.mostrarInmueblesAlquilados(usuarioId).isEmpty()) {
-			modelo.put("error", "No alquilaste ningún inmueble");
-		}else {
-			modelo.put("misInmueblesAlquilados", servicioUsuarios.mostrarInmueblesAlquilados(usuarioId));
-		}
-		
+		 if(servicioUsuarios.mostrarInmueblesAlquilados(usuarioId).isEmpty()) {
+			 modelo.put("error", "No alquilaste ningún inmueble");
+		 }else {
+			 modelo.put("misInmueblesAlquilados", servicioUsuarios.mostrarInmueblesAlquilados(usuarioId));
+		 }
+				
 		return new ModelAndView("misInmueblesAlquilados", modelo);
 	}
 
@@ -134,7 +132,7 @@ public class ControladorUsuario {
 
 		servicioUsuarios.cerrarSesion();
 		
-		return new ModelAndView("redirect:/inicio");
+		return new ModelAndView("redirect:/login");
 	}
 	
 	}

@@ -25,8 +25,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
+import ar.edu.unlam.tallerweb1.modelo.DireccionDuplicadaException;
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
-import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteExeception;
+import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCiudad;
 import ar.edu.unlam.tallerweb1.servicios.ServicioDireccion;
@@ -85,14 +86,14 @@ public class ControladorInmueble {
 		try {
 			servicioInmueble.validarFoto(foto);
 			servicioInmueble.guardarFoto(foto);	
-		} catch (FotoInexistenteExeception | FileUploadException | IOException e) {
+		} catch (FotoInexistenteException | FileUploadException | IOException e) {
 			modelo.put("error", e.getMessage());
 			return new ModelAndView("errores", modelo);
 		}
 		servicioInmueble.setFoto(inmueble, foto.getOriginalFilename());
 		try {
 			servicioInmueble.guardarInmueble(inmueble, direccion);
-		} catch (DireccionNoValidaException e) {
+		} catch (DireccionNoValidaException | DireccionDuplicadaException e) {
 			modelo.put("errorDireccionInmueble", e.getMessage());
 			return new ModelAndView("errores", modelo);
 		}

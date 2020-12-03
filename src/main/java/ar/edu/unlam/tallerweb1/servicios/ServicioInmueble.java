@@ -8,17 +8,19 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
+import ar.edu.unlam.tallerweb1.modelo.DireccionDuplicadaException;
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
-import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteExeception;
+import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
+import ar.edu.unlam.tallerweb1.modelo.InmueblesBuscadosException;
 
 public interface ServicioInmueble {
 
 	public List<Inmueble> mostrarInmuebles();
 
-	public void guardarInmueble(Inmueble inmueble,Direccion direccion) throws DireccionNoValidaException;
+	public void guardarInmueble(Inmueble inmueble,Direccion direccion) throws DireccionNoValidaException, DireccionDuplicadaException;
 	
-	void validarFoto(MultipartFile foto) throws FotoInexistenteExeception;
+	void validarFoto(MultipartFile foto) throws FotoInexistenteException;
 	
 	public void guardarFoto(MultipartFile foto) throws FileUploadException,  IOException ;
 	

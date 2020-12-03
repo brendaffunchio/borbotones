@@ -55,10 +55,10 @@ public class Torneo implements Comparable<Torneo>{
 	}
 	
 	public void eliminarParticipante(Usuario participante) {
-		if (this.participantes.contains(participante)) {
+		
 			this.participantes.remove(participante);
 			this.inscriptos--;
-		}
+		
 	}
 	
 	public Inmueble getInmuebleDelTorneo() {
