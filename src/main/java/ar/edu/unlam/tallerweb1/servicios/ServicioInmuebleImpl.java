@@ -66,37 +66,7 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 		repositorioInmueble.guardarInmueble(inmueble);
 		
 	}
-		
-		
-
-	@Override
-	public void validarFoto(MultipartFile foto) throws FotoInexistenteException {
-
-		if (foto.isEmpty()) {
-
-			throw new FotoInexistenteException();
-
-		}
-
-	}
-
-	public void guardarFoto(MultipartFile foto) throws FileUploadException, IOException {
-
-		if (!foto.isEmpty()) {
-			String ruta = "C://Producto//inmuebles";
-
-			byte[] bytes;
-			bytes = foto.getBytes();
-			Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
-			Files.write(rutaAbsoluta, bytes);
-		}
-
-		else {
-
-			throw new FileUploadException("Fallo en la subida de la foto");
-		}
-
-	}
+			
 
 	@Override
 	public List<Inmueble> buscarInmueble(Long provinciaId, String nombreCiudad) {
@@ -128,11 +98,5 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 
 	}
 
-	@Override
-	public void setFoto(Inmueble inmueble, String fotoNombre) {
-
-		inmueble.setFoto(fotoNombre);
-
-	}
 
 }
