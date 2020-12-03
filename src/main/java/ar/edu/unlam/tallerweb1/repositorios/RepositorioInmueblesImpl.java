@@ -11,12 +11,8 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ar.edu.unlam.tallerweb1.modelo.Ciudad;
-import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
-import ar.edu.unlam.tallerweb1.modelo.Provincia;
-import ar.edu.unlam.tallerweb1.modelo.Torneo;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+
 
 @Repository
 public class RepositorioInmueblesImpl implements RepositorioInmueble {

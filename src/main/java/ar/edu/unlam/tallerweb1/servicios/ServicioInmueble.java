@@ -12,7 +12,9 @@ import ar.edu.unlam.tallerweb1.modelo.DireccionDuplicadaException;
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
+import ar.edu.unlam.tallerweb1.modelo.InmuebleNoDisponibleException;
 import ar.edu.unlam.tallerweb1.modelo.InmueblesBuscadosException;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface ServicioInmueble {
 
@@ -28,9 +30,9 @@ public interface ServicioInmueble {
 	
 	public List<Inmueble> buscarInmueble(Long provinciaId, String nombreCiudad);
 
-	public Inmueble verDetallesInmueble(Long inmuebleId);
+	public Inmueble consultarInmueblePorId(Long inmuebleId);
 
-	public void agregarInquilino(Long detalleInmueble, Long usuarioId);
+	public void agregarInquilino(Inmueble inmueble, Usuario usuario) throws InmuebleNoDisponibleException;
 
 	
 	

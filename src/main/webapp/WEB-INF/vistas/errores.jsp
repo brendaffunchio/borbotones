@@ -61,6 +61,14 @@
 			
 			</c:if>
 			
+				<c:if test="${not empty errorAlquilar}">
+				<p>
+					<span>${errorAlquilar}</span>
+				</p>
+				<br>
+			
+			</c:if>
+			
 			
 				<c:if test="${not empty errorDesubscribirse}">
 				<p>

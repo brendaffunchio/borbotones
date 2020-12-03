@@ -61,8 +61,6 @@
 				test="${(torneoDetalle.estadoCompleto == false) and (sessionScope.id != null)}">
 					<button class="boton-part" type="submit" >PARTICIPAR</button>
 			</c:if>
-
-			
 				
 					<c:if
 				test="${(torneoDetalle.estadoCompleto == true) and (sessionScope.rol != null)}">

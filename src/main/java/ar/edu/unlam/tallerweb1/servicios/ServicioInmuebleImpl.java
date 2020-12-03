@@ -18,6 +18,7 @@ import ar.edu.unlam.tallerweb1.modelo.DireccionDuplicadaException;
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
+import ar.edu.unlam.tallerweb1.modelo.InmuebleNoDisponibleException;
 import ar.edu.unlam.tallerweb1.modelo.InmueblesBuscadosException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -106,24 +107,22 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 	}
 
 	@Override
-
-	public Inmueble verDetallesInmueble(Long inmuebleId) {
+	public Inmueble consultarInmueblePorId(Long inmuebleId) {
 
 		return repositorioInmueble.consultarInmueblePorId(inmuebleId);
 
 	}
 
 	@Override
-	public void agregarInquilino(Long inmuebleId, Long usuarioId) {
-
-		Inmueble inmueble = repositorioInmueble.consultarInmueblePorId(inmuebleId);
-		Usuario inquilino = repositorioUsuario.consultarUsuarioPorId(usuarioId);
+	public void agregarInquilino(Inmueble inmueble,Usuario usuario) throws InmuebleNoDisponibleException {
 
 		if (inmueble.getDisponible().equals(true)) {
-			inmueble.setInquilino(inquilino);
+			inmueble.setInquilino(usuario);
 			inmueble.setDisponible(false);
 			repositorioInmueble.modificarInmueble(inmueble);
 
+		}else {
+			throw new InmuebleNoDisponibleException();
 		}
 
 	}

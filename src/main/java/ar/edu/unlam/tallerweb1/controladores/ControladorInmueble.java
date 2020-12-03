@@ -29,27 +29,33 @@ import ar.edu.unlam.tallerweb1.modelo.DireccionDuplicadaException;
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
+import ar.edu.unlam.tallerweb1.modelo.InmuebleNoDisponibleException;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCiudad;
 import ar.edu.unlam.tallerweb1.servicios.ServicioDireccion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioProvincia;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarios;
 
 @Controller
 public class ControladorInmueble {
 
 	public ServicioInmueble servicioInmueble;
+	public ServicioUsuarios servicioUsuario;
 	public ServicioCiudad servicioCiudad;
 	public ServicioProvincia servicioProvincia;
 	public ServicioDireccion servicioDireccion;
 
 	@Autowired
 	public ControladorInmueble(ServicioInmueble servicioInmueble, ServicioCiudad servicioCiudad,
-			ServicioProvincia servicioProvincia, ServicioDireccion servicioDireccion) {
+			ServicioProvincia servicioProvincia, ServicioDireccion servicioDireccion
+			,ServicioUsuarios servicioUsuario) {
 
 		this.servicioInmueble = servicioInmueble;
 		this.servicioCiudad = servicioCiudad;
 		this.servicioProvincia = servicioProvincia;
 		this.servicioDireccion = servicioDireccion;
+		this.servicioUsuario = servicioUsuario;
 
 	}
 
@@ -134,7 +140,7 @@ public class ControladorInmueble {
 	@RequestMapping(path = "ver-inmueble-detalle", method = RequestMethod.GET)
 	public ModelAndView verDetalle(@RequestParam("inmuebleId") Long inmuebleId) {
 
-		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(inmuebleId);
+		Inmueble inmuebleBuscado = servicioInmueble.consultarInmueblePorId(inmuebleId);
 
 		ModelMap modelo = new ModelMap();
 
@@ -147,8 +153,22 @@ public class ControladorInmueble {
 	@RequestMapping(path = "alquilar", method = RequestMethod.POST)
 	public ModelAndView agregarInquilino(@RequestParam(name = "inmuebleId") Long inmuebleId,
 			@RequestParam(name = "usuarioId") Long usuarioId) {
-
-		servicioInmueble.agregarInquilino(inmuebleId, usuarioId);
+	ModelMap modelo = new ModelMap();
+		Inmueble inmueble = servicioInmueble.consultarInmueblePorId(inmuebleId);
+		Usuario usuario = servicioUsuario.consultarUsuarioPorId(usuarioId);
+		
+		if(inmueble!=null && usuario!=null) {
+			try {
+				servicioInmueble.agregarInquilino(inmueble, usuario);
+			} catch (InmuebleNoDisponibleException e) {
+				modelo.put("errorAlquilar", e.getMessage());
+				return new ModelAndView ("errores", modelo);
+			}
+		}else {
+			modelo.put("errorAlquilar", "inmueble o usuario inexistente");
+			return new ModelAndView ("errores", modelo);
+		}
+		
 
 		return new ModelAndView("redirect:/ver-inmuebles");
 	}
@@ -156,7 +176,7 @@ public class ControladorInmueble {
 	@RequestMapping(path = "ver-inmueble-alquilado-detalle", method = RequestMethod.GET)
 	public ModelAndView verDetalleInmuebleAlquilado(@RequestParam("inmuebleId") Long inmuebleId) {
 
-		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(inmuebleId);
+		Inmueble inmuebleBuscado = servicioInmueble.consultarInmueblePorId(inmuebleId);
 
 		ModelMap modelo = new ModelMap();
 

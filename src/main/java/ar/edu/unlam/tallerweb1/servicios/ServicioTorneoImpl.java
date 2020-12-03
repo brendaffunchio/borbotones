@@ -76,7 +76,9 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 		
 		Usuario creador = repositorioUsuario.consultarUsuarioPorId(creadorId);
 		
-			Inmueble inmueble = repositorioInmueble.consultarInmueblePorId(inmuebleId);
+			
+		Inmueble inmueble = repositorioInmueble.consultarInmueblePorId(inmuebleId);
+		
 			torneo.setEstadoCompleto(false);
 			torneo.setInscriptos(0);
 			torneo.setCreador(creador);
@@ -133,8 +135,20 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	}
 
 	@Override
-	public void eliminarParticipante(Torneo torneo,Usuario participante) throws ParticipanteInexistenteException
-	,TorneoInexistenteException{
+	public void eliminarParticipante(Torneo torneo,Usuario participante) throws ParticipanteInexistenteException, TorneoInexistenteException{
+				
+		if(!torneo.getParticipantes().contains(participante)){
+			
+			throw new ParticipanteInexistenteException(); 
+			
+		}
+		
+		if(!participante.getTorneosParticipa().contains(torneo)){
+			
+			throw new TorneoInexistenteException(); 
+			
+		}
+		
 		
 		if (torneo.getParticipantes().contains(participante)&&
 				participante.getTorneosParticipa().contains(torneo)) {
@@ -148,21 +162,10 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 				repositorioTorneo.modificarTorneo(torneo);
 
 			}
-			
+		}
 		}
 		
-		if(!torneo.getParticipantes().contains(participante)){
-			throw new ParticipanteInexistenteException(); 
-			
-		}
-		if(!participante.getTorneosParticipa().contains(torneo)) {
-			throw new TorneoInexistenteException(); 
-			
-		}
-		
-		
-	}
-
+	
 	@Override
 	public Set<Usuario> mostrarParticipantesDelTorneo(Long torneoId) {
 		return repositorioTorneo.mostrarParticipantesDelTorneo(torneoId);

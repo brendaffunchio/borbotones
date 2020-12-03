@@ -128,32 +128,43 @@ public class ControladorTorneo {
         Torneo torneo =  servicioTorneo.consultarTorneoPorId(torneoId);
         Usuario usuario = servicioUsuario.consultarUsuarioPorId(usuarioId);
         
+       if (torneo!=null && usuario!=null) {
 		try {
 			servicioTorneo.agregarParticipante(torneo, usuario);
 		} catch (ParticipanteDuplicadoException | CupoExcedidoException e) {
 			modelo.put("errorParticipar", e.getMessage());
 			return new ModelAndView("errores",modelo);
 		}
-
+       }else {
+    	   if (torneo!=null && usuario!=null) {
+    		   modelo.put("errorParticipar", "Torneo o Usuario inexistente");
+    	   }
+       }
+       
 		return new ModelAndView("participacionExitosa");
 	}
 
 	@RequestMapping(path = "desubscribirse",method=RequestMethod.POST)
 	public ModelAndView eliminarParticipante(@RequestParam(name="torneoId") Long torneoId,
-			@RequestParam(name="usuarioId") Long usuarioId) {
+			@RequestParam(name="usuarioId",required = false) Long usuarioId) {
 
 		ModelMap modelo = new ModelMap();
-		Torneo torneo= servicioTorneo.consultarTorneoPorId(torneoId);
-		Usuario participante= servicioUsuario.consultarUsuarioPorId(usuarioId);
-
+		Torneo torneo =  servicioTorneo.consultarTorneoPorId(torneoId);
+        Usuario participante = servicioUsuario.consultarUsuarioPorId(usuarioId);
+        
+		if(torneo!=null && participante!=null) {
 		try {
-			servicioTorneo.eliminarParticipante(torneo, participante);
+			servicioTorneo.eliminarParticipante(torneo,participante);
 		} catch (ParticipanteInexistenteException | TorneoInexistenteException e) {
 			 modelo.put("errorDesubscribirse", e.getMessage());
 			return new ModelAndView("errores", modelo);
 		}
-
-		return new ModelAndView("redirect:/ver-torneos");
+		}else {
+			if(torneo!=null || participante!=null) {
+			modelo.put("errorDesubscribirse","torneo o participante inexistente");
+			return new ModelAndView("errores", modelo);
+		}}
+		return new ModelAndView("perfilUsuario");
 	}
 
 	
