@@ -128,8 +128,8 @@ public class Usuario implements Comparable<Usuario> {
 	@Override
 	public int compareTo(Usuario usuario) {
 		
-		this.nombre.compareTo(usuario.getNombre());  
-		return this.nombre.compareTo(usuario.getNombre()); 
+		this.email.compareTo(usuario.getEmail());  
+		return this.email.compareTo(usuario.getEmail()); 
 		
 		
 	}
@@ -138,7 +138,7 @@ public class Usuario implements Comparable<Usuario> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		return result;
 	}
 
@@ -151,13 +151,15 @@ public class Usuario implements Comparable<Usuario> {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		if (nombre == null) {
-			if (other.nombre != null)
+		if (email == null) {
+			if (other.email != null)
 				return false;
-		} else if (!nombre.equals(other.nombre))
+		} else if (!email.equals(other.email))
 			return false;
 		return true;
 	}
+
+	
 
 
 }

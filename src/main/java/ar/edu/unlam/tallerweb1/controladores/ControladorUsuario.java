@@ -63,12 +63,12 @@ public class ControladorUsuario {
 	
         Direccion direccion = servicioDireccion.buscarDireccion(calle, numero);
 		
-		try {
+		if(direccion!=null) {
 			servicioUsuarios.guardarUsuario(usuario, direccion);
-		} catch (DireccionNoValidaException e) {
 			
-			modelo.put("errorDireccionUsuario",e.getMessage());
-			return new ModelAndView ("errores",modelo);
+		}else {
+			modelo.put("errorDireccionUsuario","La dirección no es válida");
+			return new ModelAndView("errores", modelo);
 		}
 		
 		return new ModelAndView ("registracionExitosa");

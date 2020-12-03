@@ -12,7 +12,7 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 public interface ServicioUsuarios {
 
 	
-	void guardarUsuario(Usuario usuario, Direccion direccion)throws DireccionNoValidaException;
+	void guardarUsuario(Usuario usuario, Direccion direccion);
 
 	public List <Inmueble> mostrarInmueblesAlquilados(Long usuarioId);
 
@@ -21,6 +21,8 @@ public interface ServicioUsuarios {
 	public List<Torneo> mostrarTorneosQueCree(Long usuarioId);
 
 	public List <Usuario> usuariosMasGanadores();
+	
+	public Usuario consultarUsuarioPorId(Long usuarioId);
 
 	public void cerrarSesion(Long usuarioId);
 

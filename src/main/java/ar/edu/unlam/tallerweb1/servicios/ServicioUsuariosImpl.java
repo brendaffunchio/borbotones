@@ -37,19 +37,15 @@ private RepositorioDireccion repositorioDireccion;
 	}
 
 	@Override
-	public void guardarUsuario(Usuario usuario, Direccion direccion) throws DireccionNoValidaException {
+	public void guardarUsuario(Usuario usuario, Direccion direccion){
 		
-		Direccion direccionBuscada = repositorioDireccion.buscarDireccion(direccion);
-		
-		if (direccionBuscada!=(null)) {
+			
 		usuario.setRol("invitado");
 		usuario.setTorGanados(0);
-		usuario.setDireccion(direccionBuscada);
+		usuario.setDireccion(direccion);
         
 		repositorioUsuario.guardarUsuario(usuario);
-		} else {
-			throw new DireccionNoValidaException();
-		}
+		
 	}
 
 	@Override
@@ -89,6 +85,12 @@ private RepositorioDireccion repositorioDireccion;
 	public void cerrarSesion() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Usuario consultarUsuarioPorId(Long usuarioId) {
+		
+		return repositorioUsuario.consultarUsuarioPorId(usuarioId);
 	}
 
 	

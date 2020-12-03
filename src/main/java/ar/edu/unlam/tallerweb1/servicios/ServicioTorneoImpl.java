@@ -76,7 +76,6 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 		
 		Usuario creador = repositorioUsuario.consultarUsuarioPorId(creadorId);
 		
-		if (inmuebleId!=null) {
 			Inmueble inmueble = repositorioInmueble.consultarInmueblePorId(inmuebleId);
 			torneo.setEstadoCompleto(false);
 			torneo.setInscriptos(0);
@@ -86,10 +85,7 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 			repositorioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
 			
 		}
-		
 	
-	}
-
 	
 	@Override
 	public List<Torneo> buscarTorneo(String categoria, String juego) {
@@ -108,44 +104,37 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	}
 
 	@Override
-	public void agregarParticipante(Long torneoId, Long usuarioId) throws ParticipanteDuplicadoException
+	public void agregarParticipante(Torneo torneo, Usuario usuario) throws ParticipanteDuplicadoException
 	, CupoExcedidoException {
 
-		Torneo torneo = repositorioTorneo.consultarTorneoPorId(torneoId);
-		Usuario participante = repositorioUsuario.consultarUsuarioPorId(usuarioId);
-		
-		
-		if (torneo.getParticipantes().contains(participante)) {
+		if (torneo.getParticipantes().contains(usuario)) {
 			
 			throw new ParticipanteDuplicadoException();
 		
 		}
 		if (torneo.getCupo() > torneo.getInscriptos()) {
-			torneo.agregarParticipante(participante);
-			participante.participarEnTorneo(torneo);
+			torneo.agregarParticipante(usuario);
+			usuario.participarEnTorneo(torneo);
 			repositorioTorneo.modificarTorneo(torneo);
-			repositorioUsuario.modificarUsuario(participante);
+			repositorioUsuario.modificarUsuario(usuario);
 			
+		} else {
+			throw new CupoExcedidoException();
 		}
+		
 		if (torneo.getInscriptos().equals(torneo.getCupo())) {
 			torneo.setEstadoCompleto(true);
 			repositorioTorneo.modificarTorneo(torneo);
 
 			
 		}
-        if(torneo.getInscriptos()>torneo.getCupo()) {
-			
-			throw new CupoExcedidoException();
-		}
+      
 		
 	}
 
 	@Override
-	public void eliminarParticipante(Long torneoId, Long usuarioId) throws ParticipanteInexistenteException
+	public void eliminarParticipante(Torneo torneo,Usuario participante) throws ParticipanteInexistenteException
 	,TorneoInexistenteException{
-		Torneo torneo = repositorioTorneo.consultarTorneoPorId(torneoId);
-		Usuario participante = repositorioUsuario.consultarUsuarioPorId(usuarioId);
-		
 		
 		if (torneo.getParticipantes().contains(participante)&&
 				participante.getTorneosParticipa().contains(torneo)) {
@@ -153,7 +142,15 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 			participante.desuscribirseDeTorneo(torneo);
 			repositorioTorneo.modificarTorneo(torneo);;
 			repositorioUsuario.modificarUsuario(participante);
+			
+			if (torneo.getInscriptos() < torneo.getCupo()) {
+				torneo.setEstadoCompleto(false);
+				repositorioTorneo.modificarTorneo(torneo);
+
+			}
+			
 		}
+		
 		if(!torneo.getParticipantes().contains(participante)){
 			throw new ParticipanteInexistenteException(); 
 			
@@ -162,11 +159,7 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 			throw new TorneoInexistenteException(); 
 			
 		}
-		if (torneo.getInscriptos() < torneo.getCupo()) {
-			torneo.setEstadoCompleto(false);
-			repositorioTorneo.modificarTorneo(torneo);
-
-		}
+		
 		
 	}
 
@@ -176,30 +169,21 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	}
 
 	@Override
-	public void elegirGanador(Long ganadorId, Long torneoGanadoId) throws GanadorYaExistenteException
-	,TorneoInexistenteException, ParticipanteInexistenteException{
-		Torneo torneo = repositorioTorneo.consultarTorneoPorId(torneoGanadoId);
-		Usuario ganador = repositorioUsuario.consultarUsuarioPorId(ganadorId);
+	public void elegirGanador(Torneo torneo, Usuario ganador) throws GanadorYaExistenteException{
 		Integer torGanados= ganador.getTorGanados();
-		if (torneo.getGanador().equals(ganador)) {
-			throw new GanadorYaExistenteException();
 		
-		}
-		if(torneo == null){
-			throw new TorneoInexistenteException();
-		}
-        if(ganador==null){
+		if (!torneo.getGanador().equals(ganador)) {
 			
-			throw new ParticipanteInexistenteException();
+			torGanados++;
+			ganador.setTorGanados(torGanados);
+			torneo.setGanador(ganador);
+			repositorioTorneo.modificarTorneo(torneo);
+			repositorioUsuario.modificarUsuario(ganador);
+		
+		} else {
+			throw new GanadorYaExistenteException();
 		}
 		
-		
-		torGanados++;
-		ganador.setTorGanados(torGanados);
-		torneo.setGanador(ganador);
-		repositorioTorneo.modificarTorneo(torneo);
-		repositorioUsuario.modificarUsuario(ganador);
-	
 		
 	}
 

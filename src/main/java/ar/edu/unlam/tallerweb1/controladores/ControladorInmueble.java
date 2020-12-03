@@ -104,6 +104,7 @@ public class ControladorInmueble {
 			modelo.put("errorDireccionInmueble","La dirección no es válida");
 			return new ModelAndView("errores", modelo);
 		}
+		
 		return new ModelAndView("redirect:/ver-inmuebles");
 
 	}
@@ -122,10 +123,10 @@ public class ControladorInmueble {
 
 		else {
 
-			modelo.put("inmueblesBusqueda", servicioInmueble.buscarInmueble(Long.parseLong(provinciaId), nombreCiudad));
+			modelo.put("inmuebles", servicioInmueble.buscarInmueble(Long.parseLong(provinciaId), nombreCiudad));
 		}
 
-		return new ModelAndView("inmueblesPorBusqueda", modelo);
+		return new ModelAndView("InmueblesParaAlquilar", modelo);
 	}
 
 	@RequestMapping(path = "ver-inmueble-detalle", method = RequestMethod.GET)

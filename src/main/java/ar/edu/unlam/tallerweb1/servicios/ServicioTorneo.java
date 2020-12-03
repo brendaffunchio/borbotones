@@ -24,13 +24,13 @@ public interface ServicioTorneo {
 
 	public Torneo verDetallesTorneo(Long id);
 	
-	void agregarParticipante(Long torneoId, Long usuarioId) throws ParticipanteDuplicadoException, CupoExcedidoException;
+	void agregarParticipante(Torneo torneo, Usuario usuario) throws ParticipanteDuplicadoException, CupoExcedidoException;
 
-	public void eliminarParticipante(Long torneoId, Long usuarioId) throws ParticipanteInexistenteException, TorneoInexistenteException;
+	public void eliminarParticipante(Torneo torneo, Usuario usuario) throws ParticipanteInexistenteException, TorneoInexistenteException;
 
 	public Set<Usuario> mostrarParticipantesDelTorneo(Long torneoId);
 
-	public void elegirGanador(Long ganadorId, Long torneoGanadoId) throws GanadorYaExistenteException, TorneoInexistenteException, ParticipanteInexistenteException;
+	public void elegirGanador(Torneo torneo, Usuario ganador) throws GanadorYaExistenteException;
 	
 	public Torneo consultarTorneoPorId(Long torneoId);
 	public List<Torneo> ordenarTorneosSegunDistancia();
