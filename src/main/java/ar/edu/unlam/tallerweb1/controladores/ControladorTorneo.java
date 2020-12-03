@@ -134,7 +134,7 @@ public class ControladorTorneo {
 			return new ModelAndView("errores",modelo);
 		}
        }else {
-    	   if (torneo!=null && usuario!=null) {
+    	   if (torneo!=null || usuario!=null) {
     		   modelo.put("errorParticipar", "Torneo o Usuario inexistente");
     	   }
        }
@@ -267,9 +267,9 @@ ModelMap modelo= new ModelMap();
 			return new ModelAndView ("errores",modelo);
 		}
         }else {
-        	
+        	if (torneo!=null || usuario!=null) {
         	modelo.put("errorGanador","Torneo o Participante inexistente");
-        }
+        }}
         
 		return new ModelAndView("ganadorExitoso", modelo);
 		
