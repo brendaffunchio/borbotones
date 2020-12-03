@@ -49,31 +49,24 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 	}
 
 	@Override
-	public void guardarInmueble(Inmueble inmueble, Direccion direccion)
-			throws DireccionNoValidaException, DireccionDuplicadaException {
+	public void guardarInmueble(Inmueble inmueble, Direccion direccion) throws DireccionDuplicadaException {
 
-		Direccion direccionBuscada = repositorioDireccion.buscarDireccion(direccion);
-		if (direccionBuscada==null) {
+		for (Inmueble aux : repositorioInmueble.todosLosInmuebles()) {
 
-			throw new DireccionNoValidaException();
+			if (aux.getDireccion().equals(direccion)) {
+				
+				throw new DireccionDuplicadaException();
+				
+			}
+			
+				inmueble.setDireccion(direccion);
+				inmueble.setDisponible(true);
+				repositorioInmueble.guardarInmueble(inmueble);
+			
+
 		}
-   
-		for(Inmueble aux:repositorioInmueble.todosLosInmuebles()) {
-    	
-	if (aux.getDireccion().equals(direccionBuscada)) {
 
-		throw new DireccionDuplicadaException();
 	}
-	
-		inmueble.setDireccion(direccionBuscada);
-		inmueble.setDisponible(true);
-		repositorioInmueble.guardarInmueble(inmueble);
-	
-}
-		}
-		
-
-	
 
 	@Override
 	public void validarFoto(MultipartFile foto) throws FotoInexistenteException {

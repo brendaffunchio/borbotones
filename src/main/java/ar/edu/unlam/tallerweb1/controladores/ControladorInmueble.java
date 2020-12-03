@@ -81,7 +81,7 @@ public class ControladorInmueble {
 			@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble,RedirectAttributes flash) {
 
 		ModelMap modelo = new ModelMap();
-		Direccion direccion = servicioDireccion.crearDireccion(calle, numero);
+		Direccion direccion = servicioDireccion.buscarDireccion(calle, numero);
 		
 		try {
 			servicioInmueble.validarFoto(foto);
@@ -91,19 +91,25 @@ public class ControladorInmueble {
 			return new ModelAndView("errores", modelo);
 		}
 		servicioInmueble.setFoto(inmueble, foto.getOriginalFilename());
+		
+		if(direccion!=null) {
 		try {
 			servicioInmueble.guardarInmueble(inmueble, direccion);
-		} catch (DireccionNoValidaException | DireccionDuplicadaException e) {
+		} catch (DireccionDuplicadaException e) {
 			modelo.put("errorDireccionInmueble", e.getMessage());
 			return new ModelAndView("errores", modelo);
 		}
-
+		} else {
+			
+			modelo.put("errorDireccionInmueble","La dirección no es válida");
+			return new ModelAndView("errores", modelo);
+		}
 		return new ModelAndView("redirect:/ver-inmuebles");
 
 	}
 
 	@RequestMapping(path = "buscar-inmueble", method = RequestMethod.GET)
-	public ModelAndView mostrarTorneosPorJuego(HttpServletRequest request) {
+	public ModelAndView buscarInmueble(HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
 		String provinciaId = request.getParameter("provinciaId");

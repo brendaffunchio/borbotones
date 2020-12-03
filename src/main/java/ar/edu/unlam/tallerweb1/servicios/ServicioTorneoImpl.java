@@ -185,11 +185,10 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 			throw new GanadorYaExistenteException();
 		
 		}
-		if(torneo==null) {
-			
+		if(torneo == null){
 			throw new TorneoInexistenteException();
 		}
-        if(ganador==null) {
+        if(ganador==null){
 			
 			throw new ParticipanteInexistenteException();
 		}

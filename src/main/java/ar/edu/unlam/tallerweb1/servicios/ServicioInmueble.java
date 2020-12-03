@@ -18,7 +18,7 @@ public interface ServicioInmueble {
 
 	public List<Inmueble> mostrarInmuebles();
 
-	public void guardarInmueble(Inmueble inmueble,Direccion direccion) throws DireccionNoValidaException, DireccionDuplicadaException;
+	public void guardarInmueble(Inmueble inmueble,Direccion direccion) throws DireccionDuplicadaException;
 	
 	void validarFoto(MultipartFile foto) throws FotoInexistenteException;
 	
