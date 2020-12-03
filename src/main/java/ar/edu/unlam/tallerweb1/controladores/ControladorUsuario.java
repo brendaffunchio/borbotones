@@ -61,7 +61,7 @@ public class ControladorUsuario {
 			@RequestParam(name="numero") Integer numero, @ModelAttribute ("usuario") Usuario usuario, HttpServletRequest request) {
 		ModelMap modelo = new ModelMap();
 	
-        Direccion direccion = servicioDireccion.crearDireccion(calle, numero);
+        Direccion direccion = servicioDireccion.buscarDireccion(calle, numero);
 		
 		try {
 			servicioUsuarios.guardarUsuario(usuario, direccion);

@@ -8,7 +8,7 @@ import ar.edu.unlam.tallerweb1.modelo.Direccion;
 
 public interface RepositorioDireccion {
 
-	public Direccion buscarDireccion(Direccion direccion);
+	public Direccion buscarDireccion(String calle, Integer numero);
 	
 	
 }

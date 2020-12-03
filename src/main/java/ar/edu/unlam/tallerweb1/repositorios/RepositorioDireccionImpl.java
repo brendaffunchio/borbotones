@@ -17,11 +17,10 @@ public class RepositorioDireccionImpl implements RepositorioDireccion{
 		this.sessionFactory = sessionFactory;
 	}
 	@Override
-	public Direccion buscarDireccion(Direccion direccion) {
+	public Direccion buscarDireccion(String calle, Integer numero) {
 		
 		final Session session = sessionFactory.getCurrentSession();
-		String calle = direccion.getCalle();
-		Integer numero = direccion.getNumero();
+		
 		Direccion direccionBuscada = (Direccion) session.createCriteria(Direccion.class)
 				.add(Restrictions.eq("calle", calle))
 				.add(Restrictions.eq("numero", numero))

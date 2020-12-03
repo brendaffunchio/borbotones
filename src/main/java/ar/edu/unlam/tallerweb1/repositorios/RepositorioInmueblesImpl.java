@@ -56,12 +56,14 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 		criteria.createAlias("ciudad.provincia", "provincia");
 		
 		if(provinciaId != null && provinciaId != 0 ) {
-		criteria.add(Restrictions.like("provincia.id", provinciaId));
+		criteria.add(Restrictions.like("provincia.id", provinciaId))
+		.add(Restrictions.eq("disponible", true));
 		}
 		
 		if(nombreCiudad != null && nombreCiudad != "") {
 			
-			criteria.add(Restrictions.like("ciudad.nombre", nombreCiudad, MatchMode.ANYWHERE));
+			criteria.add(Restrictions.like("ciudad.nombre", nombreCiudad, MatchMode.ANYWHERE))
+					.add(Restrictions.eq("disponible", true));
 		}
 		
 		return criteria.list();
