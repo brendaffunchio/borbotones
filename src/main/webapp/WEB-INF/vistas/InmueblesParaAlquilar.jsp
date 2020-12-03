@@ -54,6 +54,12 @@
 
 		
 			</div>
+		<c:if test="${not empty error}">
+	<h6>
+		${error}
+	</h6>
+	<br>
+</c:if>
 	
 	<div class="row-12">
 

@@ -111,12 +111,14 @@ public class ControladorInmueble {
 
 	@RequestMapping(path = "buscar-inmueble", method = RequestMethod.GET)
 	public ModelAndView buscarInmueble(HttpServletRequest request) {
-
+		
 		ModelMap modelo = new ModelMap();
+		modelo.put("provincias", servicioProvincia.mostrarProvincias());
+
 		String provinciaId = request.getParameter("provinciaId");
 		String nombreCiudad = request.getParameter("ciudad");
 
-		if (servicioInmueble.buscarInmueble(Long.parseLong(provinciaId), nombreCiudad).size() == 0) {
+		if (servicioInmueble.buscarInmueble(Long.parseLong(provinciaId), nombreCiudad).isEmpty()) {
 
 			modelo.put("error", "No se encontró ningún inmueble.");
 		}
