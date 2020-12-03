@@ -33,6 +33,7 @@ import ar.edu.unlam.tallerweb1.modelo.InmuebleNoDisponibleException;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCiudad;
 import ar.edu.unlam.tallerweb1.servicios.ServicioDireccion;
+import ar.edu.unlam.tallerweb1.servicios.ServicioFoto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioProvincia;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarios;
@@ -45,17 +46,23 @@ public class ControladorInmueble {
 	public ServicioCiudad servicioCiudad;
 	public ServicioProvincia servicioProvincia;
 	public ServicioDireccion servicioDireccion;
+	public ServicioFoto servicioFoto;
 
 	@Autowired
 	public ControladorInmueble(ServicioInmueble servicioInmueble, ServicioCiudad servicioCiudad,
 			ServicioProvincia servicioProvincia, ServicioDireccion servicioDireccion
-			,ServicioUsuarios servicioUsuario) {
+			,ServicioUsuarios servicioUsuario,ServicioFoto servicioFoto) {
+
 
 		this.servicioInmueble = servicioInmueble;
 		this.servicioCiudad = servicioCiudad;
 		this.servicioProvincia = servicioProvincia;
 		this.servicioDireccion = servicioDireccion;
+
 		this.servicioUsuario = servicioUsuario;
+
+		this.servicioFoto = servicioFoto;
+
 
 	}
 
@@ -90,13 +97,13 @@ public class ControladorInmueble {
 		Direccion direccion = servicioDireccion.buscarDireccion(calle, numero);
 		
 		try {
-			servicioInmueble.validarFoto(foto);
-			servicioInmueble.guardarFoto(foto);	
+			servicioFoto.validarFoto(foto);
+			servicioFoto.guardarFotoInmueble(foto);	
 		} catch (FotoInexistenteException | FileUploadException | IOException e) {
 			modelo.put("error", e.getMessage());
 			return new ModelAndView("errores", modelo);
 		}
-		servicioInmueble.setFoto(inmueble, foto.getOriginalFilename());
+		servicioFoto.setFoto(inmueble, foto.getOriginalFilename());
 		
 		if(direccion!=null) {
 		try {
@@ -165,6 +172,7 @@ public class ControladorInmueble {
 				return new ModelAndView ("errores", modelo);
 			}
 		}else {
+			
 			modelo.put("errorAlquilar", "inmueble o usuario inexistente");
 			return new ModelAndView ("errores", modelo);
 		}

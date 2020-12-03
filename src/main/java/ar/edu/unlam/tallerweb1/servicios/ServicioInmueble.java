@@ -22,12 +22,6 @@ public interface ServicioInmueble {
 
 	public void guardarInmueble(Inmueble inmueble,Direccion direccion) throws DireccionDuplicadaException;
 	
-	void validarFoto(MultipartFile foto) throws FotoInexistenteException;
-	
-	public void guardarFoto(MultipartFile foto) throws FileUploadException,  IOException ;
-	
-	public void setFoto(Inmueble inmueble, String fotoNombre);
-	
 	public List<Inmueble> buscarInmueble(Long provinciaId, String nombreCiudad);
 
 	public Inmueble consultarInmueblePorId(Long inmuebleId);

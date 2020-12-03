@@ -52,12 +52,31 @@
 
 
 			</br> <a class="btn btn-outline-success"
-				href="ver-formulario-torneo?usuarioId=${sessionScope.id}" role="button"> ORGANIZÁ
-				TU TORNEO </a>
+				href="ver-formulario-torneo?usuarioId=${sessionScope.id}"
+				role="button"> ORGANIZÁ TU TORNEO </a>
 
 
 		</div>
 	</c:if>
+
+	<c:if test="${sessionScope.rol== null}">
+
+		<div class="col-6">
+
+			<button class="btn btn-outline-success"
+				href="ver-formulario-torneo?usuarioId=${sessionScope.id}"
+				disabled="disabled">ORGANIZÁ TU TORNEO</button>
+
+			</br> </br>
+			<h6>
+				Necesitas <a href="login"> iniciar sesion </a> para organizar un
+				torneo
+			</h6>
+
+		</div>
+	</c:if>
+
+
 </div>
 
 

@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.CupoExcedidoException;
+import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.GanadorYaExistenteException;
 
 import ar.edu.unlam.tallerweb1.modelo.ParticipanteDuplicadoException;
@@ -25,6 +28,7 @@ import ar.edu.unlam.tallerweb1.modelo.ParticipanteInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.TorneoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.servicios.ServicioFoto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarios;
@@ -38,11 +42,14 @@ public class ControladorTorneo {
 	private ServicioTorneo servicioTorneo;
 
 	private ServicioUsuarios servicioUsuario;
+	
+	private ServicioFoto servicioFoto;
 
 	@Autowired
-	public ControladorTorneo(ServicioTorneo servicioTorneo, ServicioUsuarios servicioUsuario) {
+	public ControladorTorneo(ServicioTorneo servicioTorneo, ServicioUsuarios servicioUsuario, ServicioFoto servicioFoto) {
 		this.servicioTorneo = servicioTorneo;
 		this.servicioUsuario = servicioUsuario;
+		this.servicioFoto = servicioFoto;
 	}
 
 	@RequestMapping(path = "ver-torneos", method = RequestMethod.GET)
@@ -83,22 +90,6 @@ public class ControladorTorneo {
 
 	}
 	
-	public void guardarFoto (MultipartFile foto) {
-		if (!foto.isEmpty()) {
-			String ruta = "C://Producto//torneos";
-			
-		 try {
-			
-			byte[] bytes = foto.getBytes();
-			Path rutaAbsoluta=Paths.get(ruta+"//"+foto.getOriginalFilename());
-			Files.write(rutaAbsoluta, bytes);
-			
-		} catch (Exception e) {
-			
-		}
-		}
-	}
-
 	@RequestMapping(path = "crear-torneo", method = RequestMethod.POST)
 	public ModelAndView crearTorneo(@RequestParam(name = "file", required = false) MultipartFile foto, 
 			@RequestParam(name = "creadorId") Long creadorId,
@@ -107,8 +98,15 @@ public class ControladorTorneo {
 		
         ModelMap modelo= new ModelMap();
         
-		guardarFoto(foto);
-		torneo.setFoto(foto.getOriginalFilename());
+        try {
+			servicioFoto.validarFoto(foto);
+			servicioFoto.guardarFotoTorneo(foto);	
+		} catch (FotoInexistenteException | FileUploadException | IOException e) {
+			modelo.put("error", e.getMessage());
+			return new ModelAndView("errores", modelo);
+		}
+		servicioFoto.setFoto(torneo, foto.getOriginalFilename());
+        
 		if(inmuebleId != null) {
 		servicioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
 		

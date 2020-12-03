@@ -49,8 +49,19 @@
 				<a class="boton-part" href="ver-lista-de-participantes?torneoId=${miTorneoDetalle.id}"
 					role="button"> PARTICIPANTES </a>
 					<br>
+				
+					
+				<c:if
+				test="${(miTorneoDetalle.ganador.id == null)}">
 				<a class="boton-part" href="ver-lista-de-participantes-para-elegir-ganador?torneoId=${miTorneoDetalle.id}"
 					role="button"> ELEGIR GANADOR </a>
+			</c:if>
+					
+					
+						<c:if
+				test="${(miTorneoDetalle.ganador.id != null)}">
+				<p> ¡Ganador del torneo! ${miTorneoDetalle.ganador.nombre} </p>
+			</c:if>
 				
 				
 			</div>	
