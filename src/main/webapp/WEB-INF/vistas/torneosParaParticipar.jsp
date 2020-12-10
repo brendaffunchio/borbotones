@@ -79,6 +79,12 @@
 
 </div>
 
+<c:if test="${not empty error}">
+
+ <h6> ${error} </h6>
+
+
+</c:if>
 
 <div class="table-responsive col-sm-12">
 

@@ -58,7 +58,7 @@
 				<input type="hidden" name="usuarioId" value="${sessionScope.id}">
 				
 				<c:if
-				test="${(torneoDetalle.estadoCompleto == false) and (sessionScope.id != null)}">
+				test="${(torneoDetalle.estadoCompleto == false) and (sessionScope.id != null) and (torneoDetalle.ganador.id == null)}">
 					<button class="boton-part" type="submit" >PARTICIPAR</button>
 			</c:if>
 			

@@ -15,6 +15,7 @@
 						">
 
 	<import resource="classpath:hibernateContext.xml" />
+	
 
 	<!--Se indica que la configuracion del MVC se hará utilizanbdo anotaciones -->
 	<mvc:annotation-driven />
@@ -33,6 +34,9 @@
 		base-package="ar.edu.unlam.tallerweb1.repositorios" />
 	<context:component-scan
 		base-package="ar.edu.unlam.tallerweb1.servicios" />
+		
+		<context:property-placeholder location="classpath:/configuracion.properties" />
+	
 
 
 </beans>

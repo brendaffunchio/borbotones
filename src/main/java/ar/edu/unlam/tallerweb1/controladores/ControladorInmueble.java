@@ -1,32 +1,20 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
-
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionDuplicadaException;
-import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCiudad;
@@ -38,6 +26,8 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioProvincia;
 @Controller
 public class ControladorInmueble {
 
+	@Value("${ruta.imagenes.torneos}")
+	private String ruta;
 	public ServicioInmueble servicioInmueble;
 	public ServicioCiudad servicioCiudad;
 	public ServicioProvincia servicioProvincia;
@@ -62,6 +52,7 @@ public class ControladorInmueble {
 		ModelMap modelo = new ModelMap();
 		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
 		modelo.put("provincias", servicioProvincia.mostrarProvincias());
+		modelo.put("ruta", ruta);
 
 		return new ModelAndView("InmueblesParaAlquilar", modelo);
 	}
@@ -80,41 +71,44 @@ public class ControladorInmueble {
 	}
 
 	@RequestMapping(path = "crear-inmueble", method = RequestMethod.POST)
-	public ModelAndView crearInmueble(@RequestParam(name = "calle") String calle,@RequestParam(name = "numero") Integer numero,
-			@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble,RedirectAttributes flash) {
+	public ModelAndView crearInmueble(@RequestParam(name = "calle") String calle,
+			@RequestParam(name = "numero") Integer numero,
+			@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble,
+			RedirectAttributes flash) {
 
 		ModelMap modelo = new ModelMap();
-		Direccion direccion = servicioDireccion.buscarDireccion(calle, numero);
-		
+
 		try {
-			servicioFoto.validarFoto(foto);
-			servicioFoto.guardarFotoInmueble(foto);	
-		} catch (FotoInexistenteException | FileUploadException | IOException e) {
+			crearInmueble(calle, numero, inmueble, foto);
+		} catch (Exception e) {
 			modelo.put("error", e.getMessage());
-			return new ModelAndView("errores", modelo);
-		}
-		servicioFoto.setFoto(inmueble, foto.getOriginalFilename());
-		
-		if(direccion!=null) {
-		try {
-			servicioInmueble.guardarInmueble(inmueble, direccion);
-		} catch (DireccionDuplicadaException e) {
-			modelo.put("errorDireccionInmueble", e.getMessage());
-			return new ModelAndView("errores", modelo);
-		}
-		} else {
-			
-			modelo.put("errorDireccionInmueble","La dirección no es válida");
-			return new ModelAndView("errores", modelo);
+			return new ModelAndView("error", modelo);
 		}
 		
 		return new ModelAndView("redirect:/ver-inmuebles");
 
 	}
 
+	private void crearInmueble(String calle, Integer numero, Inmueble inmueble, MultipartFile foto) throws Exception {
+
+		Direccion direccion = servicioDireccion.buscarDireccion(calle, numero);
+		if (direccion != null) {
+			servicioInmueble.guardarInmueble(inmueble, direccion);
+		} else {
+			throw new Exception("La dirección no es valida");
+		}
+		//servicioFoto.guardarFotoInmueble(inmueble, foto);
+		servicioFoto.validarFoto(foto);
+		servicioFoto.guardarFotoInmueble(foto);
+		servicioFoto.setFoto(inmueble, foto.getOriginalFilename());
+		
+		
+
+	}
+
 	@RequestMapping(path = "buscar-inmueble", method = RequestMethod.GET)
 	public ModelAndView buscarInmueble(HttpServletRequest request) {
-		
+
 		ModelMap modelo = new ModelMap();
 		modelo.put("provincias", servicioProvincia.mostrarProvincias());
 

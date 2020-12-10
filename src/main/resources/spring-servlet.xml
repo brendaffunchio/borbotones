@@ -7,12 +7,25 @@
 						http://www.springframework.org/schema/mvc
 						http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 						
-						
+			
+					
 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
  <property name="maxUploadSize" value="268435456"/>
 	</bean>
-						
-						
+	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="location">
+        <value>classpath:configuracion.properties</value>
+    </property>
+	</bean>   
+	
+	<!---  <bean id="ruta" class="ar.edu.unlam.tallerweb1.modelo.Ruta">
+	
+	<property name="rutaInmueble" value="${ruta.imagenes.inmuebles}" />
+    <property name="rutaTorneo" value="${ruta.imagenes.torneos}" />
+ 
+</bean> -->
+	
 	<!--Configuracion para indicarle al MVC de spring como resolver las vistas -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
@@ -37,7 +50,8 @@
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/fonts/**" location="/fonts/" />
 	
-
-
 </beans>
+
+
+	
 

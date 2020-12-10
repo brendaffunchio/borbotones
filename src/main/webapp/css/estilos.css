@@ -25,8 +25,8 @@
 
 .formulario-torneo {
 	display: grid;
-	grid-template-columns: 200px;
-	width: 200px;
+	grid-template-columns: 200px ;
+	width: 260px;
 	border: 2px solid #00f000;
 	padding: 30px;
 	align-content: center;
@@ -92,7 +92,7 @@
 .formulario-participar {
 	display: grid;
 	grid-template-columns: 200px;
-	width: 200px;
+	width: 260px;
 	border: 2px solid #00f000;
 	padding: 20px;
 	align-content: center;
@@ -138,7 +138,7 @@
 .inm {
 	display: grid;
 	grid-template-columns: 200px;
-	width: 200px;
+	width: 260px;
 	border: 2px solid #ECFF16;
 	padding: 20px;
 	color: white;
@@ -181,7 +181,7 @@ span {
 .formulario-publicar {
 	display: grid;
 	grid-template-columns: 200px;
-	width: 200px;
+	width: 260px;
 	border: 2px solid #ECFF16;
 	padding: 30px;
 	align-content: center;

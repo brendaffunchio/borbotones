@@ -140,35 +140,37 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	}
 
 	@Override
-	public void eliminarParticipante(Torneo torneo,Usuario participante) throws ParticipanteInexistenteException
-	,TorneoInexistenteException{
-		
-		if (torneo.getParticipantes().contains(participante)&&
-				participante.getTorneosParticipa().contains(torneo)) {
-			torneo.eliminarParticipante(participante);
-			participante.desuscribirseDeTorneo(torneo);
-			repositorioTorneo.modificarTorneo(torneo);;
-			repositorioUsuario.modificarUsuario(participante);
-			
-			if (torneo.getInscriptos() < torneo.getCupo()) {
-				torneo.setEstadoCompleto(false);
-				repositorioTorneo.modificarTorneo(torneo);
+    public void eliminarParticipante(Torneo torneo,Usuario participante) throws ParticipanteInexistenteException, TorneoInexistenteException{
+                
+        if(!torneo.getParticipantes().contains(participante)){
+            
+            throw new ParticipanteInexistenteException(); 
+            
+        }
+        
+        if(!participante.getTorneosParticipa().contains(torneo)){
+            
+            throw new TorneoInexistenteException(); 
+            
+        }
+        
+        
+        if (torneo.getParticipantes().contains(participante)&&
+                participante.getTorneosParticipa().contains(torneo)) {
+            torneo.eliminarParticipante(participante);
+            participante.desuscribirseDeTorneo(torneo);
+            repositorioTorneo.modificarTorneo(torneo);;
+            repositorioUsuario.modificarUsuario(participante);
+            
+            if (torneo.getInscriptos() < torneo.getCupo()) {
+                torneo.setEstadoCompleto(false);
+                repositorioTorneo.modificarTorneo(torneo);
 
-			}
-			
-		}
-		
-		if(!torneo.getParticipantes().contains(participante)){
-			throw new ParticipanteInexistenteException(); 
-			
-		}
-		if(!participante.getTorneosParticipa().contains(torneo)) {
-			throw new TorneoInexistenteException(); 
-			
-		}
-		
-		
-	}
+ 
+
+            }
+        }
+        }
 
 	@Override
 	public Set<Usuario> mostrarParticipantesDelTorneo(Long torneoId) {

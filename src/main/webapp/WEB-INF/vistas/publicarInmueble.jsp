@@ -57,7 +57,7 @@
 				<label class="or">Imagen del inmueble</label>
 				<input type="file" name="file"/> 
 				
-				<br>
+				<br><br>
 				<button class="btn-pub" Type="Submit" />PUBLICAR</button>
 
 			</form:form>

@@ -7,6 +7,7 @@ import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Provincia;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.Ruta;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,6 +77,18 @@ public class ConexionBaseDeDatosTest extends SpringTest {
 		return direccionUsuario;
 
 	}
+	
+	@Test
+	public void VerificarQueLaRutaDeLasImagenesDelInmuebleSeanCorrectas () {
+		Ruta ruta = new Ruta();
+		
+		String rutaEsperada =  "C://Producto//inmuebles";
+		
+		assertThat(ruta.getRutaInmueble()).isEqualTo(rutaEsperada);
+		
+
+	}
+	
 
 	@Transactional
 	@Rollback

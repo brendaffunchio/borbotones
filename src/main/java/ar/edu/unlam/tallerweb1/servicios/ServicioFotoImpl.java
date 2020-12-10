@@ -18,12 +18,10 @@ import ar.edu.unlam.tallerweb1.modelo.Torneo;
 @Service
 @Transactional
 public class ServicioFotoImpl implements ServicioFoto {
-	
-	
-	
+
 	@Override
 	public void validarFoto(MultipartFile foto) throws FotoInexistenteException {
-		
+
 		if (foto.isEmpty()) {
 
 			throw new FotoInexistenteException();
@@ -34,10 +32,10 @@ public class ServicioFotoImpl implements ServicioFoto {
 
 	@Override
 	public void guardarFotoInmueble(MultipartFile foto) throws FileUploadException, IOException {
-
-
+		
+	
 		if (!foto.isEmpty()) {
-			String ruta = "C://Producto//inmuebles";
+			String ruta = "C://Producto//torneos";
 
 			byte[] bytes;
 			bytes = foto.getBytes();
@@ -51,10 +49,9 @@ public class ServicioFotoImpl implements ServicioFoto {
 		}
 
 	}
-	
+
 	@Override
 	public void guardarFotoTorneo(MultipartFile foto) throws FileUploadException, IOException {
-
 
 		if (!foto.isEmpty()) {
 			String ruta = "C://Producto//torneos";
@@ -72,26 +69,21 @@ public class ServicioFotoImpl implements ServicioFoto {
 
 	}
 
-
-
 	@Override
 	public void setFoto(Object objeto, String fotoNombre) {
-		
-		if(objeto instanceof Inmueble) {
-			
+
+		if (objeto instanceof Inmueble) {
+
 			((Inmueble) objeto).setFoto(fotoNombre);
-			
+
 		}
-		
-		if(objeto instanceof Torneo) {
-			
+
+		if (objeto instanceof Torneo) {
+
 			((Torneo) objeto).setFoto(fotoNombre);
-			
+
 		}
-		
-		
-		
-		
+
 	}
 
 }
