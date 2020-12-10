@@ -16,4 +16,6 @@ public interface RepositorioInmueble {
 	public Inmueble consultarInmueblePorId(Long inmuebleId);
 	
 	public void modificarInmueble(Inmueble inmueble);
+
+	public List<Inmueble> filtrarInmueblesPorPrecio(Double desdePrecio, Double hastaPrecio);
 }

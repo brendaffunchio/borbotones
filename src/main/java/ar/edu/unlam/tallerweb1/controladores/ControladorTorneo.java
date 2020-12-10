@@ -14,11 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.CupoExcedidoException;
 import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.GanadorYaExistenteException;
+import ar.edu.unlam.tallerweb1.modelo.InmuebleInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.ParticipanteDuplicadoException;
 import ar.edu.unlam.tallerweb1.modelo.ParticipanteInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.TorneoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.UsuarioInexistenteException;
 import ar.edu.unlam.tallerweb1.servicios.ServicioFoto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarios;
@@ -55,7 +57,8 @@ public class ControladorTorneo {
 
 	}
 
-	@RequestMapping(path = "ver-torneos-filtrados-distancia", method = RequestMethod.GET)
+	
+	@RequestMapping(path = "ver-torneos-ordenados-distancia", method = RequestMethod.GET)
 	public ModelAndView mostrarTorneosSegunDistancia() {
 
 		ModelMap modelo = new ModelMap();
@@ -63,6 +66,16 @@ public class ControladorTorneo {
 		modelo.put("torneos", servicioTorneo.ordenarTorneosSegunDistancia());
 		return new ModelAndView("torneosParaParticipar", modelo);
 
+	}
+	@RequestMapping(path = "filtrar-torneos", method = RequestMethod.GET)
+	public ModelAndView filtrarTorneosSegunRadio(@RequestParam(name="desde")Double desdeKm,
+			@RequestParam(name="hasta")Double hastaKm) {
+		
+		ModelMap modelo = new ModelMap();
+		modelo.put("torneos", servicioTorneo.filtrarTorneosPorDistancia(desdeKm,hastaKm));
+		
+		return new ModelAndView ("torneosParaParticipar", modelo);
+		
 	}
 
 	@RequestMapping(path = "ver-formulario-torneo", method = RequestMethod.GET)
@@ -96,13 +109,15 @@ public class ControladorTorneo {
 		}
 		servicioFoto.setFoto(torneo, foto.getOriginalFilename());
 
-		if (inmuebleId != null) {
-			servicioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
-
-		} else {
-			modelo.put("errorInmueble", "Necesitas alquilar al menos un inmueble para organizar un torneo");
-			return new ModelAndView("organizarTorneos", modelo);
-		}
+			try {
+				servicioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
+			} catch (InmuebleInexistenteException e) {
+				modelo.put("errorInmueble", e.getMessage());
+				return new ModelAndView("errores", modelo);
+			} catch (UsuarioInexistenteException e) {
+				modelo.put("errorCreadorTorneo", e.getMessage());
+				return new ModelAndView("errores", modelo);
+			}
 
 		return new ModelAndView("torneoExitoso");
 	}
@@ -111,42 +126,37 @@ public class ControladorTorneo {
 	public ModelAndView agregarParticipante(@RequestParam(name = "torneoId") Long torneoId,
 			@RequestParam(name = "usuarioId") Long usuarioId) {
 		ModelMap modelo = new ModelMap();
-		Torneo torneo = servicioTorneo.consultarTorneoPorId(torneoId);
-		Usuario usuario = servicioUsuario.consultarUsuarioPorId(usuarioId);
-		
 
 		try {
-			servicioTorneo.agregarParticipante(torneo, usuario);
-		} catch (ParticipanteDuplicadoException | CupoExcedidoException e) {
+			servicioTorneo.agregarParticipante(torneoId, usuarioId);
+		} catch (ParticipanteDuplicadoException | CupoExcedidoException | TorneoInexistenteException
+				| UsuarioInexistenteException e) {
 			modelo.put("errorParticipar", e.getMessage());
 			return new ModelAndView("errores", modelo);
 		}
+		;
 
 		return new ModelAndView("participacionExitosa");
 	}
 
-	@RequestMapping(path = "desubscribirse",method=RequestMethod.POST)
-    public ModelAndView eliminarParticipante(@RequestParam(name="torneoId") Long torneoId,
-            @RequestParam(name="usuarioId",required = false) Long usuarioId) {
+	@RequestMapping(path = "desubscribirse", method = RequestMethod.POST)
+	public ModelAndView eliminarParticipante(@RequestParam(name = "torneoId") Long torneoId,
+			@RequestParam(name = "usuarioId", required = false) Long usuarioId) {
+
+		ModelMap modelo = new ModelMap();
 		
-        ModelMap modelo = new ModelMap();
-        Torneo torneo =  servicioTorneo.consultarTorneoPorId(torneoId);
-        Usuario participante = servicioUsuario.consultarUsuarioPorId(usuarioId);
-        
-        if(torneo!=null && participante!=null) {
-        try {
-            servicioTorneo.eliminarParticipante(torneo,participante);
-        } catch (ParticipanteInexistenteException | TorneoInexistenteException e) {
-             modelo.put("errorDesubscribirse", e.getMessage());
-            return new ModelAndView("errores", modelo);
-        }
-        }else {
-            if(torneo!=null || participante!=null) {
-            modelo.put("errorDesubscribirse","torneo o participante inexistente");
-            return new ModelAndView("errores", modelo);
-        }}
-        return new ModelAndView("perfilUsuario");
-    }
+		
+			try {
+				servicioTorneo.eliminarParticipante(torneoId, usuarioId);
+			} catch (ParticipanteInexistenteException | TorneoInexistenteException | UsuarioInexistenteException e) {
+				modelo.put("errorDesubscribirse", e.getMessage());
+				return new ModelAndView("errores", modelo);
+			}
+		
+		
+		return new ModelAndView("perfilUsuario");
+	}
+
 	@RequestMapping(path = "buscar-torneo", method = RequestMethod.GET)
 	public ModelAndView mostrarTorneosPorJuego(HttpServletRequest request) {
 
@@ -156,7 +166,7 @@ public class ControladorTorneo {
 
 		if (servicioTorneo.buscarTorneo(categoria, juego).size() == 0) {
 
-			modelo.put("error", "No se encontró ningún torneo.");
+			modelo.put("error", "No se encontrï¿½ ningï¿½n torneo.");
 		}
 
 		else {
@@ -231,22 +241,17 @@ public class ControladorTorneo {
 	public ModelAndView elegirGanador(@RequestParam(name = "ganadorId") Long ganadorId,
 			@RequestParam(name = "torneoGanadoId") Long torneoGanadoId) {
 
-		ModelMap modelo = new ModelMap();
-		Torneo torneo = servicioTorneo.consultarTorneoPorId(torneoGanadoId);
-		Usuario usuario = servicioUsuario.consultarUsuarioPorId(ganadorId);
-
-		if (torneo != null && usuario != null) {
-			modelo.put("torneo", torneo);
+			ModelMap modelo = new ModelMap();
+		   
 			try {
-				servicioTorneo.elegirGanador(torneo, usuario);
-			} catch (GanadorYaExistenteException e) {
+				servicioTorneo.elegirGanador(torneoGanadoId,ganadorId);
+				Torneo torneo= servicioTorneo.consultarTorneoPorId(torneoGanadoId);
+				modelo.put("torneo", torneo);
+			} catch (GanadorYaExistenteException | TorneoInexistenteException | UsuarioInexistenteException e) {
 				modelo.put("errorGanador", e.getMessage());
 				return new ModelAndView("errores", modelo);
 			}
-		} else {
-
-			modelo.put("errorGanador", "Torneo o Participante inexistente");
-		}
+		
 
 		return new ModelAndView("ganadorExitoso", modelo);
 

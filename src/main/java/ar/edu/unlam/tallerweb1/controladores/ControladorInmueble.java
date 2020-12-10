@@ -15,13 +15,20 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionDuplicadaException;
+
+import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
+import ar.edu.unlam.tallerweb1.modelo.InmuebleInexistenteException;
+import ar.edu.unlam.tallerweb1.modelo.InmuebleNoDisponibleException;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.UsuarioInexistenteException;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCiudad;
 import ar.edu.unlam.tallerweb1.servicios.ServicioDireccion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioFoto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
 import ar.edu.unlam.tallerweb1.servicios.ServicioProvincia;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarios;
 
 @Controller
 public class ControladorInmueble {
@@ -29,6 +36,7 @@ public class ControladorInmueble {
 	@Value("${ruta.imagenes.torneos}")
 	private String ruta;
 	public ServicioInmueble servicioInmueble;
+	public ServicioUsuarios servicioUsuario;
 	public ServicioCiudad servicioCiudad;
 	public ServicioProvincia servicioProvincia;
 	public ServicioDireccion servicioDireccion;
@@ -36,13 +44,19 @@ public class ControladorInmueble {
 
 	@Autowired
 	public ControladorInmueble(ServicioInmueble servicioInmueble, ServicioCiudad servicioCiudad,
-			ServicioProvincia servicioProvincia, ServicioDireccion servicioDireccion, ServicioFoto servicioFoto) {
+			ServicioProvincia servicioProvincia, ServicioDireccion servicioDireccion
+			,ServicioUsuarios servicioUsuario,ServicioFoto servicioFoto) {
+
 
 		this.servicioInmueble = servicioInmueble;
 		this.servicioCiudad = servicioCiudad;
 		this.servicioProvincia = servicioProvincia;
 		this.servicioDireccion = servicioDireccion;
+
+		this.servicioUsuario = servicioUsuario;
+
 		this.servicioFoto = servicioFoto;
+
 
 	}
 
@@ -89,7 +103,9 @@ public class ControladorInmueble {
 
 	}
 
-	private void crearInmueble(String calle, Integer numero, Inmueble inmueble, MultipartFile foto) throws Exception {
+	
+	//metodo a modificar
+	private ModelAndView crearInmueble(String calle, Integer numero, Inmueble inmueble, MultipartFile foto) throws Exception {
 
 		Direccion direccion = servicioDireccion.buscarDireccion(calle, numero);
 		if (direccion != null) {
@@ -102,7 +118,17 @@ public class ControladorInmueble {
 		servicioFoto.guardarFotoInmueble(foto);
 		servicioFoto.setFoto(inmueble, foto.getOriginalFilename());
 		
+		try {
+			servicioInmueble.guardarInmueble(inmueble, direccion);
+		} catch (DireccionDuplicadaException | DireccionNoValidaException e) {
+			ModelMap modelo = new ModelMap();
+			modelo.put("errorDireccionInmueble", e.getMessage());
+			return new ModelAndView("errores", modelo);
+			
+		}
 		
+		return new ModelAndView(" redirect/i");
+
 
 	}
 
@@ -127,11 +153,22 @@ public class ControladorInmueble {
 
 		return new ModelAndView("InmueblesParaAlquilar", modelo);
 	}
+	
+	@RequestMapping(path = "filtrar-inmuebles", method = RequestMethod.GET)
+	public ModelAndView filtrarInmueblesPorPrecio(@RequestParam(name="desde")Double desdePrecio,
+			@RequestParam(name="hasta")Double hastaPrecio) {
+		
+		ModelMap modelo = new ModelMap();
+		modelo.put("inmuebles", servicioInmueble.filtrarInmueblesPorPrecio(desdePrecio,hastaPrecio));
+		
+		return new ModelAndView ("InmueblesParaAlquilar", modelo);
+		
+	}
 
 	@RequestMapping(path = "ver-inmueble-detalle", method = RequestMethod.GET)
 	public ModelAndView verDetalle(@RequestParam("inmuebleId") Long inmuebleId) {
 
-		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(inmuebleId);
+		Inmueble inmuebleBuscado = servicioInmueble.consultarInmueblePorId(inmuebleId);
 
 		ModelMap modelo = new ModelMap();
 
@@ -144,16 +181,22 @@ public class ControladorInmueble {
 	@RequestMapping(path = "alquilar", method = RequestMethod.POST)
 	public ModelAndView agregarInquilino(@RequestParam(name = "inmuebleId") Long inmuebleId,
 			@RequestParam(name = "usuarioId") Long usuarioId) {
-
-		servicioInmueble.agregarInquilino(inmuebleId, usuarioId);
-
+	ModelMap modelo = new ModelMap();
+		
+			try {
+				servicioInmueble.agregarInquilino(inmuebleId, usuarioId);
+			} catch (InmuebleNoDisponibleException | InmuebleInexistenteException | UsuarioInexistenteException e) {
+				modelo.put("errorAlquilar", e.getMessage());
+				return new ModelAndView ("errores", modelo);
+			}
+		
 		return new ModelAndView("redirect:/ver-inmuebles");
 	}
 
 	@RequestMapping(path = "ver-inmueble-alquilado-detalle", method = RequestMethod.GET)
 	public ModelAndView verDetalleInmuebleAlquilado(@RequestParam("inmuebleId") Long inmuebleId) {
 
-		Inmueble inmuebleBuscado = servicioInmueble.verDetallesInmueble(inmuebleId);
+		Inmueble inmuebleBuscado = servicioInmueble.consultarInmueblePorId(inmuebleId);
 
 		ModelMap modelo = new ModelMap();
 

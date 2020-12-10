@@ -5,7 +5,7 @@
 	<h2 class="titulo-inmuebles">INMUEBLES DISPONIBLES ${ruta}</h2>
 	
 	<div class="row-12">
-	
+			<div class="col 4">
 			<form:form action="buscar-inmueble" method="GET">
 
 
@@ -31,14 +31,25 @@
 
 				</div>
 				
-				<div class="col 6">
+		
 			
 				<button class="btn btn-outline-warning" type="submit">Buscar</button>
-				
+				</form:form>
 				</div>
 
-			</form:form>
 			
+			<div class="col-6">
+		<h6>FILTRAR INMUEBLES</h6>
+		<form:form action="filtrar-inmuebles" method="GET">
+			<label for="desde">Desde:</label>
+			<input name="desde" type="number" placeholder="precio">
+			<br>
+			<label for="hasta">Hasta: </label>
+			<input name="hasta" type="number" placeholder="precio">
+			<br>
+			<button class="btn btn-outline-warning" type="submit">FILTRAR</button>
+		</form:form>
+	</div>
 	
      <c:if test="${sessionScope.rol=='admin'}">
      <div class="col-2">
@@ -62,7 +73,7 @@
 	</h6>
 	<br>
 </c:if>
-	
+	<br>
 	<div class="row-12">
 
 	<table class="table table-hover table-dark">

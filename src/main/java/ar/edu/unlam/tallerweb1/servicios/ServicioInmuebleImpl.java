@@ -15,12 +15,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionDuplicadaException;
+
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
-import ar.edu.unlam.tallerweb1.modelo.InmueblesBuscadosException;
+import ar.edu.unlam.tallerweb1.modelo.InmuebleInexistenteException;
+import ar.edu.unlam.tallerweb1.modelo.InmuebleNoDisponibleException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.UsuarioInexistenteException;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioDireccion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioInmueble;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
@@ -49,8 +52,8 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 	}
 
 	@Override
-	public void guardarInmueble(Inmueble inmueble, Direccion direccion) throws DireccionDuplicadaException{
-		
+	public void guardarInmueble(Inmueble inmueble, Direccion direccion) throws DireccionDuplicadaException, DireccionNoValidaException{
+		if (direccion == null) throw new DireccionNoValidaException();
 		
 		for(Inmueble aux:repositorioInmueble.todosLosInmuebles()) {
 		
@@ -76,26 +79,35 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 	}
 
 	@Override
-
-	public Inmueble verDetallesInmueble(Long inmuebleId) {
+	public Inmueble consultarInmueblePorId(Long inmuebleId) {
 
 		return repositorioInmueble.consultarInmueblePorId(inmuebleId);
 
 	}
 
 	@Override
-	public void agregarInquilino(Long inmuebleId, Long usuarioId) {
-
-		Inmueble inmueble = repositorioInmueble.consultarInmueblePorId(inmuebleId);
-		Usuario inquilino = repositorioUsuario.consultarUsuarioPorId(usuarioId);
-
+	public void agregarInquilino(Long inmuebleId,Long usuarioId) throws InmuebleNoDisponibleException, InmuebleInexistenteException,UsuarioInexistenteException {
+        Inmueble inmueble = repositorioInmueble.consultarInmueblePorId(inmuebleId);
+		if(inmueble== null) throw new InmuebleInexistenteException();
+		Usuario usuario=repositorioUsuario.consultarUsuarioPorId(usuarioId);
+		if (usuario == null) throw new UsuarioInexistenteException();
+		
+		//(inmueble.getDisponible().equals(false)) throw new InmuebleNoDisponibleException();
 		if (inmueble.getDisponible().equals(true)) {
-			inmueble.setInquilino(inquilino);
+			inmueble.setInquilino(usuario);
 			inmueble.setDisponible(false);
 			repositorioInmueble.modificarInmueble(inmueble);
 
+		}else {
+			throw new InmuebleNoDisponibleException();
 		}
 
+	}
+
+	@Override
+	public List<Inmueble> filtrarInmueblesPorPrecio(Double desdePrecio, Double hastaPrecio) {
+		
+		return repositorioInmueble.filtrarInmueblesPorPrecio(desdePrecio,hastaPrecio);
 	}
 
 

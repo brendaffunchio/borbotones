@@ -55,6 +55,12 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		}
 		
 	@Override
+	public List<Usuario>mostrarUsuarios(){
+		
+		final Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Usuario.class).list();
+	}
+	@Override
 	public List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId) {
 		
 		final Session session = sessionFactory.getCurrentSession();

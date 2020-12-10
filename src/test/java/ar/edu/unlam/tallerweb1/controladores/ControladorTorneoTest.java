@@ -27,7 +27,7 @@ import static org.mockito.Mockito.*;
 
 public class ControladorTorneoTest {
 
-	@Test
+	/*@Test
 	public void validarQueSeVayaALaVistaDeLosTorneosCuandoTraemosLaListaDeTorneosAunqueEsteVacia() {
 
 		ServicioTorneo servicioTorneoMock = mock(ServicioTorneo.class);
@@ -92,4 +92,5 @@ Long usuarioId = usuarioMock.getId();
 		assertThat(mav.getViewName()).isEqualTo("organizarTorneos");
 
 	}
+	*/
 }

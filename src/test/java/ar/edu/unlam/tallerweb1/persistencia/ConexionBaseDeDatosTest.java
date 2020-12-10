@@ -281,7 +281,7 @@ public class ConexionBaseDeDatosTest extends SpringTest {
 	@Rollback
 	public void buscarInmueblePorProvinciaYCiudad() {
 		Inmueble inmueble = inmueble();
-		Long provinciaId = (long) 1;
+		//Long provinciaId = (long) 1;
 		String nombreCiudad = "Cañuelas";
 		
 		Criteria criteria = session().getSession().createCriteria(Inmueble.class);
@@ -291,9 +291,7 @@ public class ConexionBaseDeDatosTest extends SpringTest {
 		criteria.createAlias("direccionBuscada.ciudad", "ciudad");
 		criteria.createAlias("ciudad.provincia", "provincia");
 
-		if (provinciaId != null && provinciaId != 0) {
-			criteria.add(Restrictions.like("provincia.id", provinciaId));
-		}
+			criteria.add(Restrictions.like("provincia.id", inmueble.getDireccion().getCiudad().getProvincia().getId()));
 
 		if (nombreCiudad != null && nombreCiudad != "") {
 

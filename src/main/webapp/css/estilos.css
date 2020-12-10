@@ -6,7 +6,8 @@
 	justify-content: center;
 }
 
-.titulo-org, .titulo-pub {
+.titulo-org,
+.titulo-pub {
 	justify-content: center;
 	width: 100%;
 	margin-top: 20px;
@@ -22,10 +23,9 @@
 	height: 20px;
 }
 
-
 .formulario-torneo {
 	display: grid;
-	grid-template-columns: 200px ;
+	grid-template-columns: 200px;
 	width: 260px;
 	border: 2px solid #00f000;
 	padding: 30px;
@@ -39,7 +39,8 @@
 	margin-top: 10px;
 }
 
-.btn-org, .btn-part {
+.btn-org,
+.btn-part {
 	border: #00f000 2px solid;
 	width: 130px;
 	padding: 5px;
@@ -48,18 +49,19 @@
 }
 
 .btn-pub {
-	border: #ECFF16 2px solid;
+	border: #ecff16 2px solid;
 	width: 120px;
 	padding: 5px;
 	background: #232323;
 	color: white;
 }
 
-#buscarInmueble{
-	border: #ECFF16 2px solid;
+#buscarInmueble {
+	border: #ecff16 2px solid;
 }
 
-.contenedor-participar, .contenedor-publicar {
+.contenedor-participar,
+.contenedor-publicar {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -105,7 +107,8 @@
 	margin-top: 10px;
 }
 
-.titulo-torn, .titulo-inmuebles {
+.titulo-torn,
+.titulo-inmuebles {
 	width: 100%;
 	margin-top: 20px;
 	color: white;
@@ -113,7 +116,8 @@
 	text-align: center;
 }
 
-.torneos, .inmuebles {
+.torneos,
+.inmuebles {
 	display: grid;
 	grid-template-columns: 250px 250px 250px 250px;
 	grid-template-rows: auto;
@@ -122,13 +126,13 @@
 	max-width: 70%;
 	grid-column-gap: 40px;
 	padding-left: 170px;
-	color:white;
+	color: white;
 }
 
 .tor {
 	display: grid;
 	grid-template-columns: 200px;
-	width: 200px;
+	width: 260px;
 	border: 2px solid #00f000;
 	padding: 20px;
 	color: white;
@@ -139,14 +143,14 @@
 	display: grid;
 	grid-template-columns: 200px;
 	width: 260px;
-	border: 2px solid #ECFF16;
+	border: 2px solid #ecff16;
 	padding: 20px;
 	color: white;
 	margin-top: 20px;
 }
 
-
-.nombre-tor, .nombre-inmueble {
+.nombre-tor,
+.nombre-inmueble {
 	color: white;
 	font-size: 20px;
 	text-align: center;
@@ -159,14 +163,15 @@ span {
 .boton-part {
 	border: 2px solid #00f000;
 	font-weight: normal;
-	width: 100px;
+	width: 115px;
 	color: white;
 	padding: 5px;
 	background: #232323;
 }
 
-.boton-alqui, .boton-pub {
-	border: 2px solid #ECFF16;
+.boton-alqui,
+.boton-pub {
+	border: 2px solid #ecff16;
 	font-weight: normal;
 	width: 120px;
 	color: white;
@@ -182,7 +187,7 @@ span {
 	display: grid;
 	grid-template-columns: 200px;
 	width: 260px;
-	border: 2px solid #ECFF16;
+	border: 2px solid #ecff16;
 	padding: 30px;
 	align-content: center;
 	color: white;
@@ -197,7 +202,8 @@ span {
 	margin-bottom: 30px;
 }
 
-.pp, .ors {
+.pp,
+.ors {
 	max-width: 100%;
 	font-size: 20px;
 	font-family: 'Montserrat', sans-serif;
@@ -205,14 +211,13 @@ span {
 
 .organizar-tor {
 	margin-right: -18em;
-	width: 180px;
+	width: 280px;
 	justyfy-content: center;
 	align-items: center;
 	font-family: 'Montserrat', sans-serif;
 }
 
-.avisoUsuario{
-	
+.avisoUsuario {
 	font-size: 0.8em;
 }
 
@@ -225,27 +230,21 @@ span {
 	width: 300px;
 }
 
-.opcionesUsuario{
-	
+.opcionesUsuario {
 	display: flex;
 	max-width: 100%;
 	padding: 10px 80px;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	
 }
 
-.organizaPropioTorneo{
-	
+.organizaPropioTorneo {
 	font-weight: normal;
 	border: none;
-	
-	
 }
 
 .organizaPropioTorneo:hover {
-	
 	color: #00f000;
 }
 
@@ -259,7 +258,7 @@ span {
 .contacto {
 	padding: 15px;
 	width: 500px;
-	border: 2px solid #2BE4FF;
+	border: 2px solid #2be4ff;
 	background: #080808;
 }
 
@@ -272,14 +271,10 @@ iframe {
 	height: 300px;
 }
 
-
-
-.detalles-inm{
-	color:white;
-	display:grid;
+.detalles-inm {
+	color: white;
+	display: grid;
 	grid-templates-columns: 200px 200px;
-	justify-content:center;
-	width:100%;
+	justify-content: center;
+	width: 100%;
 }
-
-

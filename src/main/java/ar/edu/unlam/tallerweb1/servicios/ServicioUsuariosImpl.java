@@ -11,9 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
-
+import ar.edu.unlam.tallerweb1.modelo.PasswordVaciaException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.UsuarioYaExisteException;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioDireccion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTorneo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
@@ -23,7 +24,7 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 @Transactional
 public class ServicioUsuariosImpl implements ServicioUsuarios{
 
-	//siempre se referencia a la interfaz
+	
 	
 	private RepositorioUsuario repositorioUsuario;
 private RepositorioDireccion repositorioDireccion;
@@ -37,9 +38,16 @@ private RepositorioDireccion repositorioDireccion;
 	}
 
 	@Override
-	public void guardarUsuario(Usuario usuario, Direccion direccion){
+	public void guardarUsuario(Usuario usuario, Direccion direccion) throws PasswordVaciaException, UsuarioYaExisteException, DireccionNoValidaException{
 		
-			
+		for(Usuario usuarioBuscado: repositorioUsuario.mostrarUsuarios()) {
+			if(usuarioBuscado.equals(usuario)) throw new UsuarioYaExisteException();
+		}
+		if (direccion==null) throw new DireccionNoValidaException();
+		
+		if (usuario.getPassword()==null || usuario.getPassword().equals(" "))
+			throw new PasswordVaciaException();
+		
 		usuario.setRol("invitado");
 		usuario.setTorGanados(0);
 		usuario.setDireccion(direccion);

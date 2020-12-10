@@ -61,8 +61,7 @@
 				test="${(torneoDetalle.estadoCompleto == false) and (sessionScope.id != null) and (torneoDetalle.ganador.id == null)}">
 					<button class="boton-part" type="submit" >PARTICIPAR</button>
 			</c:if>
-			
-				<c:if
+	<c:if
 				test="${(torneoDetalle.estadoCompleto == false) and (sessionScope.id == null) and (torneoDetalle.ganador.id == null)}">
 					<div class="col-2">
 					<button class="boton-part" type="submit" disabled="disabled">PARTICIPAR</button>
@@ -70,7 +69,7 @@
 					</div>
 			</c:if>
 
-			
+
 					<c:if
 				test="${(torneoDetalle.estadoCompleto == true) and (sessionScope.rol != null) and (torneoDetalle.ganador.id == null)}">
 				<button class="boton-part" type="submit" disabled="disabled">Cupo Lleno</button>
