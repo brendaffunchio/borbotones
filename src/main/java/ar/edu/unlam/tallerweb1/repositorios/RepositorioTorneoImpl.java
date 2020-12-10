@@ -113,6 +113,21 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		
 		return torneosOrdenados;
 	}
+
+	@Override
+	public List<Torneo> filtrarTorneosPorDistancia(Double desdeKm, Double hastaKm) {
+		
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Torneo.class);
+		
+		if(desdeKm!=null && desdeKm != 0)
+			criteria.add(Restrictions.ge("distanciaConUsuario", desdeKm));
+		
+		if(hastaKm!=null && hastaKm != 0)
+			criteria.add(Restrictions.le("distanciaConUsuario", hastaKm));
+		
+		
+		return criteria.list();
+	}
 	
 	
 	

@@ -8,13 +8,9 @@
 	<div class="col-6">
 
 		<form:form action="buscar-torneo" method="GET">
-
-
 			<div class="form-group">
-
 				<label class="ors">Buscar torneo</label> </br>
 			</div>
-
 			<div class="form-group col-sm-5">
 				<label> Elegir por categoría </label> <select class="form-control"
 					name="categoria" multiple>
@@ -25,59 +21,80 @@
 					<option value="Accion">Accion</option>
 					<option value="Fantasia">Fantasia</option>
 					<option value="Otra">Otra</option>
-				</select> <label>Ingresar juego </label> <input class="busc" type="text"
+				</select> <label>Ingresar juego </label> 
+				<br>
+				<input class="busc" style="width:180px" type="text"
 					name="juego">
-
-			</div>
-
-			<div class="col-6">
-
+					<br><br>
 				<button class="btn btn-outline-success" type="submit">Buscar</button>
-
-			</div>
-
+</div>
 		</form:form>
-
-
-		<div class="col-6">
-
-			<a class="btn btn-outline-success"
-				href="ver-torneos-filtrados-distancia">FILTRAR MAS CERCANOS</a>
 		</div>
-	</div>
+</br> 
 
+		<c:if test="${sessionScope.id != null }">
+			
+			
+	</br> 
+	<div class="col-4">
+		<h6>FILTRAR TORNEOS</h6>
+		<form:form action="filtrar-torneos" method="GET">
+			<label for="desde">Desde:</label>
+			<input name="desde" type="number" placeholder="km">
+			</br> 
+			<label for="hasta">Hasta:</label>
+			<input name="hasta" type="number" placeholder="km">
+			</br> 
+			<button class="btn btn-outline-success" type="submit">FILTRAR</button>
+		</form:form>
+	
+</br> 
+		
 
-	<c:if test="${sessionScope.id != null }">
-		<div class="col-2">
-
-
-			</br> <a class="btn btn-outline-success"
+<a class="btn btn-outline-success"
+					href="ver-torneos-ordenados-distancia">ORDENAR MAS CERCANOS</a>
+			
+			<a class="btn btn-outline-success"
 				href="ver-formulario-torneo?usuarioId=${sessionScope.id}"
 				role="button"> ORGANIZÁ TU TORNEO </a>
 
 
+				
+
 		</div>
+		
 	</c:if>
 
 	<c:if test="${sessionScope.rol== null}">
 
-		<div class="col-6">
-
+<div class="col-4">
+		<h6>FILTRAR TORNEOS</h6>
+		<form:form action="filtrar-torneos" method="GET" >
+			<label for="desde">Desde:</label>
+			<input name="desde" type="number" placeholder="km" disabled="disabled">
+			</br> 
+			<label for="hasta">Hasta:</label>
+			<input name="hasta" type="number" placeholder="km" disabled="disabled">
+			</br> 
+			<button class="btn btn-outline-success" type="submit" disabled="disabled">FILTRAR</button>
+		</form:form>
+	</div></br> 
 			<button class="btn btn-outline-success"
-				href="ver-formulario-torneo?usuarioId=${sessionScope.id}"
+					disabled="disabled">ORDENAR MAS CERCANOS</button>
+				</br> </br> 	
+			<button class="btn btn-outline-success"
 				disabled="disabled">ORGANIZÁ TU TORNEO</button>
 
-			</br> </br>
+			</br></br> 
 			<h6>
-				Necesitas <a href="login"> iniciar sesion </a> para organizar un
+				Necesitas <a href="login"> iniciar sesion </a> para ordenar/filtrar/organizar un
 				torneo
 			</h6>
 
-		</div>
 	</c:if>
 
-
 </div>
+
 
 
 <div class="table-responsive col-sm-12">

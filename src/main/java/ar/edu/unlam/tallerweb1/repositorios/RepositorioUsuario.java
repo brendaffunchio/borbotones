@@ -11,10 +11,12 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 // Interface que define los metodos del Repositorio de Usuarios.
 public interface RepositorioUsuario {
 	
-	Usuario consultarUsuario (Usuario usuario);
+	public Usuario consultarUsuario (Usuario usuario);
 
-	void guardarUsuario(Usuario usuario);
+	public void guardarUsuario(Usuario usuario);
 
+	public List<Usuario>mostrarUsuarios();
+	
 	public List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId);
 
 	public Set<Torneo> mostrarTorneosQueParticipo(Long usuarioId);

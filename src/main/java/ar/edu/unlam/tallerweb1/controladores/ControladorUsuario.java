@@ -16,7 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
+import ar.edu.unlam.tallerweb1.modelo.PasswordVaciaException;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.UsuarioYaExisteException;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCiudad;
 import ar.edu.unlam.tallerweb1.servicios.ServicioDireccion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioProvincia;
@@ -63,16 +65,14 @@ public class ControladorUsuario {
 	
         Direccion direccion = servicioDireccion.buscarDireccion(calle, numero);
 		
-		if(direccion!=null) {
-			servicioUsuarios.guardarUsuario(usuario, direccion);
+			try {
+				servicioUsuarios.guardarUsuario(usuario, direccion);
+			} catch (PasswordVaciaException | UsuarioYaExisteException | DireccionNoValidaException e) {
+				modelo.put("errorRegistrar", e.getMessage());
+				return new ModelAndView("errores",modelo);
+			}
 			
-		}else {
-			modelo.put("errorDireccionUsuario","La dirección no es válida");
-			return new ModelAndView("errores", modelo);
-		}
-		
 		return new ModelAndView ("registracionExitosa");
-
 	
 }
 	

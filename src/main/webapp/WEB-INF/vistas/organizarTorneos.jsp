@@ -8,7 +8,7 @@
 		<div class="text-center">
 		<c:if test="${not empty errorInmueble}">
 				<p>
-					<span>${errorInmueble}</span>
+					<span>${errorInmueble}, necesitas alquilar al menos un inmueble para organizar un torneo</span>
 				</p>
 				<br>
 			</c:if>

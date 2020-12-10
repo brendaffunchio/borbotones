@@ -24,6 +24,8 @@ public interface RepositorioTorneo {
 
 	public List<Torneo> ordenarTorneosSegunDistancia();
 
+	public List<Torneo> filtrarTorneosPorDistancia(Double desdeKm, Double hastaKm);
+
 	
 
 }

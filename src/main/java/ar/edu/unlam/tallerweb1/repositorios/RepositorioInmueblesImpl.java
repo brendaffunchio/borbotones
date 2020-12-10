@@ -7,11 +7,13 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
+import ar.edu.unlam.tallerweb1.modelo.Torneo;
 
 
 @Repository
@@ -30,7 +32,8 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 
 		return session.createCriteria(Inmueble.class)
 
-				.add(Restrictions.eq("disponible", true)).list();
+				.add(Restrictions.eq("disponible", true))
+				.addOrder(Order.asc("precio")).list();
 	}
 
 	@Override
@@ -87,6 +90,20 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 		final Session session = sessionFactory.getCurrentSession();
 		
 		session.update(inmueble);
+	}
+
+	@Override
+	public List<Inmueble> filtrarInmueblesPorPrecio(Double desdePrecio, Double hastaPrecio) {
+Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Inmueble.class);
+		
+		if(desdePrecio!=null && desdePrecio != 0)
+			criteria.add(Restrictions.ge("precio", desdePrecio));
+		
+		if(hastaPrecio!=null && hastaPrecio != 0)
+			criteria.add(Restrictions.le("precio", hastaPrecio));
+		
+		
+		return criteria.list();
 	}
 	
 	
