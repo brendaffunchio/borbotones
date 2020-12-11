@@ -2,7 +2,7 @@
 		<%@include file="header.jsp"%>
 		
 	
-	<h2 class="titulo-inmuebles">INMUEBLES DISPONIBLES ${ruta}</h2>
+	<h2 class="titulo-inmuebles">INMUEBLES DISPONIBLES</h2>
 	
 	<div class="row-12">
 			<div class="col 4">

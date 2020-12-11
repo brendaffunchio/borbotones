@@ -66,7 +66,7 @@ public class ControladorLoginTest {
 		ModelAndView mav = controladorLogin.validarLogin(usuarioMock, requestMock);
 
 		// validacion
-		assertThat(mav.getViewName()).isEqualTo("redirect:/inicioInvitado");
+		assertThat(mav.getViewName()).isEqualTo("redirect:/inicio");
 		// espía
 		verify(sessionMock, times(1)).setAttribute("rol", "invitado");
 

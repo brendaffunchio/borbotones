@@ -78,7 +78,7 @@ public class ConexionBaseDeDatosTest extends SpringTest {
 
 	}
 	
-	@Test
+	/*@Test
 	public void VerificarQueLaRutaDeLasImagenesDelInmuebleSeanCorrectas () {
 		Ruta ruta = new Ruta();
 		
@@ -88,7 +88,7 @@ public class ConexionBaseDeDatosTest extends SpringTest {
 		
 
 	}
-	
+	*/
 
 	@Transactional
 	@Rollback

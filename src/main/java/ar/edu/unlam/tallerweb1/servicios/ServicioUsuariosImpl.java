@@ -32,8 +32,9 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
 
 	@Override
 	public void guardarUsuario(Usuario usuario, Direccion direccion) throws PasswordVaciaException, UsuarioYaExisteException, DireccionNoValidaException{
+		List <Usuario> usuarios = repositorioUsuario.listarTodosLosUsuarios();
 		
-		for(Usuario usuarioBuscado: repositorioUsuario.listarTodosLosUsuarios()) {
+		for(Usuario usuarioBuscado: usuarios ) {
 			if(usuarioBuscado.equals(usuario)) throw new UsuarioYaExisteException();
 		}
 		if (direccion==null) throw new DireccionNoValidaException();
