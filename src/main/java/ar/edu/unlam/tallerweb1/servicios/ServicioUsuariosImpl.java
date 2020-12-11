@@ -73,7 +73,6 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
 		
 		 return repositorioUsuario.listarUsuariosMasGanadores();
 			
-		
 	}
 
 	
