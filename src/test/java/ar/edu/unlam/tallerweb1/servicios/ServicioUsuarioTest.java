@@ -5,6 +5,7 @@ import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.PasswordVaciaException;
+import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioYaExisteException;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioDireccion;
@@ -14,19 +15,20 @@ import static org.mockito.Mockito.*;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.*;
 
-
 import org.junit.Test;
-
-
-
+import org.mockito.Mockito;
 
 
 public class ServicioUsuarioTest {
+	
+	private Inmueble inmueble = new Inmueble();
 	
 	private Direccion direccion = new Direccion();
 	
@@ -38,12 +40,13 @@ public class ServicioUsuarioTest {
 	
 	private List<Inmueble> listaMock = mock(List.class);
 	
-	private static final Long usuarioId = 1L;
+	private Set<Torneo> treeSetMock = mock(TreeSet.class);
 	
 	private Usuario crearUsuario() {
 		
 		
 		Usuario usuario = new Usuario();
+		usuario.setId(1L);
 		usuario.setNombre("Carlos");
 		usuario.setApellido("Solis");
 		usuario.setRol("Invitado");
@@ -67,7 +70,7 @@ public class ServicioUsuarioTest {
 	@Test
 	public void queSePuedaGuardarUnUsuario() throws PasswordVaciaException, UsuarioYaExisteException, DireccionNoValidaException {
 		
-		//preparacciï¿½n
+		//preparación
 		Usuario usuario = crearUsuario();
 		
 		usuario.setDireccion(direccion);
@@ -75,7 +78,7 @@ public class ServicioUsuarioTest {
 		//ejecucion.
 		servicioUsuario.guardarUsuario(usuario, direccion);
 		
-		//valdiaciï¿½n
+		//valdiación
 		verify(repositorioUsuarioMock, times(1)).listarTodosLosUsuarios();
 		verify(repositorioUsuarioMock, times(1)).guardarUsuario(usuario);
 		
@@ -124,17 +127,37 @@ public class ServicioUsuarioTest {
 	@Test
 	public void queSeMuestreLaListaDeInmueblesAlquiladosPorElUsuario() {
 		
-		//preparaciï¿½n
+		//preparación
 		Usuario usuario = crearUsuario();
 		
-		usuario.
+		inmueble.setInquilino(usuario);
 		
-		//ejecuciï¿½n 
+		//ejecución 
 		
-		when(servicioUsuario.mostrarInmueblesAlquilados(usuarioId)).thenReturn(listaMock);
+		when(servicioUsuario.listarInmueblesAlquiladosDeUnUsuario(usuario.getId())).thenReturn(listaMock);
+		servicioUsuario.listarInmueblesAlquiladosDeUnUsuario(usuario.getId());
 		
-		//validaciï¿½n
+		//validación
 		
-		assertEquals(servicioUsuario.mostrarInmueblesAlquilados(usuarioId).size(), 1);
+		verify(repositorioUsuarioMock, times(1)).listarInmueblesAlquiladosDeUnUsuario(usuario.getId());
 	}
+	
+	@Test
+	public void queSeMuestreLaListaDeTorneosQueParticipaElUsuario() {
+		
+		//preparación
+		Usuario usuario = crearUsuario();
+		
+		
+		//ejecución 
+		
+		when(servicioUsuario.listarTorneosQueParticipaUnUsuario(usuario.getId())).thenReturn(treeSetMock);
+		servicioUsuario.listarTorneosQueParticipaUnUsuario(usuario.getId());
+		
+		//validación
+		
+		verify(repositorioUsuarioMock, times(1)).listarTorneosQueParticipaUnUsuario(usuario.getId());
+	}
+	
+	
 }
