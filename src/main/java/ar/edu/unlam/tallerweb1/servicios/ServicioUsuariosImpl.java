@@ -27,14 +27,14 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
 	
 	
 	private RepositorioUsuario repositorioUsuario;
-private RepositorioDireccion repositorioDireccion;
+
 	
 	@Autowired
 	public ServicioUsuariosImpl(RepositorioUsuario repositorioUsuario
 			, RepositorioDireccion repositorioDireccion) {
 
 		this.repositorioUsuario = repositorioUsuario;
-		this.repositorioDireccion = repositorioDireccion;
+		
 	}
 
 	@Override
