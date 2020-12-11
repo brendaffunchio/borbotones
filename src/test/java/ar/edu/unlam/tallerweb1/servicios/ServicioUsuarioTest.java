@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import ar.edu.unlam.tallerweb1.controladores.ControladorUsuario;
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
@@ -8,12 +7,10 @@ import ar.edu.unlam.tallerweb1.modelo.PasswordVaciaException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioYaExisteException;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioDireccion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 
 import static org.mockito.Mockito.*;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -34,13 +31,12 @@ public class ServicioUsuarioTest {
 	
 	private RepositorioUsuario repositorioUsuarioMock = mock(RepositorioUsuario.class);
 	
-	private RepositorioDireccion repositorioDireccionMock = mock(RepositorioDireccion.class);
-	
-	private ServicioUsuarios servicioUsuario = new ServicioUsuariosImpl(repositorioUsuarioMock, repositorioDireccionMock);
-	
-	private List<Inmueble> listaMock = mock(List.class);
-	
+	private ServicioUsuarios servicioUsuario = new ServicioUsuariosImpl(repositorioUsuarioMock);
+
 	private Set<Torneo> treeSetMock = mock(TreeSet.class);
+	private List<Inmueble> listaInmuebleMock = mock(List.class);
+	private List<Torneo> listaTorneoMock = mock(List.class);
+	private List<Usuario> listaUsuarioMock = mock(List.class);
 	
 	private Usuario crearUsuario() {
 		
@@ -59,26 +55,19 @@ public class ServicioUsuarioTest {
 		return usuario;
 	}
 	
-	private void guardarUsuario() throws PasswordVaciaException, UsuarioYaExisteException, DireccionNoValidaException {
-		
-		
-		Usuario usuario = crearUsuario();
-		
-		servicioUsuario.guardarUsuario(usuario, direccion);
-	}
-	
+
 	@Test
 	public void queSePuedaGuardarUnUsuario() throws PasswordVaciaException, UsuarioYaExisteException, DireccionNoValidaException {
 		
-		//preparación
+		//preparacion
 		Usuario usuario = crearUsuario();
 		
 		usuario.setDireccion(direccion);
 			
-		//ejecucion.
+		//ejecucion
 		servicioUsuario.guardarUsuario(usuario, direccion);
 		
-		//valdiación
+		//validacion
 		verify(repositorioUsuarioMock, times(1)).listarTodosLosUsuarios();
 		verify(repositorioUsuarioMock, times(1)).guardarUsuario(usuario);
 		
@@ -98,8 +87,6 @@ public class ServicioUsuarioTest {
 	
 	
 		//validacion.
-		
-	
 		verify(repositorioUsuarioMock, never()).guardarUsuario(usuario);
 	
 	
@@ -127,36 +114,56 @@ public class ServicioUsuarioTest {
 	@Test
 	public void queSeMuestreLaListaDeInmueblesAlquiladosPorElUsuario() {
 		
-		//preparación
+		//preparacion
 		Usuario usuario = crearUsuario();
-		
-		inmueble.setInquilino(usuario);
-		
-		//ejecución 
-		
-		when(servicioUsuario.listarInmueblesAlquiladosDeUnUsuario(usuario.getId())).thenReturn(listaMock);
+				
+		//ejecucion
+		when(servicioUsuario.listarInmueblesAlquiladosDeUnUsuario(usuario.getId())).thenReturn(listaInmuebleMock);
 		servicioUsuario.listarInmueblesAlquiladosDeUnUsuario(usuario.getId());
 		
-		//validación
-		
+		//validacion
 		verify(repositorioUsuarioMock, times(1)).listarInmueblesAlquiladosDeUnUsuario(usuario.getId());
+	}
+	@Test
+	public void queSeMuestreLaListaDeTorneosCreadosPorElUsuario() {
+		
+		//preparacion
+		Usuario usuario = crearUsuario();
+				
+		//ejecucion
+		when(servicioUsuario.listarTorneosQueCreoUnUsuario(usuario.getId())).thenReturn(listaTorneoMock);
+		servicioUsuario.listarTorneosQueCreoUnUsuario(usuario.getId());
+		
+		//validacion
+		verify(repositorioUsuarioMock, times(1)).listarTorneosQueCreoUnUsuario(usuario.getId());
 	}
 	
 	@Test
-	public void queSeMuestreLaListaDeTorneosQueParticipaElUsuario() {
+	public void queSeMuestreLaListaDeUsuariosMasGanadores() {
 		
-		//preparación
+		//preparacion
 		Usuario usuario = crearUsuario();
 		
+		//ejecucion
+		when(servicioUsuario.listarUsuariosMasGanadores()).thenReturn(listaUsuarioMock);
+		servicioUsuario.listarUsuariosMasGanadores();
 		
-		//ejecución 
+		//validacion
+		verify(repositorioUsuarioMock, times(1)).listarUsuariosMasGanadores();
+	}
+	
+	@Test
+	public void queDevuelvaElUsuarioBuscadoPorId() {
 		
-		when(servicioUsuario.listarTorneosQueParticipaUnUsuario(usuario.getId())).thenReturn(treeSetMock);
-		servicioUsuario.listarTorneosQueParticipaUnUsuario(usuario.getId());
+		//preparacion
+		Usuario usuario= crearUsuario();
 		
-		//validación
+		//ejecucion
+		when(servicioUsuario.consultarUsuarioPorId(usuario.getId())).thenReturn(usuario);
+		servicioUsuario.consultarUsuarioPorId(usuario.getId());
 		
-		verify(repositorioUsuarioMock, times(1)).listarTorneosQueParticipaUnUsuario(usuario.getId());
+		//validacion
+		verify(repositorioUsuarioMock, times(1)).consultarUsuarioPorId(usuario.getId());
 	}
 	
 	

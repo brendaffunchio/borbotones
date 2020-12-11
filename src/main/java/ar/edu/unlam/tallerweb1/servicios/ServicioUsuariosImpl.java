@@ -14,7 +14,6 @@ import ar.edu.unlam.tallerweb1.modelo.PasswordVaciaException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioYaExisteException;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioDireccion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 
 
@@ -22,13 +21,10 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 @Transactional
 public class ServicioUsuariosImpl implements ServicioUsuarios{
 
-	
-	
 	private RepositorioUsuario repositorioUsuario;
 	
 	@Autowired
-	public ServicioUsuariosImpl(RepositorioUsuario repositorioUsuario
-			, RepositorioDireccion repositorioDireccion) {
+	public ServicioUsuariosImpl(RepositorioUsuario repositorioUsuario) {
 
 		this.repositorioUsuario = repositorioUsuario;
 	
@@ -77,7 +73,6 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
 		
 		 return repositorioUsuario.listarUsuariosMasGanadores();
 			
-		
 	}
 
 	
