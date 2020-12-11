@@ -34,7 +34,7 @@ import static org.mockito.Mockito.*;
 public class ControladorInmuebleTest {
 	
 	
-	@Test(expected = FotoInexistenteException.class)
+	/*@Test(expected = FotoInexistenteException.class)
 	public void testQueVerificaQueLaFotoSeCargaEnElRepositorioYLanzaExeception() throws FotoInexistenteException {
 		
 		// preparacion
