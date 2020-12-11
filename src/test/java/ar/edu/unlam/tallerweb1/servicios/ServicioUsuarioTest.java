@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import ar.edu.unlam.tallerweb1.controladores.ControladorUsuario;
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.PasswordVaciaException;
@@ -9,18 +8,12 @@ import ar.edu.unlam.tallerweb1.modelo.UsuarioYaExisteException;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioDireccion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.atLeast;
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.atMost;
-import static org.mockito.Mockito.never;
-import static org.mockito.Mockito.only;
+
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 
 import org.junit.Test;
-
-
 
 public class ServicioUsuarioTest {
 	
@@ -30,9 +23,7 @@ public class ServicioUsuarioTest {
 	
 	private RepositorioUsuario repositorioUsuarioMock = mock(RepositorioUsuario.class);
 	
-	private RepositorioDireccion repositorioDireccionMock = mock(RepositorioDireccion.class);
-	
-	private ServicioUsuarios servicioUsuario = new ServicioUsuariosImpl(repositorioUsuarioMock, repositorioDireccionMock);
+	private ServicioUsuarios servicioUsuario = new ServicioUsuariosImpl(repositorioUsuarioMock);
 	
 	
 	@Test
@@ -44,10 +35,10 @@ public class ServicioUsuarioTest {
 		usuario.setTorGanados(0);
 		usuario.setDireccion(direccion);
 			
-		//ejecucion.
+		//ejecucion
 		servicioUsuario.guardarUsuario(usuario, direccion);
 		
-		//valdiación
+		//validación
 		verify(repositorioUsuarioMock, times(1)).listarTodosLosUsuarios();
 		verify(repositorioUsuarioMock, times(1)).guardarUsuario(usuario);
 		
