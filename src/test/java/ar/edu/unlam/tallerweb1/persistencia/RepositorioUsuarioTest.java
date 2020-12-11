@@ -57,7 +57,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 		inmueble.setDisponible(true);
 		inmueble.setFoto("foto");
 		inmueble.setPrecio(2000d);
-		
+
 		session().save(inmueble);
 
 		return inmueble;
@@ -132,9 +132,9 @@ public class RepositorioUsuarioTest extends SpringTest {
 	@Rollback
 	public void listarUsuarios() {
 		// preparacion
-		 Usuario usuario1 = usuario1();
-		 Usuario usuario2 = usuario2();
-	
+		Usuario usuario1 = usuario1();
+		Usuario usuario2 = usuario2();
+
 		session().save(usuario1);
 		session().save(usuario2);
 
@@ -176,7 +176,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 		session().save(torneo);
 		Usuario usuario1 = usuario1();
 		session().save(usuario1);
-		
+
 		usuario1.participarEnTorneo(torneo);
 		session().update(usuario1);
 
@@ -222,10 +222,10 @@ public class RepositorioUsuarioTest extends SpringTest {
 		session().save(marta);
 		session().save(jose);
 
-//ejecucion
+        //ejecucion
 		List<Usuario> masGanadores = repositorio.listarUsuariosMasGanadores();
 
-//comprobacion
+        //comprobacion
 		assertThat(masGanadores).isNotEmpty();
 		assertThat(masGanadores).hasSize(2);
 
