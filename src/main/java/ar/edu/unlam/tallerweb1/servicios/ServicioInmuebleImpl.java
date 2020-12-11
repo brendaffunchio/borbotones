@@ -1,30 +1,20 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
-import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionDuplicadaException;
 
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
-import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.InmuebleInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.InmuebleNoDisponibleException;
-import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioInexistenteException;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioDireccion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioInmueble;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 
@@ -34,28 +24,26 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 
 	private RepositorioInmueble repositorioInmueble;
 	private RepositorioUsuario repositorioUsuario;
-	private RepositorioDireccion repositorioDireccion;
 
 	@Autowired
-	public ServicioInmuebleImpl(RepositorioInmueble repositorioInmueble, RepositorioUsuario repositorioUsuario,
-			RepositorioDireccion repositorioDireccion) {
+	public ServicioInmuebleImpl(RepositorioInmueble repositorioInmueble, RepositorioUsuario repositorioUsuario) {
 
 		this.repositorioInmueble = repositorioInmueble;
 		this.repositorioUsuario = repositorioUsuario;
-		this.repositorioDireccion = repositorioDireccion;
+	
 	}
 
 	@Override
-	public List<Inmueble> mostrarInmuebles() {
+	public List<Inmueble> listarTodosLosInmuebles() {
 
-		return repositorioInmueble.todosLosInmuebles();
+		return repositorioInmueble.listarTodosLosInmuebles();
 	}
 
 	@Override
 	public void guardarInmueble(Inmueble inmueble, Direccion direccion) throws DireccionDuplicadaException, DireccionNoValidaException{
 		if (direccion == null) throw new DireccionNoValidaException();
 		
-		for(Inmueble aux:repositorioInmueble.todosLosInmuebles()) {
+		for(Inmueble aux:repositorioInmueble.listarTodosLosInmuebles()) {
 		
 	     if (aux.getDireccion().equals(direccion)) {
 	    	 

@@ -139,7 +139,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 		session().save(usuario2);
 
 		// ejecucion
-		List<Usuario> usuarios = repositorio.mostrarUsuarios();
+		List<Usuario> usuarios = repositorio.listarTodosLosUsuarios();
 
 		// comprobacion
 
@@ -160,7 +160,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 
 		// ejecucion
 
-		List<Inmueble> inmuebles = repositorio.mostrarInmueblesAlquilados(usuario1.getId());
+		List<Inmueble> inmuebles = repositorio.listarInmueblesAlquiladosDeUnUsuario(usuario1.getId());
 
 		// comprobacion
 		assertThat(inmuebles).isNotEmpty();
@@ -181,7 +181,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 		session().update(usuario1);
 
 		// ejecucion
-		Set<Torneo> torneos = repositorio.mostrarTorneosQueParticipo(usuario1.getId());
+		Set<Torneo> torneos = repositorio.listarTorneosQueParticipaUnUsuario(usuario1.getId());
 
 		// comprobacion
 		assertThat(torneos).isNotEmpty();
@@ -202,7 +202,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 		session().save(torneo);
 
 		// ejecucion
-		List<Torneo> torneos = repositorio.mostrarTorneosQueCree(usuario1.getId());
+		List<Torneo> torneos = repositorio.listarTorneosQueCreoUnUsuario(usuario1.getId());
 
 		// comprobacion
 		assertThat(torneos).isNotEmpty();
@@ -223,7 +223,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 		session().save(jose);
 
 //ejecucion
-		List<Usuario> masGanadores = repositorio.usuariosMasGanadores();
+		List<Usuario> masGanadores = repositorio.listarUsuariosMasGanadores();
 
 //comprobacion
 		assertThat(masGanadores).isNotEmpty();

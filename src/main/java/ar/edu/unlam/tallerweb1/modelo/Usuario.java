@@ -2,7 +2,6 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.Comparator;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

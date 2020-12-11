@@ -22,9 +22,9 @@ private RepositorioCiudad repositorioCiudad;
 		this.repositorioCiudad = repositorioCiudad;
 	}
 	@Override
-	public List<Ciudad> mostrarCiudades() {
+	public List<Ciudad> listarCiudades() {
 		
-		return repositorioCiudad.mostrarCiudades();
+		return repositorioCiudad.listarCiudades();
 	}
 
 }

@@ -25,7 +25,7 @@ public class ControladorInicio {
 				
 			ModelMap modelo = new ModelMap();
 			
-			modelo.put("usuarios", servicioUsuarios.usuariosMasGanadores());
+			modelo.put("usuarios", servicioUsuarios.listarUsuariosMasGanadores());
 			
 			
 		return new ModelAndView("inicio",modelo);

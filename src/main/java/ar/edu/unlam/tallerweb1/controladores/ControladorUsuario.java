@@ -1,10 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -50,8 +47,8 @@ public class ControladorUsuario {
 		ModelMap model = new ModelMap();
 		Usuario usuario = new Usuario();
 		model.put("usuario", usuario);
-		model.put("provincias", servicioProvincia.mostrarProvincias());
-		model.put("ciudades", servicioCiudad.mostrarCiudades());
+		model.put("provincias", servicioProvincia.listarTodasProvincias());
+		model.put("ciudades", servicioCiudad.listarCiudades());
 		
 		return new ModelAndView ("formularioUsuario", model);
 		
@@ -90,10 +87,10 @@ public class ControladorUsuario {
 	public ModelAndView mostrarMisInmuebles(@RequestParam("usuarioId") Long usuarioId) {
 
 		ModelMap modelo = new ModelMap();
-		 if(servicioUsuarios.mostrarInmueblesAlquilados(usuarioId).isEmpty()) {
+		 if(servicioUsuarios.listarInmueblesAlquiladosDeUnUsuario(usuarioId).isEmpty()) {
 			 modelo.put("error", "No alquilaste ningún inmueble");
 		 }else {
-			 modelo.put("misInmueblesAlquilados", servicioUsuarios.mostrarInmueblesAlquilados(usuarioId));
+			 modelo.put("misInmueblesAlquilados", servicioUsuarios.listarInmueblesAlquiladosDeUnUsuario(usuarioId));
 		 }
 				
 		return new ModelAndView("misInmueblesAlquilados", modelo);
@@ -104,10 +101,10 @@ public class ControladorUsuario {
 
 		ModelMap modelo = new ModelMap();
 		
-		if (servicioUsuarios.mostrarTorneosQueParticipo(usuarioId).isEmpty()) {
+		if (servicioUsuarios.listarTorneosQueParticipaUnUsuario(usuarioId).isEmpty()) {
 			modelo.put("error", "No estás participando en ningún torneo");
 		}else {
-			modelo.put("misTorneosParticipo", servicioUsuarios.mostrarTorneosQueParticipo(usuarioId));
+			modelo.put("misTorneosParticipo", servicioUsuarios.listarTorneosQueParticipaUnUsuario(usuarioId));
 		}
 		
 		return new ModelAndView("misTorneosParticipo", modelo);
@@ -118,10 +115,10 @@ public class ControladorUsuario {
 
 		ModelMap modelo = new ModelMap();
 		
-		if (servicioUsuarios.mostrarTorneosQueCree(usuarioId).isEmpty()) {
+		if (servicioUsuarios.listarTorneosQueCreoUnUsuario(usuarioId).isEmpty()) {
 			modelo.put("error", "No creaste ningún torneo");
 		}else {
-			modelo.put("misTorneosCreados", servicioUsuarios.mostrarTorneosQueCree(usuarioId));
+			modelo.put("misTorneosCreados", servicioUsuarios.listarTorneosQueCreoUnUsuario(usuarioId));
 		}
 		
 		return new ModelAndView("misTorneosCreados", modelo);

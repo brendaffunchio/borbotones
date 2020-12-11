@@ -67,15 +67,16 @@ public class ServicioUsuarioTest {
 	@Test
 	public void queSePuedaGuardarUnUsuario() throws PasswordVaciaException, UsuarioYaExisteException, DireccionNoValidaException {
 		
-		//preparacción
+		//preparacciï¿½n
 		Usuario usuario = crearUsuario();
 		
+		usuario.setDireccion(direccion);
+			
 		//ejecucion.
 		servicioUsuario.guardarUsuario(usuario, direccion);
 		
-		
-		//valdiación
-		verify(repositorioUsuarioMock, times(1)).mostrarUsuarios();
+		//valdiaciï¿½n
+		verify(repositorioUsuarioMock, times(1)).listarTodosLosUsuarios();
 		verify(repositorioUsuarioMock, times(1)).guardarUsuario(usuario);
 		
 	}
@@ -123,16 +124,16 @@ public class ServicioUsuarioTest {
 	@Test
 	public void queSeMuestreLaListaDeInmueblesAlquiladosPorElUsuario() {
 		
-		//preparación
+		//preparaciï¿½n
 		Usuario usuario = crearUsuario();
 		
 		usuario.
 		
-		//ejecución 
+		//ejecuciï¿½n 
 		
 		when(servicioUsuario.mostrarInmueblesAlquilados(usuarioId)).thenReturn(listaMock);
 		
-		//validación
+		//validaciï¿½n
 		
 		assertEquals(servicioUsuario.mostrarInmueblesAlquilados(usuarioId).size(), 1);
 	}

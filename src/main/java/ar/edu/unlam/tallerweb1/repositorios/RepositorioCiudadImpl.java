@@ -20,7 +20,7 @@ public class RepositorioCiudadImpl implements RepositorioCiudad {
 	}
 	
 	@Override
-	public List<Ciudad> mostrarCiudades() {
+	public List<Ciudad> listarCiudades() {
 		
 		final Session session = sessionFactory.getCurrentSession();
 		
