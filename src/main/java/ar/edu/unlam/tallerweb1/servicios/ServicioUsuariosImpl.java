@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -16,7 +15,6 @@ import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioYaExisteException;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioDireccion;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioTorneo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 
 
@@ -27,20 +25,19 @@ public class ServicioUsuariosImpl implements ServicioUsuarios{
 	
 	
 	private RepositorioUsuario repositorioUsuario;
-private RepositorioDireccion repositorioDireccion;
 	
 	@Autowired
 	public ServicioUsuariosImpl(RepositorioUsuario repositorioUsuario
 			, RepositorioDireccion repositorioDireccion) {
 
 		this.repositorioUsuario = repositorioUsuario;
-		this.repositorioDireccion = repositorioDireccion;
+	
 	}
 
 	@Override
 	public void guardarUsuario(Usuario usuario, Direccion direccion) throws PasswordVaciaException, UsuarioYaExisteException, DireccionNoValidaException{
 		
-		for(Usuario usuarioBuscado: repositorioUsuario.mostrarUsuarios()) {
+		for(Usuario usuarioBuscado: repositorioUsuario.listarTodosLosUsuarios()) {
 			if(usuarioBuscado.equals(usuario)) throw new UsuarioYaExisteException();
 		}
 		if (direccion==null) throw new DireccionNoValidaException();
@@ -57,28 +54,28 @@ private RepositorioDireccion repositorioDireccion;
 	}
 
 	@Override
-	public List<Inmueble> mostrarInmueblesAlquilados(Long usuarioId){
-		return repositorioUsuario.mostrarInmueblesAlquilados(usuarioId);
+	public List<Inmueble> listarInmueblesAlquiladosDeUnUsuario(Long usuarioId){
+		return repositorioUsuario.listarInmueblesAlquiladosDeUnUsuario(usuarioId);
 			
 	}
 	
 
 	@Override
-	public Set<Torneo> mostrarTorneosQueParticipo(Long usuarioId) {
+	public Set<Torneo> listarTorneosQueParticipaUnUsuario(Long usuarioId) {
 		
-		return repositorioUsuario.mostrarTorneosQueParticipo(usuarioId);
+		return repositorioUsuario.listarTorneosQueParticipaUnUsuario(usuarioId);
 	}
 
 	@Override
-	public List<Torneo> mostrarTorneosQueCree(Long usuarioId) {
+	public List<Torneo> listarTorneosQueCreoUnUsuario(Long usuarioId) {
 		
-		return repositorioUsuario.mostrarTorneosQueCree(usuarioId);
+		return repositorioUsuario.listarTorneosQueCreoUnUsuario(usuarioId);
 	}
 
 	@Override
-	public List<Usuario> usuariosMasGanadores() {
+	public List<Usuario> listarUsuariosMasGanadores() {
 		
-		 return repositorioUsuario.usuariosMasGanadores();
+		 return repositorioUsuario.listarUsuariosMasGanadores();
 			
 		
 	}

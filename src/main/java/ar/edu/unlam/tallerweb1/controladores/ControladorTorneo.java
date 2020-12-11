@@ -19,7 +19,6 @@ import ar.edu.unlam.tallerweb1.modelo.ParticipanteDuplicadoException;
 import ar.edu.unlam.tallerweb1.modelo.ParticipanteInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.TorneoInexistenteException;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioInexistenteException;
 import ar.edu.unlam.tallerweb1.servicios.ServicioFoto;
 import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
@@ -49,9 +48,9 @@ public class ControladorTorneo {
 		ModelMap modelo = new ModelMap();
 
 		if (usuarioId != null) {
-			modelo.put("torneos", servicioTorneo.mostrarTorneosConDistancia(usuarioId));
+			modelo.put("torneos", servicioTorneo.listarTorneosConDistancia(usuarioId));
 		} else {
-			modelo.put("torneos", servicioTorneo.mostrarTorneos());
+			modelo.put("torneos", servicioTorneo.listarTodosLosTorneos());
 		}
 		return new ModelAndView("torneosParaParticipar", modelo);
 
@@ -86,7 +85,7 @@ public class ControladorTorneo {
 		ModelMap modelo = new ModelMap();
 
 		modelo.put("torneo", torneo);
-		modelo.put("inmuebles", servicioUsuario.mostrarInmueblesAlquilados(usuarioId));
+		modelo.put("inmuebles", servicioUsuario.listarInmueblesAlquiladosDeUnUsuario(usuarioId));
 
 		return new ModelAndView("organizarTorneos", modelo);
 
@@ -219,7 +218,7 @@ public class ControladorTorneo {
 
 		ModelMap modelo = new ModelMap();
 
-		modelo.put("participantes", servicioTorneo.mostrarParticipantesDelTorneo(torneoId));
+		modelo.put("participantes", servicioTorneo.listarParticipantesDelTorneo(torneoId));
 
 		return new ModelAndView("participantes", modelo);
 
@@ -230,7 +229,7 @@ public class ControladorTorneo {
 
 		ModelMap modelo = new ModelMap();
 
-		modelo.put("participantes", servicioTorneo.mostrarParticipantesDelTorneo(torneoId));
+		modelo.put("participantes", servicioTorneo.listarParticipantesDelTorneo(torneoId));
 		modelo.put("torneoId", torneoId);
 
 		return new ModelAndView("ganadorDelTorneo", modelo);

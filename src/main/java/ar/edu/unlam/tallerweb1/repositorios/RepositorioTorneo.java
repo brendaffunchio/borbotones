@@ -10,13 +10,13 @@ public interface RepositorioTorneo {
 
 	
 	
-	public List <Torneo>torneos();
+	public List <Torneo>listarTodosLosTorneos();
 
 	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId);
 
 	public List<Torneo> buscarTorneo(String categoria, String juego);
 
-	public Set<Usuario> mostrarParticipantesDelTorneo(Long torneoId);
+	public Set<Usuario> listarParticipantesDelTorneo(Long torneoId);
 
 	public void modificarTorneo(Torneo torneo);
 	

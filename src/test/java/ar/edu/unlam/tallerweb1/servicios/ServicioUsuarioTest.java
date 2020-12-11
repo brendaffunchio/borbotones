@@ -43,16 +43,12 @@ public class ServicioUsuarioTest {
 		usuario.setPassword("1234");
 		usuario.setTorGanados(0);
 		usuario.setDireccion(direccion);
-		
-		
-	
-	
+			
 		//ejecucion.
 		servicioUsuario.guardarUsuario(usuario, direccion);
 		
-		
 		//valdiación
-		verify(repositorioUsuarioMock, times(1)).mostrarUsuarios();
+		verify(repositorioUsuarioMock, times(1)).listarTodosLosUsuarios();
 		verify(repositorioUsuarioMock, times(1)).guardarUsuario(usuario);
 		
 	}

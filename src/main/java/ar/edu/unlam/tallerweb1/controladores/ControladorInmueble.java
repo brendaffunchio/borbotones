@@ -1,8 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
-import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -15,13 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionDuplicadaException;
-
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
-import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.InmuebleInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.InmuebleNoDisponibleException;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioInexistenteException;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCiudad;
 import ar.edu.unlam.tallerweb1.servicios.ServicioDireccion;
@@ -64,8 +60,8 @@ public class ControladorInmueble {
 	public ModelAndView mostrarInmuebles() {
 
 		ModelMap modelo = new ModelMap();
-		modelo.put("inmuebles", servicioInmueble.mostrarInmuebles());
-		modelo.put("provincias", servicioProvincia.mostrarProvincias());
+		modelo.put("inmuebles", servicioInmueble.listarTodosLosInmuebles());
+		modelo.put("provincias", servicioProvincia.listarTodasProvincias());
 		modelo.put("ruta", ruta);
 
 		return new ModelAndView("InmueblesParaAlquilar", modelo);
@@ -77,8 +73,8 @@ public class ControladorInmueble {
 		ModelMap modelo = new ModelMap();
 		Inmueble inmueble = new Inmueble();
 		modelo.put("inmueble", inmueble);
-		modelo.put("provincias", servicioProvincia.mostrarProvincias());
-		modelo.put("ciudades", servicioCiudad.mostrarCiudades());
+		modelo.put("provincias", servicioProvincia.listarTodasProvincias());
+		modelo.put("ciudades", servicioCiudad.listarCiudades());
 
 		return new ModelAndView("publicarInmueble", modelo);
 
@@ -136,7 +132,7 @@ public class ControladorInmueble {
 	public ModelAndView buscarInmueble(HttpServletRequest request) {
 
 		ModelMap modelo = new ModelMap();
-		modelo.put("provincias", servicioProvincia.mostrarProvincias());
+		modelo.put("provincias", servicioProvincia.listarTodasProvincias());
 
 		String provinciaId = request.getParameter("provinciaId");
 		String nombreCiudad = request.getParameter("ciudad");

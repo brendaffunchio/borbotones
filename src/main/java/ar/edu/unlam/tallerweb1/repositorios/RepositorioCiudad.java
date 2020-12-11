@@ -6,6 +6,6 @@ import ar.edu.unlam.tallerweb1.modelo.Ciudad;
 
 public interface RepositorioCiudad {
 
-	public List<Ciudad> mostrarCiudades();
+	public List<Ciudad> listarCiudades();
 	
 }

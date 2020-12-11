@@ -2,12 +2,11 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import java.util.List;
 
-import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 
 public interface RepositorioInmueble {
 
-	public List<Inmueble>todosLosInmuebles();
+	public List<Inmueble>listarTodosLosInmuebles();
 	
 	public void guardarInmueble(Inmueble inmueble);
 

@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -15,15 +14,12 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ar.edu.unlam.tallerweb1.modelo.Direccion;
-import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 @Repository
 public class RepositorioTorneoImpl implements RepositorioTorneo {
 
-	private Torneo torneo;
 	private SessionFactory sessionFactory;
 
 	@Autowired
@@ -31,7 +27,7 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		this.sessionFactory = sessionFactory;
 	}
 
-	public List<Torneo> torneos() {
+	public List<Torneo> listarTodosLosTorneos() {
 
 		final Session session = sessionFactory.getCurrentSession();
 
@@ -42,7 +38,6 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 
 	@Override
 	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) {
-		
 		
 		final Session session = sessionFactory.getCurrentSession();
 	
@@ -73,7 +68,7 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 
 
 	@Override
-	public Set<Usuario> mostrarParticipantesDelTorneo(Long torneoId) {
+	public Set<Usuario> listarParticipantesDelTorneo(Long torneoId) {
 		
 		final Session session = sessionFactory.getCurrentSession();
 		

@@ -1,6 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
-import java.util.LinkedList;
+
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Inmueble;
-import ar.edu.unlam.tallerweb1.modelo.Torneo;
+
 
 
 @Repository
@@ -27,7 +27,7 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 	}
 
 	@Override
-	public List<Inmueble> todosLosInmuebles() {
+	public List<Inmueble> listarTodosLosInmuebles() {
 		final Session session = sessionFactory.getCurrentSession();
 
 		return session.createCriteria(Inmueble.class)

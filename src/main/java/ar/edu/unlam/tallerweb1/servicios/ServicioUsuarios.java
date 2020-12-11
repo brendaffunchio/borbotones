@@ -16,13 +16,13 @@ public interface ServicioUsuarios {
 	
 	void guardarUsuario(Usuario usuario, Direccion direccion) throws PasswordVaciaException, UsuarioYaExisteException, DireccionNoValidaException;
 
-	public List <Inmueble> mostrarInmueblesAlquilados(Long usuarioId);
+	public List <Inmueble> listarInmueblesAlquiladosDeUnUsuario(Long usuarioId);
 
-	public Set<Torneo> mostrarTorneosQueParticipo(Long usuarioId);
+	public Set<Torneo> listarTorneosQueParticipaUnUsuario(Long usuarioId);
 
-	public List<Torneo> mostrarTorneosQueCree(Long usuarioId);
+	public List<Torneo> listarTorneosQueCreoUnUsuario(Long usuarioId);
 
-	public List <Usuario> usuariosMasGanadores();
+	public List <Usuario> listarUsuariosMasGanadores();
 	
 	public Usuario consultarUsuarioPorId(Long usuarioId);
 
