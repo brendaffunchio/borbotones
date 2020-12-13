@@ -2,6 +2,8 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionDuplicadaException;
 
@@ -15,7 +17,7 @@ import ar.edu.unlam.tallerweb1.modelo.UsuarioInexistenteException;
 public interface ServicioInmueble {
 
 	public List<Inmueble> listarTodosLosInmuebles();
-
+	
 	public void guardarInmueble(Inmueble inmueble,Direccion direccion) throws DireccionDuplicadaException,DireccionNoValidaException;
 	
 	public List<Inmueble> buscarInmueble(Long provinciaId, String nombreCiudad);

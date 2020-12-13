@@ -6,15 +6,13 @@ import org.apache.commons.fileupload.FileUploadException;
 import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteException;
+import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 
 public interface ServicioFoto {
+	
+	public void guardarFoto(Object objeto, MultipartFile foto) throws FotoInexistenteException, FileUploadException, IOException;
 
-	void validarFoto(MultipartFile foto) throws FotoInexistenteException;
 
-	public void guardarFotoInmueble(MultipartFile foto) throws FileUploadException, IOException;
 
-	public void guardarFotoTorneo(MultipartFile foto) throws FileUploadException, IOException;
-
-	public void setFoto(Object objeto, String fotoNombre);
 
 }

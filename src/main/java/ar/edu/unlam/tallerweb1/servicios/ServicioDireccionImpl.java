@@ -20,13 +20,14 @@ public class ServicioDireccionImpl implements ServicioDireccion {
 	}
 
 
-	
 	@Override
 	public Direccion buscarDireccion(String calle, Integer numero) {
 		
 		
 		return repositorioDireccion.buscarDireccion(calle,numero);
 	}
+	
+	
 
 	
 

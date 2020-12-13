@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionDuplicadaException;
@@ -24,12 +27,14 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 
 	private RepositorioInmueble repositorioInmueble;
 	private RepositorioUsuario repositorioUsuario;
+	
 
 	@Autowired
-	public ServicioInmuebleImpl(RepositorioInmueble repositorioInmueble, RepositorioUsuario repositorioUsuario) {
+	public ServicioInmuebleImpl(RepositorioInmueble repositorioInmueble, RepositorioUsuario repositorioUsuario, ServicioDireccion servicioDireccion) {
 
 		this.repositorioInmueble = repositorioInmueble;
 		this.repositorioUsuario = repositorioUsuario;
+	
 	
 	}
 
@@ -52,11 +57,14 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 	     }  
 	}
 		
+		
 		inmueble.setDireccion(direccion);
 		 inmueble.setDisponible(true);
 		repositorioInmueble.guardarInmueble(inmueble);
 		
 	}
+	
+
 			
 
 	@Override
@@ -98,5 +106,5 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 		return repositorioInmueble.filtrarInmueblesPorPrecio(desdePrecio,hastaPrecio);
 	}
 
-
+	
 }

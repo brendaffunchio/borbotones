@@ -100,18 +100,17 @@ public class ControladorTorneo {
 		ModelMap modelo = new ModelMap();
 
 		try {
-			servicioFoto.validarFoto(foto);
-			servicioFoto.guardarFotoTorneo(foto);
+			servicioFoto.guardarFoto(torneo, foto);
 		} catch (FotoInexistenteException | FileUploadException | IOException e) {
-			modelo.put("error", e.getMessage());
+			modelo.put("errorFotoTorneo", "No se seleccionó una foto");
 			return new ModelAndView("errores", modelo);
 		}
-		servicioFoto.setFoto(torneo, foto.getOriginalFilename());
+	
 
 			try {
 				servicioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
 			} catch (InmuebleInexistenteException e) {
-				modelo.put("errorInmueble", e.getMessage());
+				modelo.put("errorInmuebleInexistente", e.getMessage());
 				return new ModelAndView("errores", modelo);
 			} catch (UsuarioInexistenteException e) {
 				modelo.put("errorCreadorTorneo", e.getMessage());

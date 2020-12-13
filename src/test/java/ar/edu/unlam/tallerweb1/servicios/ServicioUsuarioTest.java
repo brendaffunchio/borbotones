@@ -118,6 +118,25 @@ public class ServicioUsuarioTest {
 		//validacion
 		verify(repositorioUsuarioMock, times(1)).listarInmueblesAlquiladosDeUnUsuario(usuario.getId());
 	}
+	
+	
+	@Test
+	public void queSeMuestreLaListaDeTorneosQueParticipaElUsuario() {
+
+		//preparación
+		Usuario usuario = crearUsuario();
+
+
+		//ejecución 
+
+		when(servicioUsuario.listarTorneosQueParticipaUnUsuario(usuario.getId())).thenReturn(treeSetMock);
+		servicioUsuario.listarTorneosQueParticipaUnUsuario(usuario.getId());
+
+		//validación
+
+		verify(repositorioUsuarioMock, times(1)).listarTorneosQueParticipaUnUsuario(usuario.getId());
+	}
+	
 	@Test
 	public void queSeMuestreLaListaDeTorneosCreadosPorElUsuario() {
 		

@@ -15,43 +15,19 @@
 				href="/proyecto-practica/ver-formulario-usuario"> REGISTRARSE </a>
 		</c:if>
 
-		<c:if test="${not empty error}">
+		<c:if test="${not empty errorInmueble}">
 			<h4>
-				<span>${error}</span>
+				<span>${errorInmueble}</span>
 
 			</h4>
 			<br>
 			<h6>
 				<a class="link" href="ver-formulario-inmueble"> Volvé </a> a
-				publicar tú inmueble ¡Esta vez con foto!
+				publicar tú inmueble.
 			</h6>
 
 		</c:if>
 
-		<c:if test="${not empty errorSubida}">
-			<h4>
-				<span>${errorSubida}</span>
-			</h4>
-			<br>
-			<h6>
-				<a class="link" href="ver-formulario-inmueble"> Volvé </a> a
-				publicar tú inmueble ¡Error en la carga de la imagen!
-			</h6>
-
-		</c:if>
-
-		<c:if test="${not empty errorDireccionInmueble}">
-			<h4>
-				<span>${errorDireccionInmueble}</span>
-			</h4>
-			<br>
-
-			<h6>
-				<a class="link" href="ver-formulario-inmueble">Volvé</a> a publicar
-				tú inmueble ¡Esta vez con una dirección válida!
-			</h6>
-
-		</c:if>
 
 		<c:if test="${not empty errorParticipar}">
 			<h4>
@@ -82,11 +58,24 @@
 				<span>${errorGanador}</span>
 			</h4>
 			<br>
+			
+			<c:if test="${not empty errorFotoTorneo}">
+			<h4>
+				<span>${errorFotoTorneo}</span>
+
+			</h4>
+			<br>
+			<h6>
+				<a class="link" href="organizarTorneos"> Volvé </a> a
+				publicar tú toreno. ¡Esta vez con foto!
+			</h6>
 
 		</c:if>
-		<c:if test="${not empty errorInmueble}">
+
+		</c:if>
+		<c:if test="${not empty errorInmuebleInexistente}">
 			<h4>
-				<span>${errorInmueble}, necesitas alquilar al menos un
+				<span>${errorInmuebleInexistente}, necesitas alquilar al menos un
 					inmueble para poder organizar un torneo</span>
 			</h4>
 			<br>
