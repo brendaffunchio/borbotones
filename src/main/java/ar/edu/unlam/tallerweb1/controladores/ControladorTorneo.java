@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.CupoExcedidoException;
 import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteException;
-import ar.edu.unlam.tallerweb1.modelo.GanadorYaExistenteException;
+import ar.edu.unlam.tallerweb1.modelo.GanadorYaExisteException;
 import ar.edu.unlam.tallerweb1.modelo.InmuebleInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.ParticipanteDuplicadoException;
 import ar.edu.unlam.tallerweb1.modelo.ParticipanteInexistenteException;
@@ -246,7 +246,7 @@ public class ControladorTorneo {
 				servicioTorneo.elegirGanador(torneoGanadoId,ganadorId);
 				Torneo torneo= servicioTorneo.consultarTorneoPorId(torneoGanadoId);
 				modelo.put("torneo", torneo);
-			} catch (GanadorYaExistenteException | TorneoInexistenteException | UsuarioInexistenteException e) {
+			} catch (GanadorYaExisteException | TorneoInexistenteException | UsuarioInexistenteException e) {
 				modelo.put("errorGanador", e.getMessage());
 				return new ModelAndView("errores", modelo);
 			}

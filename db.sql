@@ -74,14 +74,5 @@ select*from direccion;
 select*from ciudad;
 select*from provincia;
 
-update Usuario set direccion_id = 4  where id = 3;
-
-update Torneo set cupo = 2 where id = 1;
-update Torneo set estadoCompleto = 0 where id = 1;
-
-
-update Inmueble set disponible =  false where id = 1;
-
-update Torneo set foto = "840_560.jpeg" where id = 1;
 
 drop database db;

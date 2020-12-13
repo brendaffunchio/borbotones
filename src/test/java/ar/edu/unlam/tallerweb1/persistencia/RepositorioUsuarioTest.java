@@ -22,7 +22,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 	@Autowired
 	RepositorioUsuario repositorio;
 
-	private Usuario usuario1() {
+	private Usuario crearUsuario1() {
 
 		Usuario usuario = new Usuario();
 		usuario.setNombre("Marta");
@@ -35,7 +35,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 		return usuario;
 	}
 
-	private Usuario usuario2() {
+	private Usuario crearUsuario2() {
 
 		Usuario usuario2 = new Usuario();
 		usuario2.setNombre("Jose");
@@ -50,7 +50,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 
 	@Transactional
 	@Rollback
-	private Inmueble inmueble() {
+	private Inmueble crearInmueble() {
 
 		Inmueble inmueble = new Inmueble();
 		inmueble.setNombre("Depto gamer");
@@ -63,10 +63,10 @@ public class RepositorioUsuarioTest extends SpringTest {
 		return inmueble;
 	}
 
-	private Torneo torneo() {
+	private Torneo crearTorneo() {
 
 		Torneo torneo = new Torneo();
-		Inmueble inmueble = inmueble();
+		Inmueble inmueble = crearInmueble();
 		torneo.setCategoria("deporte");
 		torneo.setJuego("fifa");
 		torneo.setCupo(2);
@@ -84,7 +84,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 	@Rollback
 	public void guardarUsuario() {
 		// preparacion
-		Usuario usuario1 = usuario1();
+		Usuario usuario1 = crearUsuario1();
 
 		// ejecucion
 		repositorio.guardarUsuario(usuario1);
@@ -99,7 +99,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 	@Rollback
 	public void consultarUsuario() {
 		// preparacion
-		Usuario usuario2 = usuario2();
+		Usuario usuario2 = crearUsuario2();
 		session().save(usuario2);
 
 		// ejecucion
@@ -115,7 +115,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 	@Rollback
 	public void consultarUsuarioPorId() {
 		// preparacion
-		Usuario usuario2 = usuario2();
+		Usuario usuario2 = crearUsuario2();
 		session().save(usuario2);
 
 		// ejecucion
@@ -132,8 +132,8 @@ public class RepositorioUsuarioTest extends SpringTest {
 	@Rollback
 	public void listarUsuarios() {
 		// preparacion
-		Usuario usuario1 = usuario1();
-		Usuario usuario2 = usuario2();
+		Usuario usuario1 = crearUsuario1();
+		Usuario usuario2 = crearUsuario2();
 
 		session().save(usuario1);
 		session().save(usuario2);
@@ -152,9 +152,9 @@ public class RepositorioUsuarioTest extends SpringTest {
 	@Rollback
 	public void listarInmueblesAlquiladosPorUnUsuario() {
 		// preparacion
-		Usuario usuario1 = usuario1();
+		Usuario usuario1 = crearUsuario1();
 		session().save(usuario1);
-		Inmueble inmueble = inmueble();
+		Inmueble inmueble = crearInmueble();
 		inmueble.setInquilino(usuario1);
 		session().update(inmueble);
 
@@ -172,13 +172,11 @@ public class RepositorioUsuarioTest extends SpringTest {
 	@Rollback
 	public void listarTorneosQueParticipaUnUsuario() {
 		// preparacion
-		Torneo torneo = torneo();
+		Torneo torneo = crearTorneo();
 		session().save(torneo);
-		Usuario usuario1 = usuario1();
-		session().save(usuario1);
-
+		Usuario usuario1 = crearUsuario1();
 		usuario1.participarEnTorneo(torneo);
-		session().update(usuario1);
+		session().save(usuario1);
 
 		// ejecucion
 		Set<Torneo> torneos = repositorio.listarTorneosQueParticipaUnUsuario(usuario1.getId());
@@ -195,9 +193,9 @@ public class RepositorioUsuarioTest extends SpringTest {
 	public void mostrarTorneosQueCree() {
 
 		// preparacion
-		Usuario usuario1 = usuario1();
+		Usuario usuario1 = crearUsuario1();
 		session().save(usuario1);
-		Torneo torneo = torneo();
+		Torneo torneo = crearTorneo();
 		torneo.setCreador(usuario1);
 		session().save(torneo);
 
@@ -215,9 +213,9 @@ public class RepositorioUsuarioTest extends SpringTest {
 	@Rollback
 	public void listarUsuariosMasGanadores() {
 		// preparacion
-		Usuario marta = usuario1();
+		Usuario marta = crearUsuario1();
 		marta.setTorGanados(3);
-		Usuario jose = usuario2();
+		Usuario jose = crearUsuario2();
 		jose.setTorGanados(5);
 		session().save(marta);
 		session().save(jose);
@@ -236,7 +234,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 	@Rollback
 	public void modificarUsuario() {
 		// preparacion
-		Usuario usuario1 = usuario1();
+		Usuario usuario1 = crearUsuario1();
 		usuario1.setTorGanados(0);
 		session().save(usuario1);
 		usuario1.setTorGanados(2);

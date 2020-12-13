@@ -23,7 +23,7 @@ public class RepositorioInmuebleTest extends SpringTest {
 
 	@Transactional
 	@Rollback
-	private Provincia provincia() {
+	private Provincia crearProvincia() {
 		Provincia provincia = new Provincia();
 		provincia.setNombre("Buenos Aires");
 		session().save(provincia);
@@ -32,9 +32,9 @@ public class RepositorioInmuebleTest extends SpringTest {
 
 	@Transactional
 	@Rollback
-	private Ciudad ciudad() {
+	private Ciudad crearCiudad() {
 		Ciudad ciudad = new Ciudad();
-		Provincia provincia = provincia();
+		Provincia provincia = crearProvincia();
 		ciudad.setNombre("Cañuelas");
 		ciudad.setCodigoPostal("B1814");
 		ciudad.setProvincia(provincia);
@@ -44,9 +44,9 @@ public class RepositorioInmuebleTest extends SpringTest {
 
 	@Transactional
 	@Rollback
-	private Direccion direccion() {
+	private Direccion crearDireccion() {
 		Direccion direccion = new Direccion();
-		Ciudad ciudad = ciudad();
+		Ciudad ciudad = crearCiudad();
 		direccion.setCalle("Libertad");
 		direccion.setNumero(325);
 		direccion.setCiudad(ciudad);
@@ -55,10 +55,10 @@ public class RepositorioInmuebleTest extends SpringTest {
 		return direccion;
 	}
 
-	private Inmueble inmueble() {
+	private Inmueble crearInmueble() {
 
 		Inmueble inmueble = new Inmueble();
-		Direccion direccion = direccion();
+		Direccion direccion = crearDireccion();
 		inmueble.setNombre("Depto Gamer 1");
 		inmueble.setDisponible(true);
 		inmueble.setPrecio(3000d);
@@ -72,7 +72,7 @@ public class RepositorioInmuebleTest extends SpringTest {
 	@Rollback
 	public void guardarInmueble() {
 		// preparacion
-		Inmueble inmueble = inmueble();
+		Inmueble inmueble = crearInmueble();
 
 		// ejecucion
 		repositorio.guardarInmueble(inmueble);
@@ -85,15 +85,33 @@ public class RepositorioInmuebleTest extends SpringTest {
 	@Test
 	@Transactional
 	@Rollback
-	public void listarTodosLosInmuebles() {
+	public void listarTodosLosInmueblesDisponibles() {
 		// preparacion
-		Inmueble inmueble1 = inmueble();
-		Inmueble inmueble2 = inmueble();
+		Inmueble inmueble1 = crearInmueble();
+		Inmueble inmueble2 = crearInmueble();
 		session().save(inmueble1);
 		session().save(inmueble2);
 
 		// ejecucion
-		List<Inmueble> inmuebles = repositorio.listarTodosLosInmueblesDisponibles();
+		List<Inmueble> disponibles = repositorio.listarTodosLosInmueblesDisponibles();
+
+		// comprobacion
+		assertThat(disponibles).isNotEmpty();
+		assertThat(disponibles).hasSize(2);
+
+	}
+	@Test
+	@Transactional
+	@Rollback
+	public void listarTodosLosInmuebles() {
+		// preparacion
+		Inmueble inmueble1 = crearInmueble();
+		Inmueble inmueble2 = crearInmueble();
+		session().save(inmueble1);
+		session().save(inmueble2);
+
+		// ejecucion
+		List<Inmueble> inmuebles = repositorio.listarTodosLosInmuebles();
 
 		// comprobacion
 		assertThat(inmuebles).isNotEmpty();
@@ -106,9 +124,9 @@ public class RepositorioInmuebleTest extends SpringTest {
 	@Rollback
 	public void buscarInmueble() {
 		// preparacion
-		Inmueble inmueble = inmueble();
+		Inmueble inmueble = crearInmueble();
 		session().save(inmueble);
-		Ciudad ciudad = ciudad();
+		Ciudad ciudad = crearCiudad();
 
 		// ejecucion
 		List<Inmueble> buscados = repositorio.buscarInmueble(inmueble.getDireccion().getCiudad().getProvincia().getId(),
@@ -124,7 +142,7 @@ public class RepositorioInmuebleTest extends SpringTest {
 	@Rollback
 	public void consultarInmueblePorId() {
 		// preparacion
-		Inmueble inmueble = inmueble();
+		Inmueble inmueble = crearInmueble();
 		session().save(inmueble);
 
 		// ejecucion
@@ -141,7 +159,7 @@ public class RepositorioInmuebleTest extends SpringTest {
 	@Rollback
 	public void modificarInmueble() {
 		// preparacion
-		Inmueble inmueble = inmueble();
+		Inmueble inmueble = crearInmueble();
 		session().save(inmueble);
 		inmueble.setNombre("Sala de youtubers");
 		
@@ -160,7 +178,7 @@ public class RepositorioInmuebleTest extends SpringTest {
 	public void filtrarInmueblesPorPrecio() {
 
 		//preparacion
-		Inmueble inmueble = inmueble();
+		Inmueble inmueble = crearInmueble();
 		session().save(inmueble);
 		
 		//ejecucion

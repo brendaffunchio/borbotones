@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.persistencia;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.List;
 import java.util.Set;
 
@@ -22,10 +24,10 @@ public class RepositorioTorneoTest extends SpringTest {
 
 	@Autowired
 	RepositorioTorneo repositorio;
-	
+
 	@Transactional
 	@Rollback
-	private Provincia provincia() {
+	private Provincia crearProvincia() {
 		Provincia provincia = new Provincia();
 		provincia.setNombre("Buenos Aires");
 		session().save(provincia);
@@ -34,9 +36,9 @@ public class RepositorioTorneoTest extends SpringTest {
 
 	@Transactional
 	@Rollback
-	private Ciudad ciudad() {
+	private Ciudad crearCiudad() {
 		Ciudad ciudad = new Ciudad();
-		Provincia provincia = provincia();
+		Provincia provincia = crearProvincia();
 		ciudad.setNombre("Cañuelas");
 		ciudad.setCodigoPostal("B1814");
 		ciudad.setProvincia(provincia);
@@ -46,9 +48,9 @@ public class RepositorioTorneoTest extends SpringTest {
 
 	@Transactional
 	@Rollback
-	private Direccion direccion() {
+	private Direccion crearDireccion() {
 		Direccion direccion = new Direccion();
-		Ciudad ciudad = ciudad();
+		Ciudad ciudad = crearCiudad();
 		direccion.setCalle("Libertad");
 		direccion.setNumero(325);
 		direccion.setCiudad(ciudad);
@@ -59,7 +61,7 @@ public class RepositorioTorneoTest extends SpringTest {
 
 	@Transactional
 	@Rollback
-	private Inmueble inmueble() {
+	private Inmueble crearInmueble() {
 
 		Inmueble inmueble = new Inmueble();
 		inmueble.setNombre("Depto gamer");
@@ -71,9 +73,10 @@ public class RepositorioTorneoTest extends SpringTest {
 
 		return inmueble;
 	}
+
 	@Transactional
 	@Rollback
-	private Usuario usuario1() {
+	private Usuario crearUsuario1() {
 
 		Usuario usuario = new Usuario();
 		usuario.setNombre("Marta");
@@ -88,7 +91,7 @@ public class RepositorioTorneoTest extends SpringTest {
 
 	@Transactional
 	@Rollback
-	private Usuario usuario2() {
+	private Usuario crearUsuario2() {
 
 		Usuario usuario2 = new Usuario();
 		usuario2.setNombre("Jose");
@@ -101,12 +104,10 @@ public class RepositorioTorneoTest extends SpringTest {
 		return usuario2;
 	}
 
-
-
-	private Torneo torneo() {
+	private Torneo crearTorneo() {
 
 		Torneo torneo = new Torneo();
-		Inmueble inmueble = inmueble();
+		Inmueble inmueble = crearInmueble();
 		torneo.setCategoria("deporte");
 		torneo.setJuego("fifa");
 		torneo.setCupo(2);
@@ -119,73 +120,140 @@ public class RepositorioTorneoTest extends SpringTest {
 		return torneo;
 	}
 
-	
-
 	@Test
 	@Transactional
 	@Rollback
 	public void guardarTorneo() {
-		//preparacion
-		Usuario creador= usuario1();
-		Inmueble inmueble= inmueble();
-		Torneo torneo= torneo();
-		
-		//ejecucion
-		repositorio.guardarTorneo(torneo, creador.getId(), inmueble.getId());
-		
-		//comprobacion 
+		// preparacion
+		Torneo torneo = crearTorneo();
+
+		// ejecucion
+		repositorio.guardarTorneo(torneo);
+
+		// comprobacion
 		Torneo buscado = session().get(Torneo.class, torneo.getId());
-		
+		assertThat(buscado).isNotNull();
 	}
-	
+
 	@Test
 	@Transactional
 	@Rollback
 	public void listarTodosLosTorneos() {
-		
+		// preparacion
+		Torneo torneo1 = crearTorneo();
+		Torneo torneo2 = crearTorneo();
+		session().save(torneo1);
+		session().save(torneo2);
+
+		// ejecucion
+		List<Torneo> torneos = repositorio.listarTodosLosTorneos();
+
+		// comprobacion
+		assertThat(torneos).isNotEmpty();
+		assertThat(torneos).hasSize(2);
 	}
+
 	@Test
 	@Transactional
 	@Rollback
 	public void buscarTorneo() {
-		
+		// preparacion
+		Torneo torneo = crearTorneo();
+		session().save(torneo);
+
+		// ejecucion
+		List<Torneo> buscados = repositorio.buscarTorneo(torneo.getCategoria(), torneo.getJuego());
+
+		// comprobacion
+		assertThat(buscados).isNotEmpty();
+		assertThat(buscados).hasSize(1);
 	}
 
 	@Test
 	@Transactional
 	@Rollback
 	public void listarParticipantesDelTorneo() {
-		
+		// preparacion
+		Usuario usuario1 = crearUsuario1();
+		session().save(usuario1);
+		Torneo torneo = crearTorneo();
+		torneo.agregarParticipante(usuario1);
+		session().save(torneo);
+
+		// ejecucion
+		Set<Usuario> participantes = repositorio.listarParticipantesDelTorneo(torneo.getId());
+
+		// comprobacion
+		assertThat(participantes).isNotEmpty();
+		assertThat(participantes).hasSize(1);
 	}
 
 	@Test
 	@Transactional
 	@Rollback
 	public void modificarTorneo() {
-		
+		// preparacion
+		Torneo torneo = crearTorneo();
+		session().save(torneo);
+		torneo.setCupo(15);
+
+		// ejecucion
+		repositorio.modificarTorneo(torneo);
+
+		// comprobacion
+		Torneo buscado = session().get(Torneo.class, torneo.getId());
+		assertThat(buscado).isNotNull();
+		assertThat(buscado.getCupo()).isEqualTo(15);
 	}
 
 	@Test
 	@Transactional
 	@Rollback
 	public void consultarTorneoPorId() {
-		
+		// preparacion
+		Torneo torneo = crearTorneo();
+		session().save(torneo);
+
+		// ejecucion
+		Torneo buscado = repositorio.consultarTorneoPorId(torneo.getId());
+
+		// comprobacion
+		assertThat(buscado).isNotNull();
+		assertThat(buscado).isEqualTo(torneo);
+
 	}
 
 	@Test
 	@Transactional
 	@Rollback
 	public void ordenarTorneosSegunDistancia() {
-		
+		// preparacion
+		Torneo torneo = crearTorneo();
+		session().save(torneo);
+
+		// ejecucion
+		List<Torneo> ordenadosSegunDistancia = repositorio.ordenarTorneosSegunDistancia();
+
+		// comprobacion
+		assertThat(ordenadosSegunDistancia).isNotEmpty();
+		assertThat(ordenadosSegunDistancia).hasSize(1);
 	}
 
 	@Test
 	@Transactional
 	@Rollback
 	public void filtrarTorneosPorDistancia() {
-		
+		// preparacion
+		Torneo torneo = crearTorneo();
+		torneo.setDistanciaConUsuario(20d);
+		session().save(torneo);
+
+		// ejecucion
+		List<Torneo> filtradosPorDistancia = repositorio.filtrarTorneosPorDistancia(15d, 20d);
+
+		// comprobacion
+		assertThat(filtradosPorDistancia).isNotEmpty();
+		assertThat(filtradosPorDistancia).hasSize(1);
 	}
 
-	
-	
 }

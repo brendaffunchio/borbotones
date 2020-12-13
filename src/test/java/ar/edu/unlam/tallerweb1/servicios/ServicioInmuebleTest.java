@@ -23,9 +23,7 @@ public class ServicioInmuebleTest {
 	private RepositorioInmueble repositorioInmuebleMock = mock(RepositorioInmueble.class);
 	private RepositorioUsuario repositorioUsuarioMock = mock(RepositorioUsuario.class);
 	private ServicioInmueble servicio = new ServicioInmuebleImpl(repositorioInmuebleMock, repositorioUsuarioMock);
-	
-	private List<Inmueble> listaInmuebleMock = mock(List.class);
-	
+		
 
 	private Inmueble crearInmueble() {
 
@@ -77,8 +75,11 @@ private Direccion crearDireccion() {
   	 //preparacion
   	 Inmueble inmueble=crearInmueble();
   	 Direccion direccion = null;
+  	List <Inmueble>inmuebles= new LinkedList();
+ 	 inmuebles.add(inmueble);
   	
   	//ejecucion
+ 	when(repositorioInmuebleMock.listarTodosLosInmueblesDisponibles()).thenReturn(inmuebles);
   	servicio.guardarInmueble( direccion,inmueble);
   	
   	//comprobacion
@@ -96,7 +97,7 @@ private Direccion crearDireccion() {
   	Inmueble inmueble2= crearInmueble();
   	 
   	 inmueble1.setDireccion(direccion);
-  	 inmueble2.setDireccion(direccion);
+  	
   	 
   	 List <Inmueble>inmuebles= new LinkedList();
   	 inmuebles.add(inmueble1);
@@ -117,7 +118,6 @@ private Direccion crearDireccion() {
   		Inmueble inmueble= crearInmueble();
   		
   		//ejecucion
-  		when(servicio.listarTodosLosInmuebles()).thenReturn(listaInmuebleMock);
   		servicio.listarTodosLosInmuebles();
   		
   		//comprobacion
@@ -133,7 +133,6 @@ private Direccion crearDireccion() {
   		String nombreCiudad="Canuelas";
   		
   		//ejecucion
-  		when(servicio.buscarInmueble(provinciaId, nombreCiudad)).thenReturn(listaInmuebleMock);
   		servicio.buscarInmueble(provinciaId, nombreCiudad);
   		
   		//comprobacion
@@ -146,7 +145,6 @@ private Direccion crearDireccion() {
   		Inmueble inmueble=crearInmueble();
   		
   		//ejecucion
-  		when(servicio.consultarInmueblePorId(inmueble.getId())).thenReturn(inmueble);
   		servicio.consultarInmueblePorId(inmueble.getId());
   		
   		//comprobacion
@@ -234,7 +232,6 @@ private Direccion crearDireccion() {
   		Double hasta = 3000d;
   		
   		//ejecucion
-  		when(servicio.filtrarInmueblesPorPrecio(desde, hasta)).thenReturn(listaInmuebleMock);
   		servicio.filtrarInmueblesPorPrecio(desde, hasta);
   		
   		//comprobacion

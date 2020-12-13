@@ -37,7 +37,7 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 	}
 
 	@Override
-	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) {
+	public void guardarTorneo(Torneo torneo) {
 		
 		final Session session = sessionFactory.getCurrentSession();
 	

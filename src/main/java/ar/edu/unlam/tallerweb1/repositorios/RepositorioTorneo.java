@@ -12,7 +12,7 @@ public interface RepositorioTorneo {
 	
 	public List <Torneo>listarTodosLosTorneos();
 
-	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId);
+	public void guardarTorneo(Torneo torneo);
 
 	public List<Torneo> buscarTorneo(String categoria, String juego);
 
