@@ -27,7 +27,7 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 	}
 
 	@Override
-	public List<Inmueble> listarTodosLosInmuebles() {
+	public List<Inmueble> listarTodosLosInmueblesDisponibles() {
 		final Session session = sessionFactory.getCurrentSession();
 
 		return session.createCriteria(Inmueble.class)
@@ -35,7 +35,12 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 				.add(Restrictions.eq("disponible", true))
 				.addOrder(Order.asc("precio")).list();
 	}
+	@Override
+	public List<Inmueble> listarTodosLosInmuebles() {
+		final Session session = sessionFactory.getCurrentSession();
 
+		return session.createCriteria(Inmueble.class).list();
+	}
 	@Override
 	public void guardarInmueble(Inmueble inmueble) {
 		final Session session = sessionFactory.getCurrentSession();

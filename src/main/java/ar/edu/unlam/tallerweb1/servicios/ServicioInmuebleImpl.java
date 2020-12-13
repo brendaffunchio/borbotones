@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionDuplicadaException;
@@ -36,14 +37,14 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 	@Override
 	public List<Inmueble> listarTodosLosInmuebles() {
 
-		return repositorioInmueble.listarTodosLosInmuebles();
+		return repositorioInmueble.listarTodosLosInmueblesDisponibles();
 	}
 
 	@Override
-	public void guardarInmueble(Inmueble inmueble, Direccion direccion) throws DireccionDuplicadaException, DireccionNoValidaException{
+	public void guardarInmueble( Direccion direccion,Inmueble inmueble) throws DireccionDuplicadaException, DireccionNoValidaException{
 		if (direccion == null) throw new DireccionNoValidaException();
 		
-		for(Inmueble aux:repositorioInmueble.listarTodosLosInmuebles()) {
+		for(Inmueble aux:repositorioInmueble.listarTodosLosInmueblesDisponibles()) {
 		
 	     if (aux.getDireccion().equals(direccion)) {
 	    	 
@@ -54,6 +55,7 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 		
 		inmueble.setDireccion(direccion);
 		 inmueble.setDisponible(true);
+		
 		repositorioInmueble.guardarInmueble(inmueble);
 		
 	}
@@ -77,18 +79,15 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 	public void agregarInquilino(Long inmuebleId,Long usuarioId) throws InmuebleNoDisponibleException, InmuebleInexistenteException,UsuarioInexistenteException {
         Inmueble inmueble = repositorioInmueble.consultarInmueblePorId(inmuebleId);
 		if(inmueble== null) throw new InmuebleInexistenteException();
+		
+		if (inmueble.getDisponible().equals(false)) throw new InmuebleNoDisponibleException();
+		
 		Usuario usuario=repositorioUsuario.consultarUsuarioPorId(usuarioId);
 		if (usuario == null) throw new UsuarioInexistenteException();
-		
-		//(inmueble.getDisponible().equals(false)) throw new InmuebleNoDisponibleException();
-		if (inmueble.getDisponible().equals(true)) {
+				
 			inmueble.setInquilino(usuario);
 			inmueble.setDisponible(false);
 			repositorioInmueble.modificarInmueble(inmueble);
-
-		}else {
-			throw new InmuebleNoDisponibleException();
-		}
 
 	}
 

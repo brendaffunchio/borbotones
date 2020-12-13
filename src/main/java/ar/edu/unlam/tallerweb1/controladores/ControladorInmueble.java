@@ -85,11 +85,11 @@ public class ControladorInmueble {
 			@RequestParam(name = "numero") Integer numero,
 			@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble,
 			RedirectAttributes flash) {
-
+		Direccion direccion = servicioDireccion.buscarDireccion(calle, numero);
 		ModelMap modelo = new ModelMap();
 
 		try {
-			crearInmueble(calle, numero, inmueble, foto);
+			servicioInmueble.guardarInmueble(direccion, inmueble);
 		} catch (Exception e) {
 			modelo.put("error", e.getMessage());
 			return new ModelAndView("error", modelo);
@@ -101,11 +101,11 @@ public class ControladorInmueble {
 
 	
 	//metodo a modificar
-	private ModelAndView crearInmueble(String calle, Integer numero, Inmueble inmueble, MultipartFile foto) throws Exception {
+	private ModelAndView crearInmueble(Direccion direccion, Inmueble inmueble, MultipartFile foto) throws Exception {
 
-		Direccion direccion = servicioDireccion.buscarDireccion(calle, numero);
+		
 		if (direccion != null) {
-			servicioInmueble.guardarInmueble(inmueble, direccion);
+			servicioInmueble.guardarInmueble( direccion,inmueble);
 		} else {
 			throw new Exception("La dirección no es valida");
 		}
@@ -115,7 +115,7 @@ public class ControladorInmueble {
 		servicioFoto.setFoto(inmueble, foto.getOriginalFilename());
 		
 		try {
-			servicioInmueble.guardarInmueble(inmueble, direccion);
+			servicioInmueble.guardarInmueble(direccion, inmueble);
 		} catch (DireccionDuplicadaException | DireccionNoValidaException e) {
 			ModelMap modelo = new ModelMap();
 			modelo.put("errorDireccionInmueble", e.getMessage());

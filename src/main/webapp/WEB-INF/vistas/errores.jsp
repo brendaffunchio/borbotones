@@ -15,43 +15,20 @@
 				href="/proyecto-practica/ver-formulario-usuario"> REGISTRARSE </a>
 		</c:if>
 
-		<c:if test="${not empty error}">
+		<c:if test="${not empty errorPublicarInmueble}">
 			<h4>
-				<span>${error}</span>
+				<span>${erroPublicarInmueble}</span>
 
 			</h4>
 			<br>
 			<h6>
 				<a class="link" href="ver-formulario-inmueble"> Volvé </a> a
-				publicar tú inmueble ¡Esta vez con foto!
+				publicar tú inmueble
 			</h6>
 
 		</c:if>
 
-		<c:if test="${not empty errorSubida}">
-			<h4>
-				<span>${errorSubida}</span>
-			</h4>
-			<br>
-			<h6>
-				<a class="link" href="ver-formulario-inmueble"> Volvé </a> a
-				publicar tú inmueble ¡Error en la carga de la imagen!
-			</h6>
-
-		</c:if>
-
-		<c:if test="${not empty errorDireccionInmueble}">
-			<h4>
-				<span>${errorDireccionInmueble}</span>
-			</h4>
-			<br>
-
-			<h6>
-				<a class="link" href="ver-formulario-inmueble">Volvé</a> a publicar
-				tú inmueble ¡Esta vez con una dirección válida!
-			</h6>
-
-		</c:if>
+		
 
 		<c:if test="${not empty errorParticipar}">
 			<h4>
