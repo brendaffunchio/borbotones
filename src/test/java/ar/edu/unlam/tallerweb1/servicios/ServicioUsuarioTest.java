@@ -11,8 +11,7 @@ import static org.mockito.Mockito.*;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+
 
 import org.junit.Test;
 
@@ -146,17 +145,35 @@ public class ServicioUsuarioTest {
 		verify(repositorioUsuarioMock, times(1)).listarInmueblesAlquiladosDeUnUsuario(usuario.getId());
 	}
 
-	@Test 
-	public void queSeMuestreLaListaDeTorneosQueParticipaUnUsuario() {
+	
+	@Test
+	public void queSeMuestreLaListaDeTorneosQueParticipaElUsuario() {
+
+		//preparación
+		Usuario usuario = crearUsuario();
+
+
+		//ejecución 
+
+		servicioUsuario.listarTorneosQueParticipaUnUsuario(usuario.getId());
+
+		//validación
+
+		verify(repositorioUsuarioMock, times(1)).listarTorneosQueParticipaUnUsuario(usuario.getId());
+	}
+	
+	@Test
+	public void queSeMuestreLaListaDeTorneosCreadosPorElUsuario() {
+
 		
 		//preparacion
 		Usuario usuario= crearUsuario();
 		
 		//ejecucion
-		servicioUsuario.listarTorneosQueParticipaUnUsuario(usuario.getId());
+		servicioUsuario.listarTorneosQueCreoUnUsuario(usuario.getId());
 		
 		//comprobacion
-		verify(repositorioUsuarioMock,times(1)).listarTorneosQueParticipaUnUsuario(usuario.getId());
+		verify(repositorioUsuarioMock,times(1)).listarTorneosQueCreoUnUsuario(usuario.getId());
 		
 	}
 	@Test

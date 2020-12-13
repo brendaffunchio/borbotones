@@ -61,7 +61,7 @@ private Direccion crearDireccion() {
   	 
 	//ejecucion
   	when(repositorioInmuebleMock.listarTodosLosInmueblesDisponibles()).thenReturn(inmuebles);
-	servicio.guardarInmueble(direccion2, inmueble2);
+	servicio.guardarInmueble(inmueble2, direccion2);
 	
 	//comprobacion
 	verify(repositorioInmuebleMock, times(1)).guardarInmueble(inmueble2);
@@ -80,7 +80,7 @@ private Direccion crearDireccion() {
   	
   	//ejecucion
  	when(repositorioInmuebleMock.listarTodosLosInmueblesDisponibles()).thenReturn(inmuebles);
-  	servicio.guardarInmueble( direccion,inmueble);
+  	servicio.guardarInmueble( inmueble,direccion);
   	
   	//comprobacion
   	verify(repositorioInmuebleMock, never()).guardarInmueble(inmueble);
@@ -104,7 +104,7 @@ private Direccion crearDireccion() {
   	 
   	//ejecucion
   	when(repositorioInmuebleMock.listarTodosLosInmueblesDisponibles()).thenReturn(inmuebles);
-  	servicio.guardarInmueble( direccion,inmueble2);
+  	servicio.guardarInmueble( inmueble2,direccion);
   	
   	//comprobacion
   	verify(repositorioInmuebleMock, never()).guardarInmueble(inmueble2);

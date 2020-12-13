@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionDuplicadaException;
@@ -25,12 +27,14 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 
 	private RepositorioInmueble repositorioInmueble;
 	private RepositorioUsuario repositorioUsuario;
+	
 
 	@Autowired
 	public ServicioInmuebleImpl(RepositorioInmueble repositorioInmueble, RepositorioUsuario repositorioUsuario) {
 
 		this.repositorioInmueble = repositorioInmueble;
 		this.repositorioUsuario = repositorioUsuario;
+	
 	
 	}
 
@@ -40,8 +44,10 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 		return repositorioInmueble.listarTodosLosInmueblesDisponibles();
 	}
 
+	
 	@Override
-	public void guardarInmueble( Direccion direccion,Inmueble inmueble) throws DireccionDuplicadaException, DireccionNoValidaException{
+	public void guardarInmueble(Inmueble inmueble, Direccion direccion)
+			throws DireccionDuplicadaException, DireccionNoValidaException {
 		if (direccion == null) throw new DireccionNoValidaException();
 		
 		for(Inmueble aux:repositorioInmueble.listarTodosLosInmueblesDisponibles()) {
@@ -52,13 +58,13 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 		
 	     }  
 	}
-		
-		inmueble.setDireccion(direccion);
+	     inmueble.setDireccion(direccion);
 		 inmueble.setDisponible(true);
 		
 		repositorioInmueble.guardarInmueble(inmueble);
 		
 	}
+
 			
 
 	@Override
@@ -98,4 +104,6 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 	}
 
 
+
+	
 }

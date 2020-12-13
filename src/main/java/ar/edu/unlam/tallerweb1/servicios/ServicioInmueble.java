@@ -17,8 +17,8 @@ import ar.edu.unlam.tallerweb1.modelo.UsuarioInexistenteException;
 public interface ServicioInmueble {
 
 	public List<Inmueble> listarTodosLosInmuebles();
-
-	public void guardarInmueble(Direccion direccion,Inmueble inmueble) throws DireccionDuplicadaException,DireccionNoValidaException;
+	
+	public void guardarInmueble(Inmueble inmueble,Direccion direccion) throws DireccionDuplicadaException,DireccionNoValidaException;
 	
 	public List<Inmueble> buscarInmueble(Long provinciaId, String nombreCiudad);
 

@@ -18,72 +18,56 @@ import ar.edu.unlam.tallerweb1.modelo.Torneo;
 @Service
 @Transactional
 public class ServicioFotoImpl implements ServicioFoto {
-
+	
 	@Override
-	public void validarFoto(MultipartFile foto) throws FotoInexistenteException {
+	public void guardarFoto(Object objeto, MultipartFile foto)
+			throws FotoInexistenteException, FileUploadException, IOException {
+		if (!foto.isEmpty()) {
+			
+			if (objeto instanceof Inmueble) {
 
-		if (foto.isEmpty()) {
+				String ruta = "C://Producto//inmuebles";
+				byte[] bytes;
+				bytes = foto.getBytes();
+				Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
+				Files.write(rutaAbsoluta, bytes);
+				((Inmueble) objeto).setFoto(foto.getOriginalFilename());
+
+			}
+
+			if (objeto instanceof Torneo) {
+
+				String ruta = "C://Producto//torneos";
+				byte[] bytes;
+				bytes = foto.getBytes();
+				Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
+				Files.write(rutaAbsoluta, bytes);
+				((Torneo) objeto).setFoto(foto.getOriginalFilename());
+			}
+
+		}
+
+		
+		else if (foto.isEmpty()) {
 
 			throw new FotoInexistenteException();
 
 		}
-
-	}
-
-	@Override
-	public void guardarFotoInmueble(MultipartFile foto) throws FileUploadException, IOException {
 		
+		
+		else {
+
+			throw new FileUploadException("Fallo en la subida de la foto");
+		}
+		
+	}
+
 	
-		if (!foto.isEmpty()) {
-			String ruta = "C://Producto//torneos";
 
-			byte[] bytes;
-			bytes = foto.getBytes();
-			Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
-			Files.write(rutaAbsoluta, bytes);
-		}
 
-		else {
 
-			throw new FileUploadException("Fallo en la subida de la foto");
-		}
 
-	}
-
-	@Override
-	public void guardarFotoTorneo(MultipartFile foto) throws FileUploadException, IOException {
-
-		if (!foto.isEmpty()) {
-			String ruta = "C://Producto//torneos";
-
-			byte[] bytes;
-			bytes = foto.getBytes();
-			Path rutaAbsoluta = Paths.get(ruta + "//" + foto.getOriginalFilename());
-			Files.write(rutaAbsoluta, bytes);
-		}
-
-		else {
-
-			throw new FileUploadException("Fallo en la subida de la foto");
-		}
-
-	}
-
-	@Override
-	public void setFoto(Object objeto, String fotoNombre) {
-
-		if (objeto instanceof Inmueble) {
-
-			((Inmueble) objeto).setFoto(fotoNombre);
-
-		}
-
-		if (objeto instanceof Torneo) {
-
-			((Torneo) objeto).setFoto(fotoNombre);
-
-		}
-
-	}
+	
+	
 
 }
