@@ -93,7 +93,7 @@ public class RepositorioInmuebleTest extends SpringTest {
 		session().save(inmueble2);
 
 		// ejecucion
-		List<Inmueble> inmuebles = repositorio.listarTodosLosInmuebles();
+		List<Inmueble> inmuebles = repositorio.listarTodosLosInmueblesDisponibles();
 
 		// comprobacion
 		assertThat(inmuebles).isNotEmpty();

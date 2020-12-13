@@ -21,20 +21,17 @@ public class ServicioUsuarioTest {
 	
 	private Inmueble inmueble = new Inmueble();
 	
-	private Direccion direccion = new Direccion();
-	
 	private RepositorioUsuario repositorioUsuarioMock = mock(RepositorioUsuario.class);
 	
 	private ServicioUsuarios servicioUsuario = new ServicioUsuariosImpl(repositorioUsuarioMock);
 
-	private Set<Torneo> treeSetMock = mock(TreeSet.class);
+	private Set<Torneo> listaTorneoSetMock = mock(TreeSet.class);
 	private List<Inmueble> listaInmuebleMock = mock(List.class);
 	private List<Torneo> listaTorneoMock = mock(List.class);
 	private List<Usuario> listaUsuarioMock = mock(List.class);
 	
 	private Usuario crearUsuario() {
-		
-		
+				
 		Usuario usuario = new Usuario();
 		usuario.setId(1L);
 		usuario.setNombre("Carlos");
@@ -43,17 +40,22 @@ public class ServicioUsuarioTest {
 		usuario.setEmail("Carlitos@hotmail.com");
 		usuario.setPassword("1234");
 		usuario.setTorGanados(0);
-		
-		
-		
+			
 		return usuario;
 	}
-	
+	private Direccion crearDireccion() {
+		Direccion direccion= new Direccion();
+		direccion.setCalle("Libertad");
+		direccion.setNumero(325);
+		return direccion;
+	}
 
+	
 	@Test
 	public void queSePuedaGuardarUnUsuario() throws PasswordVaciaException, UsuarioYaExisteException, DireccionNoValidaException {
 		
 		//preparacion
+		Direccion direccion = crearDireccion();
 		Usuario usuario = crearUsuario();
 		
 		usuario.setDireccion(direccion);
@@ -90,6 +92,7 @@ public class ServicioUsuarioTest {
 	public void cuandoUnUsuarioSeRegistraConUnaPasswordVaciaLanzaPasswordVaciaException() throws PasswordVaciaException, UsuarioYaExisteException, DireccionNoValidaException {
 		
 		//preparacion
+		Direccion direccion = crearDireccion();
 		Usuario usuario = crearUsuario();
 		
 		usuario.setPassword(" ");

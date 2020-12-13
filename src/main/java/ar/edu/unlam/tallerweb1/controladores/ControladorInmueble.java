@@ -88,7 +88,7 @@ public class ControladorInmueble {
 			@RequestParam(name = "numero") Integer numero,
 			@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble,
 			RedirectAttributes flash) {
-
+		
 		ModelMap modelo = new ModelMap();
 
 		try {

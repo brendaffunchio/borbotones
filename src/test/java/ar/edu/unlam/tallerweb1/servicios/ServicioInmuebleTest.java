@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import static org.mockito.Mockito.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.junit.Test;
@@ -22,7 +23,7 @@ public class ServicioInmuebleTest {
 	private RepositorioInmueble repositorioInmuebleMock = mock(RepositorioInmueble.class);
 	private RepositorioUsuario repositorioUsuarioMock = mock(RepositorioUsuario.class);
 	private ServicioInmueble servicio = new ServicioInmuebleImpl(repositorioInmuebleMock, repositorioUsuarioMock);
-	Direccion direccion= new Direccion();
+	
 	private List<Inmueble> listaInmuebleMock = mock(List.class);
 	
 
@@ -34,25 +35,38 @@ public class ServicioInmuebleTest {
 		inmueble.setDisponible(true);
 		inmueble.setPrecio(3000d);
 		inmueble.setFoto("foto");
-		inmueble.setDireccion(direccion);
 	
 		return inmueble;
 	}
 	
-
+private Direccion crearDireccion() {
+	Direccion direccion= new Direccion();
+	direccion.setCalle("Libertad");
+	direccion.setNumero(325);
+	return direccion;
+}
 	
     @Test
 	public void queSePuedaGuardarUnInmueble() throws DireccionDuplicadaException, DireccionNoValidaException {
 	 
 	 //preparacion
-	 Inmueble inmueble=crearInmueble();
+    Direccion direccion1= crearDireccion();
+    Direccion direccion2= crearDireccion();
+    direccion2.setNumero(123);
+    Inmueble inmueble1=crearInmueble();
+    inmueble1.setDireccion(direccion1);
 	
+	 List <Inmueble>inmuebles= new LinkedList();
+  	 inmuebles.add(inmueble1);
 	
+  	 Inmueble inmueble2=crearInmueble();
+  	 
 	//ejecucion
-	servicio.guardarInmueble(inmueble, direccion);
+  	when(repositorioInmuebleMock.listarTodosLosInmueblesDisponibles()).thenReturn(inmuebles);
+	servicio.guardarInmueble(direccion2, inmueble2);
 	
 	//comprobacion
-	verify(repositorioInmuebleMock, times(1)).guardarInmueble(inmueble);
+	verify(repositorioInmuebleMock, times(1)).guardarInmueble(inmueble2);
 	
 	 
 	 
@@ -62,13 +76,37 @@ public class ServicioInmuebleTest {
   	 
   	 //preparacion
   	 Inmueble inmueble=crearInmueble();
-  	Direccion direccionInmueble = null;
+  	 Direccion direccion = null;
   	
   	//ejecucion
-  	servicio.guardarInmueble(inmueble, direccionInmueble);
+  	servicio.guardarInmueble( direccion,inmueble);
   	
   	//comprobacion
   	verify(repositorioInmuebleMock, never()).guardarInmueble(inmueble);
+  	
+  	 
+  	 
+   }
+    @Test(expected=DireccionDuplicadaException.class)
+  	public void cuandoUnInmuebleSeIntentaGuardarConUnaDireccionDuplicadaLanzaDireccionDuplicadaException() throws DireccionDuplicadaException, DireccionNoValidaException {
+  	 
+  	 //preparacion
+    	Direccion direccion= crearDireccion();
+  	Inmueble inmueble1=crearInmueble();
+  	Inmueble inmueble2= crearInmueble();
+  	 
+  	 inmueble1.setDireccion(direccion);
+  	 inmueble2.setDireccion(direccion);
+  	 
+  	 List <Inmueble>inmuebles= new LinkedList();
+  	 inmuebles.add(inmueble1);
+  	 
+  	//ejecucion
+  	when(repositorioInmuebleMock.listarTodosLosInmueblesDisponibles()).thenReturn(inmuebles);
+  	servicio.guardarInmueble( direccion,inmueble2);
+  	
+  	//comprobacion
+  	verify(repositorioInmuebleMock, never()).guardarInmueble(inmueble2);
   	
   	 
   	 
@@ -83,7 +121,7 @@ public class ServicioInmuebleTest {
   		servicio.listarTodosLosInmuebles();
   		
   		//comprobacion
-  		verify(repositorioInmuebleMock, times(1)).listarTodosLosInmuebles();
+  		verify(repositorioInmuebleMock, times(1)).listarTodosLosInmueblesDisponibles();
     	
     }
   	
@@ -115,16 +153,16 @@ public class ServicioInmuebleTest {
   		verify(repositorioInmuebleMock,times(1)).consultarInmueblePorId(inmueble.getId());
   		
   	}
-  	
-  	@Test
-  	public void queSeAgregueUnInquilinoAlInmueble() throws InmuebleNoDisponibleException, InmuebleInexistenteException, UsuarioInexistenteException {
+	@Test
+  	public void queSePuedaAgregarUnInquilino() throws InmuebleNoDisponibleException, InmuebleInexistenteException, UsuarioInexistenteException {
   	//preparacion
   		Inmueble inmueble = crearInmueble();
   		Usuario usuario = new Usuario();
   		usuario.setId(1L);
   	
   		//ejecucion
-  		//da rojo porque el inmueble y el usuario los tiene que consultar en la base de datos
+  		when(repositorioInmuebleMock.consultarInmueblePorId(inmueble.getId())).thenReturn(inmueble);
+  		when(repositorioUsuarioMock.consultarUsuarioPorId(usuario.getId())).thenReturn(usuario);
   		servicio.agregarInquilino(inmueble.getId(), usuario.getId());
   		
   		
@@ -132,6 +170,62 @@ public class ServicioInmuebleTest {
   		verify(repositorioInmuebleMock,times(1)).modificarInmueble(inmueble);
   	}
   	
+  	
+  	@Test(expected=InmuebleInexistenteException.class)
+  	public void queLanzeInmuebleInexistenteExcepTionSiElInmuebleEsNuloCuandoSeQuieraAlquilarUnInmueble() throws InmuebleNoDisponibleException, InmuebleInexistenteException, UsuarioInexistenteException {
+  	//preparacion
+  		Inmueble inmueble = crearInmueble();
+  		Usuario usuario = new Usuario();
+  		usuario.setId(1L);
+  	
+  		//ejecucion
+  		when(repositorioInmuebleMock.consultarInmueblePorId(inmueble.getId())).thenReturn(null);
+  		servicio.agregarInquilino(inmueble.getId(), usuario.getId());
+  		
+  		
+  		//comprobacion 
+  		verify(repositorioInmuebleMock,never()).modificarInmueble(inmueble);
+  	}
+	@Test(expected=InmuebleNoDisponibleException.class)
+  	public void queLanzeInmuebleNoDisponibleExcepTionSiElInmuebleNoEstaDisponibleCuandoSeQuieraAlquilarUnInmueble() throws InmuebleNoDisponibleException, InmuebleInexistenteException, UsuarioInexistenteException {
+  	//preparacion
+  		Inmueble inmueble = crearInmueble();
+  		inmueble.setDisponible(false);
+  		Usuario usuario = new Usuario();
+  		usuario.setId(1L);
+  	
+  		List <Inmueble>inmuebles= new LinkedList();
+  		inmuebles.add(inmueble);
+  		//ejecucion
+  		when(repositorioInmuebleMock.consultarInmueblePorId(inmueble.getId())).thenReturn(inmueble);
+  		when(repositorioInmuebleMock.listarTodosLosInmueblesDisponibles()).thenReturn(inmuebles);
+  		servicio.agregarInquilino(inmueble.getId(), usuario.getId());
+  		
+  		
+  		//comprobacion 
+  		verify(repositorioInmuebleMock,never()).modificarInmueble(inmueble);
+  	}
+	@Test(expected=UsuarioInexistenteException.class)
+  	public void queLanzeUsuarioInexistenteExcepTionSiElUsuarioNoExisteCuandoSeQuieraAlquilarUnInmueble() throws InmuebleNoDisponibleException, InmuebleInexistenteException, UsuarioInexistenteException {
+  	//preparacion
+  		Inmueble inmueble = crearInmueble();
+  		Usuario usuario = new Usuario();
+  		usuario.setId(1L);
+  	
+  		List <Inmueble>inmuebles= new LinkedList();
+  		inmuebles.add(inmueble);
+  		//ejecucion
+  		when(repositorioInmuebleMock.consultarInmueblePorId(inmueble.getId())).thenReturn(inmueble);
+  		when(repositorioInmuebleMock.listarTodosLosInmueblesDisponibles()).thenReturn(inmuebles);
+  		when (repositorioUsuarioMock.consultarUsuarioPorId(usuario.getId())).thenReturn(null);
+  		servicio.agregarInquilino(inmueble.getId(), usuario.getId());
+  		
+  		
+  		//comprobacion 
+  		verify(repositorioInmuebleMock,never()).modificarInmueble(inmueble);
+  	}
+  
+  
   	@Test
   	public void queFiltreLosInmueblesSegunElPrecioElegido() {
   		//preparacion

@@ -6,6 +6,8 @@ import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 
 public interface RepositorioInmueble {
 
+	public List<Inmueble>listarTodosLosInmueblesDisponibles();
+	
 	public List<Inmueble>listarTodosLosInmuebles();
 	
 	public void guardarInmueble(Inmueble inmueble);
