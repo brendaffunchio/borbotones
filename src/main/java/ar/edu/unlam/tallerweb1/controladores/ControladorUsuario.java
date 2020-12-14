@@ -74,9 +74,7 @@ public class ControladorUsuario {
 }
 	
 	@RequestMapping(path="ver-perfil-del-usuario")
-	public ModelAndView verPerfilDelUsuario(@RequestParam("usuarioId") Long usuarioId) {
-		
-		ModelMap modelo = new ModelMap();
+	public ModelAndView verPerfilDelUsuario() {
 		
 		return new ModelAndView ("perfilUsuario");
 		

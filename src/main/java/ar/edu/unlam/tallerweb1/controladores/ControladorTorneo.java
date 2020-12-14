@@ -56,7 +56,6 @@ public class ControladorTorneo {
 
 	}
 
-	
 	@RequestMapping(path = "ver-torneos-ordenados-distancia", method = RequestMethod.GET)
 	public ModelAndView mostrarTorneosSegunDistancia() {
 
@@ -66,15 +65,16 @@ public class ControladorTorneo {
 		return new ModelAndView("torneosParaParticipar", modelo);
 
 	}
+
 	@RequestMapping(path = "filtrar-torneos", method = RequestMethod.GET)
-	public ModelAndView filtrarTorneosSegunRadio(@RequestParam(name="desde")Double desdeKm,
-			@RequestParam(name="hasta")Double hastaKm) {
-		
+	public ModelAndView filtrarTorneosSegunRadio(@RequestParam(name = "desde") Double desdeKm,
+			@RequestParam(name = "hasta") Double hastaKm) {
+
 		ModelMap modelo = new ModelMap();
-		modelo.put("torneos", servicioTorneo.filtrarTorneosPorDistancia(desdeKm,hastaKm));
-		
-		return new ModelAndView ("torneosParaParticipar", modelo);
-		
+		modelo.put("torneos", servicioTorneo.filtrarTorneosPorDistancia(desdeKm, hastaKm));
+
+		return new ModelAndView("torneosParaParticipar", modelo);
+
 	}
 
 	@RequestMapping(path = "ver-formulario-torneo", method = RequestMethod.GET)
@@ -99,16 +99,14 @@ public class ControladorTorneo {
 
 		ModelMap modelo = new ModelMap();
 
-		try {
-			servicioFoto.guardarFoto(torneo, foto);
-		} catch (FotoInexistenteException | FileUploadException | IOException e) {
-			modelo.put("errorFotoTorneo", "No se seleccionó una foto");
-			return new ModelAndView("errores", modelo);
-		}
-	
+		
 
 			try {
+				servicioFoto.guardarFoto(torneo, foto);
 				servicioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
+			} catch (FotoInexistenteException|FileUploadException|IOException e) {
+				modelo.put("errorFotoTorneo", e.getMessage());
+				return new ModelAndView("errores", modelo);
 			} catch (InmuebleInexistenteException e) {
 				modelo.put("errorInmuebleInexistente", e.getMessage());
 				return new ModelAndView("errores", modelo);
@@ -142,16 +140,14 @@ public class ControladorTorneo {
 			@RequestParam(name = "usuarioId", required = false) Long usuarioId) {
 
 		ModelMap modelo = new ModelMap();
-		
-		
-			try {
-				servicioTorneo.eliminarParticipante(torneoId, usuarioId);
-			} catch (ParticipanteInexistenteException | TorneoInexistenteException | UsuarioInexistenteException e) {
-				modelo.put("errorDesubscribirse", e.getMessage());
-				return new ModelAndView("errores", modelo);
-			}
-		
-		
+
+		try {
+			servicioTorneo.eliminarParticipante(torneoId, usuarioId);
+		} catch (ParticipanteInexistenteException | TorneoInexistenteException | UsuarioInexistenteException e) {
+			modelo.put("errorDesubscribirse", e.getMessage());
+			return new ModelAndView("errores", modelo);
+		}
+
 		return new ModelAndView("perfilUsuario");
 	}
 
@@ -239,17 +235,16 @@ public class ControladorTorneo {
 	public ModelAndView elegirGanador(@RequestParam(name = "ganadorId") Long ganadorId,
 			@RequestParam(name = "torneoGanadoId") Long torneoGanadoId) {
 
-			ModelMap modelo = new ModelMap();
-		   
-			try {
-				servicioTorneo.elegirGanador(torneoGanadoId,ganadorId);
-				Torneo torneo= servicioTorneo.consultarTorneoPorId(torneoGanadoId);
-				modelo.put("torneo", torneo);
-			} catch (GanadorYaExisteException | TorneoInexistenteException | UsuarioInexistenteException e) {
-				modelo.put("errorGanador", e.getMessage());
-				return new ModelAndView("errores", modelo);
-			}
-		
+		ModelMap modelo = new ModelMap();
+
+		try {
+			servicioTorneo.elegirGanador(torneoGanadoId, ganadorId);
+			Torneo torneo = servicioTorneo.consultarTorneoPorId(torneoGanadoId);
+			modelo.put("torneo", torneo);
+		} catch (GanadorYaExisteException | TorneoInexistenteException | UsuarioInexistenteException e) {
+			modelo.put("errorGanador", e.getMessage());
+			return new ModelAndView("errores", modelo);
+		}
 
 		return new ModelAndView("ganadorExitoso", modelo);
 

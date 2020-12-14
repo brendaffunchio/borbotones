@@ -65,7 +65,7 @@ public class ControladorInmueble {
 		ModelMap modelo = new ModelMap();
 		modelo.put("inmuebles", servicioInmueble.listarTodosLosInmuebles());
 		modelo.put("provincias", servicioProvincia.listarTodasProvincias());
-		modelo.put("ruta", ruta);
+		//modelo.put("ruta", ruta);
 
 		return new ModelAndView("InmueblesParaAlquilar", modelo);
 	}

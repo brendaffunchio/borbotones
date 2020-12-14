@@ -67,7 +67,7 @@
 			<br>
 			<h6>
 				<a class="link" href="organizarTorneos"> Volvé </a> a
-				publicar tú toreno. ¡Esta vez con foto!
+				publicar tú torneo. ¡Esta vez con foto!
 			</h6>
 
 		</c:if>
