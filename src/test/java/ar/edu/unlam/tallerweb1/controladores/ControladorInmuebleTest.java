@@ -72,7 +72,7 @@ return direccion;
 @Test
 public void queRetorneALaVistaInmueblesParaAlquilar() {
 	//preparacion
-	when(servicioInmuebleMock.listarTodosLosInmuebles()).thenReturn(inmueblesMock);
+	when(servicioInmuebleMock.listarTodosLosInmueblesDisponibles()).thenReturn(inmueblesMock);
 when(servicioProvinciaMock.listarTodasProvincias()).thenReturn(provinciasMock);
 	
 //ejecucion

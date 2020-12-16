@@ -39,7 +39,7 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 	}
 
 	@Override
-	public List<Inmueble> listarTodosLosInmuebles() {
+	public List<Inmueble> listarTodosLosInmueblesDisponibles() {
 
 		return repositorioInmueble.listarTodosLosInmueblesDisponibles();
 	}
@@ -50,7 +50,7 @@ public class ServicioInmuebleImpl implements ServicioInmueble {
 			throws DireccionDuplicadaException, DireccionNoValidaException {
 		if (direccion == null) throw new DireccionNoValidaException();
 		
-		for(Inmueble aux:repositorioInmueble.listarTodosLosInmueblesDisponibles()) {
+		for(Inmueble aux:repositorioInmueble.listarTodosLosInmuebles()) {
 		
 	     if (aux.getDireccion().equals(direccion)) {
 	    	 

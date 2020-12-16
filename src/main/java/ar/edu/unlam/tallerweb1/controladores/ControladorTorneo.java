@@ -158,9 +158,9 @@ public class ControladorTorneo {
 		String categoria = request.getParameter("categoria");
 		String juego = request.getParameter("juego");
 
-		if (servicioTorneo.buscarTorneo(categoria, juego).size() == 0) {
+		if (servicioTorneo.buscarTorneo(categoria, juego).isEmpty()) {
 
-			modelo.put("error", "No se encontr� ning�n torneo.");
+			modelo.put("error", "No se encontro ningun torneo.");
 		}
 
 		else {

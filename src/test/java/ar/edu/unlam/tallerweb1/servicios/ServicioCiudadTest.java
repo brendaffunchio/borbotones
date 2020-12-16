@@ -2,6 +2,9 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import static org.mockito.Mockito.*;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.junit.Test;
 
 import ar.edu.unlam.tallerweb1.modelo.Ciudad;
@@ -17,8 +20,10 @@ public class ServicioCiudadTest {
 	public void queSeListenTodasLasCiudades() {
 		//preparacion
 		Ciudad ciudad= new Ciudad();
-		
+		List<Ciudad> ciudades = new LinkedList<Ciudad>();
+		ciudades.add(ciudad);
 		//ejecucion
+		when(repositorioCiudadMock.listarCiudades()).thenReturn(ciudades);
 		servicio.listarCiudades();
 		
 		//comprobacion
