@@ -20,6 +20,7 @@ public class ServicioDireccionTest {
 		direccion.setNumero(325);
 		
 		//ejecucion
+		when(repositorioDireccionMock.buscarDireccion(direccion.getCalle(), direccion.getNumero())).thenReturn(direccion);
 		servicio.buscarDireccion(direccion.getCalle(), direccion.getNumero());
 		
 		//comprobacion

@@ -31,8 +31,6 @@ public class ServicioTorneoTest {
 	private ServicioTorneo servicio = new ServicioTorneoImpl(repositorioTorneoMock, repositorioUsuarioMock,
 			repositorioInmuebleMock);
 
-	private List<Torneo> listaTorneoMock = mock(List.class);
-
 	private Direccion crearDireccion() {
 		Direccion direccion = new Direccion();
 		direccion.setCalle("Libertad");
@@ -168,7 +166,7 @@ public class ServicioTorneoTest {
 		Usuario usuario = crearUsuario();
 		usuario.setDireccion(direccion);
 
-		List<Torneo> torneos = new LinkedList();
+		List<Torneo> torneos = new LinkedList<Torneo>();
 		torneos.add(torneo);
 
 		// ejecucion
@@ -185,8 +183,11 @@ public class ServicioTorneoTest {
 
 		// preparacion
 		Torneo torneo = crearTorneo();
+		List<Torneo> torneos = new LinkedList<Torneo>();
+		torneos.add(torneo);
 
 		// ejecucion
+		when(repositorioTorneoMock.listarTodosLosTorneos()).thenReturn(torneos);
 		servicio.listarTodosLosTorneos();
 
 		// comprobacion
@@ -199,8 +200,11 @@ public class ServicioTorneoTest {
 		Torneo torneo = crearTorneo();
 		String categoria = "deporte";
 		String juego = "fifa";
+		List<Torneo> torneos = new LinkedList<Torneo>();
+		torneos.add(torneo);
 
 		// ejecucion
+		when(repositorioTorneoMock.buscarTorneo(categoria, juego)).thenReturn(torneos);
 		servicio.buscarTorneo(categoria, juego);
 
 		// comprobacion
@@ -214,6 +218,7 @@ public class ServicioTorneoTest {
 		Torneo torneo = crearTorneo();
 
 		// ejecucion
+		when(repositorioTorneoMock.consultarTorneoPorId(torneo.getId())).thenReturn(torneo);
 		servicio.consultarTorneoPorId(torneo.getId());
 
 		// comprobacion
@@ -313,7 +318,6 @@ public class ServicioTorneoTest {
 		Torneo torneo = crearTorneo();
 		torneo.setCupo(2);
 		torneo.setInscriptos(2);
-		;
 		Usuario usuario = crearUsuario();
 
 		// ejecucion
@@ -419,8 +423,7 @@ public class ServicioTorneoTest {
 		when(repositorioTorneoMock.consultarTorneoPorId(torneo.getId())).thenReturn(torneo);
 		when(repositorioUsuarioMock.consultarUsuarioPorId(usuario.getId())).thenReturn(usuario);
 		servicio.eliminarParticipante(torneo.getId(), usuario.getId());
-		;
-
+		
 		// comprobacion
 		verify(repositorioTorneoMock, never()).modificarTorneo(torneo);
 		verify(repositorioUsuarioMock, never()).modificarUsuario(usuario);
@@ -531,8 +534,11 @@ public class ServicioTorneoTest {
 	public void ordenarTorneosSegunDistancia() {
 		// preparacion
 		Torneo torneo = crearTorneo();
+		List<Torneo> torneos = new LinkedList<Torneo>();
+		torneos.add(torneo);
 
 		// ejecucion
+		when(repositorioTorneoMock.ordenarTorneosSegunDistancia()).thenReturn(torneos);
 		servicio.ordenarTorneosSegunDistancia();
 
 		// comprobacion
@@ -543,12 +549,17 @@ public class ServicioTorneoTest {
 	public void filtrarTorneosPorDistancia() {
 		// preparacion
 		Torneo torneo = crearTorneo();
+		Double desdeKm=15d;
+		Double hastaKm=20d;
+		List<Torneo> torneos = new LinkedList<Torneo>();
+		torneos.add(torneo);
 
 		// ejecucion
+		when(repositorioTorneoMock.filtrarTorneosPorDistancia(desdeKm, hastaKm)).thenReturn(torneos);
 		servicio.filtrarTorneosPorDistancia(15d, 20d);
 
 		// comprobacion
-		verify(repositorioTorneoMock,times(1)).filtrarTorneosPorDistancia(15d, 20d);
+		verify(repositorioTorneoMock,times(1)).filtrarTorneosPorDistancia(desdeKm, hastaKm);
 
 	}
 }

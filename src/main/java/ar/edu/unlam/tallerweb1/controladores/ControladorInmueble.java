@@ -60,9 +60,10 @@ public class ControladorInmueble {
 	public ModelAndView mostrarInmuebles() {
 
 		ModelMap modelo = new ModelMap();
-		modelo.put("inmuebles", servicioInmueble.listarTodosLosInmuebles());
+		modelo.put("inmuebles", servicioInmueble.listarTodosLosInmueblesDisponibles());
 		modelo.put("provincias", servicioProvincia.listarTodasProvincias());
-	
+		
+
 		return new ModelAndView("InmueblesParaAlquilar", modelo);
 	}
 

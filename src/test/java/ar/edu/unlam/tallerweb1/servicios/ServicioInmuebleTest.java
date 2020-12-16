@@ -54,13 +54,13 @@ private Direccion crearDireccion() {
     Inmueble inmueble1=crearInmueble();
     inmueble1.setDireccion(direccion1);
 	
-	 List <Inmueble>inmuebles= new LinkedList();
+	 List <Inmueble>inmuebles= new LinkedList<Inmueble>();
   	 inmuebles.add(inmueble1);
 	
   	 Inmueble inmueble2=crearInmueble();
   	 
 	//ejecucion
-  	when(repositorioInmuebleMock.listarTodosLosInmueblesDisponibles()).thenReturn(inmuebles);
+  	when(repositorioInmuebleMock.listarTodosLosInmuebles()).thenReturn(inmuebles);
 	servicio.guardarInmueble(inmueble2, direccion2);
 	
 	//comprobacion
@@ -75,11 +75,11 @@ private Direccion crearDireccion() {
   	 //preparacion
   	 Inmueble inmueble=crearInmueble();
   	 Direccion direccion = null;
-  	List <Inmueble>inmuebles= new LinkedList();
+  	List <Inmueble>inmuebles= new LinkedList<Inmueble>();
  	 inmuebles.add(inmueble);
   	
   	//ejecucion
- 	when(repositorioInmuebleMock.listarTodosLosInmueblesDisponibles()).thenReturn(inmuebles);
+ 	when(repositorioInmuebleMock.listarTodosLosInmuebles()).thenReturn(inmuebles);
   	servicio.guardarInmueble( inmueble,direccion);
   	
   	//comprobacion
@@ -99,11 +99,11 @@ private Direccion crearDireccion() {
   	 inmueble1.setDireccion(direccion);
   	
   	 
-  	 List <Inmueble>inmuebles= new LinkedList();
+  	 List <Inmueble>inmuebles= new LinkedList<Inmueble>();
   	 inmuebles.add(inmueble1);
   	 
   	//ejecucion
-  	when(repositorioInmuebleMock.listarTodosLosInmueblesDisponibles()).thenReturn(inmuebles);
+  	when(repositorioInmuebleMock.listarTodosLosInmuebles()).thenReturn(inmuebles);
   	servicio.guardarInmueble( inmueble2,direccion);
   	
   	//comprobacion
@@ -113,26 +113,30 @@ private Direccion crearDireccion() {
   	 
    }
   	@Test
-    public void queSeMuestreLaListaDeInmuebles() {
+    public void queSeMuestreLaListaDeInmueblesDisponibles() {
     	//preparacion
   		Inmueble inmueble= crearInmueble();
-  		
+  		List<Inmueble>inmuebles = new LinkedList<Inmueble>();
+  		inmuebles.add(inmueble);
   		//ejecucion
-  		servicio.listarTodosLosInmuebles();
+  		when(repositorioInmuebleMock.listarTodosLosInmueblesDisponibles()).thenReturn(inmuebles);
+  		servicio.listarTodosLosInmueblesDisponibles();
   		
   		//comprobacion
   		verify(repositorioInmuebleMock, times(1)).listarTodosLosInmueblesDisponibles();
     	
     }
-  	
+ 
   	@Test 
   	public void queBusqueUnInmueblePorElIdDeUnaProvinciaYElNombreDeUnaCiudad() {
   		//preparacion
   		Inmueble inmueble=crearInmueble();
   		Long provinciaId=1L;
   		String nombreCiudad="Canuelas";
-  		
+ 		List<Inmueble>inmuebles = new LinkedList<Inmueble>();
+  		inmuebles.add(inmueble);
   		//ejecucion
+  		when(repositorioInmuebleMock.buscarInmueble(provinciaId, nombreCiudad)).thenReturn(inmuebles);
   		servicio.buscarInmueble(provinciaId, nombreCiudad);
   		
   		//comprobacion
@@ -145,6 +149,7 @@ private Direccion crearDireccion() {
   		Inmueble inmueble=crearInmueble();
   		
   		//ejecucion
+  		when(repositorioInmuebleMock.consultarInmueblePorId(inmueble.getId())).thenReturn(inmueble);
   		servicio.consultarInmueblePorId(inmueble.getId());
   		
   		//comprobacion
@@ -192,7 +197,7 @@ private Direccion crearDireccion() {
   		Usuario usuario = new Usuario();
   		usuario.setId(1L);
   	
-  		List <Inmueble>inmuebles= new LinkedList();
+  		List <Inmueble>inmuebles= new LinkedList<Inmueble>();
   		inmuebles.add(inmueble);
   		//ejecucion
   		when(repositorioInmuebleMock.consultarInmueblePorId(inmueble.getId())).thenReturn(inmueble);
@@ -210,7 +215,7 @@ private Direccion crearDireccion() {
   		Usuario usuario = new Usuario();
   		usuario.setId(1L);
   	
-  		List <Inmueble>inmuebles= new LinkedList();
+  		List <Inmueble>inmuebles= new LinkedList<Inmueble>();
   		inmuebles.add(inmueble);
   		//ejecucion
   		when(repositorioInmuebleMock.consultarInmueblePorId(inmueble.getId())).thenReturn(inmueble);
@@ -230,8 +235,10 @@ private Direccion crearDireccion() {
   		Inmueble inmueble= crearInmueble();
   		Double desde= 2000d;
   		Double hasta = 3000d;
-  		
+ 		List<Inmueble>inmuebles = new LinkedList<Inmueble>();
+  		inmuebles.add(inmueble);
   		//ejecucion
+  		when(repositorioInmuebleMock.filtrarInmueblesPorPrecio(desde, hasta)).thenReturn(inmuebles);
   		servicio.filtrarInmueblesPorPrecio(desde, hasta);
   		
   		//comprobacion

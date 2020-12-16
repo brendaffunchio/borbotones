@@ -53,7 +53,7 @@ public class ServicioUsuarioTest {
 		usuario1.setEmail("user@mail.com");
 		Usuario usuario2 = crearUsuario();
 		
-		List <Usuario>usuarios= new LinkedList();
+		List <Usuario>usuarios= new LinkedList<Usuario>();
 		usuarios.add(usuario1);
 			
 		//ejecucion
@@ -74,17 +74,13 @@ public class ServicioUsuarioTest {
 		usuario1.setEmail("user@mail.com");
 		Usuario usuario2 = crearUsuario();
 		
-		List <Usuario>usuarios= new LinkedList();
+		List <Usuario>usuarios= new LinkedList<Usuario>();
 		usuarios.add(usuario1);
 			
 		//ejecucion
 		when(repositorioUsuarioMock.listarTodosLosUsuarios()).thenReturn(usuarios);
 		servicioUsuario.guardarUsuario(usuario2, direccion);
-	
-		//ejecucion
 		
-		servicioUsuario.guardarUsuario(usuario2, direccion);
-	
 	
 		//comprobacion
 		verify(repositorioUsuarioMock, never()).guardarUsuario(usuario2);
@@ -102,7 +98,7 @@ public class ServicioUsuarioTest {
 		Usuario usuario2 = crearUsuario();
 		usuario2.setPassword(" ");
 		
-		List <Usuario>usuarios= new LinkedList();
+		List <Usuario>usuarios= new LinkedList<Usuario>();
 		usuarios.add(usuario1);
 			
 		//ejecucion
@@ -121,7 +117,7 @@ public class ServicioUsuarioTest {
 		Usuario usuario1 = crearUsuario();
 		Usuario usuario2 = crearUsuario();
 
-		List <Usuario>usuarios= new LinkedList();
+		List <Usuario>usuarios= new LinkedList<Usuario>();
 		usuarios.add(usuario1);
 			
 		//ejecucion
@@ -181,8 +177,11 @@ public class ServicioUsuarioTest {
 		
 		//preparacion
 		Usuario usuario = crearUsuario();
-		
+		List<Usuario> usuarios = new LinkedList<Usuario>();
+		usuarios.add(usuario);
+
 		//ejecucion
+		when(repositorioUsuarioMock.listarUsuariosMasGanadores()).thenReturn(usuarios);
 		servicioUsuario.listarUsuariosMasGanadores();
 		
 		//comprobacion
@@ -196,6 +195,7 @@ public class ServicioUsuarioTest {
 		Usuario usuario= crearUsuario();
 		
 		//ejecucion
+		when(repositorioUsuarioMock.consultarUsuarioPorId(usuario.getId())).thenReturn(usuario);
 		servicioUsuario.consultarUsuarioPorId(usuario.getId());
 		
 		//comprobacion

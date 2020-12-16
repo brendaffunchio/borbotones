@@ -88,8 +88,8 @@ public class ControladorInmuebleTest {
 
 	@Test
 	public void queRetorneALaVistaInmueblesParaAlquilar() {
-		// preparacion
-		when(servicioInmuebleMock.listarTodosLosInmuebles()).thenReturn(inmueblesMock);
+		//preparacion
+		when(servicioInmuebleMock.listarTodosLosInmueblesDisponibles()).thenReturn(inmueblesMock);
 		when(servicioProvinciaMock.listarTodasProvincias()).thenReturn(provinciasMock);
 
 		//ejecucion
@@ -279,6 +279,7 @@ public class ControladorInmuebleTest {
 		verify(servicioInmuebleMock, times(1)).agregarInquilino(inmuebleId, usuarioId);
 
 	}
+
 	
 	@Test
 	public void queAlAgregarUnInquilinoAUnInmuebleNoDisponibleLanceInmuebleNoDisponibleException()

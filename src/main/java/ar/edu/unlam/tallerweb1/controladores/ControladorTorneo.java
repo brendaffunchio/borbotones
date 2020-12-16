@@ -157,7 +157,7 @@ public class ControladorTorneo {
 
 		if (servicioTorneo.buscarTorneo(categoria, juego).isEmpty()) {
 
-			modelo.put("error", "No se encontró ningún torneo.");
+			modelo.put("error", "No se encontro ningun torneo.");
 		}
 
 		else {
