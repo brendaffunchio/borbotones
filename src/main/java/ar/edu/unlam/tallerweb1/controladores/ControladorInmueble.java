@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,9 +44,8 @@ public class ControladorInmueble {
 
 	@Autowired
 	public ControladorInmueble(ServicioInmueble servicioInmueble, ServicioCiudad servicioCiudad,
-			ServicioProvincia servicioProvincia, ServicioDireccion servicioDireccion
-			,ServicioUsuarios servicioUsuario,ServicioFoto servicioFoto) {
-
+			ServicioProvincia servicioProvincia, ServicioDireccion servicioDireccion, ServicioUsuarios servicioUsuario,
+			ServicioFoto servicioFoto) {
 
 		this.servicioInmueble = servicioInmueble;
 		this.servicioCiudad = servicioCiudad;
@@ -55,7 +53,6 @@ public class ControladorInmueble {
 		this.servicioDireccion = servicioDireccion;
 		this.servicioUsuario = servicioUsuario;
 		this.servicioFoto = servicioFoto;
-
 
 	}
 
@@ -65,8 +62,7 @@ public class ControladorInmueble {
 		ModelMap modelo = new ModelMap();
 		modelo.put("inmuebles", servicioInmueble.listarTodosLosInmuebles());
 		modelo.put("provincias", servicioProvincia.listarTodasProvincias());
-		//modelo.put("ruta", ruta);
-
+	
 		return new ModelAndView("InmueblesParaAlquilar", modelo);
 	}
 
@@ -88,56 +84,55 @@ public class ControladorInmueble {
 			@RequestParam(name = "numero") Integer numero,
 			@RequestParam(name = "file", required = false) MultipartFile foto, Inmueble inmueble,
 			RedirectAttributes flash) {
-		
+
 		ModelMap modelo = new ModelMap();
 
 		try {
 			servicioFoto.guardarFoto(inmueble, foto);
 			Direccion direccion = servicioDireccion.buscarDireccion(calle, numero);
 			servicioInmueble.guardarInmueble(inmueble, direccion);
-			
-		} catch (DireccionDuplicadaException | DireccionNoValidaException | FotoInexistenteException | FileUploadException | IOException e) {
+
+		} catch (DireccionDuplicadaException | DireccionNoValidaException | FotoInexistenteException
+				| FileUploadException | IOException e) {
 			modelo.put("errorInmueble", e.getMessage());
 			return new ModelAndView("errores", modelo);
 		}
-		
+
 		return new ModelAndView("redirect:/ver-inmuebles");
 
 	}
 
-
-	
 	@RequestMapping(path = "buscar-inmueble", method = RequestMethod.GET)
-	public ModelAndView buscarInmueble(HttpServletRequest request) {
+	public ModelAndView buscarInmueble(HttpServletRequest request, @RequestParam (name = "provinciaId") Long provinciaId) {
 
 		ModelMap modelo = new ModelMap();
 		modelo.put("provincias", servicioProvincia.listarTodasProvincias());
 
-		String provinciaId = request.getParameter("provinciaId");
+		
 		String nombreCiudad = request.getParameter("ciudad");
 
-		if (servicioInmueble.buscarInmueble(Long.parseLong(provinciaId), nombreCiudad).isEmpty()) {
+		if (servicioInmueble.buscarInmueble(provinciaId, nombreCiudad).isEmpty()) {
 
 			modelo.put("error", "No se encontró ningún inmueble.");
 		}
 
 		else {
 
-			modelo.put("inmuebles", servicioInmueble.buscarInmueble(Long.parseLong(provinciaId), nombreCiudad));
+			modelo.put("inmuebles", servicioInmueble.buscarInmueble(provinciaId, nombreCiudad));
 		}
 
 		return new ModelAndView("InmueblesParaAlquilar", modelo);
 	}
-	
+
 	@RequestMapping(path = "filtrar-inmuebles", method = RequestMethod.GET)
-	public ModelAndView filtrarInmueblesPorPrecio(@RequestParam(name="desde")Double desdePrecio,
-			@RequestParam(name="hasta")Double hastaPrecio) {
-		
+	public ModelAndView filtrarInmueblesPorPrecio(@RequestParam(name = "desde") Double desdePrecio,
+			@RequestParam(name = "hasta") Double hastaPrecio) {
+
 		ModelMap modelo = new ModelMap();
-		modelo.put("inmuebles", servicioInmueble.filtrarInmueblesPorPrecio(desdePrecio,hastaPrecio));
-		
-		return new ModelAndView ("InmueblesParaAlquilar", modelo);
-		
+		modelo.put("inmuebles", servicioInmueble.filtrarInmueblesPorPrecio(desdePrecio, hastaPrecio));
+
+		return new ModelAndView("InmueblesParaAlquilar", modelo);
+
 	}
 
 	@RequestMapping(path = "ver-inmueble-detalle", method = RequestMethod.GET)
@@ -156,15 +151,15 @@ public class ControladorInmueble {
 	@RequestMapping(path = "alquilar", method = RequestMethod.POST)
 	public ModelAndView agregarInquilino(@RequestParam(name = "inmuebleId") Long inmuebleId,
 			@RequestParam(name = "usuarioId") Long usuarioId) {
-	ModelMap modelo = new ModelMap();
-		
-			try {
-				servicioInmueble.agregarInquilino(inmuebleId, usuarioId);
-			} catch (InmuebleNoDisponibleException | InmuebleInexistenteException | UsuarioInexistenteException e) {
-				modelo.put("errorAlquilar", e.getMessage());
-				return new ModelAndView ("errores", modelo);
-			}
-		
+			ModelMap modelo = new ModelMap();
+
+		try {
+			servicioInmueble.agregarInquilino(inmuebleId, usuarioId);
+		} catch (InmuebleNoDisponibleException | InmuebleInexistenteException | UsuarioInexistenteException e) {
+			modelo.put("errorAlquilar", e.getMessage());
+			return new ModelAndView("errores", modelo);
+		}
+
 		return new ModelAndView("redirect:/ver-inmuebles");
 	}
 

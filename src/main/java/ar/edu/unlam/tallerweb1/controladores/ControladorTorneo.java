@@ -99,8 +99,7 @@ public class ControladorTorneo {
 
 		ModelMap modelo = new ModelMap();
 
-		
-
+	
 			try {
 				servicioFoto.guardarFoto(torneo, foto);
 				servicioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
@@ -152,15 +151,13 @@ public class ControladorTorneo {
 	}
 
 	@RequestMapping(path = "buscar-torneo", method = RequestMethod.GET)
-	public ModelAndView mostrarTorneosPorJuego(HttpServletRequest request) {
+	public ModelAndView mostrarTorneosPorJuego(@RequestParam (name = "categoria") String categoria, @RequestParam (name = "juego") String juego ) {
 
 		ModelMap modelo = new ModelMap();
-		String categoria = request.getParameter("categoria");
-		String juego = request.getParameter("juego");
 
-		if (servicioTorneo.buscarTorneo(categoria, juego).size() == 0) {
+		if (servicioTorneo.buscarTorneo(categoria, juego).isEmpty()) {
 
-			modelo.put("error", "No se encontrï¿½ ningï¿½n torneo.");
+			modelo.put("error", "No se encontró ningún torneo.");
 		}
 
 		else {
