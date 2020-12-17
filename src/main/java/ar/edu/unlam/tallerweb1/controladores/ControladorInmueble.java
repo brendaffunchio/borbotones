@@ -114,7 +114,7 @@ public class ControladorInmueble {
 
 		if (servicioInmueble.buscarInmueble(provinciaId, nombreCiudad).isEmpty()) {
 
-			modelo.put("error", "No se encontró ningún inmueble.");
+			modelo.put("error", "No se encontro ningun inmueble.");
 		}
 
 		else {
@@ -130,7 +130,9 @@ public class ControladorInmueble {
 			@RequestParam(name = "hasta") Double hastaPrecio) {
 
 		ModelMap modelo = new ModelMap();
+		modelo.put("provincias", servicioProvincia.listarTodasProvincias());
 		modelo.put("inmuebles", servicioInmueble.filtrarInmueblesPorPrecio(desdePrecio, hastaPrecio));
+		
 
 		return new ModelAndView("InmueblesParaAlquilar", modelo);
 
@@ -140,6 +142,7 @@ public class ControladorInmueble {
 	public ModelAndView verDetalle(@RequestParam("inmuebleId") Long inmuebleId) {
 
 		Inmueble inmuebleBuscado = servicioInmueble.consultarInmueblePorId(inmuebleId);
+		
 
 		ModelMap modelo = new ModelMap();
 

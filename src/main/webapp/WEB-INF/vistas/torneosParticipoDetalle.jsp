@@ -54,11 +54,9 @@
 			
 			
 			
-			<button type="submit">DESUSCRIBIRSE</button>
+			<button type="submit" class="boton-part btn-outline-success">DESUSCRIBIRSE</button>
 			
-			
-			
-			
+
 			</form:form>
 			
 					</c:if>
@@ -73,4 +71,13 @@
 
 </main>
 </body>
+
+<style> 
+
+.boton-part{
+
+width: 200px;
+}
+
+</style>
 </html>

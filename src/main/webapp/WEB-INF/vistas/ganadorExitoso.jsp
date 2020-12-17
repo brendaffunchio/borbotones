@@ -7,6 +7,8 @@
 			<br>
 			
 			<p> ${torneo.ganador.nombre} ${torneo.ganador.apellido}</p>
+			
+			<img alt="" width="400" height="380" src="img/trofeo.jpg" class="rounded-circle">
 		</div>
 	</div>
 

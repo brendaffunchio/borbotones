@@ -45,6 +45,12 @@ body {
 	color: white;
 }
 
+.botonNav:hover{
+	
+	text-decoration: none;
+	
+}
+
 .link{
 	
 	text-decoration: none;

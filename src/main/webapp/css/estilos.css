@@ -278,3 +278,31 @@ iframe {
 	justify-content: center;
 	width: 100%;
 }
+
+.btn-outline-warning {
+	
+	border: 1px solid #ecff16;
+	
+	color: #ecff16;
+}
+
+.btn-outline-warning:hover {
+	
+	color: black;
+	
+	background: #ecff16;
+}
+
+.btn-outline-success{
+	
+	border: 1px solid #00f000;
+	
+	color: #00f000;
+}
+
+.btn-outline-success:hover{
+	
+	color: black;
+	
+	background: #00f000;
+}

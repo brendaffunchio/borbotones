@@ -99,11 +99,14 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Torneo.class);
 		
+		
 		if(desdeKm!=null && desdeKm != 0)
 			criteria.add(Restrictions.ge("distanciaConUsuario", desdeKm));
 		
 		if(hastaKm!=null && hastaKm != 0)
 			criteria.add(Restrictions.le("distanciaConUsuario", hastaKm));
+		
+		criteria.addOrder(Order.asc("distanciaConUsuario"));
 		
 		
 		return criteria.list();

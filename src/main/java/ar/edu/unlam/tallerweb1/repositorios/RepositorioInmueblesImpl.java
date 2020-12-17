@@ -99,7 +99,7 @@ public class RepositorioInmueblesImpl implements RepositorioInmueble {
 
 	@Override
 	public List<Inmueble> filtrarInmueblesPorPrecio(Double desdePrecio, Double hastaPrecio) {
-Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Inmueble.class);
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Inmueble.class);
 		
 		if(desdePrecio!=null && desdePrecio != 0)
 			criteria.add(Restrictions.ge("precio", desdePrecio));
@@ -107,6 +107,7 @@ Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Inmueble.c
 		if(hastaPrecio!=null && hastaPrecio != 0)
 			criteria.add(Restrictions.le("precio", hastaPrecio));
 		
+		criteria.add(Restrictions.eq("disponible", true));
 		
 		return criteria.list();
 	}

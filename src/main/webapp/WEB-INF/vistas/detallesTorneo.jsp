@@ -34,7 +34,7 @@
 			<br>
 		</div>
 
-		<div class="col-2">
+		<div class="col-4">
 			<h6>Dirección:</h6>
 			<h6>${torneoDetalle.inmuebleDelTorneo.direccion.calle}
 				${torneoDetalle.inmuebleDelTorneo.direccion.numero}</h6>
@@ -59,12 +59,12 @@
 				
 				<c:if
 				test="${(torneoDetalle.estadoCompleto == false) and (sessionScope.id != null) and (torneoDetalle.ganador.id == null)}">
-					<button class="boton-part" type="submit" >PARTICIPAR</button>
+					<button class="boton-part btn-outline-success" type="submit" >PARTICIPAR</button>
 			</c:if>
 	<c:if
 				test="${(torneoDetalle.estadoCompleto == false) and (sessionScope.id == null) and (torneoDetalle.ganador.id == null)}">
 					<div class="col-2">
-					<button class="boton-part" type="submit" disabled="disabled">PARTICIPAR</button>
+					<button class="boton-part btn-outline-success" type="submit" disabled="disabled">PARTICIPAR</button>
 					<p> Necesitas <a href="login"> iniciar sesion </a>, para participar en un torneo </p>
 					</div>
 			</c:if>
@@ -72,12 +72,14 @@
 
 					<c:if
 				test="${(torneoDetalle.estadoCompleto == true) and (sessionScope.rol != null) and (torneoDetalle.ganador.id == null)}">
-				<button class="boton-part" type="submit" disabled="disabled">Cupo Lleno</button>
+				<button class="boton-part btn-outline-success" type="submit" disabled="disabled">Cupo Lleno</button>
 			</c:if>
 			
 				<c:if
 				test="${(torneoDetalle.ganador.id != null)}">
-				<p> Ganador del torneo: ${torneoDetalle.ganador.nombre}</p>
+				
+				<p class="text-success"> Ganador del torneo: ${torneoDetalle.ganador.nombre}</p>
+				
 			</c:if>
 			
 			
@@ -90,4 +92,13 @@
 
 </main>
 </body>
+
+<style>
+
+.text-success{
+	
+	color: #00f000;
+}
+
+</style>
 </html>
