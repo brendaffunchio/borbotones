@@ -19,11 +19,9 @@ import ar.edu.unlam.tallerweb1.modelo.ParticipanteInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.TorneoInexistenteException;
 import ar.edu.unlam.tallerweb1.servicios.ServicioFoto;
-
 import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarios;
 
-import javax.servlet.http.HttpServletRequest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -46,12 +44,9 @@ public class ControladorTorneoTest {
 	private ControladorTorneo controladorTorneo = new ControladorTorneo(servicioTorneoMock, servicioUsuarioMock,
 			servicioFotoMock);
 	private List<Torneo> torneosMock = mock(List.class);
-
 	private List<Inmueble> inmueblesAlquiladosPorElUsuario = mock(List.class);
-
 	private MultipartFile fotoMock = mock(MultipartFile.class);
 	private RedirectAttributes flashMock = mock(RedirectAttributes.class);
-
 	private final static Long usuarioId = 1L;
 	private final static Long usuarioGanadorId = 1L;
 	private final static Long creadorId = 1L;
@@ -64,7 +59,7 @@ public class ControladorTorneoTest {
 	private final static String juego = "FIFA";
 
 	@Test
-	public void queSeMuestrenLosTorneosParaParticiparFiltradosConLaDistanciaDelUsuario() {
+	public void queRetorneALaVistaToreosParaParticiparConLosTorneosParaParticiparFiltradosConLaDistanciaDelUsuario() {
 
 		// preparacion
 		when(servicioTorneoMock.listarTorneosConDistancia(usuarioId)).thenReturn(torneosMock);
@@ -77,12 +72,12 @@ public class ControladorTorneoTest {
 
 		// verificacion
 		verify(servicioTorneoMock, times(1)).listarTorneosConDistancia(usuarioId);
-		verify(servicioTorneoMock, times(0)).listarTodosLosTorneos();
+		verify(servicioTorneoMock, never()).listarTodosLosTorneos();
 
 	}
 
 	@Test
-	public void queSeMuestrenTodosLosTorneosParaParticiparDeLaAplicacion() {
+	public void queRetorneALaVistaToreosParaParticiparConLosTorneosParaParticiparDeLaAplicacion() {
 
 		// preparacion
 
@@ -96,13 +91,13 @@ public class ControladorTorneoTest {
 		assertThat(vista.getViewName()).isEqualTo("torneosParaParticipar");
 
 		// verificacion
-		verify(servicioTorneoMock, times(0)).listarTorneosConDistancia(Id);
+		verify(servicioTorneoMock, never()).listarTorneosConDistancia(Id);
 		verify(servicioTorneoMock, times(1)).listarTodosLosTorneos();
 
 	}
 
 	@Test
-	public void queSeMuestrenLosTorneosOrdenadosPorDistanciaRespectoALaUbicacionDelUsuario() {
+	public void queRetorneALaVistaToreosParaParticiparConLosTorneosOrdenadosPorDistanciaRespectoALaUbicacionDelUsuario() {
 
 		// preparacion
 		when(servicioTorneoMock.ordenarTorneosSegunDistancia()).thenReturn(torneosMock);
@@ -117,7 +112,7 @@ public class ControladorTorneoTest {
 	}
 
 	@Test
-	public void queSeMuestrenLosTorneosFiltradosPorRadioRespectoALaUbicacionDelUsuario() {
+	public void queRetorneALaVistaToreosParaParticiparConLosTorneosFiltradosPorRadioRespectoALaUbicacionDelUsuario() {
 
 		// preparacion
 		when(servicioTorneoMock.filtrarTorneosPorDistancia(desdeKm, hastaKm)).thenReturn(torneosMock);
@@ -133,7 +128,7 @@ public class ControladorTorneoTest {
 	}
 
 	@Test
-	public void queSePuedaOrganizarUnTorneo() {
+	public void queRetorneALaVistaOrganizarTorneosCuandoSeQuieraOrganizarUnTorneo() {
 
 		// preparacion
 		when(servicioUsuarioMock.listarInmueblesAlquiladosDeUnUsuario(usuarioId))
@@ -151,7 +146,7 @@ public class ControladorTorneoTest {
 	}
 
 	@Test
-	public void queSePuedaCrearUnTorneo() throws FotoInexistenteException, FileUploadException, IOException,
+	public void queRetorneALaVistaTorneoExitosoCuandoSeCreeUnTorneo() throws FotoInexistenteException, FileUploadException, IOException,
 			InmuebleInexistenteException, UsuarioInexistenteException {
 
 		// preparacion
@@ -170,7 +165,7 @@ public class ControladorTorneoTest {
 	}
 
 	@Test
-	public void queAlIntentarCrearUnTorneoSinUnInmuebleLanceInmuebleInexistenteException()
+	public void queAlIntentarCrearUnTorneoSinUnInmuebleRetorneALaVistaErrores()
 			throws FotoInexistenteException, FileUploadException, IOException, InmuebleInexistenteException,
 			UsuarioInexistenteException {
 
@@ -191,7 +186,7 @@ public class ControladorTorneoTest {
 	}
 
 	@Test
-	public void queAlIntentarCrearUnTorneoConUnUsuarioInexistenteLanceUsuarioInexistenteException()
+	public void queAlIntentarCrearUnTorneoConUnUsuarioInexistenteRetorneALaVistaErrores()
 			throws FotoInexistenteException, FileUploadException, IOException, InmuebleInexistenteException,
 			UsuarioInexistenteException {
 
@@ -212,7 +207,7 @@ public class ControladorTorneoTest {
 	}
 
 	@Test
-	public void queSePuedaAgregarUnParticipanteAUnTorneo() throws ParticipanteDuplicadoException, CupoExcedidoException,
+	public void queRetorneALaVistaParticipacionExitosaCunadoSeAgregueUnParticipanteAUnTorneo() throws ParticipanteDuplicadoException, CupoExcedidoException,
 			TorneoInexistenteException, UsuarioInexistenteException {
 
 		// ejecucion
@@ -227,7 +222,7 @@ public class ControladorTorneoTest {
 	}
 
 	@Test
-	public void queAlIntentarAgregarUnParticipanteDuplicadoAUnTorneoLanceParticipanteDuplicadoException()
+	public void queAlIntentarAgregarUnParticipanteDuplicadoAUnTorneoRetorneALaVistaErrores()
 			throws ParticipanteDuplicadoException, CupoExcedidoException, TorneoInexistenteException,
 			UsuarioInexistenteException {
 		// preparacion
@@ -247,7 +242,7 @@ public class ControladorTorneoTest {
 	}
 
 	@Test
-	public void queAlIntentarAgregarUnParticipanteAUnTorneoLlenoLanceCupoExcedidoException()
+	public void queAlIntentarAgregarUnParticipanteAUnTorneoLlenoRetorneALaVistaErrores()
 			throws ParticipanteDuplicadoException, CupoExcedidoException, TorneoInexistenteException,
 			UsuarioInexistenteException {
 		// preparacion
@@ -267,7 +262,7 @@ public class ControladorTorneoTest {
 	}
 
 	@Test
-	public void queAlIntentarAgregarUnParticipanteAUnTorneoInexistenteLanceTorneoInexistenteException()
+	public void queAlIntentarAgregarUnParticipanteAUnTorneoInexistenteRetorneALaVistaErrores()
 			throws ParticipanteDuplicadoException, CupoExcedidoException, TorneoInexistenteException,
 			UsuarioInexistenteException {
 		// preparacion
@@ -287,7 +282,7 @@ public class ControladorTorneoTest {
 	}
 
 	@Test
-	public void queAlIntentarAgregarUnParticipanteInexistenteAUnTorneoLanceUsuarioInexistenteException()
+	public void queAlIntentarAgregarUnParticipanteInexistenteAUnTorneoLanceRetorneALaVistaErrores()
 			throws ParticipanteDuplicadoException, CupoExcedidoException, TorneoInexistenteException,
 			UsuarioInexistenteException {
 		// preparacion
@@ -307,7 +302,7 @@ public class ControladorTorneoTest {
 	}
 
 	@Test
-	public void queSePuedaEliminarUnParticipanteADeUnTorneo()
+	public void queRetorneAlaVistaPerfilUsuarioCuandoSeDesubscribaUnParticipanteDeUnTorneo()
 			throws ParticipanteDuplicadoException, CupoExcedidoException, TorneoInexistenteException,
 			UsuarioInexistenteException, ParticipanteInexistenteException {
 
@@ -322,7 +317,7 @@ public class ControladorTorneoTest {
 	}
 
 	@Test
-	public void queAlIntentarEliminarUnParticipanteInexistenteDelTorneoLanceParticipanteInexistenteException()
+	public void queAlIntentarEliminarUnParticipanteInexistenteDelTorneoRetorneALaVistaErrores()
 			throws ParticipanteInexistenteException, TorneoInexistenteException, UsuarioInexistenteException {
 
 		// preparacion
@@ -340,7 +335,7 @@ public class ControladorTorneoTest {
 	}
 
 	@Test
-	public void queAlIntentarEliminarUnParticipanteDeUnTorneoInexistenteLanceTorneoInexistenteException()
+	public void queAlIntentarEliminarUnParticipanteDeUnTorneoInexistenteRetorneALaVistaErrores()
 			throws ParticipanteInexistenteException, TorneoInexistenteException, UsuarioInexistenteException {
 
 		// preparacion
@@ -357,7 +352,7 @@ public class ControladorTorneoTest {
 	}
 
 	@Test
-	public void queAlIntentarEliminarUnParticipanteInexistenteDeUnTorneoInexistenteLanceUsuarioInexistenteException()
+	public void queAlIntentarEliminarUnUsuarioInexistenteDeUnTorneoInexistenteRetorneALaVistaErrores()
 			throws ParticipanteInexistenteException, TorneoInexistenteException, UsuarioInexistenteException {
 
 		// preparacion
@@ -374,7 +369,7 @@ public class ControladorTorneoTest {
 	}
 
 	@Test
-	public void queAlBuscarTorneoPorCategoriaYJuegoRetorneALaVistaTorneosParaParticiparConUnaListaDeTorneos() {
+	public void queCuandoSeBusqueTorneoPorCategoriaYJuegoRetorneALaVistaTorneosParaParticiparConUnaListaDeTorneos() {
 
 		// preparacion
 		Torneo torneo = new Torneo();
@@ -564,12 +559,12 @@ public class ControladorTorneoTest {
 
 		// verificacion
 		verify(servicioTorneoMock, times(1)).elegirGanador(usuarioGanadorId, torneoGanadoId);
-		verify(servicioTorneoMock, times(1)).consultarTorneoPorId(torneoGanadoId);
+		verify(servicioTorneoMock, never()).consultarTorneoPorId(torneoGanadoId);
 
 	}
 
 	@Test
-	public void queAlElegirAlGanadorInexistenteDeUnTorneoMeRetorneALaVistaDeErrores()
+	public void queAlElegirAlGanadorConUsuarioInexistenteDeUnTorneoMeRetorneALaVistaDeErrores()
 			throws GanadorYaExisteException, TorneoInexistenteException, UsuarioInexistenteException {
 		// preparacion
 		Torneo torneo = new Torneo();
@@ -588,5 +583,6 @@ public class ControladorTorneoTest {
 		verify(servicioTorneoMock, never()).consultarTorneoPorId(torneoGanadoId);
 
 	}
-
+	
+	
 }
