@@ -13,7 +13,6 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
@@ -65,20 +64,6 @@ public class RepositorioTorneoImpl implements RepositorioTorneo {
 		
 
 	}
-
-
-	@Override
-	public Set<Usuario> listarParticipantesDelTorneo(Long torneoId) {
-		
-		final Session session = sessionFactory.getCurrentSession();
-		
-		Torneo torneo = session.get(Torneo.class, torneoId);
-		
-		 Set<Usuario>participantesDelTorneo = torneo.getParticipantes();
-		
-		return participantesDelTorneo;
-	}
-
 
 	@Override
 	public void modificarTorneo(Torneo torneo) {

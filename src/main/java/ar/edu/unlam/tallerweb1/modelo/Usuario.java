@@ -2,12 +2,15 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import java.util.Set;
 import java.util.TreeSet;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
@@ -43,7 +46,7 @@ public class Usuario implements Comparable<Usuario> {
 	@OneToOne
 	private Direccion direccion;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "participa")
 	private Set <Torneo> torneosParticipa = new TreeSet<Torneo>();
 	

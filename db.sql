@@ -1,5 +1,4 @@
 create database db;
-
 use db;
 
 insert into provincia (nombre) 
@@ -67,12 +66,36 @@ values ("Inmobiliaria Gaming",
 0, 1);
 
 select*from inmueble;
-select*from torneo;
+select * from torneo;
 select*from usuario;
 select*from participa;
 select*from direccion;
 select*from ciudad;
 select*from provincia;
 
+insert into inmueble(disponible,foto,nombre,precio,direccion_id,inquilino_id)
+values(1,null,"fiwek",55252,2,null);
+insert into inmueble(disponible,foto,nombre,precio,direccion_id,inquilino_id)
+values(1,null,"fiwek",55252,3,null);
+insert into inmueble(disponible,foto,nombre,precio,direccion_id,inquilino_id)
+values(1,null,"fiwek",55252,4,null);
+insert into inmueble(disponible,foto,nombre,precio,direccion_id,inquilino_id)
+values(1,null,"fiwek",55252,5,null);
+insert into inmueble(disponible,foto,nombre,precio,direccion_id,inquilino_id)
+values(1,null,"fiwek",55252,6,null);
+insert into inmueble(disponible,foto,nombre,precio,direccion_id,inquilino_id)
+values(1,null,"fiwek",55252,7,null);
+insert into inmueble(disponible,foto,nombre,precio,direccion_id,inquilino_id)
+values(1,null,"fiwek",55252,8,null);
+insert into inmueble(disponible,foto,nombre,precio,direccion_id,inquilino_id)
+values(1,null,"fiwek",55252,9,null);
+insert into inmueble(disponible,foto,nombre,precio,direccion_id,inquilino_id)
+values(1,null,"fiwek",55252,10,null);
+insert into inmueble(disponible,foto,nombre,precio,direccion_id,inquilino_id)
+values(1,null,"fiwek",55252,11,null);
+insert into inmueble(disponible,foto,nombre,precio,direccion_id,inquilino_id)
+values(1,null,"fiwek",55252,12,null);
+insert into inmueble(disponible,foto,nombre,precio,direccion_id,inquilino_id)
+values(1,null,"fiwek",55252,13,null);
 
 drop database db;

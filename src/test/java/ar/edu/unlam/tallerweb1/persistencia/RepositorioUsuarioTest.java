@@ -4,7 +4,6 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -166,27 +165,7 @@ public class RepositorioUsuarioTest extends SpringTest {
 		assertThat(inmuebles).isNotEmpty();
 		assertThat(inmuebles).hasSize(1);
 	}
-
-	@Test
-	@Transactional
-	@Rollback
-	public void listarTorneosQueParticipaUnUsuario() {
-		// preparacion
-		Torneo torneo = crearTorneo();
-		session().save(torneo);
-		Usuario usuario1 = crearUsuario1();
-		usuario1.participarEnTorneo(torneo);
-		session().save(usuario1);
-
-		// ejecucion
-		Set<Torneo> torneos = repositorio.listarTorneosQueParticipaUnUsuario(usuario1.getId());
-
-		// comprobacion
-		assertThat(torneos).isNotEmpty();
-		assertThat(torneos).hasSize(1);
-
-	}
-
+	
 	@Test
 	@Transactional
 	@Rollback

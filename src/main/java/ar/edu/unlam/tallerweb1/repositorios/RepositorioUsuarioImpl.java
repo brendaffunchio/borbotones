@@ -61,19 +61,6 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		
 	}
 
-	@Override
-	public Set<Torneo> listarTorneosQueParticipaUnUsuario(Long usuarioId) {
-		
-		final Session session = sessionFactory.getCurrentSession();
-		Usuario usuario = session.get(Usuario.class, usuarioId);
-		
-		Set <Torneo>torneosQueParticipo = usuario.getTorneosParticipa();
-		
-		return torneosQueParticipo;
-				
-		
-	}
-	
 	
 	@Override
 	public List<Torneo> listarTorneosQueCreoUnUsuario(Long usuarioId) {

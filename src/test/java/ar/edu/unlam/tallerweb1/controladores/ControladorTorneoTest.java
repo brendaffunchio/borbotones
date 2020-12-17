@@ -9,7 +9,6 @@ import java.util.TreeSet;
 import org.apache.commons.fileupload.FileUploadException;
 import org.junit.Test;
 
-import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.modelo.CupoExcedidoException;
 import ar.edu.unlam.tallerweb1.modelo.FotoInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.GanadorYaExisteException;
@@ -20,13 +19,11 @@ import ar.edu.unlam.tallerweb1.modelo.ParticipanteInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.TorneoInexistenteException;
 import ar.edu.unlam.tallerweb1.servicios.ServicioFoto;
-import ar.edu.unlam.tallerweb1.servicios.ServicioInmueble;
+
 import ar.edu.unlam.tallerweb1.servicios.ServicioTorneo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarios;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -49,12 +46,12 @@ public class ControladorTorneoTest {
 	private ControladorTorneo controladorTorneo = new ControladorTorneo(servicioTorneoMock, servicioUsuarioMock,
 			servicioFotoMock);
 	private List<Torneo> torneosMock = mock(List.class);
-	private List<Usuario> participantesMock = mock(List.class);
+
 	private List<Inmueble> inmueblesAlquiladosPorElUsuario = mock(List.class);
-	private ModelMap modeloMock = mock(ModelMap.class);
+
 	private MultipartFile fotoMock = mock(MultipartFile.class);
 	private RedirectAttributes flashMock = mock(RedirectAttributes.class);
-	private HttpServletRequest requestMock = mock(HttpServletRequest.class);
+
 	private final static Long usuarioId = 1L;
 	private final static Long usuarioGanadorId = 1L;
 	private final static Long creadorId = 1L;
@@ -139,7 +136,6 @@ public class ControladorTorneoTest {
 	public void queSePuedaOrganizarUnTorneo() {
 
 		// preparacion
-		Torneo torneo = new Torneo();
 		when(servicioUsuarioMock.listarInmueblesAlquiladosDeUnUsuario(usuarioId))
 				.thenReturn(inmueblesAlquiladosPorElUsuario);
 
@@ -592,6 +588,5 @@ public class ControladorTorneoTest {
 		verify(servicioTorneoMock, never()).consultarTorneoPorId(torneoGanadoId);
 
 	}
-	
-	
+
 }

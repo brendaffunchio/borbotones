@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.util.Set;
 import java.util.TreeSet;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.criteria.Join;
+
+import org.hibernate.annotations.Fetch;
 
 @Entity
 public class Torneo implements Comparable<Torneo>{
@@ -40,7 +44,7 @@ public class Torneo implements Comparable<Torneo>{
 	@ManyToOne
 	private Usuario ganador;
 
-	@ManyToMany(mappedBy = "torneosParticipa", fetch = FetchType.EAGER) 
+	@ManyToMany(mappedBy = "torneosParticipa", cascade = CascadeType.ALL) 
 	private Set<Usuario> participantes = new TreeSet<Usuario>();
 
 	@ManyToOne

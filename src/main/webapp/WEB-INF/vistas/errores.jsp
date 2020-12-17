@@ -58,6 +58,7 @@
 				<span>${errorGanador}</span>
 			</h4>
 			<br>
+			</c:if>
 			
 			<c:if test="${not empty errorFotoTorneo}">
 			<h4>
@@ -72,7 +73,7 @@
 
 		</c:if>
 
-		</c:if>
+		
 		<c:if test="${not empty errorInmuebleInexistente}">
 			<h4>
 				<span>${errorInmuebleInexistente}, necesitas alquilar al menos un

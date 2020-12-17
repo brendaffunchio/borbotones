@@ -3,8 +3,10 @@ package ar.edu.unlam.tallerweb1.servicios;
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionNoValidaException;
 import ar.edu.unlam.tallerweb1.modelo.PasswordVaciaException;
+import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioYaExisteException;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioTorneo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 
 import static org.mockito.Mockito.*;
@@ -19,8 +21,9 @@ public class ServicioUsuarioTest {
 	
 	
 	private RepositorioUsuario repositorioUsuarioMock = mock(RepositorioUsuario.class);
+	private RepositorioTorneo repositorioTorneoMock = mock(RepositorioTorneo.class);
 	
-	private ServicioUsuarios servicioUsuario = new ServicioUsuariosImpl(repositorioUsuarioMock);
+	private ServicioUsuarios servicioUsuario = new ServicioUsuariosImpl(repositorioUsuarioMock, repositorioTorneoMock);
 
 
 	private Usuario crearUsuario() {
@@ -147,15 +150,19 @@ public class ServicioUsuarioTest {
 
 		//preparación
 		Usuario usuario = crearUsuario();
-
+		Torneo torneo = new Torneo();
+		List<Torneo> torneos = new LinkedList<Torneo>();
+		torneos.add(torneo);
+		when(repositorioUsuarioMock.consultarUsuarioPorId(usuario.getId())).thenReturn(usuario);
+		when(repositorioTorneoMock.listarTodosLosTorneos()).thenReturn(torneos);
 
 		//ejecución 
 
 		servicioUsuario.listarTorneosQueParticipaUnUsuario(usuario.getId());
 
 		//validación
-
-		verify(repositorioUsuarioMock, times(1)).listarTorneosQueParticipaUnUsuario(usuario.getId());
+		verify(repositorioTorneoMock, times(1)).listarTodosLosTorneos();
+		verify(repositorioUsuarioMock, times(1)).consultarUsuarioPorId(usuario.getId());
 	}
 	
 	@Test

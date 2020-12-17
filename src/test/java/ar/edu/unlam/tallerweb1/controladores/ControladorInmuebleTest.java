@@ -2,10 +2,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import static org.mockito.Mockito.mock;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,15 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.fileupload.FileUploadException;
 import org.junit.Test;
-import org.mockito.Mockito;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.google.protobuf.Empty;
-
 import ar.edu.unlam.tallerweb1.modelo.Ciudad;
 import ar.edu.unlam.tallerweb1.modelo.Direccion;
 import ar.edu.unlam.tallerweb1.modelo.DireccionDuplicadaException;
@@ -31,7 +23,6 @@ import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.InmuebleInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.InmuebleNoDisponibleException;
 import ar.edu.unlam.tallerweb1.modelo.Provincia;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.UsuarioInexistenteException;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCiudad;
 import ar.edu.unlam.tallerweb1.servicios.ServicioDireccion;
@@ -67,32 +58,13 @@ public class ControladorInmuebleTest {
 	private final static Double precioDesde = 10D;
 	private final static Double precioHasta = 20D;
 
-	private Inmueble crearInmueble() {
-
-		Inmueble inmueble = new Inmueble();
-		inmueble.setId(1L);
-		inmueble.setNombre("Depto Gamer 1");
-		inmueble.setDisponible(true);
-		inmueble.setPrecio(3000d);
-		inmueble.setFoto("foto");
-
-		return inmueble;
-	}
-
-	private Direccion crearDireccion() {
-		Direccion direccion = new Direccion();
-		direccion.setCalle("Libertad");
-		direccion.setNumero(325);
-		return direccion;
-	}
-
 	@Test
 	public void queRetorneALaVistaInmueblesParaAlquilar() {
-		//preparacion
+		// preparacion
 		when(servicioInmuebleMock.listarTodosLosInmueblesDisponibles()).thenReturn(inmueblesMock);
 		when(servicioProvinciaMock.listarTodasProvincias()).thenReturn(provinciasMock);
 
-		//ejecucion
+		// ejecucion
 		final ModelAndView vista = controlador.mostrarInmuebles();
 
 		// comprobacion
@@ -103,7 +75,6 @@ public class ControladorInmuebleTest {
 	public void queCuandoSeQuieraPublicarUnInmuebleRetorneALaVistaPublicarInmueble() {
 
 		// preparacion
-		Inmueble inmueble = new Inmueble();
 		when(servicioProvinciaMock.listarTodasProvincias()).thenReturn(provinciasMock);
 		when(servicioCiudadMock.listarCiudades()).thenReturn(ciudadesMock);
 
@@ -126,25 +97,24 @@ public class ControladorInmuebleTest {
 		final Integer numero = 730;
 		direccion.setCalle(calle);
 		direccion.setNumero(numero);
-		
-		when (servicioDireccionMock.buscarDireccion(calle, numero)).thenReturn(direccion);
+
+		when(servicioDireccionMock.buscarDireccion(calle, numero)).thenReturn(direccion);
 
 		// ejecucion
 		final ModelAndView vista = controlador.crearInmueble(calle, numero, fotoMock, inmueble, flashMock);
 
-		
 		// verificacion
 		verify(servicioFotoMock, times(1)).guardarFoto(inmueble, fotoMock);
 		verify(servicioDireccionMock, times(1)).buscarDireccion(calle, numero);
 		verify(servicioInmuebleMock, times(1)).guardarInmueble(inmueble, direccion);
 		assertThat(vista.getViewName()).isEqualTo("redirect:/ver-inmuebles");
-		
-		
+
 	}
 
 	@Test
-	public void queAlIngresarUnaDireccionDeInmuebleDuplicadaLanceDireccionDuplicadaException() throws FotoInexistenteException,
-			FileUploadException, IOException, DireccionDuplicadaException, DireccionNoValidaException {
+	public void queAlIngresarUnaDireccionDeInmuebleDuplicadaLanceDireccionDuplicadaException()
+			throws FotoInexistenteException, FileUploadException, IOException, DireccionDuplicadaException,
+			DireccionNoValidaException {
 
 		// preparacion
 		Inmueble inmueble = new Inmueble();
@@ -153,27 +123,25 @@ public class ControladorInmuebleTest {
 		final Integer numero = 730;
 		direccion.setCalle(calle);
 		direccion.setNumero(numero);
-		
-	
-	
+
 		doThrow(DireccionDuplicadaException.class).when(servicioDireccionMock).buscarDireccion(calle, numero);
 
 		// ejecucion
 		final ModelAndView vista = controlador.crearInmueble(calle, numero, fotoMock, inmueble, flashMock);
-		
+
 		// comprobacion
 		verify(servicioFotoMock, times(1)).guardarFoto(inmueble, fotoMock);
 		verify(servicioDireccionMock, times(1)).buscarDireccion(calle, numero);
 		verify(servicioInmuebleMock, never()).guardarInmueble(inmueble, direccion);
-		
+
 		assertThat(vista.getViewName()).isEqualTo("errores");
-		
-		
+
 	}
-	
+
 	@Test
-	public void queAlIngresarUnaDireccionDeInmuebleNoValidaLanceDireccionNoValidaException() throws FotoInexistenteException,
-			FileUploadException, IOException, DireccionDuplicadaException, DireccionNoValidaException {
+	public void queAlIngresarUnaDireccionDeInmuebleNoValidaLanceDireccionNoValidaException()
+			throws FotoInexistenteException, FileUploadException, IOException, DireccionDuplicadaException,
+			DireccionNoValidaException {
 
 		// preparacion
 		Inmueble inmueble = new Inmueble();
@@ -182,20 +150,19 @@ public class ControladorInmuebleTest {
 		final Integer numero = 730;
 		direccion.setCalle(calle);
 		direccion.setNumero(numero);
-		
+
 		doThrow(DireccionNoValidaException.class).when(servicioDireccionMock).buscarDireccion(calle, numero);
 
 		// ejecucion
 		final ModelAndView vista = controlador.crearInmueble(calle, numero, fotoMock, inmueble, flashMock);
-		
+
 		// comprobacion
 		verify(servicioFotoMock, times(1)).guardarFoto(inmueble, fotoMock);
 		verify(servicioDireccionMock, times(1)).buscarDireccion(calle, numero);
 		verify(servicioInmuebleMock, never()).guardarInmueble(inmueble, direccion);
-		
+
 		assertThat(vista.getViewName()).isEqualTo("errores");
-		
-		
+
 	}
 
 	@Test
@@ -203,7 +170,7 @@ public class ControladorInmuebleTest {
 
 		// preaparacion
 		Inmueble inmueble = new Inmueble();
-		
+
 		List<Inmueble> inmueblesBuscados = new LinkedList<Inmueble>();
 		inmueblesBuscados.add(inmueble);
 		when(servicioInmuebleMock.buscarInmueble(provinciaId, ciudad)).thenReturn(inmueblesBuscados);
@@ -213,19 +180,13 @@ public class ControladorInmuebleTest {
 
 		// comprobacion
 		assertThat(vista.getViewName()).isEqualTo("InmueblesParaAlquilar");
-		
-		
-		
+
 	}
 
 	@Test
 	public void queCuandoSeQuieraBuscarUnInmuebleRetorneALaVistaInmueblesParaAlquilarConUnaListaDeInmuebles() {
 
 		// preaparacion
-		Inmueble inmueble = new Inmueble();
-
-
-		List<Inmueble> inmueblesBuscados = new LinkedList<Inmueble>();
 		when(servicioInmuebleMock.buscarInmueble(1L, ciudad)).thenReturn(inmueblesMock);
 
 		// ejecucion
@@ -280,17 +241,15 @@ public class ControladorInmuebleTest {
 
 	}
 
-	
 	@Test
 	public void queAlAgregarUnInquilinoAUnInmuebleNoDisponibleLanceInmuebleNoDisponibleException()
 			throws InmuebleNoDisponibleException, InmuebleInexistenteException, UsuarioInexistenteException {
-		
+
 		// preparacion
 		doThrow(InmuebleNoDisponibleException.class).when(servicioInmuebleMock).agregarInquilino(inmuebleId, usuarioId);
 
 		// ejecucion
 		final ModelAndView vista = controlador.agregarInquilino(inmuebleId, usuarioId);
-		
 
 		// comprobacion
 		assertThat(vista.getViewName()).isEqualTo("errores");
@@ -299,17 +258,16 @@ public class ControladorInmuebleTest {
 		verify(servicioInmuebleMock, times(1)).agregarInquilino(inmuebleId, usuarioId);
 
 	}
-	
+
 	@Test
 	public void queAlAgregarUnInquilinoAUnInmuebleInexistenteLanceInmuebleInexistenteException()
 			throws InmuebleNoDisponibleException, InmuebleInexistenteException, UsuarioInexistenteException {
-		
+
 		// preparacion
 		doThrow(InmuebleInexistenteException.class).when(servicioInmuebleMock).agregarInquilino(inmuebleId, usuarioId);
 
 		// ejecucion
 		final ModelAndView vista = controlador.agregarInquilino(inmuebleId, usuarioId);
-		
 
 		// comprobacion
 		assertThat(vista.getViewName()).isEqualTo("errores");
@@ -318,17 +276,17 @@ public class ControladorInmuebleTest {
 		verify(servicioInmuebleMock, times(1)).agregarInquilino(inmuebleId, usuarioId);
 
 	}
-	
+
 	@Test
 	public void queAlAgregarUnUsuarioInexistenteAUnInmuebleLanceUsuarioInexistenteException()
 			throws InmuebleNoDisponibleException, InmuebleInexistenteException, UsuarioInexistenteException {
-		
+
 		// preparacion
 		doThrow(UsuarioInexistenteException.class).when(servicioInmuebleMock).agregarInquilino(inmuebleId, usuarioId);
 
 		// ejecucion
 		final ModelAndView vista = controlador.agregarInquilino(inmuebleId, usuarioId);
-		
+
 		// comprobacion
 		assertThat(vista.getViewName()).isEqualTo("errores");
 
@@ -336,8 +294,7 @@ public class ControladorInmuebleTest {
 		verify(servicioInmuebleMock, times(1)).agregarInquilino(inmuebleId, usuarioId);
 
 	}
-	
-	
+
 	@Test
 	public void queCuandoSeQuieraVerElDetalleDelInmuebleAlquiladoMeLLeveALaVistainmuebleDetalleAlquilado() {
 

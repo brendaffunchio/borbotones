@@ -103,7 +103,7 @@ public class ControladorTorneo {
 			try {
 				servicioFoto.guardarFoto(torneo, foto);
 				servicioTorneo.guardarTorneo(torneo, creadorId, inmuebleId);
-			} catch (FotoInexistenteException|FileUploadException|IOException e) {
+			} catch (FotoInexistenteException |FileUploadException|IOException e) {
 				modelo.put("errorFotoTorneo", e.getMessage());
 				return new ModelAndView("errores", modelo);
 			} catch (InmuebleInexistenteException e) {

@@ -432,14 +432,23 @@ public class ServicioTorneoTest {
 
 	@Test
 	public void listarParticipantesDelTorneo() {
-//preparacion
+		
+		//preparacion
+		Usuario usuario = new Usuario();
 		Torneo torneo = crearTorneo();
+		torneo.setId(1L);
+		List<Usuario> usuarios = new LinkedList<Usuario>();
+		usuarios.add(usuario);
+		when(repositorioTorneoMock.consultarTorneoPorId(torneo.getId())).thenReturn(torneo);
+		when(repositorioUsuarioMock.listarTodosLosUsuarios()).thenReturn(usuarios);
+		
 
 		// ejecucion
 		servicio.listarParticipantesDelTorneo(torneo.getId());
 
 		// comprobacion
-		verify(repositorioTorneoMock, times(1)).listarParticipantesDelTorneo(torneo.getId());
+		verify(repositorioTorneoMock, times(1)).consultarTorneoPorId(torneo.getId());
+		verify(repositorioUsuarioMock, times(1)).listarTodosLosUsuarios();
 	}
 
 	@Test

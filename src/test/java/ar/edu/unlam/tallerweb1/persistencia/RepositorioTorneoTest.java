@@ -3,7 +3,6 @@ package ar.edu.unlam.tallerweb1.persistencia;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import java.util.Set;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import ar.edu.unlam.tallerweb1.modelo.Inmueble;
 import ar.edu.unlam.tallerweb1.modelo.Provincia;
 import ar.edu.unlam.tallerweb1.modelo.Torneo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioInmueble;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioTorneo;
 
 public class RepositorioTorneoTest extends SpringTest {
@@ -167,25 +165,6 @@ public class RepositorioTorneoTest extends SpringTest {
 		// comprobacion
 		assertThat(buscados).isNotEmpty();
 		assertThat(buscados).hasSize(1);
-	}
-
-	@Test
-	@Transactional
-	@Rollback
-	public void listarParticipantesDelTorneo() {
-		// preparacion
-		Usuario usuario1 = crearUsuario1();
-		session().save(usuario1);
-		Torneo torneo = crearTorneo();
-		torneo.agregarParticipante(usuario1);
-		session().save(torneo);
-
-		// ejecucion
-		Set<Usuario> participantes = repositorio.listarParticipantesDelTorneo(torneo.getId());
-
-		// comprobacion
-		assertThat(participantes).isNotEmpty();
-		assertThat(participantes).hasSize(1);
 	}
 
 	@Test

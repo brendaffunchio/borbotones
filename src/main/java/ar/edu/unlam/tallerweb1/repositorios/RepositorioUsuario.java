@@ -18,8 +18,6 @@ public interface RepositorioUsuario {
 	
 	public List<Inmueble> listarInmueblesAlquiladosDeUnUsuario(Long usuarioId);
 
-	public Set<Torneo> listarTorneosQueParticipaUnUsuario(Long usuarioId);
-
 	public List<Torneo> listarTorneosQueCreoUnUsuario(Long usuarioId);
 
 	public List<Usuario> listarUsuariosMasGanadores();

@@ -1,9 +1,8 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-
 import java.util.List;
 import java.util.Set;
-
+import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,6 +66,7 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 		return torneos;
 
 	}
+
 	@Override
 	public List<Torneo> listarTodosLosTorneos() {
 
@@ -74,10 +74,12 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 	}
 
 	@Override
-	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId) throws InmuebleInexistenteException, UsuarioInexistenteException {
-        if(inmuebleId == null) throw new InmuebleInexistenteException();
-		
-        Inmueble inmueble = repositorioInmueble.consultarInmueblePorId(inmuebleId);
+	public void guardarTorneo(Torneo torneo, Long creadorId, Long inmuebleId)
+			throws InmuebleInexistenteException, UsuarioInexistenteException {
+		if (inmuebleId == null)
+			throw new InmuebleInexistenteException();
+
+		Inmueble inmueble = repositorioInmueble.consultarInmueblePorId(inmuebleId);
 		if (inmueble == null)
 			throw new InmuebleInexistenteException();
 
@@ -86,7 +88,6 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 		if (creador == null)
 			throw new UsuarioInexistenteException();
 
-		
 		torneo.setEstadoCompleto(false);
 		torneo.setInscriptos(0);
 		torneo.setCreador(creador);
@@ -125,15 +126,12 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 			throw new ParticipanteDuplicadoException();
 
 		}
-		if (torneo.getInscriptos().equals(torneo.getCupo())) {
-			torneo.setEstadoCompleto(true);
-			repositorioTorneo.modificarTorneo(torneo);
 
-		}
-		
 		if (torneo.getCupo() > torneo.getInscriptos() && torneo.getEstadoCompleto().equals(false)) {
-			torneo.agregarParticipante(usuario);
+			Integer inscriptos = torneo.getInscriptos();
 			usuario.participarEnTorneo(torneo);
+			inscriptos++;
+			torneo.setInscriptos(inscriptos);
 			repositorioTorneo.modificarTorneo(torneo);
 			repositorioUsuario.modificarUsuario(usuario);
 
@@ -141,7 +139,11 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 			throw new CupoExcedidoException();
 		}
 
-	
+		if (torneo.getInscriptos().equals(torneo.getCupo())) {
+			torneo.setEstadoCompleto(true);
+			repositorioTorneo.modificarTorneo(torneo);
+
+		}
 
 	}
 
@@ -185,7 +187,23 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 
 	@Override
 	public Set<Usuario> listarParticipantesDelTorneo(Long torneoId) {
-		return repositorioTorneo.listarParticipantesDelTorneo(torneoId);
+
+		Torneo torneo = repositorioTorneo.consultarTorneoPorId(torneoId);
+
+		List<Usuario> usuarios = repositorioUsuario.listarTodosLosUsuarios();
+
+		Set<Usuario> participantes = new TreeSet<Usuario>();
+
+		for (Usuario usuario : usuarios) {
+
+			if (usuario.getTorneosParticipa().contains(torneo)) {
+
+				participantes.add(usuario);
+			}
+		}
+
+		return participantes;
+
 	}
 
 	@Override
@@ -221,20 +239,18 @@ public class ServicioTorneoImpl implements ServicioTorneo {
 		return repositorioTorneo.consultarTorneoPorId(torneoId);
 	}
 
-	
 	@Override
 	public List<Torneo> ordenarTorneosSegunDistancia() {
 
 		return repositorioTorneo.ordenarTorneosSegunDistancia();
 	}
 
-
 	@Override
 	public List<Torneo> filtrarTorneosPorDistancia(Double desdeKm, Double hastaKm) {
 
-
-		return repositorioTorneo.filtrarTorneosPorDistancia(desdeKm,hastaKm);
+		return repositorioTorneo.filtrarTorneosPorDistancia(desdeKm, hastaKm);
 	}
+
 	private Double redondearDecimales(Double valorInicial, Integer numeroDecimales) {
 		Double parteEntera, resultado;
 		resultado = valorInicial;

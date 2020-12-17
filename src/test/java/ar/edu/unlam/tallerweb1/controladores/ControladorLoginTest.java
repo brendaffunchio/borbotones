@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -71,6 +70,5 @@ public class ControladorLoginTest {
 		verify(sessionMock, times(1)).setAttribute("rol", "invitado");
 
 	}
-	
-	
+
 }

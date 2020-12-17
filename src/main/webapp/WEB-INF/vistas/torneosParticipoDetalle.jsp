@@ -45,14 +45,28 @@
 				
 				<br>
 			
+			<c:if test="${(torneoParticipoDetalle.ganador.id == null)}">
+			
 			<form:form action="desubscribirse" method="POST">
 			
 			<input type="hidden" name="torneoId" value="${torneoParticipoDetalle.id}">
 			<input type="hidden" name="usuarioId" value ="${sessionScope.id}">
 			
+			
+			
 			<button type="submit">DESUSCRIBIRSE</button>
+			
+			
+			
+			
 			</form:form>
+			
+					</c:if>
 					
+							<c:if
+				test="${(torneoParticipoDetalle.ganador.id != null)}">
+				<p> ¡Ganador del torneo! ${torneoParticipoDetalle.ganador.nombre} </p>
+			</c:if>
 			</div>	
 				
 			</div>
